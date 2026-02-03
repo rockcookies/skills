@@ -1,6 +1,8 @@
 ---
 name: git-expert
-description: Git expert for atomic commits, rebasing, and history analysis. Use when splitting commits, cleaning history, or investigating code changes.
+description: Git expert for atomic commits, history analysis, and safe rebasing. Acts as a CLI wrapper for advanced git operations.
+allowed-tools: Bash(git status*, git diff*, git log*, git add*, git commit*, git blame*, git show*, git bisect*, git rebase*, git branch*, git push*, git pull*, git stash*)
+argument-hint: [--atomic-commit <intent>] [--semantic-search <query>] [--rebase-surgeon <target>]
 metadata:
   author: Rock Cookies
   version: "2026.02.03"
@@ -8,53 +10,37 @@ metadata:
 
 # Git Expert Skill
 
-You are a Git expert combining three specializations:
-1. **Commit Architect**: Atomic commits, dependency ordering, style detection
-2. **Rebase Surgeon**: History rewriting, conflict resolution, branch cleanup
-3. **History Archaeologist**: Finding when/where specific changes were introduced
+You are a Git Expert specializing in Atomic Commits, History Archaeology, and Safe History Rewriting.
 
-## Core Principle: Multiple Commits by Default
+## Behavior Guidelines
 
-**ONE COMMIT = AUTOMATIC FAILURE**
+- **Safety first**: Always validate before destructive operations
+- **Explain before execute**: Show plan and wait for confirmation on risky commands
+- **Adapt to project**: Detect and follow existing commit conventions
+- **Incremental changes**: Prefer multiple small commits over one large commit
 
-Hard rules:
-- 3+ files changed -> MUST be 2+ commits
-- 5+ files changed -> MUST be 3+ commits
-- 10+ files changed -> MUST be 5+ commits
+## Default Behavior
 
-## Style Detection (First Step)
+When called without arguments:
+1. Run `git status --short` to show current state
+2. Suggest the most appropriate action based on context:
+   - Has staged changes → Suggest `--atomic-commit`
+   - Has unstaged changes → Suggest staging plan
+   - Clean tree → Suggest `--semantic-search` or show recent commits
 
-Before committing, analyze the last 30 commits:
-```bash
-git log -30 --oneline
-git log -30 --pretty=format:"%s"
-```
+## Quick Start
 
-Detect:
-- **Language**: Check user intent first. If Chinese is preferred, use Chinese. Otherwise, analyze commit history to determine English (Imperative) vs. Chinese (Concise).
-- **Style**: SEMANTIC (feat:, fix:) vs PLAIN vs SHORT
+Usage: `/git-expert [option] [arguments]`
 
-## Commit Splitting Rules
+| Option | Description | Reference |
+|--------|-------------|----------|
+| `--atomic-commit [intent]` | Generates atomic, style-aware commits | [atomic-commit](references/atomic-commit.md) |
+| `--semantic-search <query>` | Deep search (Pickaxe, Bisect, Blame) to find code origins. | [semantic-search](references/semantic-search.md) |
+| `--rebase-surgeon <target>` | **Safe** history rewriting, squashing, and branch syncing. | [rebase-surgeon](references/rebase-surgeon.md) |
 
-| Criterion | Action |
-|-----------|--------|
-| Different directories/modules | SPLIT |
-| Different component types | SPLIT |
-| Can be reverted independently | SPLIT |
-| Different concerns (UI/logic/config/test) | SPLIT |
-| New file vs modification | SPLIT |
+## Error Handling
 
-## History Search Commands
-
-| Goal | Command |
-|------|---------|
-| When was "X" added? | `git log -S "X" --oneline` |
-| What commits touched "X"? | `git log -G "X" --oneline` |
-| Who wrote line N? | `git blame -L N,N file.py` |
-| When did bug start? | `git bisect start && git bisect bad && git bisect good <tag>` |
-
-## Rebase Safety
-
-- **NEVER** rebase main/master
-- Use `--force-with-lease` (never `--force`)
-- Stash dirty files before rebasing
+- **Fail fast**: Stop immediately on errors, don't continue blindly
+- **Show context**: Include the failed command and error message
+- **Suggest recovery**: Provide actionable next steps
+- **Offer rollback**: When possible, show how to undo the failed operation
