@@ -14,7 +14,7 @@ export const submodules = {
   pnpm: 'https://github.com/pnpm/pnpm.io',
   pinia: 'https://github.com/vuejs/pinia',
   vitest: 'https://github.com/vitest-dev/vitest',
-  baoyu: 'https://github.com/JimLiu/baoyu-skills',
+  antfu: 'https://github.com/antfu/skills',
 }
 
 /**
@@ -59,5 +59,6 @@ export const vendors: Record<string, VendorSkillMeta> = {
 }
 
 export const manual = [
-  'hqy',
+  'node-dev',
+  'git-expert',
 ]
