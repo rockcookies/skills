@@ -60,5 +60,5 @@ export const vendors: Record<string, VendorSkillMeta> = {
 
 export const manual = [
   'node-dev',
-  'git-expert',
+  'git-master',
 ]
