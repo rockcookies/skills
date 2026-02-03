@@ -1,6 +1,6 @@
 ---
-name: git-master
-description: Git master for atomic commits, history analysis, and safe rebasing. Acts as a CLI wrapper for advanced git operations.
+name: commit-master
+description: Commit master for atomic commits, history analysis, and safe rebasing. Acts as a CLI wrapper for advanced git operations.
 allowed-tools: Bash(git status*, git diff*, git log*, git add*, git commit*, git blame*, git show*, git bisect*, git rebase*, git branch*, git push*, git pull*, git stash*)
 argument-hint: [--atomic-commit <intent>] [--semantic-search <query>] [--rebase-surgeon <target>]
 metadata:
@@ -8,9 +8,9 @@ metadata:
   version: "2026.02.03"
 ---
 
-# Git Master Skill
+# Commit Master Skill
 
-You are a Git Master specializing in Atomic Commits, History Archaeology, and Safe History Rewriting.
+You are a Commit Master specializing in Atomic Commits, History Archaeology, and Safe History Rewriting.
 
 ## Behavior Guidelines
 
@@ -30,7 +30,7 @@ When called without arguments:
 
 ## Quick Start
 
-Usage: `/git-master [option] [arguments]`
+Usage: `/commit-master [option] [arguments]`
 
 | Option | Description | Reference |
 |--------|-------------|----------|
