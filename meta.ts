@@ -38,7 +38,7 @@ export const repositories: Record<string, RepositoryConfig> = {
   },
   'turborepo': {
     url: 'https://github.com/vercel/turborepo',
-    skillsPath: '.claude/skills',
+    skillsPath: 'skills',
     skills: {
       turborepo: 'turborepo',
     },
@@ -49,5 +49,8 @@ export const repositories: Record<string, RepositoryConfig> = {
     skills: {
       'web-design-guidelines': 'web-design-guidelines',
     },
+  },
+  'antfu-skills': {
+    url: 'https://github.com/antfu/skills',
   },
 }
