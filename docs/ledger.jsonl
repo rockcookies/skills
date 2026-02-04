@@ -1,0 +1,1 @@
+{"date": "2026-02-04", "type": "refactor", "summary": "Refactor CLI from monolithic to modular service architecture", "files": ["scripts/cli.ts", "src/services/git.service.ts", "src/services/submodule.service.ts", "src/cli-commands/init.command.ts", "src/cli-commands/sync.command.ts", "package.json", "tsconfig.json"], "impact": "medium", "source": "manual"}
