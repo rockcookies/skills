@@ -1,8 +1,14 @@
 import type { RepositoryConfig } from '../types'
 import type { VendorService } from './vendor.service'
-import { cpSync, existsSync, mkdirSync, readdirSync, rmSync, writeFileSync } from 'node:fs'
+import { cpSync, existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { GitService } from './git.service'
+
+interface SyncInfo {
+  source: string
+  sha: string
+  synced: string
+}
 
 export class SyncService {
   private vendorService: VendorService
@@ -62,6 +68,15 @@ export class SyncService {
       throw new Error(`Skill not found: ${vendorName}/skills/${sourceSkillName}`)
     }
 
+    // 检查 SHA 是否一致，如果一致则跳过
+    if (existsSync(outputPath)) {
+      const syncInfo = this.readSyncInfo(outputPath)
+      if (syncInfo?.sha === sha) {
+        console.warn(`✓ Skill '${outputSkillName}' is up to date (SHA: ${sha.substring(0, 7)})`)
+        return
+      }
+    }
+
     // Check for local modifications
     if (existsSync(outputPath) && await this.hasLocalModifications(outputPath)) {
       console.warn(`⚠️  Skill '${outputSkillName}' has local modifications, will be overwritten`)
@@ -110,6 +125,33 @@ export class SyncService {
         break
       }
     }
+  }
+
+  // 读取 SYNC.md
+  private readSyncInfo(outputPath: string): SyncInfo | null {
+    const syncMdPath = join(outputPath, 'SYNC.md')
+
+    if (existsSync(syncMdPath)) {
+      try {
+        const content = readFileSync(syncMdPath, 'utf-8')
+        const shaMatch = content.match(/\*\*Git SHA:\*\*\s*`([^`]+)`/)
+        const sourceMatch = content.match(/\*\*Source:\*\*\s*`([^`]+)`/)
+        const syncedMatch = content.match(/\*\*Synced:\*\*\s*(.+)/)
+
+        if (shaMatch) {
+          return {
+            source: sourceMatch?.[1] || '',
+            sha: shaMatch[1],
+            synced: syncedMatch?.[1].trim() || '',
+          }
+        }
+      }
+      catch {
+        return null
+      }
+    }
+
+    return null
   }
 
   // 写入 SYNC.md
