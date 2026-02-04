@@ -1,11 +1,6 @@
-export interface Project {
-  name: string
-  url: string
-  type: 'source' | 'vendor'
-  path: string
-}
-
-export interface VendorConfig {
-  source: string
-  skills: Record<string, string> // sourceSkillName -> outputSkillName
+export interface RepositoryConfig {
+  url: string // Git repository URL
+  ref?: string // Git ref: branch name, tag, or commit SHA (optional)
+  skillsPath: string // Relative path to skills directory in repository
+  skills: Record<string, string> // Skill mapping: source skill name -> output skill name
 }
