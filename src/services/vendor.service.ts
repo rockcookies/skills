@@ -27,6 +27,18 @@ export class VendorService {
     }
   }
 
+  // Force update all vendor repositories (delete and reclone)
+  async forceUpdateAll(repos: Record<string, RepositoryConfig>): Promise<void> {
+    const { rmSync } = await import('node:fs')
+    for (const [name, config] of Object.entries(repos)) {
+      const vendorPath = join(this.root, 'vendor', name)
+      if (existsSync(vendorPath)) {
+        rmSync(vendorPath, { recursive: true, force: true })
+      }
+      await this.ensureRepo(name, config)
+    }
+  }
+
   // Get repository current SHA
   async getRepoSha(repoName: string): Promise<string> {
     const repoPath = join(this.root, 'vendor', repoName)
@@ -40,14 +52,14 @@ export class VendorService {
     const vendorPath = join(this.root, 'vendor', name)
 
     if (!existsSync(vendorPath)) {
-      await this.cloneRepo(name, config, vendorPath)
+      await this.cloneRepo(config, vendorPath)
     }
     else {
-      await this.updateRepo(name, config, vendorPath)
+      await this.updateRepo(config, vendorPath)
     }
   }
 
-  private async cloneRepo(name: string, config: RepositoryConfig, vendorPath: string): Promise<void> {
+  private async cloneRepo(config: RepositoryConfig, vendorPath: string): Promise<void> {
     const vendorDir = join(this.root, 'vendor')
     if (!existsSync(vendorDir)) {
       mkdirSync(vendorDir, { recursive: true })
@@ -56,14 +68,27 @@ export class VendorService {
     await this.git.clone(config.url, vendorPath)
   }
 
-  private async updateRepo(name: string, config: RepositoryConfig, vendorPath: string): Promise<void> {
+  private async updateRepo(config: RepositoryConfig, vendorPath: string): Promise<void> {
     const repoGit = this.gitForPath(vendorPath)
 
     // Fetch all updates
-    await repoGit.fetch()
+    await repoGit.fetch(['--tags'])
 
-    // Reset to specified ref or default branch
-    const ref = config.ref || await this.getDefaultBranch(repoGit)
+    // Determine target ref based on priority: commit > tag > branch > default
+    let ref: string
+    if (config.commit) {
+      ref = config.commit
+    }
+    else if (config.tag) {
+      ref = `refs/tags/${config.tag}`
+    }
+    else if (config.branch) {
+      ref = `origin/${config.branch}`
+    }
+    else {
+      ref = await this.getDefaultBranch(repoGit)
+    }
+
     await repoGit.reset(['--hard', ref])
   }
 
