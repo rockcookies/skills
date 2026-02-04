@@ -42,7 +42,7 @@ export class SyncService {
       throw new Error(`Cannot get SHA for ${vendorName}`)
     }
 
-    for (const [sourceSkillName, outputSkillName] of Object.entries(config.skills)) {
+    for (const [sourceSkillName, outputSkillName] of Object.entries(config.skills || {})) {
       await this.syncSkill(vendorName, vendorSkillsPath, sourceSkillName, outputSkillName, sha)
     }
   }
