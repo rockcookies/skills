@@ -127,10 +127,23 @@ export class SyncService {
     }
   }
 
-  // 读取 SYNC.md
+  // 读取 SYNC.json
   private readSyncInfo(outputPath: string): SyncInfo | null {
+    const syncJsonPath = join(outputPath, 'SYNC.json')
     const syncMdPath = join(outputPath, 'SYNC.md')
 
+    // 优先读取 SYNC.json
+    if (existsSync(syncJsonPath)) {
+      try {
+        const content = readFileSync(syncJsonPath, 'utf-8')
+        return JSON.parse(content)
+      }
+      catch {
+        return null
+      }
+    }
+
+    // 兼容旧的 SYNC.md 格式
     if (existsSync(syncMdPath)) {
       try {
         const content = readFileSync(syncMdPath, 'utf-8')
@@ -154,16 +167,15 @@ export class SyncService {
     return null
   }
 
-  // 写入 SYNC.md
+  // 写入 SYNC.json
   private writeSyncMd(vendorName: string, sourceSkillName: string, outputPath: string, sha: string): void {
     const date = new Date().toISOString().split('T')[0]
-    const content = `# Sync Info
-
-- **Source:** \`vendor/${vendorName}/skills/${sourceSkillName}\`
-- **Git SHA:** \`${sha}\`
-- **Synced:** ${date}
-`
-    writeFileSync(join(outputPath, 'SYNC.md'), content)
+    const syncInfo: SyncInfo = {
+      source: `vendor/${vendorName}/skills/${sourceSkillName}`,
+      sha,
+      synced: date,
+    }
+    writeFileSync(join(outputPath, 'SYNC.json'), `${JSON.stringify(syncInfo, null, 2)}\n`)
   }
 
   // Check if skill has local modifications
