@@ -22,14 +22,12 @@ export const repositories: Record<string, RepositoryConfig> = {
   },
   'tsdown': {
     url: 'https://github.com/rolldown/tsdown',
-    skillsPath: 'skills',
     skills: {
       tsdown: 'tsdown',
     },
   },
   'vuejs-ai': {
     url: 'https://github.com/vuejs-ai/skills',
-    skillsPath: 'skills',
     skills: {
       'vue-best-practices': 'vue-best-practices',
       'vue-router-best-practices': 'vue-router-best-practices',
@@ -38,16 +36,21 @@ export const repositories: Record<string, RepositoryConfig> = {
   },
   'turborepo': {
     url: 'https://github.com/vercel/turborepo',
-    skillsPath: 'skills',
     skills: {
       turborepo: 'turborepo',
     },
   },
-  'agent-skills': {
+  'vercel-skills': {
     url: 'https://github.com/vercel-labs/agent-skills',
-    skillsPath: 'skills',
     skills: {
       'web-design-guidelines': 'web-design-guidelines',
+    },
+  },
+  'anthropics-skills': {
+    url: 'https://github.com/anthropics/skills',
+    skills: {
+      'frontend-design': 'frontend-design',
+      'skill-creator': 'skill-creator',
     },
   },
   'antfu-skills': {
