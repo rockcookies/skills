@@ -17,7 +17,7 @@ export class GitService {
 
   // 获取相对于 upstream 的落后提交数
   async getBehindCount(): Promise<number> {
-    const count = await this.git.revlist(['HEAD..@{u}', '--count'])
+    const count = await this.git.raw(['rev-list', 'HEAD..@{u}', '--count'])
     return Number.parseInt(count.trim())
   }
 
@@ -26,35 +26,23 @@ export class GitService {
     await this.git.fetch()
   }
 
-  // 更新 submodule
-  async updateSubmodules(options: { remote: boolean, merge: boolean }): Promise<void> {
-    const args: string[] = ['submodule', 'update']
-    if (options.remote)
-      args.push('--remote')
-    if (options.merge)
-      args.push('--merge')
-    await this.git.raw(args)
+  // Clone repository
+  async clone(url: string, path: string): Promise<void> {
+    await this.git.clone(url, path)
   }
 
-  // 添加 submodule
-  async addSubmodule(url: string, path: string): Promise<void> {
-    await this.git.raw(['submodule', 'add', url, path])
-  }
-
-  // 移除 submodule
-  async removeSubmodule(path: string): Promise<void> {
-    await this.git.raw(['submodule', 'deinit', '-f', path])
-    await this.git.rm(['-f', path])
+  // Get working tree diff
+  async diff(files?: string[]): Promise<string> {
+    const args = ['diff']
+    if (files && files.length > 0) {
+      args.push('--')
+      args.push(...files)
+    }
+    return await this.git.raw(args)
   }
 
   // 检查是否为 git 仓库
   async checkIsRepo(): Promise<boolean> {
     return await this.git.checkIsRepo()
-  }
-
-  // 在 submodule 中执行命令
-  async submoduleForeach(command: string): Promise<void> {
-    // 使用 raw 方法执行 git submodule foreach 命令
-    await this.git.raw(['submodule', 'foreach', command])
   }
 }
