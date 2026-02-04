@@ -3,7 +3,7 @@
   "packageManager": "pnpm@10.28.2",
   "scripts": {
     "lint": "eslint .",
-    "start": "tsx scripts/cli.ts",
+    "start": "tsx src/cli.ts",
     "prepare": "simple-git-hooks"
   },
   "devDependencies": {
