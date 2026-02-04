@@ -1,42 +1,26 @@
-export interface VendorSkillMeta {
-  official?: boolean
-  source: string
-  skills: Record<string, string> // sourceSkillName -> outputSkillName
-}
+import type { RepositoryConfig } from './src/types'
 
 /**
- * Repositories to clone as submodules and generate skills from source
+ * Repositories to clone and sync skills from
  */
-export const submodules = {
-  vue: 'https://github.com/vuejs/docs',
-  vite: 'https://github.com/vitejs/vite',
-  unocss: 'https://github.com/unocss/unocss',
-  pnpm: 'https://github.com/pnpm/pnpm.io',
-  pinia: 'https://github.com/vuejs/pinia',
-  vitest: 'https://github.com/vitest-dev/vitest',
-  antfu: 'https://github.com/antfu/skills',
-}
-
-/**
- * Already generated skills, sync with their `skills/` directory
- */
-export const vendors: Record<string, VendorSkillMeta> = {
+export const repositories: Record<string, RepositoryConfig> = {
   'vueuse': {
-    official: true,
-    source: 'https://github.com/vueuse/skills',
+    url: 'https://github.com/vueuse/skills',
+    skillsPath: 'skills',
     skills: {
       'vueuse-functions': 'vueuse-functions',
     },
   },
   'tsdown': {
-    official: true,
-    source: 'https://github.com/rolldown/tsdown',
+    url: 'https://github.com/rolldown/tsdown',
+    skillsPath: 'skills',
     skills: {
       tsdown: 'tsdown',
     },
   },
   'vuejs-ai': {
-    source: 'https://github.com/vuejs-ai/skills',
+    url: 'https://github.com/vuejs-ai/skills',
+    skillsPath: 'skills',
     skills: {
       'vue-best-practices': 'vue-best-practices',
       'vue-router-best-practices': 'vue-router-best-practices',
@@ -44,20 +28,17 @@ export const vendors: Record<string, VendorSkillMeta> = {
     },
   },
   'turborepo': {
-    official: true,
-    source: 'https://github.com/vercel/turborepo',
+    url: 'https://github.com/vercel/turborepo',
+    skillsPath: '.claude/skills',
     skills: {
       turborepo: 'turborepo',
     },
   },
   'web-design-guidelines': {
-    source: 'https://github.com/vercel-labs/agent-skills',
+    url: 'https://github.com/vercel-labs/agent-skills',
+    skillsPath: 'skills',
     skills: {
       'web-design-guidelines': 'web-design-guidelines',
     },
   },
 }
-
-export const manual = [
-  'node-dev',
-]

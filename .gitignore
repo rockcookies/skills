@@ -37,3 +37,6 @@ dist/
 
 # storybook
 storybook-static
+
+# Vendor directories - managed by meta.ts
+vendor/

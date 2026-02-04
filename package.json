@@ -4,7 +4,7 @@
   "scripts": {
     "lint": "eslint .",
     "start": "tsx scripts/cli.ts",
-    "prepare": "simple-git-hooks && git submodule update --init --recursive"
+    "prepare": "simple-git-hooks"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^7.2.0",
