@@ -1,40 +1,43 @@
-import type { VendorConfig } from '../types.ts'
+import type { RepositoryConfig } from '../types'
+import type { VendorService } from './vendor.service'
 import { cpSync, existsSync, mkdirSync, readdirSync, rmSync, writeFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
-import { SubmoduleService } from './submodule.service.ts'
+import { GitService } from './git.service'
 
 export class SyncService {
-  private submoduleService: SubmoduleService
+  private vendorService: VendorService
+  private gitService: GitService
   private root: string
 
-  constructor(root: string) {
+  constructor(root: string, vendorService: VendorService) {
     this.root = root
-    this.submoduleService = new SubmoduleService(root)
+    this.vendorService = vendorService
+    this.gitService = new GitService(root)
   }
 
   // 同步所有 vendor 技能
-  async syncVendorSkills(vendors: Record<string, VendorConfig>): Promise<void> {
-    await this.submoduleService.updateAllSubmodules()
+  async syncVendorSkills(repositories: Record<string, RepositoryConfig>): Promise<void> {
+    // Note: VendorService.updateAll should be called before this
 
-    for (const [vendorName, config] of Object.entries(vendors)) {
+    for (const [vendorName, config] of Object.entries(repositories)) {
       await this.syncVendor(vendorName, config)
     }
   }
 
   // 同步单个 vendor
-  async syncVendor(vendorName: string, config: VendorConfig): Promise<void> {
+  async syncVendor(vendorName: string, config: RepositoryConfig): Promise<void> {
     const vendorPath = join(this.root, 'vendor', vendorName)
-    const vendorSkillsPath = join(vendorPath, 'skills')
+    const vendorSkillsPath = join(vendorPath, config.skillsPath || 'skills')
 
     if (!existsSync(vendorPath)) {
-      throw new Error(`Vendor submodule not found: ${vendorName}`)
+      throw new Error(`Vendor repository not found: ${vendorName}`)
     }
 
     if (!existsSync(vendorSkillsPath)) {
       throw new Error(`No skills directory in ${vendorName}`)
     }
 
-    const sha = await this.submoduleService.getSubmoduleSha(`vendor/${vendorName}`)
+    const sha = await this.vendorService.getRepoSha(vendorName)
     if (!sha) {
       throw new Error(`Cannot get SHA for ${vendorName}`)
     }
@@ -57,6 +60,11 @@ export class SyncService {
 
     if (!existsSync(sourceSkillPath)) {
       throw new Error(`Skill not found: ${vendorName}/skills/${sourceSkillName}`)
+    }
+
+    // Check for local modifications
+    if (existsSync(outputPath) && await this.hasLocalModifications(outputPath)) {
+      console.warn(`⚠️  Skill '${outputSkillName}' has local modifications, will be overwritten`)
     }
 
     // 清理并重建输出目录
@@ -114,5 +122,12 @@ export class SyncService {
 - **Synced:** ${date}
 `
     writeFileSync(join(outputPath, 'SYNC.md'), content)
+  }
+
+  // Check if skill has local modifications
+  private async hasLocalModifications(skillPath: string): Promise<boolean> {
+    const relativePath = skillPath.replace(`${this.root}/`, '').replace(/\\/g, '/')
+    const diff = await this.gitService.diff([relativePath])
+    return diff.trim().length > 0
   }
 }
