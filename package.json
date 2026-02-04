@@ -3,7 +3,7 @@
   "packageManager": "pnpm@10.28.2",
   "scripts": {
     "lint": "eslint .",
-    "start": "node scripts/cli.ts",
+    "start": "tsx scripts/cli.ts",
     "prepare": "simple-git-hooks && git submodule update --init --recursive"
   },
   "devDependencies": {
@@ -12,7 +12,9 @@
     "@types/node": "^25.0.10",
     "eslint": "^9.39.2",
     "lint-staged": "^16.2.7",
+    "simple-git": "^3.30.0",
     "simple-git-hooks": "^2.11.1",
+    "tsx": "^4.21.0",
     "typescript": "^5.9.3"
   },
   "simple-git-hooks": {
