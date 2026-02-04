@@ -43,7 +43,7 @@ export const repositories: Record<string, RepositoryConfig> = {
       turborepo: 'turborepo',
     },
   },
-  'web-design-guidelines': {
+  'agent-skills': {
     url: 'https://github.com/vercel-labs/agent-skills',
     skillsPath: 'skills',
     skills: {
