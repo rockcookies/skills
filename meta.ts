@@ -2,11 +2,20 @@ import type { RepositoryConfig } from './src/types'
 
 /**
  * Repositories to clone and sync skills from
+ *
+ * Version locking options (priority: commit > tag > branch):
+ * - branch: Lock to a specific branch (e.g., 'main', 'develop')
+ * - tag: Lock to a specific tag (e.g., 'v1.0.0')
+ * - commit: Lock to a specific commit SHA
+ * - If none specified, uses the default branch
  */
 export const repositories: Record<string, RepositoryConfig> = {
   'vueuse': {
     url: 'https://github.com/vueuse/skills',
     skillsPath: 'skills',
+    // branch: 'main', // Optional: lock to specific branch
+    // tag: 'v1.0.0', // Optional: lock to specific tag
+    // commit: 'abc123', // Optional: lock to specific commit
     skills: {
       'vueuse-functions': 'vueuse-functions',
     },
