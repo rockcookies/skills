@@ -58,8 +58,6 @@ In each package's `package.json`, add the scripts.
 
 For monorepos with many packages or long build times, use Turborepo for task orchestration and caching.
 
-See the dedicated Turborepo skill for detailed configuration.
-
 ## Centralized Alias
 
 For better DX across Vite, Nuxt, Vitest configs, create a centralized `alias.ts` at project root:
