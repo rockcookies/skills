@@ -2,12 +2,9 @@ import { dirname, join } from 'node:path'
 import process from 'node:process'
 import { fileURLToPath } from 'node:url'
 import * as p from '@clack/prompts'
-import { submodules, vendors } from '../meta.ts'
-import { checkUpdates } from '../src/cli-commands/check.command.ts'
-import { cleanup } from '../src/cli-commands/cleanup.command.ts'
-import { initSubmodules } from '../src/cli-commands/init.command.ts'
-import { syncSubmodules } from '../src/cli-commands/sync.command.ts'
-import { buildProjects } from '../src/utils/project-builder.ts'
+import { repositories } from '../meta'
+import { initSubmodules } from '../src/cli-commands/init.command'
+import { syncSubmodules } from '../src/cli-commands/sync.command'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const root = join(__dirname, '..')
@@ -27,34 +24,17 @@ function parseArgs(): CLIArgs {
 async function main() {
   const { command, skipPrompt } = parseArgs()
 
-  // 构建项目列表
-  const projects = buildProjects(submodules, vendors)
-
   // 处理子命令
   if (command === 'init') {
     p.intro('Skills Manager - Init')
-    await initSubmodules(root, projects, { skipPrompt })
+    await initSubmodules(root, repositories)
     p.outro('Done')
     return
   }
 
   if (command === 'sync') {
     p.intro('Skills Manager - Sync')
-    await syncSubmodules(root, vendors)
-    p.outro('Done')
-    return
-  }
-
-  if (command === 'check') {
-    p.intro('Skills Manager - Check')
-    await checkUpdates(root, submodules, vendors)
-    p.outro('Done')
-    return
-  }
-
-  if (command === 'cleanup') {
-    p.intro('Skills Manager - Cleanup')
-    await cleanup(root, projects, skipPrompt)
+    await syncSubmodules(root, repositories)
     p.outro('Done')
     return
   }
@@ -62,7 +42,7 @@ async function main() {
   // 无子命令：显示交互式菜单
   if (skipPrompt) {
     p.log.error('Command required when using -y flag')
-    p.log.info('Available commands: init, sync, check, cleanup')
+    p.log.info('Available commands: init, sync')
     process.exit(1)
   }
 
@@ -71,10 +51,8 @@ async function main() {
   const action = await p.select({
     message: 'What would you like to do?',
     options: [
-      { value: 'sync', label: 'Sync submodules', hint: 'Pull latest and sync Type 2 skills' },
-      { value: 'init', label: 'Init submodules', hint: 'Add new submodules' },
-      { value: 'check', label: 'Check updates', hint: 'See available updates' },
-      { value: 'cleanup', label: 'Cleanup', hint: 'Remove unused submodules and skills' },
+      { value: 'sync', label: 'Sync repositories', hint: 'Pull latest and sync skills' },
+      { value: 'init', label: 'Init repositories', hint: 'Clone vendor repositories' },
     ],
   })
 
@@ -85,16 +63,10 @@ async function main() {
 
   switch (action) {
     case 'init':
-      await initSubmodules(root, projects, { skipPrompt: false })
+      await initSubmodules(root, repositories)
       break
     case 'sync':
-      await syncSubmodules(root, vendors)
-      break
-    case 'check':
-      await checkUpdates(root, submodules, vendors)
-      break
-    case 'cleanup':
-      await cleanup(root, projects, false)
+      await syncSubmodules(root, repositories)
       break
   }
 
