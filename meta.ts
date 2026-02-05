@@ -40,10 +40,16 @@ export const repositories: Record<string, RepositoryConfig> = {
       turborepo: 'turborepo',
     },
   },
-  'vercel-skills': {
+  'vercel-agent-skills': {
     url: 'https://github.com/vercel-labs/agent-skills',
     skills: {
       'web-design-guidelines': 'web-design-guidelines',
+    },
+  },
+  'vercel-skills': {
+    url: 'https://github.com/vercel-labs/skills',
+    skills: {
+      'find-skills': 'find-skills',
     },
   },
   'anthropics-skills': {
@@ -55,5 +61,8 @@ export const repositories: Record<string, RepositoryConfig> = {
   },
   'antfu-skills': {
     url: 'https://github.com/antfu/skills',
+  },
+  'baoyu-skills': {
+    url: 'https://github.com/JimLiu/baoyu-skills',
   },
 }
