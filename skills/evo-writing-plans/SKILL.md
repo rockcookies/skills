@@ -15,7 +15,7 @@ Assume they are a skilled developer, but know almost nothing about our toolset o
 
 **Context:** This should be run in a dedicated worktree (created by evo-brainstorming skill).
 
-**Save plans to:**  `docs/specs/YYYY-MM-DD-<feature-name>/plan.md`
+**Save plans to:** `docs/evo/YYYY-MM-DD-<feature-name>.md`
 
 ## Bite-Sized Task Granularity
 
@@ -84,5 +84,24 @@ Expected: PASS
 - Complete code in plan (not "add validation")
 - Exact commands with expected output
 - Reference relevant skills with @ syntax
-- DRY, YAGNI, TDD
-- Always check against docs/constitution.md first
+- DRY, YAGNI, TDD, frequent commits
+
+## Execution Handoff
+
+After saving the plan, offer execution choice:
+
+**"Plan complete and saved to `docs/evo/<filename>.md`. Two execution options:**
+
+**1. This Session** - I execute using evo-executing-plans here, batch execution with checkpoints
+
+**2. New Session (recommended)** - Open separate session with evo-executing-plans in worktree
+
+**Which approach?"**
+
+**If This Session chosen:**
+- Stay in this session
+- **REQUIRED SUB-SKILL:** Use evo-executing-plans
+
+**If New Session chosen:**
+- Guide them to open new session in worktree
+- **REQUIRED SUB-SKILL:** New session uses evo-executing-plans
