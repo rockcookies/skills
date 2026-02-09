@@ -15,8 +15,7 @@ Start by understanding the current project context, then ask questions one at a 
 
 **Gather Context:**
 1. Read docs/constitution.md (understand constraints)
-2. Read docs/architecture.md (understand current state)
-3. Read last 5 records in docs/ledger.jsonl (understand recent changes)
+2. Read last 5 records in docs/ledger.jsonl (understand recent changes)
 
 **Understanding the idea:**
 - Check out the current project state first (files, docs, recent commits)
@@ -24,7 +23,7 @@ Start by understanding the current project context, then ask questions one at a 
 - Prefer multiple choice questions when possible, but open-ended is fine too
 - Only one question per message - if a topic needs more exploration, break it into multiple questions
 - Focus on understanding: purpose, constraints, success criteria
-- If the request conflicts with constitution.md, refuse and suggest an alternative
+- If the request conflicts with docs/constitution.md, refuse and suggest an alternative
 
 **Exploring approaches:**
 - Propose 2-3 different approaches with trade-offs
@@ -41,12 +40,12 @@ Start by understanding the current project context, then ask questions one at a 
 ## After the Design
 
 **Documentation:**
-- Write the validated design to `docs/specs/YYYY-MM-DD-<topic>/design.md`
+- Write the validated design to `docs/evo/YYYY-MM-DD-<topic>/design.md`
 - Use elements-of-style:writing-clearly-and-concisely skill if available
 
 **Implementation (if continuing):**
 - Ask: "Ready to set up for implementation?"
-- Use evo-writing-plans skill to create detailed implementation plan
+- Use evo-writing-plans to create detailed implementation plan
 
 ## Key Principles
 
