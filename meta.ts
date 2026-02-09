@@ -59,6 +59,12 @@ export const repositories: Record<string, RepositoryConfig> = {
       'skill-creator': 'skill-creator',
     },
   },
+  'everything-claude-code': {
+    url: 'https://github.com/affaan-m/everything-claude-code',
+  },
+  'superpowers': {
+    url: 'https://github.com/obra/superpowers',
+  },
   'antfu-skills': {
     url: 'https://github.com/antfu/skills',
   },
