@@ -45,7 +45,7 @@ Assume they are a skilled developer, but know almost nothing about our toolset o
 
 ## Task Structure
 
-```markdown
+````markdown
 ### Task N: [Component Name]
 
 **Files:**
@@ -77,7 +77,14 @@ def function(input):
 
 Run: `pytest tests/path/test.py::test_name -v`
 Expected: PASS
+
+**Step 5: Commit**
+
+```bash
+git add tests/path/test.py src/path/file.py
+git commit -m "feat: add specific feature"
 ```
+````
 
 ## Remember
 - Exact file paths always
@@ -94,13 +101,13 @@ After saving the plan, offer execution choice:
 
 **1. This Session** - I execute using evo-executing-plans here, batch execution with checkpoints
 
-**2. New Session (recommended)** - Open separate session with evo-executing-plans in worktree
+**2. New Session (recommended)** - Open new session with evo-executing-plans, batch execution with checkpoints
 
 **Which approach?"**
 
 **If This Session chosen:**
 - Stay in this session
-- **REQUIRED SUB-SKILL:** Use evo-executing-plans
+- Fresh subagent per task + code review
 
 **If New Session chosen:**
 - Guide them to open new session in worktree
