@@ -72,7 +72,7 @@ export class VendorService {
     const repoGit = this.gitForPath(vendorPath)
 
     // Fetch all updates
-    await repoGit.fetch(['--tags'])
+    await repoGit.fetch(['--tags', '--force'])
 
     // Determine target ref based on priority: commit > tag > branch > default
     let ref: string
