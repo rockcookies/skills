@@ -86,9 +86,8 @@ digraph brainstorming {
 - Write the validated design to `docs/evo/YYYY-MM-DD-<topic>-design.md`
 - Use elements-of-style:writing-clearly-and-concisely skill if available
 
-**Implementation (if continuing):**
-- Ask: "Ready to set up for implementation?"
-- If yes, invoke the evo-writing-plans skill to create a detailed implementation plan
+**Implementation:**
+- Invoke the evo-writing-plans skill to create a detailed implementation plan
 - Do NOT invoke any other skill. evo-writing-plans is the next step.
 
 ## Key Principles
