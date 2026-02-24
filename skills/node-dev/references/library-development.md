@@ -8,7 +8,7 @@ description: Building and publishing TypeScript libraries with tsdown. Use when 
 | Aspect | Choice |
 |--------|--------|
 | Bundler | tsdown |
-| Output | Dual format (ESM + CJS) |
+| Output | Pure ESM only (no CJS) |
 | DTS | Generated via tsdown |
 | Exports | Auto-generated via tsdown |
 
@@ -22,7 +22,7 @@ import { defineConfig } from 'tsdown'
 
 export default defineConfig({
   entry: ['src/index.ts'],
-  format: ['esm', 'cjs'],
+  format: ['esm'],
   dts: true,
   exports: true,
 })
@@ -30,7 +30,7 @@ export default defineConfig({
 
 | Option | Value | Purpose |
 |--------|-------|---------|
-| `format` | `['esm', 'cjs']` | Dual format for maximum compatibility |
+| `format` | `['esm']` | Pure ESM, no CommonJS |
 | `dts` | `true` | Generate `.d.ts` files |
 | `exports` | `true` | Auto-update `exports` field in `package.json` |
 
@@ -42,7 +42,7 @@ export default defineConfig({
     'src/index.ts',
     'src/utils.ts',
   ],
-  format: ['esm', 'cjs'],
+  format: ['esm'],
   dts: true,
   exports: true,
 })
@@ -54,14 +54,14 @@ The `exports: true` option auto-generates the `exports` field in `package.json` 
 
 ## package.json
 
-Required fields for dual format library:
+Required fields for pure ESM library:
 
 ```json
 {
   "type": "module",
-  "main": "./dist/index.cjs",
+  "main": "./dist/index.mjs",
   "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
+  "types": "./dist/index.d.mts",
   "files": ["dist"],
   "scripts": {
     "build": "tsdown",
@@ -72,7 +72,7 @@ Required fields for dual format library:
 }
 ```
 
-The `exports` field is managed by tsdown when `exports: true`. It will automatically generate proper conditional exports for both ESM and CJS consumers.
+The `exports` field is managed by tsdown when `exports: true`.
 
 ### prepack Script
 

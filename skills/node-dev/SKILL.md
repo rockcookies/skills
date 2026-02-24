@@ -3,7 +3,7 @@ name: node-dev
 description: Modern JavaScript/TypeScript runtime development conventions and tooling. Use when setting up JS/TS projects with Node, Bun, or Deno, configuring ESLint, pnpm workspaces, monorepos, library publishing, or npm package development.
 metadata:
   author: Rock Cookies
-  version: "2026.02.03"
+  version: "2026.02.24"
 ---
 
 ## Coding Practices
