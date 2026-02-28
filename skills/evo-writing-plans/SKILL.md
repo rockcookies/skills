@@ -15,7 +15,7 @@ Assume they are a skilled developer, but know almost nothing about our toolset o
 
 **Context:** This should be run in a dedicated worktree (created by evo-brainstorming skill).
 
-**Save plans to:** `docs/evo/YYYY-MM-DD-<feature-name>-plan.md`
+**Save plans to:** `docs/evo/YYYY-MM-DD-<feature-name>/plan.md`
 
 ## Bite-Sized Task Granularity
 
@@ -97,7 +97,7 @@ git commit -m "feat: add specific feature"
 
 After saving the plan, offer execution choice:
 
-**"Plan complete and saved to `docs/evo/<filename>.md`. Two execution options:**
+**"Plan complete and saved to `docs/evo/YYYY-MM-DD-<feature-name>/plan.md`. Two execution options:**
 
 **1. This Session** - I execute using evo-executing-plans here, batch execution with checkpoints
 
