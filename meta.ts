@@ -59,16 +59,14 @@ export const repositories: Record<string, RepositoryConfig> = {
       'skill-creator': 'skill-creator',
     },
   },
-  'everything-claude-code': {
-    url: 'https://github.com/affaan-m/everything-claude-code',
-  },
-  'superpowers': {
-    url: 'https://github.com/obra/superpowers',
-  },
   'antfu-skills': {
     url: 'https://github.com/antfu/skills',
   },
-  'baoyu-skills': {
-    url: 'https://github.com/JimLiu/baoyu-skills',
+  'go-modern-guidelines': {
+    url: 'https://github.com/JetBrains/go-modern-guidelines',
+    skillsPath: 'claude/modern-go-guidelines/skills',
+    skills: {
+      'use-modern-go': 'use-modern-go',
+    },
   },
 }

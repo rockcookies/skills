@@ -38,5 +38,5 @@ dist/
 # storybook
 storybook-static
 
-# Vendor directories - managed by meta.ts
-vendor/
+# Upstream directories - managed by meta.ts
+upstream/

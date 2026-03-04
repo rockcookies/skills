@@ -96,9 +96,9 @@ export default defineConfig({
 | Shims | `shims: true` - Add ESM/CJS compatibility | [option-shims](references/option-shims.md) |
 | CJS default | `cjsDefault: true` (default) / `false` | [option-cjs-default](references/option-cjs-default.md) |
 | Package exports | `exports: true` - Auto-generate exports field | [option-package-exports](references/option-package-exports.md) |
-| CSS handling | **[experimental]** Still in development | [option-css](references/option-css.md) |
+| CSS handling | **[experimental]** `css: { splitting, preprocessorOptions, lightningcss }` | [option-css](references/option-css.md) |
 | Unbundle mode | `unbundle: true` - Preserve directory structure | [option-unbundle](references/option-unbundle.md) |
-| Executable (SEA) | **[experimental]** `exe: true` - Bundle as Node.js SEA executable | [option-exe](references/option-exe.md) |
+| Executable | **[experimental]** `exe: true` - Bundle as standalone executable, cross-platform via `@tsdown/exe` | [option-exe](references/option-exe.md) |
 | Package validation | `publint: true`, `attw: true` - Validate package | [option-lint](references/option-lint.md) |
 
 ## Framework & Runtime Support
@@ -200,12 +200,45 @@ export default defineConfig({
 })
 ```
 
-### Node.js Executable (SEA)
+### Library with CSS and Sass
+
+```ts
+export default defineConfig({
+  entry: ['src/index.ts'],
+  format: ['esm', 'cjs'],
+  dts: true,
+  target: 'chrome100',
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: `@use "src/styles/variables" as *;`,
+      },
+    },
+  },
+})
+```
+
+### Standalone Executable
 
 ```ts
 export default defineConfig({
   entry: ['src/cli.ts'],
   exe: true,
+})
+```
+
+### Cross-Platform Executable (requires `@tsdown/exe`)
+
+```ts
+export default defineConfig({
+  entry: ['src/cli.ts'],
+  exe: {
+    targets: [
+      { platform: 'linux', arch: 'x64', nodeVersion: '25.7.0' },
+      { platform: 'darwin', arch: 'arm64', nodeVersion: '25.7.0' },
+      { platform: 'win', arch: 'x64', nodeVersion: '25.7.0' },
+    ],
+  },
 })
 ```
 
@@ -291,7 +324,7 @@ tsdown --format esm,cjs        # Multiple formats
 tsdown --outDir lib            # Custom output directory
 tsdown --minify                # Enable minification
 tsdown --dts                   # Generate declarations
-tsdown --exe                   # Bundle as executable (SEA)
+tsdown --exe                   # Bundle as standalone executable
 
 # Entry options
 tsdown src/index.ts            # Single entry
