@@ -1,13 +1,13 @@
 import type { SimpleGit } from 'simple-git'
 import process from 'node:process'
-import simpleGit from 'simple-git'
+import git from 'simple-git'
 
 export class GitService {
   private git: SimpleGit
   private proxy?: string
 
   constructor(cwd: string = process.cwd(), proxy?: string) {
-    this.git = simpleGit(cwd)
+    this.git = git(cwd)
     this.proxy = proxy
     if (proxy) {
       this.configureProxy()

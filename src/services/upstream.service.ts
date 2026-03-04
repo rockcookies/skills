@@ -4,7 +4,7 @@ import { existsSync, mkdirSync } from 'node:fs'
 import { join } from 'node:path'
 import simpleGit from 'simple-git'
 
-export class VendorService {
+export class UpstreamService {
   private root: string
   private git: GitService
 
@@ -13,27 +13,27 @@ export class VendorService {
     this.git = git
   }
 
-  // Initialize all vendor repositories
+  // Initialize all upstream repositories
   async initAll(repos: Record<string, RepositoryConfig>): Promise<void> {
     for (const [name, config] of Object.entries(repos)) {
       await this.ensureRepo(name, config)
     }
   }
 
-  // Update all vendor repositories to specified ref
+  // Update all upstream repositories to specified ref
   async updateAll(repos: Record<string, RepositoryConfig>): Promise<void> {
     for (const [name, config] of Object.entries(repos)) {
       await this.ensureRepo(name, config)
     }
   }
 
-  // Force update all vendor repositories (delete and reclone)
+  // Force update all upstream repositories (delete and reclone)
   async forceUpdateAll(repos: Record<string, RepositoryConfig>): Promise<void> {
     const { rmSync } = await import('node:fs')
     for (const [name, config] of Object.entries(repos)) {
-      const vendorPath = join(this.root, 'vendor', name)
-      if (existsSync(vendorPath)) {
-        rmSync(vendorPath, { recursive: true, force: true })
+      const upstreamPath = join(this.root, 'upstream', name)
+      if (existsSync(upstreamPath)) {
+        rmSync(upstreamPath, { recursive: true, force: true })
       }
       await this.ensureRepo(name, config)
     }
@@ -41,35 +41,41 @@ export class VendorService {
 
   // Get repository current SHA
   async getRepoSha(repoName: string): Promise<string> {
-    const repoPath = join(this.root, 'vendor', repoName)
-    const repoGit = this.gitForPath(repoPath)
-    const sha = await repoGit.revparse(['HEAD'])
+    const repoPath = join(this.root, 'upstream', repoName)
+    const sha = await this.gitForPath(repoPath).revparse(['HEAD'])
     return sha.trim()
+  }
+
+  // Get latest git tag of a repository
+  async getRepoLatestTag(repoName: string): Promise<string> {
+    const repoPath = join(this.root, 'upstream', repoName)
+    const tag = await this.gitForPath(repoPath).raw(['describe', '--tags', '--abbrev=0'])
+    return tag.trim()
   }
 
   // Clone or update single repository
   async ensureRepo(name: string, config: RepositoryConfig): Promise<void> {
-    const vendorPath = join(this.root, 'vendor', name)
+    const upstreamPath = join(this.root, 'upstream', name)
 
-    if (!existsSync(vendorPath)) {
-      await this.cloneRepo(config, vendorPath)
+    if (!existsSync(upstreamPath)) {
+      await this.cloneRepo(config, upstreamPath)
     }
     else {
-      await this.updateRepo(config, vendorPath)
+      await this.updateRepo(config, upstreamPath)
     }
   }
 
-  private async cloneRepo(config: RepositoryConfig, vendorPath: string): Promise<void> {
-    const vendorDir = join(this.root, 'vendor')
-    if (!existsSync(vendorDir)) {
-      mkdirSync(vendorDir, { recursive: true })
+  private async cloneRepo(config: RepositoryConfig, upstreamPath: string): Promise<void> {
+    const upstreamDir = join(this.root, 'upstream')
+    if (!existsSync(upstreamDir)) {
+      mkdirSync(upstreamDir, { recursive: true })
     }
 
-    await this.git.clone(config.url, vendorPath)
+    await this.git.clone(config.url, upstreamPath)
   }
 
-  private async updateRepo(config: RepositoryConfig, vendorPath: string): Promise<void> {
-    const repoGit = this.gitForPath(vendorPath)
+  private async updateRepo(config: RepositoryConfig, upstreamPath: string): Promise<void> {
+    const repoGit = this.gitForPath(upstreamPath)
 
     // Fetch all updates
     await repoGit.fetch(['--tags', '--force'])

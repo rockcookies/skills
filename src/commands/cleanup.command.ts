@@ -4,20 +4,20 @@ import { join } from 'node:path'
 import * as p from '@clack/prompts'
 import { formatError } from '../utils/error'
 
-export async function cleanupVendorRepositories(
+export async function cleanupUpstreamRepositories(
   root: string,
   repositories: Record<string, RepositoryConfig>,
 ) {
-  const vendorDir = join(root, 'vendor')
+  const upstreamDir = join(root, 'upstream')
 
-  if (!existsSync(vendorDir)) {
-    p.log.info('No vendor directory found')
+  if (!existsSync(upstreamDir)) {
+    p.log.info('No upstream directory found')
     return
   }
 
   const spinner = p.spinner()
   const configuredRepos = new Set(Object.keys(repositories))
-  const existingDirs = readdirSync(vendorDir, { withFileTypes: true })
+  const existingDirs = readdirSync(upstreamDir, { withFileTypes: true })
     .filter(dirent => dirent.isDirectory())
     .map(dirent => dirent.name)
 
@@ -41,10 +41,10 @@ export async function cleanupVendorRepositories(
     return
   }
 
-  spinner.start('Cleaning up orphaned repositories...')
+  spinner.start('Cleaning up orphaned upstream repositories...')
   try {
     for (const dir of toRemove) {
-      const dirPath = join(vendorDir, dir)
+      const dirPath = join(upstreamDir, dir)
       rmSync(dirPath, { recursive: true, force: true })
     }
     spinner.stop('Cleanup complete')

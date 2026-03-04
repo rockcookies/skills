@@ -1,37 +1,37 @@
 import type { RepositoryConfig } from '../types'
 import * as p from '@clack/prompts'
 import { GitService } from '../services/git.service'
-import { VendorService } from '../services/vendor.service'
+import { UpstreamService } from '../services/upstream.service'
 import { formatError } from '../utils/error'
 
-export interface VendorOptions {
+export interface UpstreamOptions {
   force?: boolean
   proxy?: string
 }
 
-export async function ensureVendorRepositories(
+export async function ensureUpstreamRepositories(
   root: string,
   repositories: Record<string, RepositoryConfig>,
-  options: VendorOptions = {},
+  options: UpstreamOptions = {},
 ) {
   const gitService = new GitService(root, options.proxy)
-  const vendorService = new VendorService(root, gitService)
+  const upstreamService = new UpstreamService(root, gitService)
   const spinner = p.spinner()
 
-  spinner.start('Ensuring vendor repositories...')
+  spinner.start('Ensuring upstream repositories...')
   try {
     if (options.force) {
-      await vendorService.forceUpdateAll(repositories)
+      await upstreamService.forceUpdateAll(repositories)
     }
     else {
-      await vendorService.updateAll(repositories)
+      await upstreamService.updateAll(repositories)
     }
-    spinner.stop('Vendor repositories ready')
+    spinner.stop('Upstream repositories ready')
   }
   catch (error) {
     spinner.stop(`Failed to ensure repositories: ${formatError(error)}`)
     return
   }
 
-  p.log.success('All vendor repositories synced')
+  p.log.success('All upstream repositories synced')
 }

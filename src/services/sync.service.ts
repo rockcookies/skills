@@ -1,7 +1,8 @@
 import type { RepositoryConfig } from '../types'
-import type { VendorService } from './vendor.service'
-import { cpSync, existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
+import type { UpstreamService } from './upstream.service'
+import { cp, mkdir, readdir, readFile, rm, writeFile } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
+import { pathExists } from '../utils/fs'
 import { GitService } from './git.service'
 
 interface SyncInfo {
@@ -11,66 +12,70 @@ interface SyncInfo {
 }
 
 export class SyncService {
-  private vendorService: VendorService
+  private upstreamService: UpstreamService
   private gitService: GitService
   private root: string
 
-  constructor(root: string, vendorService: VendorService) {
+  constructor(root: string, upstreamService: UpstreamService) {
     this.root = root
-    this.vendorService = vendorService
+    this.upstreamService = upstreamService
     this.gitService = new GitService(root)
   }
 
-  // 同步所有 vendor 技能
-  async syncVendorSkills(repositories: Record<string, RepositoryConfig>): Promise<void> {
-    // Note: VendorService.updateAll should be called before this
+  // 同步所有 upstream 技能
+  async syncUpstreamSkills(
+    repositories: Record<string, RepositoryConfig>,
+    force: boolean = false,
+  ): Promise<void> {
+    // Note: UpstreamService.updateAll should be called before this
 
-    for (const [vendorName, config] of Object.entries(repositories)) {
-      await this.syncVendor(vendorName, config)
+    for (const [upstreamName, config] of Object.entries(repositories)) {
+      await this.syncUpstream(upstreamName, config, force)
     }
   }
 
-  // 同步单个 vendor
-  async syncVendor(vendorName: string, config: RepositoryConfig): Promise<void> {
-    const vendorPath = join(this.root, 'vendor', vendorName)
-    const vendorSkillsPath = join(vendorPath, config.skillsPath || 'skills')
+  // 同步单个 upstream
+  async syncUpstream(upstreamName: string, config: RepositoryConfig, force: boolean = false): Promise<void> {
+    const upstreamPath = join(this.root, 'upstream', upstreamName)
+    const upstreamSkillsPath = join(upstreamPath, config.skillsPath || 'skills')
 
-    if (!existsSync(vendorPath)) {
-      throw new Error(`Vendor repository not found: ${vendorName}`)
+    if (!await pathExists(upstreamPath)) {
+      throw new Error(`Upstream repository not found: ${upstreamName}`)
     }
 
-    if (!existsSync(vendorSkillsPath)) {
-      throw new Error(`No skills directory in ${vendorName}`)
+    if (!await pathExists(upstreamSkillsPath)) {
+      throw new Error(`No skills directory in ${upstreamName}`)
     }
 
-    const sha = await this.vendorService.getRepoSha(vendorName)
+    const sha = await this.upstreamService.getRepoSha(upstreamName)
     if (!sha) {
-      throw new Error(`Cannot get SHA for ${vendorName}`)
+      throw new Error(`Cannot get SHA for ${upstreamName}`)
     }
 
     for (const [sourceSkillName, outputSkillName] of Object.entries(config.skills || {})) {
-      await this.syncSkill(vendorName, vendorSkillsPath, sourceSkillName, outputSkillName, sha)
+      await this.syncSkill(upstreamName, upstreamSkillsPath, sourceSkillName, outputSkillName, sha, force)
     }
   }
 
   // 同步单个技能
   private async syncSkill(
-    vendorName: string,
-    vendorSkillsPath: string,
+    upstreamName: string,
+    upstreamSkillsPath: string,
     sourceSkillName: string,
     outputSkillName: string,
     sha: string,
+    force: boolean = false,
   ): Promise<void> {
-    const sourceSkillPath = join(vendorSkillsPath, sourceSkillName)
+    const sourceSkillPath = join(upstreamSkillsPath, sourceSkillName)
     const outputPath = join(this.root, 'skills', outputSkillName)
 
-    if (!existsSync(sourceSkillPath)) {
-      throw new Error(`Skill not found: ${vendorName}/skills/${sourceSkillName}`)
+    if (!await pathExists(sourceSkillPath)) {
+      throw new Error(`Skill not found: ${upstreamName}/skills/${sourceSkillName}`)
     }
 
-    // 检查 SHA 是否一致，如果一致则跳过
-    if (existsSync(outputPath)) {
-      const syncInfo = this.readSyncInfo(outputPath)
+    // force 模式下跳过 SHA 检查
+    if (!force && await pathExists(outputPath)) {
+      const syncInfo = await this.readSyncInfo(outputPath)
       if (syncInfo?.sha === sha) {
         console.warn(`✓ Skill '${outputSkillName}' is up to date (SHA: ${sha.substring(0, 7)})`)
         return
@@ -78,86 +83,49 @@ export class SyncService {
     }
 
     // Check for local modifications
-    if (existsSync(outputPath) && await this.hasLocalModifications(outputPath)) {
+    if (await pathExists(outputPath) && await this.hasLocalModifications(outputPath)) {
       console.warn(`⚠️  Skill '${outputSkillName}' has local modifications, will be overwritten`)
     }
 
+    // 优化：先确保父目录存在
+    await mkdir(dirname(outputPath), { recursive: true })
+
     // 清理并重建输出目录
-    if (existsSync(outputPath)) {
-      rmSync(outputPath, { recursive: true })
+    if (await pathExists(outputPath)) {
+      await rm(outputPath, { recursive: true })
     }
-    mkdirSync(outputPath, { recursive: true })
+    await mkdir(outputPath, { recursive: true })
 
     // 递归复制文件
-    this.copyDirectory(sourceSkillPath, outputPath)
-
-    // 复制 LICENSE
-    this.copyLicense(vendorName, outputPath)
+    await this.copyDirectory(sourceSkillPath, outputPath)
 
     // 写入 SYNC.md
-    this.writeSyncMd(vendorName, sourceSkillName, outputPath, sha)
+    await this.writeSyncJSON(upstreamName, sourceSkillName, outputPath, sha)
   }
 
   // 递归复制目录
-  private copyDirectory(source: string, target: string): void {
-    const files = readdirSync(source, { recursive: true, withFileTypes: true })
+  private async copyDirectory(source: string, target: string): Promise<void> {
+    const files = await readdir(source, { recursive: true, withFileTypes: true })
     for (const file of files) {
       if (file.isFile()) {
         const srcPath = join(file.parentPath, file.name)
         const relPath = srcPath.replace(source, '')
         const destPath = join(target, relPath)
 
-        mkdirSync(dirname(destPath), { recursive: true })
-        cpSync(srcPath, destPath)
-      }
-    }
-  }
-
-  // 复制 LICENSE 文件
-  private copyLicense(vendorName: string, outputPath: string): void {
-    const vendorPath = join(this.root, 'vendor', vendorName)
-    const licenseNames = ['LICENSE', 'LICENSE.md', 'LICENSE.txt', 'license', 'license.md', 'license.txt']
-
-    for (const name of licenseNames) {
-      const licensePath = join(vendorPath, name)
-      if (existsSync(licensePath)) {
-        cpSync(licensePath, join(outputPath, 'LICENSE.md'))
-        break
+        await mkdir(dirname(destPath), { recursive: true })
+        await cp(srcPath, destPath)
       }
     }
   }
 
   // 读取 SYNC.json
-  private readSyncInfo(outputPath: string): SyncInfo | null {
+  private async readSyncInfo(outputPath: string): Promise<SyncInfo | null> {
     const syncJsonPath = join(outputPath, 'SYNC.json')
-    const syncMdPath = join(outputPath, 'SYNC.md')
 
-    // 优先读取 SYNC.json
-    if (existsSync(syncJsonPath)) {
+    if (await pathExists(syncJsonPath)) {
       try {
-        const content = readFileSync(syncJsonPath, 'utf-8')
+        const content = await readFile(syncJsonPath, 'utf-8')
         return JSON.parse(content)
-      }
-      catch {
-        return null
-      }
-    }
-
-    // 兼容旧的 SYNC.md 格式
-    if (existsSync(syncMdPath)) {
-      try {
-        const content = readFileSync(syncMdPath, 'utf-8')
-        const shaMatch = content.match(/\*\*Git SHA:\*\*\s*`([^`]+)`/)
-        const sourceMatch = content.match(/\*\*Source:\*\*\s*`([^`]+)`/)
-        const syncedMatch = content.match(/\*\*Synced:\*\*\s*(.+)/)
-
-        if (shaMatch) {
-          return {
-            source: sourceMatch?.[1] || '',
-            sha: shaMatch[1],
-            synced: syncedMatch?.[1].trim() || '',
-          }
-        }
       }
       catch {
         return null
@@ -168,14 +136,14 @@ export class SyncService {
   }
 
   // 写入 SYNC.json
-  private writeSyncMd(vendorName: string, sourceSkillName: string, outputPath: string, sha: string): void {
+  private async writeSyncJSON(upstreamName: string, sourceSkillName: string, outputPath: string, sha: string): Promise<void> {
     const date = new Date().toISOString().split('T')[0]
     const syncInfo: SyncInfo = {
-      source: `vendor/${vendorName}/skills/${sourceSkillName}`,
+      source: `upstream/${upstreamName}/skills/${sourceSkillName}`,
       sha,
       synced: date,
     }
-    writeFileSync(join(outputPath, 'SYNC.json'), `${JSON.stringify(syncInfo, null, 2)}\n`)
+    await writeFile(join(outputPath, 'SYNC.json'), `${JSON.stringify(syncInfo, null, 2)}\n`)
   }
 
   // Check if skill has local modifications
