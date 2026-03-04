@@ -1,6 +1,6 @@
 # RockCookies' Skills
 
-A curated collection of [Agent Skills](https://agentskills.io/home) for full-stack Vue/TypeScript development, with vendored skills synced from upstream repositories via a CLI tool.
+A curated collection of [Agent Skills](https://agentskills.io/home) for full-stack development, with skills synced from upstream repositories via a CLI tool.
 
 ## Installation
 
@@ -24,14 +24,10 @@ Learn more about the CLI usage at [skills](https://github.com/vercel-labs/skills
 
 | Skill | Description |
 |-------|-------------|
-| [evo-archiving](skills/evo-archiving) | Archive changes after implementation by updating architecture docs and ledger for AI context continuity |
-| [evo-brainstorming](skills/evo-brainstorming) | Explore user intent, requirements, and design before any creative work |
-| [evo-executing-plans](skills/evo-executing-plans) | Execute a written implementation plan with batch execution and review checkpoints |
-| [evo-writing-plans](skills/evo-writing-plans) | Write comprehensive implementation plans for multi-step tasks before touching code |
 | [git-master](skills/git-master) | Git expert for atomic commits, rebasing, and history management with style detection |
 | [node-dev](skills/node-dev) | Modern JavaScript/TypeScript runtime development conventions and tooling |
 
-### Vendored Skills
+### Upstream Skills
 
 Synced from external repositories that maintain their own skills.
 
@@ -47,14 +43,15 @@ Synced from external repositories that maintain their own skills.
 | [skill-creator](skills/skill-creator) | Create, modify, and benchmark agent skills | [anthropics/skills](https://github.com/anthropics/skills) |
 | [frontend-design](skills/frontend-design) | Production-grade frontend interfaces with high design quality | [anthropics/skills](https://github.com/anthropics/skills) |
 | [web-design-guidelines](skills/web-design-guidelines) | Web Interface Guidelines compliance and UX audits | [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills) |
+| [use-modern-go](skills/use-modern-go) | Modern Go syntax guidelines based on project's Go version | [JetBrains/go-modern-guidelines](https://github.com/JetBrains/go-modern-guidelines) |
 
 ## How It Works
 
-This project uses a CLI tool (`pnpm start`) to manage vendored skill repositories:
+This project uses a CLI tool (`pnpm start`) to manage upstream skill repositories:
 
-1. **`pnpm start vendor`** - Clone/update external git repositories into `vendor/`
-2. **`pnpm start sync`** - Copy skill files from vendor repos into `skills/`
-3. **`pnpm start cleanup`** - Remove orphaned vendor repositories
+1. **`pnpm start upstream`** - Clone/update external git repositories into `upstream/`
+2. **`pnpm start sync`** - Copy skill files from upstream repos into `skills/`
+3. **`pnpm start cleanup`** - Remove orphaned upstream repositories
 
 Repository sources and skill mappings are configured in [meta.ts](meta.ts).
 
@@ -64,13 +61,13 @@ Repository sources and skill mappings are configured in [meta.ts](meta.ts).
 # Install dependencies
 pnpm install
 
-# Clone vendor repositories
-pnpm start vendor
+# Clone upstream repositories
+pnpm start upstream
 
-# Sync skills from vendors
+# Sync skills from upstream
 pnpm start sync
 
-# Clean up orphaned vendors
+# Clean up orphaned upstream repos
 pnpm start cleanup
 ```
 
