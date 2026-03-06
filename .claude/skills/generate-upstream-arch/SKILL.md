@@ -1,6 +1,8 @@
 ---
 name: generate-upstream-arch
 description: 为 upstream/ 目录下的任意子目录项目，在 docs/architecture/{project-name}-arch.md 创建 LLM 友好的文档，说明项目目的、结构和关键组件。
+metadata:
+  internal: true
 ---
 
 # 生成架构文档
