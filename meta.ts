@@ -10,34 +10,13 @@ import type { RepositoryConfig } from './src/types'
  * - If none specified, uses the default branch
  */
 export const repositories: Record<string, RepositoryConfig> = {
-  'vueuse': {
-    url: 'https://github.com/vueuse/skills',
-    skillsPath: 'skills',
+  'tsdown': {
+    url: 'https://github.com/rolldown/tsdown',
     // branch: 'main', // Optional: lock to specific branch
     // tag: 'v1.0.0', // Optional: lock to specific tag
     // commit: 'abc123', // Optional: lock to specific commit
     skills: {
-      'vueuse-functions': 'vueuse-functions',
-    },
-  },
-  'tsdown': {
-    url: 'https://github.com/rolldown/tsdown',
-    skills: {
       tsdown: 'tsdown',
-    },
-  },
-  'vuejs-ai': {
-    url: 'https://github.com/vuejs-ai/skills',
-    skills: {
-      'vue-best-practices': 'vue-best-practices',
-      'vue-router-best-practices': 'vue-router-best-practices',
-      'vue-testing-best-practices': 'vue-testing-best-practices',
-    },
-  },
-  'turborepo': {
-    url: 'https://github.com/vercel/turborepo',
-    skills: {
-      turborepo: 'turborepo',
     },
   },
   'vercel-agent-skills': {
@@ -59,8 +38,20 @@ export const repositories: Record<string, RepositoryConfig> = {
       'skill-creator': 'skill-creator',
     },
   },
-  'antfu-skills': {
-    url: 'https://github.com/antfu/skills',
+  'vueuse': {
+    url: 'https://github.com/vueuse/skills',
+    skillsPath: 'skills',
+    skills: {
+      'vueuse-functions': 'vueuse-functions',
+    },
+  },
+  'vuejs-ai': {
+    url: 'https://github.com/vuejs-ai/skills',
+    skills: {
+      'vue-best-practices': 'vue-best-practices',
+      'vue-router-best-practices': 'vue-router-best-practices',
+      'vue-testing-best-practices': 'vue-testing-best-practices',
+    },
   },
   'go-modern-guidelines': {
     url: 'https://github.com/JetBrains/go-modern-guidelines',
@@ -68,5 +59,8 @@ export const repositories: Record<string, RepositoryConfig> = {
     skills: {
       'use-modern-go': 'use-modern-go',
     },
+  },
+  'antfu-skills': {
+    url: 'https://github.com/antfu/skills',
   },
 }
