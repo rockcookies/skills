@@ -1,57 +1,41 @@
 ---
 name: git-master
-description: Git expert for atomic commits, rebasing, and history management with style detection
+description: >
+  Git workflow expert skill: atomic commits, safe rebasing, and history archaeology (blame / bisect / pickaxe).
+  Use this skill whenever the user wants to: commit code, split commits, generate commit messages, squash commits,
+  rebase branches, resolve rebase conflicts, search code history, git blame, git bisect, or trace code origins.
+  Trigger even when "git" is not explicitly mentioned — any version control, committing, rebasing, or history
+  tracing operation should invoke this skill.
 ---
 
-# Git Master Skill
+# Git Master
 
-You are a Git expert combining three specializations:
-1. **Commit Architect**: Atomic commits, dependency ordering, style detection
-2. **Rebase Surgeon**: History rewriting, conflict resolution, branch cleanup
-3. **History Archaeologist**: Finding when/where specific changes were introduced
+Expert Git workflow skill covering three core capabilities. Load the corresponding reference file based on user intent and follow its workflow exactly.
 
-## Core Principle: Multiple Commits by Default
+## Capability Router
 
-**ONE COMMIT = AUTOMATIC FAILURE**
+| User Intent | Reference File | Signal Words |
+|-------------|----------------|--------------|
+| Commit code / split commits / generate commit message | `references/atomic-commit.md` | commit, stage, conventional commits, split commits |
+| Rebase / squash history / clean up commits | `references/rebase-surgeon.md` | rebase, squash, fixup, force push, clean history |
+| Search code history / trace changes | `references/semantic-search.md` | blame, bisect, who wrote, when was added, pickaxe, archaeology |
 
-Hard rules:
-- 3+ files changed -> MUST be 2+ commits
-- 5+ files changed -> MUST be 3+ commits
-- 10+ files changed -> MUST be 5+ commits
+## Execution Flow
 
-## Style Detection (First Step)
+1. **Identify intent**: Match user intent against the router table above
+2. **Load reference file**: Use `read_file` to load the corresponding file from `references/`
+3. **Execute strictly**: Follow every step in the reference file — never skip safety checks
 
-Before committing, analyze the last 30 commits:
-```bash
-git log -30 --oneline
-git log -30 --pretty=format:"%s"
-```
+> If intent is ambiguous, ask for clarification before loading a reference file.
+> If multiple capabilities are needed (e.g. "commit then rebase"), load and execute them sequentially.
 
-Detect:
-- **Language**: Check user intent first. If Chinese is preferred, use Chinese. Otherwise, analyze commit history to determine English (Imperative) vs. Chinese (Concise).
-- **Style**: SEMANTIC (feat:, fix:) vs PLAIN vs SHORT
+## Universal Safety Rules
 
-## Commit Splitting Rules
-
-| Criterion | Action |
-|-----------|--------|
-| Different directories/modules | SPLIT |
-| Different component types | SPLIT |
-| Can be reverted independently | SPLIT |
-| Different concerns (UI/logic/config/test) | SPLIT |
-| New file vs modification | SPLIT |
-
-## History Search Commands
-
-| Goal | Command |
-|------|---------|
-| When was "X" added? | `git log -S "X" --oneline` |
-| What commits touched "X"? | `git log -G "X" --oneline` |
-| Who wrote line N? | `git blame -L N,N file.py` |
-| When did bug start? | `git bisect start && git bisect bad && git bisect good <tag>` |
-
-## Rebase Safety
+These rules apply to all sub-workflows and must never be violated:
 
 - **NEVER** rebase main/master
-- Use `--force-with-lease` (never `--force`)
-- Stash dirty files before rebasing
+- **NEVER** use `git push --force` — always use `--force-with-lease`
+- **Before rebasing**: always check for a dirty working tree
+- **Before committing**: confirm changes match the commit message
+- **Before destructive operations**: output a plan and wait for user confirmation
+- **Language protocol**: respond in the same language the user used
