@@ -35,6 +35,7 @@ export const repositories: Record<string, RepositoryConfig> = {
     url: 'https://github.com/anthropics/skills',
     skills: {
       'frontend-design': 'frontend-design',
+      'canvas-design': 'canvas-design',
       'skill-creator': 'skill-creator',
     },
   },

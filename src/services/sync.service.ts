@@ -1,14 +1,16 @@
-import type { RepositoryConfig } from '../types'
+import type { RepositoryConfig, SkillMapping, SkillsConfig } from '../types'
 import type { UpstreamService } from './upstream.service'
-import { cp, mkdir, readdir, readFile, rm, writeFile } from 'node:fs/promises'
+import { cp, glob, mkdir, readdir, readFile, writeFile } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
-import { pathExists } from '../utils/fs'
+import * as p from '@clack/prompts'
+import { emptyDir, ensureDir, pathExists } from '../utils/fs'
 import { GitService } from './git.service'
 
 interface SyncInfo {
   source: string
   sha: string
   synced: string
+  glob?: string
 }
 
 export class SyncService {
@@ -52,55 +54,97 @@ export class SyncService {
       throw new Error(`Cannot get SHA for ${upstreamName}`)
     }
 
-    for (const [sourceSkillName, outputSkillName] of Object.entries(config.skills || {})) {
-      await this.syncSkill(upstreamName, upstreamSkillsPath, sourceSkillName, outputSkillName, sha, force)
+    // 标准化配置并遍历
+    const mappings = this.normalizeSkillsConfig(config.skills)
+    for (const mapping of mappings) {
+      await this.syncSkillMapping(
+        upstreamName,
+        upstreamSkillsPath,
+        mapping,
+        sha,
+        force,
+      )
     }
   }
 
-  // 同步单个技能
-  private async syncSkill(
+  /**
+   * 标准化技能配置为统一的 SkillMapping[] 格式
+   */
+  private normalizeSkillsConfig(skills?: SkillsConfig): SkillMapping[] {
+    if (!skills) {
+      return []
+    }
+
+    // 检测是否为旧格式 Record<string, string>
+    if (typeof skills === 'object' && !Array.isArray(skills)) {
+      // 转换旧格式为新格式
+      return Object.entries(skills).map(([source, target]) => ({
+        source,
+        target,
+      }))
+    }
+
+    // 已经是新格式
+    return skills as SkillMapping[]
+  }
+
+  // 同步单个技能映射（支持 glob 过滤）
+  private async syncSkillMapping(
     upstreamName: string,
     upstreamSkillsPath: string,
-    sourceSkillName: string,
-    outputSkillName: string,
+    mapping: SkillMapping,
     sha: string,
     force: boolean = false,
   ): Promise<void> {
-    const sourceSkillPath = join(upstreamSkillsPath, sourceSkillName)
-    const outputPath = join(this.root, 'skills', outputSkillName)
+    const { source, target, glob: globPattern } = mapping
 
-    if (!await pathExists(sourceSkillPath)) {
-      throw new Error(`Skill not found: ${upstreamName}/skills/${sourceSkillName}`)
+    const sourcePath = source === ''
+      ? upstreamSkillsPath
+      : join(upstreamSkillsPath, source)
+    const outputPath = join(this.root, 'skills', target)
+
+    // 验证源路径存在
+    if (!await pathExists(sourcePath)) {
+      throw new Error(`Source path not found: ${sourcePath}`)
     }
 
-    // force 模式下跳过 SHA 检查
+    // 如果有 glob 模式，验证过滤后的文件中包含 SKILL.md
+    if (globPattern) {
+      const filteredFiles = await this.filterByGlob(sourcePath, globPattern)
+      const hasSkillMd = filteredFiles.some(f => f.endsWith('SKILL.md'))
+      if (!hasSkillMd) {
+        throw new Error(`SKILL.md not found in glob-filtered files from ${sourcePath}`)
+      }
+    }
+    else {
+      if (!await pathExists(join(sourcePath, 'SKILL.md'))) {
+        throw new Error(`Missing SKILL.md in ${sourcePath}`)
+      }
+    }
+
+    // SHA 检查
     if (!force && await pathExists(outputPath)) {
       const syncInfo = await this.readSyncInfo(outputPath)
-      if (syncInfo?.sha === sha) {
-        console.warn(`✓ Skill '${outputSkillName}' is up to date (SHA: ${sha.substring(0, 7)})`)
+      if (syncInfo?.sha === sha && syncInfo?.glob === globPattern) {
+        p.log.warn(`✓ Skill '${target}' is up to date (SHA: ${sha.substring(0, 7)})`)
         return
       }
     }
 
-    // Check for local modifications
-    if (await pathExists(outputPath) && await this.hasLocalModifications(outputPath)) {
-      console.warn(`⚠️  Skill '${outputSkillName}' has local modifications, will be overwritten`)
-    }
-
-    // 优化：先确保父目录存在
-    await mkdir(dirname(outputPath), { recursive: true })
-
     // 清理并重建输出目录
-    if (await pathExists(outputPath)) {
-      await rm(outputPath, { recursive: true })
+    await ensureDir(outputPath)
+    await emptyDir(outputPath)
+
+    // 根据是否有 glob 模式选择复制方式
+    if (globPattern) {
+      await this.copyDirectoryWithGlob(sourcePath, outputPath, globPattern)
     }
-    await mkdir(outputPath, { recursive: true })
+    else {
+      await this.copyDirectory(sourcePath, outputPath)
+    }
 
-    // 递归复制文件
-    await this.copyDirectory(sourceSkillPath, outputPath)
-
-    // 写入 SYNC.md
-    await this.writeSyncJSON(upstreamName, sourceSkillName, outputPath, sha)
+    // 写入 SYNC.json
+    await this.writeSyncJSON(upstreamName, source, outputPath, sha, globPattern)
   }
 
   // 递归复制目录
@@ -116,6 +160,34 @@ export class SyncService {
         await cp(srcPath, destPath)
       }
     }
+  }
+
+  /**
+   * 使用 glob 模式过滤文件（使用 Node.js 原生 glob）
+   */
+  private async filterByGlob(sourcePath: string, globPattern: string): Promise<string[]> {
+    const files = await Array.fromAsync(glob(globPattern, {
+      cwd: sourcePath,
+      withFileTypes: false,
+    }))
+    return files
+  }
+
+  /**
+   * 复制目录并应用 glob 过滤
+   */
+  private async copyDirectoryWithGlob(source: string, target: string, globPattern: string): Promise<void> {
+    const files = await this.filterByGlob(source, globPattern)
+
+    for (const relPath of files) {
+      const srcPath = join(source, relPath)
+      const destPath = join(target, relPath)
+
+      await mkdir(dirname(destPath), { recursive: true })
+      await cp(srcPath, destPath)
+    }
+
+    p.log.info(`✓ Copied ${files.length} files matching pattern: ${globPattern}`)
   }
 
   // 读取 SYNC.json
@@ -136,20 +208,17 @@ export class SyncService {
   }
 
   // 写入 SYNC.json
-  private async writeSyncJSON(upstreamName: string, sourceSkillName: string, outputPath: string, sha: string): Promise<void> {
+  private async writeSyncJSON(upstreamName: string, sourceSkillName: string, outputPath: string, sha: string, globPattern?: string): Promise<void> {
     const date = new Date().toISOString().split('T')[0]
+    const source = sourceSkillName === ''
+      ? `upstream/${upstreamName}`
+      : `upstream/${upstreamName}/skills/${sourceSkillName}`
     const syncInfo: SyncInfo = {
-      source: `upstream/${upstreamName}/skills/${sourceSkillName}`,
+      source,
       sha,
       synced: date,
+      ...(globPattern && { glob: globPattern }),
     }
     await writeFile(join(outputPath, 'SYNC.json'), `${JSON.stringify(syncInfo, null, 2)}\n`)
-  }
-
-  // Check if skill has local modifications
-  private async hasLocalModifications(skillPath: string): Promise<boolean> {
-    const relativePath = skillPath.replace(`${this.root}/`, '').replace(/\\/g, '/')
-    const diff = await this.gitService.diff([relativePath])
-    return diff.trim().length > 0
   }
 }
