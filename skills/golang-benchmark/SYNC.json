@@ -1,0 +1,8 @@
+{
+  "source": "upstream/samber-cc-skills-golang/skills/golang-benchmark/SKILL.md",
+  "sha": "fa03b41b93c84f27b0698830bc8a821ed4847aad",
+  "synced": "2026-05-22",
+  "excludes": [
+    "evals/**"
+  ]
+}
