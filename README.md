@@ -25,6 +25,7 @@ Learn more about the CLI usage at [skills](https://github.com/vercel-labs/skills
 | Skill | Description |
 |-------|-------------|
 | [git-master](skills/git-master) | Git workflow expert — atomic commits, safe rebasing, and history archaeology |
+| [go-gorm-gen](skills/go-gorm-gen) | Type-safe DAO code generation with rockcookies/go-gen — GenerateModel, query building, dynamic SQL, custom templates, and generics |
 
 ### Upstream Skills
 
