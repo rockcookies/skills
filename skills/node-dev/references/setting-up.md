@@ -10,54 +10,24 @@ description: Project setup files including .gitignore, GitHub Actions workflows,
 Create when `.gitignore` is not present:
 
 ```
-# dependencies
-node_modules
-.pnp
-.pnp.js
-
-# testing
-coverage
-
-# cache
-.cache
-cache
-.eslintcache
-
-# build outputs
-dist
-.output
-lib-cov
-.next
-.nuxt
-out
-build
-
-# turbo
-.turbo
-
-# storybook
-storybook-static
-
-# logs
 *.log
-logs
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-.pnpm-debug.log*
-
-# environment files
-.env
-.env.local
-.env.*.local
-
-# misc
-.DS_Store
-.idea
-*.pem
 *.tgz
-.wrangler
-.claude/settings.local.json
+.cache
+.DS_Store
+.eslintcache
+.idea
+.env
+.nuxt
+.temp
+.output
+.turbo
+cache
+coverage
+dist
+lib-cov
+logs
+node_modules
+temp
 ```
 
 ## GitHub Actions
@@ -121,3 +91,29 @@ jobs:
       contents: write
       id-token: write
 ```
+
+## VS Code Extensions
+
+Configure in `.vscode/extensions.json`:
+
+```json
+{
+  "recommendations": [
+    "dbaeumer.vscode-eslint",
+    "antfu.pnpm-catalog-lens",
+    "antfu.iconify",
+    "antfu.unocss",
+    "antfu.slidev",
+    "vue.volar"
+  ]
+}
+```
+
+| Extension | Description |
+|-----------|-------------|
+| `dbaeumer.vscode-eslint` | ESLint integration for linting and formatting |
+| `antfu.pnpm-catalog-lens` | Shows pnpm catalog version hints inline |
+| `antfu.iconify` | Iconify icon preview and autocomplete |
+| `antfu.unocss` | UnoCSS IntelliSense and syntax highlighting |
+| `antfu.slidev` | Slidev preview and syntax highlighting |
+| `vue.volar` | Vue Language Features |

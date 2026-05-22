@@ -1,5 +1,5 @@
 ---
-name: vue-development
+name: app-development
 description: Vue/Nuxt/UnoCSS application conventions. Use when building web apps, choosing between Vite and Nuxt, or writing Vue components.
 ---
 
