@@ -1,6 +1,6 @@
 ---
 name: go-gorm-gen
-description: GORM Gen 类型安全 DAO 代码生成，基于 github.com/rockcookies/go-gen（rockcookies fork）。涵盖代码生成配置、模型生成、查询构建、增删改查、关联关系、动态 SQL 注解、事务处理，以及 fork 专有功能：Tmpl 运行时模板覆写（18 个模板）、Unsafe 底层方法（UnsafeSetDB/Alias/ModelType/TableName）、IGenericsDo[T,E] 泛型接口。使用时机：需要从数据库生成 DAO 代码（GenerateModel/GenerateModelAs）、编写 DAL 查询（DO 链式调用、DaoScope、事务、关联加载）、配置生成器（gen.Config、ModelOpt、FieldGORMTag、FieldModify、Tmpl 自定义模板）时使用本技能。在 go-gen、gorm-gen、GenerateModelAs、ModelOpt、FieldGORMTag、FieldModify、DaoScope、LoadOneToMany、LoadManyToMany、IGenericsDo、UnsafeSetDB 等关键词出现时触发。
+description: GORM Gen 类型安全 DAO 代码生成，基于 github.com/rockcookies/go-gen（rockcookies fork）。涵盖代码生成配置、模型生成、查询构建、增删改查、关联关系、动态 SQL 注解、事务处理，以及 fork 专有功能：Tmpl 运行时模板覆写（18 个模板）、Unsafe 底层方法（UnsafeSetDB/Alias/ModelType/TableName）、IGenericsDo[T,E] 泛型接口。使用时机：需要从数据库生成 DAO 代码（GenerateModel/GenerateModelAs）、编写 DAL 查询（DO 链式调用、DaoScope、事务、关联加载）、配置生成器（gen.Config、ModelOpt、FieldGORMTag、FieldModify、Tmpl 自定义模板）时使用本技能。当用户消息中包含以下任一关键词（go-gen、gorm-gen、GenerateModelAs、ModelOpt、FieldGORMTag、FieldModify、DaoScope、LoadOneToMany、LoadManyToMany、IGenericsDo、UnsafeSetDB），或用户明确请求 GORM Gen 代码生成/DAO 编写时触发本技能。
 ---
 
 # go-gorm-gen
@@ -66,6 +66,8 @@ func main() {
 | `CheckClause` | Clause 注入安全校验 | [unsafe-generics.md](references/unsafe-generics.md) |
 
 ## References
+
+按需加载 references：仅当用户问题涉及该子主题时读取对应文件，例如询问事务时读取 transactions.md，询问关联关系时读取 associations.md。
 
 - [generator.md](references/generator.md) — 生成器配置、模型生成、字段选项、命名策略
 - [dao.md](references/dao.md) — DAL 接口完整方法、DaoScope、分页、读写分离
