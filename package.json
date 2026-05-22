@@ -1,26 +1,24 @@
 {
   "private": true,
+  "type": "module",
   "packageManager": "pnpm@10.28.2",
   "scripts": {
-    "lint": "eslint .",
-    "cli": "tsx src/cli.ts",
-    "prepare": "simple-git-hooks"
+    "lint": "oxlint",
+    "fmt": "oxfmt",
+    "fmt:check": "oxfmt --check",
+    "cli": "tsx src/cli.ts"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^7.6.1",
     "@clack/prompts": "^1.0.1",
-    "@types/node": "^25.3.2",
-    "eslint": "^9.39.3",
-    "lint-staged": "^16.2.7",
-    "simple-git": "^3.32.3",
-    "simple-git-hooks": "^2.11.1",
-    "tsx": "^4.21.0",
-    "typescript": "^5.9.3"
+    "@types/js-yaml": "^4.0.9",
+    "@types/node": "^25.9.1",
+    "oxfmt": "^0.51.0",
+    "oxlint": "^1.66.0",
+    "simple-git": "^3.36.0",
+    "tsx": "^4.22.3",
+    "typescript": "^6.0.3"
   },
-  "simple-git-hooks": {
-    "pre-commit": "pnpm lint-staged"
-  },
-  "lint-staged": {
-    "*.{js,ts,mjs,mts}": "eslint --fix"
+  "dependencies": {
+    "js-yaml": "^4.1.1"
   }
 }
