@@ -1,5 +1,7 @@
-import type { RepositoryConfig } from '../types'
 import * as p from '@clack/prompts'
+
+import type { RepositoryConfig } from '../types'
+
 import { GitService } from '../services/git.service'
 import { UpstreamService } from '../services/upstream.service'
 import { formatError } from '../utils/error'
@@ -22,13 +24,11 @@ export async function ensureUpstreamRepositories(
   try {
     if (options.force) {
       await upstreamService.forceUpdateAll(repositories)
-    }
-    else {
+    } else {
       await upstreamService.updateAll(repositories)
     }
     spinner.stop('Upstream repositories ready')
-  }
-  catch (error) {
+  } catch (error) {
     spinner.stop(`Failed to ensure repositories: ${formatError(error)}`)
     return
   }

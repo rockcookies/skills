@@ -1,8 +1,9 @@
-import type { RepositoryConfig } from '../types'
-import type { GitService } from './git.service'
 import { existsSync, mkdirSync } from 'node:fs'
 import { join } from 'node:path'
 import simpleGit from 'simple-git'
+
+import type { RepositoryConfig } from '../types'
+import type { GitService } from './git.service'
 
 export class UpstreamService {
   private root: string
@@ -59,8 +60,7 @@ export class UpstreamService {
 
     if (!existsSync(upstreamPath)) {
       await this.cloneRepo(config, upstreamPath)
-    }
-    else {
+    } else {
       await this.updateRepo(config, upstreamPath)
     }
   }
@@ -84,14 +84,11 @@ export class UpstreamService {
     let ref: string
     if (config.commit) {
       ref = config.commit
-    }
-    else if (config.tag) {
+    } else if (config.tag) {
       ref = `refs/tags/${config.tag}`
-    }
-    else if (config.branch) {
+    } else if (config.branch) {
       ref = `origin/${config.branch}`
-    }
-    else {
+    } else {
       ref = await this.getDefaultBranch(repoGit)
     }
 
@@ -109,8 +106,7 @@ export class UpstreamService {
       try {
         await git.revparse([`origin/${branch}`])
         return `origin/${branch}`
-      }
-      catch {
+      } catch {
         // Branch doesn't exist, try next
       }
     }

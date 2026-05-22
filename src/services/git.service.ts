@@ -1,4 +1,5 @@
 import type { SimpleGit } from 'simple-git'
+
 import process from 'node:process'
 import git from 'simple-git'
 
@@ -15,8 +16,7 @@ export class GitService {
   }
 
   private async configureProxy(): Promise<void> {
-    if (!this.proxy)
-      return
+    if (!this.proxy) return
 
     // Configure git http.proxy
     await this.git.raw(['config', 'http.proxy', this.proxy])
@@ -45,8 +45,7 @@ export class GitService {
     if (this.proxy) {
       // Use git clone with proxy configuration
       await this.git.raw(['clone', '-c', `http.proxy=${this.proxy}`, '-c', `https.proxy=${this.proxy}`, url, path])
-    }
-    else {
+    } else {
       await this.git.clone(url, path)
     }
   }

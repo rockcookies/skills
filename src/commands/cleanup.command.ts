@@ -1,13 +1,12 @@
-import type { RepositoryConfig } from '../types'
+import * as p from '@clack/prompts'
 import { existsSync, readdirSync, rmSync } from 'node:fs'
 import { join } from 'node:path'
-import * as p from '@clack/prompts'
+
+import type { RepositoryConfig } from '../types'
+
 import { formatError } from '../utils/error'
 
-export async function cleanupUpstreamRepositories(
-  root: string,
-  repositories: Record<string, RepositoryConfig>,
-) {
+export async function cleanupUpstreamRepositories(root: string, repositories: Record<string, RepositoryConfig>) {
   const upstreamDir = join(root, 'upstream')
 
   if (!existsSync(upstreamDir)) {
@@ -18,10 +17,10 @@ export async function cleanupUpstreamRepositories(
   const spinner = p.spinner()
   const configuredRepos = new Set(Object.keys(repositories))
   const existingDirs = readdirSync(upstreamDir, { withFileTypes: true })
-    .filter(dirent => dirent.isDirectory())
-    .map(dirent => dirent.name)
+    .filter((dirent) => dirent.isDirectory())
+    .map((dirent) => dirent.name)
 
-  const toRemove = existingDirs.filter(dir => !configuredRepos.has(dir))
+  const toRemove = existingDirs.filter((dir) => !configuredRepos.has(dir))
 
   if (toRemove.length === 0) {
     p.log.info('No orphaned repositories found')
@@ -29,7 +28,7 @@ export async function cleanupUpstreamRepositories(
   }
 
   p.log.info(`Found ${toRemove.length} orphaned repositories:`)
-  toRemove.forEach(dir => p.log.step(`  - ${dir}`))
+  toRemove.forEach((dir) => p.log.step(`  - ${dir}`))
 
   const shouldRemove = await p.confirm({
     message: `Remove ${toRemove.length} orphaned repositories?`,
@@ -48,8 +47,7 @@ export async function cleanupUpstreamRepositories(
       rmSync(dirPath, { recursive: true, force: true })
     }
     spinner.stop('Cleanup complete')
-  }
-  catch (error) {
+  } catch (error) {
     spinner.stop(`Failed to cleanup: ${formatError(error)}`)
     return
   }

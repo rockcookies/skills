@@ -1,5 +1,7 @@
-import type { RepositoryConfig } from '../types'
 import * as p from '@clack/prompts'
+
+import type { RepositoryConfig } from '../types'
+
 import { GitService } from '../services/git.service'
 import { SyncService } from '../services/sync.service'
 import { UpstreamService } from '../services/upstream.service'
@@ -19,8 +21,7 @@ export async function syncSubmodules(
   try {
     await upstreamService.updateAll(repositories)
     spinner.stop('Upstream repositories updated')
-  }
-  catch (error) {
+  } catch (error) {
     spinner.stop(`Failed to update: ${formatError(error)}`)
     return
   }
@@ -31,8 +32,7 @@ export async function syncSubmodules(
   try {
     await syncService.syncUpstreamSkills(repositories, force)
     spinner.stop('Skills synced')
-  }
-  catch (error) {
+  } catch (error) {
     spinner.stop(`Failed to sync: ${formatError(error)}`)
     return
   }

@@ -1,4 +1,5 @@
 import type { Mode, PathLike } from 'node:fs'
+
 import fs from 'node:fs'
 import fsPromises from 'node:fs/promises'
 import path from 'node:path'
@@ -24,13 +25,12 @@ export async function emptyDir(dir: string) {
 
   try {
     items = await fs.promises.readdir(dir)
-  }
-  catch {
+  } catch {
     await ensureDir(dir)
     return
   }
 
-  await Promise.all(items.map(item => fs.promises.rm(path.join(dir, item), { recursive: true, force: true })))
+  await Promise.all(items.map((item) => fs.promises.rm(path.join(dir, item), { recursive: true, force: true })))
 }
 
 export function emptyDirSync(dir: string) {
@@ -38,8 +38,7 @@ export function emptyDirSync(dir: string) {
 
   try {
     items = fs.readdirSync(dir)
-  }
-  catch {
+  } catch {
     ensureDirSync(dir)
     return
   }
@@ -79,14 +78,13 @@ interface FindUpOptions {
   readonly stopAt?: URL | string
 }
 
-const toFindPath = (urlOrPath: URL | string) => urlOrPath instanceof URL ? fileURLToPath(urlOrPath) : urlOrPath
+const toFindPath = (urlOrPath: URL | string) => (urlOrPath instanceof URL ? fileURLToPath(urlOrPath) : urlOrPath)
 
 // https://github.com/sindresorhus/find-up-simple/blob/main/index.js
-export async function findUp(name: string, {
-  cwd = process.cwd(),
-  type = 'file',
-  stopAt,
-}: FindUpOptions = {}): Promise<string | undefined> {
+export async function findUp(
+  name: string,
+  { cwd = process.cwd(), type = 'file', stopAt }: FindUpOptions = {},
+): Promise<string | undefined> {
   let directory = path.resolve(toFindPath(cwd) ?? '')
   const { root } = path.parse(directory)
   stopAt = path.resolve(directory, toFindPath(stopAt ?? root))
@@ -99,8 +97,7 @@ export async function findUp(name: string, {
       if ((type === 'file' && stats.isFile()) || (type === 'directory' && stats.isDirectory())) {
         return filePath
       }
-    }
-    catch { }
+    } catch {}
 
     if (directory === stopAt || directory === root) {
       break
@@ -110,11 +107,7 @@ export async function findUp(name: string, {
   }
 }
 
-export function findUpSync(name: string, {
-  cwd = process.cwd(),
-  type = 'file',
-  stopAt,
-}: FindUpOptions = {}) {
+export function findUpSync(name: string, { cwd = process.cwd(), type = 'file', stopAt }: FindUpOptions = {}) {
   let directory = path.resolve(toFindPath(cwd) ?? '')
   const { root } = path.parse(directory)
   stopAt = path.resolve(directory, toFindPath(stopAt ?? root))
@@ -128,8 +121,7 @@ export function findUpSync(name: string, {
       if ((type === 'file' && stats?.isFile()) || (type === 'directory' && stats?.isDirectory())) {
         return filePath
       }
-    }
-    catch { }
+    } catch {}
 
     if (directory === stopAt || directory === root) {
       break

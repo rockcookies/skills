@@ -1,7 +1,8 @@
+import * as p from '@clack/prompts'
 import { dirname, join } from 'node:path'
 import process from 'node:process'
 import { fileURLToPath } from 'node:url'
-import * as p from '@clack/prompts'
+
 import { repositories } from '../meta'
 import { cleanupUpstreamRepositories } from './commands/cleanup.command'
 import { syncSubmodules } from './commands/sync.command'
@@ -17,8 +18,16 @@ async function main() {
     message: 'What would you like to do?',
     options: [
       { value: 'sync', label: 'Sync skills', hint: 'Update upstream and sync skills' },
-      { value: 'upstream', label: 'Manage upstream repositories', hint: 'Ensure upstream repositories' },
-      { value: 'cleanup', label: 'Cleanup upstream repositories', hint: 'Remove orphaned repositories' },
+      {
+        value: 'upstream',
+        label: 'Manage upstream repositories',
+        hint: 'Ensure upstream repositories',
+      },
+      {
+        value: 'cleanup',
+        label: 'Cleanup upstream repositories',
+        hint: 'Remove orphaned repositories',
+      },
     ],
   })
 

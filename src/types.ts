@@ -3,45 +3,31 @@
  */
 export interface SkillMapping {
   /**
-   * 源路径，相对于仓库的 skillsPath
-   * - 空字符串 '' 表示整个 skillsPath 目录
-   * - 'skill-name' 表示单个技能目录
-   * - 'path/to/skill' 支持嵌套路径
+   * 源 SKILL.md 路径，相对于仓库根目录
+   * - './skills/playwright-cli/SKILL.md'
    */
   source: string
 
   /**
-   * 目标路径，相对于本地 skills/ 目录
-   * - 'skill-name' 输出到 skills/skill-name/
-   * - 'category/skill' 支持嵌套输出
+   * 目标技能名称，输出到 skills/{target}/SKILL.md
    */
   target: string
 
   /**
-   * 可选的 glob 模式，用于过滤要同步的文件
-   * 示例：
-   * - '**\/*.md' 只同步 .md 文件
-   * - 'src\/**\/*.ts' 只同步 src 目录下的 .ts 文件
-   * - '*.{md,txt}' 同步多个扩展名
+   * 额外的包含 glob（相对于技能目录），默认同步所有文件
    */
-  glob?: string
+  includes?: string[]
+
+  /**
+   * 排除的 glob（优先级高于 includes）
+   */
+  excludes?: string[]
 }
 
-/**
- * 向后兼容：旧的 Record 格式
- */
-export type LegacySkillsMapping = Record<string, string>
-
-/**
- * 支持新旧两种格式的联合类型
- */
-export type SkillsConfig = SkillMapping[] | LegacySkillsMapping
-
 export interface RepositoryConfig {
-  url: string // Git repository URL
-  branch?: string // Branch name (e.g., 'main', 'develop')
-  tag?: string // Tag name (e.g., 'v1.0.0')
-  commit?: string // Commit SHA
-  skillsPath?: string // Relative path to skills directory in repository
-  skills?: SkillsConfig // Skill mapping: supports both array and legacy Record format
+  url: string
+  branch?: string
+  tag?: string
+  commit?: string
+  skills?: SkillMapping[]
 }
