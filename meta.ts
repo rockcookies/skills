@@ -12,7 +12,7 @@ import type { RepositoryConfig } from './src/types'
 export const repositories: Record<string, RepositoryConfig> = {
   'samber-cc-skills-golang': {
     url: 'https://github.com/samber/cc-skills-golang',
-    tag: 'v1.4.0',
+    tag: 'v1.5.0',
     skills: [
       { target: 'golang-benchmark', source: './skills/golang-benchmark/SKILL.md', excludes: ['evals/**'] },
       { target: 'golang-cli', source: './skills/golang-cli/SKILL.md', excludes: ['evals/**'] },
