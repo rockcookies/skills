@@ -14,6 +14,12 @@ Or install specific skills:
 npx skills add rockcookies/skills --skill='vue-best-practices' -g
 ```
 
+Install all Go-related skills:
+
+```bash
+npx skills add rockcookies/skills --skill go-gorm-gen  --skill golang-benchmark --skill golang-cli --skill golang-code-style --skill golang-concurrency --skill golang-context --skill golang-continuous-integration --skill golang-data-structures --skill golang-database --skill golang-dependency-injection --skill golang-dependency-management --skill golang-design-patterns --skill golang-documentation --skill golang-error-handling --skill golang-google-wire --skill golang-graphql --skill golang-grpc --skill golang-lint --skill golang-modernize --skill golang-naming --skill golang-observability --skill golang-performance --skill golang-popular-libraries --skill golang-project-layout --skill golang-safety --skill golang-samber-do --skill golang-samber-hot --skill golang-samber-lo --skill golang-samber-mo --skill golang-samber-oops --skill golang-samber-ro --skill golang-samber-slog --skill golang-security --skill golang-spf13-cobra --skill golang-spf13-viper --skill golang-stay-updated --skill golang-stretchr-testify --skill golang-structs-interfaces --skill golang-swagger --skill golang-testing --skill golang-troubleshooting --skill golang-uber-dig --skill golang-uber-fx
+```
+
 Learn more about the CLI usage at [skills](https://github.com/vercel-labs/skills).
 
 ## Skills
