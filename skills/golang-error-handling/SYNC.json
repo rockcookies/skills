@@ -1,7 +1,7 @@
 {
   "source": "upstream/samber-cc-skills-golang/skills/golang-error-handling/SKILL.md",
-  "sha": "fa03b41b93c84f27b0698830bc8a821ed4847aad",
-  "synced": "2026-05-22",
+  "sha": "26e1d996a738d64ed112d1575079882ee8f39389",
+  "synced": "2026-05-25",
   "excludes": [
     "evals/**"
   ]
