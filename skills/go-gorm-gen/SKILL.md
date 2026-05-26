@@ -1,6 +1,6 @@
 ---
 name: go-gorm-gen
-description: GORM Gen 类型安全 DAO 代码生成，基于 github.com/rockcookies/go-gen（rockcookies fork）。涵盖代码生成配置、模型生成、查询构建、增删改查、关联关系、动态 SQL 注解、事务处理，以及 fork 专有功能：Tmpl 运行时模板覆写（18 个模板）、Unsafe 底层方法（UnsafeSetDB/Alias/ModelType/TableName）、IGenericsDo[T,E] 泛型接口。使用时机：需要从数据库生成 DAO 代码（GenerateModel/GenerateModelAs）、编写 DAL 查询（DO 链式调用、DaoScope、事务、关联加载）、配置生成器（gen.Config、ModelOpt、FieldGORMTag、FieldModify、Tmpl 自定义模板）时使用本技能。当用户消息中包含以下任一关键词（go-gen、gorm-gen、GenerateModelAs、ModelOpt、FieldGORMTag、FieldModify、DaoScope、LoadOneToMany、LoadManyToMany、IGenericsDo、UnsafeSetDB），或用户明确请求 GORM Gen 代码生成/DAO 编写时触发本技能。
+description: GORM Gen 类型安全 DAO 代码生成，基于 github.com/rockcookies/go-gen（rockcookies fork）。涵盖代码生成配置、模型生成、查询构建、增删改查、关联关系、动态 SQL 注解、事务处理、datatypes 自定义字段类型（JSON/JSONMap/JSONSlice/JSONType/Date/UUID）、soft_delete 软删除插件（unix 时间戳/flag 模式），以及 fork 专有功能：Tmpl 运行时模板覆写（18 个模板）、Unsafe 底层方法（UnsafeSetDB/Alias/ModelType/TableName）、IGenericsDo[T,E] 泛型接口。使用时机：需要从数据库生成 DAO 代码（GenerateModel/GenerateModelAs）、编写 DAL 查询（DO 链式调用、DaoScope、事务、关联加载）、配置生成器（gen.Config、ModelOpt、FieldGORMTag、FieldModify、FieldType、Tmpl 自定义模板）、使用 datatypes（JSONMap、JSONSlice、JSONQuery、JSONSet）或 soft_delete（DeletedAt、softDelete:milli、deleteOpts）时使用本技能。当用户消息中包含以下任一关键词（go-gen、gorm-gen、GenerateModelAs、ModelOpt、FieldGORMTag、FieldModify、DaoScope、LoadOneToMany、LoadManyToMany、IGenericsDo、UnsafeSetDB、datatypes、JSONMap、JSONSlice、JSONQuery、soft_delete、softDelete、DeletedAt），或用户明确请求 GORM Gen 代码生成/DAO 编写时触发本技能。
 ---
 
 # go-gorm-gen
@@ -78,3 +78,5 @@ func main() {
 - [transactions.md](references/transactions.md) — 自动/嵌套/手动事务、SavePoint
 - [custom-templates.md](references/custom-templates.md) — Tmpl 结构体 + 18 个模板覆写（fork 专有）
 - [unsafe-generics.md](references/unsafe-generics.md) — Unsafe 方法 + IGenericsDo 泛型接口（fork 专有）
+- [datatypes.md](references/datatypes.md) — datatypes 字段类型（JSON/JSONMap/JSONSlice/JSONType/Date/Time/UUID）、Gen 配置、JSONQuery 查询、JSONSet 更新
+- [soft-delete.md](references/soft-delete.md) — soft_delete 插件配置、unix 时间戳/milli/flag/混合模式、deleteOpts 辅助函数、Unscoped 查询
