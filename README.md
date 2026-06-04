@@ -14,10 +14,10 @@ Or install specific skills:
 npx skills add rockcookies/skills --skill='vue-best-practices' -g
 ```
 
-Install all Go-related skills:
+Install all Go-related skills (RockCookies `go-rc-*` plus upstream `golang-*` from [samber/cc-skills-golang](https://github.com/samber/cc-skills-golang)):
 
 ```bash
-npx skills add rockcookies/skills --skill go-gorm-gen  --skill golang-benchmark --skill golang-cli --skill golang-code-style --skill golang-concurrency --skill golang-context --skill golang-continuous-integration --skill golang-data-structures --skill golang-database --skill golang-dependency-injection --skill golang-dependency-management --skill golang-design-patterns --skill golang-documentation --skill golang-error-handling --skill golang-google-wire --skill golang-graphql --skill golang-grpc --skill golang-lint --skill golang-modernize --skill golang-naming --skill golang-observability --skill golang-performance --skill golang-popular-libraries --skill golang-project-layout --skill golang-safety --skill golang-samber-do --skill golang-samber-hot --skill golang-samber-lo --skill golang-samber-mo --skill golang-samber-oops --skill golang-samber-ro --skill golang-samber-slog --skill golang-security --skill golang-spf13-cobra --skill golang-spf13-viper --skill golang-stay-updated --skill golang-stretchr-testify --skill golang-structs-interfaces --skill golang-swagger --skill golang-testing --skill golang-troubleshooting --skill golang-uber-dig --skill golang-uber-fx
+npx skills add rockcookies/skills --skill go-rc-fetch --skill go-rc-gorm-gen --skill golang-benchmark --skill golang-cli --skill golang-code-style --skill golang-concurrency --skill golang-context --skill golang-continuous-integration --skill golang-data-structures --skill golang-database --skill golang-dependency-injection --skill golang-dependency-management --skill golang-design-patterns --skill golang-documentation --skill golang-error-handling --skill golang-google-wire --skill golang-graphql --skill golang-grpc --skill golang-lint --skill golang-modernize --skill golang-naming --skill golang-observability --skill golang-performance --skill golang-popular-libraries --skill golang-project-layout --skill golang-safety --skill golang-samber-do --skill golang-samber-hot --skill golang-samber-lo --skill golang-samber-mo --skill golang-samber-oops --skill golang-samber-ro --skill golang-samber-slog --skill golang-security --skill golang-spf13-cobra --skill golang-spf13-viper --skill golang-stay-updated --skill golang-stretchr-testify --skill golang-structs-interfaces --skill golang-swagger --skill golang-testing --skill golang-troubleshooting --skill golang-uber-dig --skill golang-uber-fx
 ```
 
 Learn more about the CLI usage at [skills](https://github.com/vercel-labs/skills).
@@ -31,7 +31,8 @@ Learn more about the CLI usage at [skills](https://github.com/vercel-labs/skills
 | Skill | Description |
 |-------|-------------|
 | [git-master](skills/git-master) | Git workflow expert — atomic commits, safe rebasing, and history archaeology |
-| [go-gorm-gen](skills/go-gorm-gen) | Type-safe DAO code generation with rockcookies/go-gen — GenerateModel, query building, dynamic SQL, custom templates, and generics |
+| [go-rc-fetch](skills/go-rc-fetch) | HTTP client for [rockcookies/go-fetch](https://github.com/rockcookies/go-fetch) — dispatcher middleware, request chaining, response decoding, and exchange logging |
+| [go-rc-gorm-gen](skills/go-rc-gorm-gen) | Type-safe DAO code generation with [rockcookies/go-gen](https://github.com/rockcookies/go-gen) — GenerateModel, query building, custom templates, datatypes, soft delete, and generics |
 
 ### Upstream Skills
 
@@ -135,13 +136,13 @@ Synced from external repositories that maintain their own skills.
 
 ## How It Works
 
-This project uses a CLI tool (`pnpm start`) to manage upstream skill repositories:
+This project uses an interactive CLI (`pnpm cli`) to manage upstream skill repositories:
 
-1. **`pnpm start upstream`** - Clone/update external git repositories into `upstream/`
-2. **`pnpm start sync`** - Copy skill files from upstream repos into `skills/`
-3. **`pnpm start cleanup`** - Remove orphaned upstream repositories
+1. **Manage upstream repositories** — Clone or update external git repositories into `upstream/`
+2. **Sync skills** — Update upstream repos, then copy skill files into `skills/`
+3. **Cleanup** — Remove orphaned upstream repositories
 
-Repository sources and skill mappings are configured in [meta.ts](meta.ts).
+Repository sources and skill mappings are configured in [meta.ts](meta.ts). The `samber/cc-skills-golang` upstream is pinned to tag `v1.5.0` in `meta.ts`.
 
 ## Development
 
@@ -149,14 +150,12 @@ Repository sources and skill mappings are configured in [meta.ts](meta.ts).
 # Install dependencies
 pnpm install
 
-# Clone upstream repositories
-pnpm start upstream
+# Interactive CLI (upstream / sync / cleanup)
+pnpm cli
 
-# Sync skills from upstream
-pnpm start sync
-
-# Clean up orphaned upstream repos
-pnpm start cleanup
+# Lint and format
+pnpm lint
+pnpm fmt
 ```
 
 ## Credits
