@@ -17,7 +17,114 @@ npx skills add rockcookies/skills --skill='vue-best-practices' -g
 Install all Go-related skills (RockCookies `go-rc-*` plus upstream `golang-*` from [samber/cc-skills-golang](https://github.com/samber/cc-skills-golang)):
 
 ```bash
-npx skills add rockcookies/skills --skill go-rc-fetch --skill go-rc-gorm-gen --skill golang-benchmark --skill golang-cli --skill golang-code-style --skill golang-concurrency --skill golang-context --skill golang-continuous-integration --skill golang-data-structures --skill golang-database --skill golang-dependency-injection --skill golang-dependency-management --skill golang-design-patterns --skill golang-documentation --skill golang-error-handling --skill golang-google-wire --skill golang-graphql --skill golang-grpc --skill golang-lint --skill golang-modernize --skill golang-naming --skill golang-observability --skill golang-performance --skill golang-popular-libraries --skill golang-project-layout --skill golang-safety --skill golang-samber-do --skill golang-samber-hot --skill golang-samber-lo --skill golang-samber-mo --skill golang-samber-oops --skill golang-samber-ro --skill golang-samber-slog --skill golang-security --skill golang-spf13-cobra --skill golang-spf13-viper --skill golang-stay-updated --skill golang-stretchr-testify --skill golang-structs-interfaces --skill golang-swagger --skill golang-testing --skill golang-troubleshooting --skill golang-uber-dig --skill golang-uber-fx
+npx skills add rockcookies/skills --skill go-rc-fetch --skill go-rc-gorm-gen --skill golang-benchmark --skill golang-cli --skill golang-code-style --skill golang-concurrency --skill golang-context --skill golang-continuous-integration --skill golang-data-structures --skill golang-database --skill golang-dependency-injection --skill golang-dependency-management --skill golang-design-patterns --skill golang-documentation --skill golang-error-handling --skill golang-google-wire --skill golang-graphql --skill golang-grpc --skill golang-how-to --skill golang-lint --skill golang-modernize --skill golang-naming --skill golang-observability --skill golang-performance --skill golang-popular-libraries --skill golang-project-layout --skill golang-safety --skill golang-samber-do --skill golang-samber-hot --skill golang-samber-lo --skill golang-samber-mo --skill golang-samber-oops --skill golang-samber-ro --skill golang-samber-slog --skill golang-security --skill golang-spf13-cobra --skill golang-spf13-viper --skill golang-stay-updated --skill golang-stretchr-testify --skill golang-structs-interfaces --skill golang-swagger --skill golang-testing --skill golang-troubleshooting --skill golang-uber-dig --skill golang-uber-fx
+```
+
+### Recommended bundles for new Go projects
+
+These bundles come from cross-reference analysis across the upstream `golang-*` skills. Installing a skill does **not** pull in its linked skills automatically — add the bundle you need explicitly.
+
+| Bundle | Skills | When to use |
+| --- | ---: | --- |
+| **Starter** | 13 | Code quality, testing, debugging, database, and orchestration for most new services |
+| **Minimum viable** | 17 | Starter + skills that Starter docs reference most often (lint, types, concurrency, context) |
+| **Production baseline** | 22 | Minimum viable + performance, observability, project layout, and CI |
+
+#### Starter (13 skills)
+
+Matches the upstream ⭐ recommended set plus `golang-database` and `golang-how-to` (orchestrator — load it on every Go task).
+
+```bash
+npx skills add rockcookies/skills \
+  --skill golang-how-to \
+  --skill golang-code-style \
+  --skill golang-data-structures \
+  --skill golang-database \
+  --skill golang-design-patterns \
+  --skill golang-documentation \
+  --skill golang-error-handling \
+  --skill golang-modernize \
+  --skill golang-naming \
+  --skill golang-safety \
+  --skill golang-security \
+  --skill golang-testing \
+  --skill golang-troubleshooting \
+  -g
+```
+
+#### Minimum viable (+4 skills)
+
+Add these when cross-skill links in the Starter set would otherwise point at missing skills (golangci-lint config, receivers/interfaces, goroutines, `context.Context`).
+
+```bash
+npx skills add rockcookies/skills \
+  --skill golang-lint \
+  --skill golang-structs-interfaces \
+  --skill golang-concurrency \
+  --skill golang-context \
+  -g
+```
+
+#### Production baseline (+5 skills)
+
+Add for performance work, production monitoring, repo layout, and CI/CD.
+
+```bash
+npx skills add rockcookies/skills \
+  --skill golang-benchmark \
+  --skill golang-performance \
+  --skill golang-observability \
+  --skill golang-project-layout \
+  --skill golang-continuous-integration \
+  -g
+```
+
+#### On-demand (install when the codebase needs them)
+
+| Skill | Install when |
+| --- | --- |
+| `golang-stretchr-testify` | Project uses `github.com/stretchr/testify` |
+| `golang-samber-oops` | Project uses `github.com/samber/oops` |
+| `golang-samber-slog` | Project uses `samber/slog-*` handlers |
+| `golang-dependency-injection` | Choosing or comparing DI approaches (wire, dig, fx, samber/do) |
+| `golang-spf13-cobra` / `golang-spf13-viper` | CLI with Cobra and/or Viper |
+| `golang-cli` | General CLI architecture (beyond Cobra/Viper APIs) |
+| `golang-grpc` / `golang-graphql` / `golang-swagger` | Matching API stack |
+| `samber/cc-skills@promql-cli` | Querying Prometheus metrics from the CLI (external to this repo) |
+
+#### Pin skills in the project agent config
+
+After installing, add a `## Required Go skills` block to `CLAUDE.md` or `AGENTS.md` so agents load them every session. Use `/golang-how-to configure` or copy the list from [golang-how-to/references/project-config.md](skills/golang-how-to/references/project-config.md).
+
+Example for the **Production baseline** (22 skills):
+
+```markdown
+## Required Go skills
+
+The following Go skills MUST always load for Go-related work on this project:
+
+- `golang-how-to`
+- `golang-code-style`
+- `golang-data-structures`
+- `golang-database`
+- `golang-design-patterns`
+- `golang-documentation`
+- `golang-error-handling`
+- `golang-modernize`
+- `golang-naming`
+- `golang-safety`
+- `golang-security`
+- `golang-testing`
+- `golang-troubleshooting`
+- `golang-lint`
+- `golang-structs-interfaces`
+- `golang-concurrency`
+- `golang-context`
+- `golang-benchmark`
+- `golang-performance`
+- `golang-observability`
+- `golang-project-layout`
+- `golang-continuous-integration`
 ```
 
 Learn more about the CLI usage at [skills](https://github.com/vercel-labs/skills).
@@ -107,6 +214,7 @@ Synced from external repositories that maintain their own skills.
 | [golang-google-wire](skills/golang-google-wire) | Compile-time dependency injection with google/wire |
 | [golang-graphql](skills/golang-graphql) | GraphQL APIs with gqlgen or graphql-go |
 | [golang-grpc](skills/golang-grpc) | gRPC servers/clients, protobuf, interceptors, and streaming RPCs |
+| [golang-how-to](skills/golang-how-to) | Go skills orchestrator — task routing, cluster disambiguation, and project skill configuration |
 | [golang-lint](skills/golang-lint) | Linting best practices and golangci-lint configuration |
 | [golang-modernize](skills/golang-modernize) | Modernize code to use the latest Go language features and idioms |
 | [golang-naming](skills/golang-naming) | Naming conventions — packages, constructors, interfaces, errors, enums |
