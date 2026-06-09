@@ -1,0 +1,8 @@
+{
+  "source": "upstream/samber-cc-skills-golang/skills/golang-how-to/SKILL.md",
+  "sha": "2e24bfb3279751a4fae0194e184d99139b240619",
+  "synced": "2026-06-09",
+  "excludes": [
+    "evals/**"
+  ]
+}
