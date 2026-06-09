@@ -1,7 +1,7 @@
 {
   "source": "upstream/samber-cc-skills-golang/skills/golang-spf13-cobra/SKILL.md",
-  "sha": "26e1d996a738d64ed112d1575079882ee8f39389",
-  "synced": "2026-05-25",
+  "sha": "2e24bfb3279751a4fae0194e184d99139b240619",
+  "synced": "2026-06-09",
   "excludes": [
     "evals/**"
   ]
