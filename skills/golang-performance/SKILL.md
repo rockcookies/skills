@@ -17,9 +17,9 @@ compatibility: >-
   Golang.
 metadata:
   author: samber
-  version: 1.2.1
+  version: 1.2.2
   openclaw:
-    emoji: 🏎️
+    emoji: 🏎
     homepage: https://github.com/samber/cc-skills-golang
     requires:
       bins:
@@ -45,6 +45,9 @@ allowed-tools: >-
 - **Review mode (architecture)** — broad scan of a package or service for structural anti-patterns (missing connection pools, unbounded goroutines, wrong data structures). Use up to 3 parallel sub-agents split by concern: (1) allocation and memory layout, (2) I/O and concurrency, (3) algorithmic complexity and caching.
 - **Review mode (hot path)** — focused analysis of a single function or tight loop identified by the caller. Work sequentially; one sub-agent is sufficient.
 - **Optimize mode** — a bottleneck has been identified by profiling. Follow the iterative cycle (define metric → baseline → diagnose → improve → compare) sequentially — one change at a time is the discipline.
+
+**Dependencies:**
+- benchstat: `go install golang.org/x/perf/cmd/benchstat@latest`
 
 # Go Performance Optimization
 

@@ -17,7 +17,7 @@ metadata:
   author: samber
   version: 1.2.1
   openclaw:
-    emoji: 🗄️
+    emoji: 🗄
     homepage: https://github.com/samber/cc-skills-golang
     requires:
       bins:

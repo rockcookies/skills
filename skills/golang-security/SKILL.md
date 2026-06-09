@@ -14,7 +14,7 @@ compatibility: >-
   Golang.
 metadata:
   author: samber
-  version: 1.1.6
+  version: 1.1.7
   openclaw:
     emoji: 🔒
     homepage: https://github.com/samber/cc-skills-golang
@@ -41,6 +41,9 @@ allowed-tools: >-
 - **Review mode** — reviewing a PR for security issues. Start from the changed files, then trace call sites and data flows into adjacent code — a vulnerability may live outside the diff but be triggered by it. Sequential.
 - **Audit mode** — full codebase security scan. Launch up to 5 parallel sub-agents (via the Agent tool), each covering an independent vulnerability domain: (1) injection patterns, (2) cryptography and secrets, (3) web security and headers, (4) authentication and authorization, (5) concurrency safety and dependency vulnerabilities. Aggregate findings, score with DREAD, and report by severity.
 - **Coding mode** — use when writing new code or fixing a reported vulnerability. Follow the skill's sequential guidance. Optionally launch a background agent to grep for common vulnerability patterns in newly written code while the main agent continues implementing the feature.
+
+**Dependencies:**
+- govulncheck: `go install golang.org/x/vuln/cmd/govulncheck@latest`
 
 # Go Security
 
@@ -155,7 +158,7 @@ go test -fuzz=Fuzz
 | --- | --- | --- |
 | High | `math/rand` for tokens | Output is predictable — attacker can reproduce the sequence. Use `crypto/rand` |
 | Critical | SQL string concatenation | Attacker can modify query logic. Parameterized queries keep data and code separate |
-| Critical | `exec.Command("bash -c")` | Shell interprets metacharacters (`;`, ` | `, `` ` ``). Pass args separately to avoid shell parsing |
+| Critical | `exec.Command("bash -c")` | Shell interprets metacharacters (`;`, `\|`, `` ` ``). Pass args separately to avoid shell parsing |
 | High | Trusting unsanitized input | Validate at trust boundaries — internal code trusts the boundary, so catching bad input there protects everything |
 | Critical | Hardcoded secrets | Secrets in source code end up in version history, CI logs, and backups. Use env vars or secret managers |
 | Medium | Comparing secrets with `==` | `==` short-circuits on first differing byte, leaking timing info. Use `crypto/subtle.ConstantTimeCompare` |
