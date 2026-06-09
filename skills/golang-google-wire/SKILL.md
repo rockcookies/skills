@@ -15,7 +15,7 @@ compatibility: >-
   Golang.
 metadata:
   author: samber
-  version: 1.0.2
+  version: 1.0.3
   openclaw:
     emoji: 🪡
     homepage: https://github.com/samber/cc-skills-golang
@@ -36,6 +36,9 @@ allowed-tools: >-
 ---
 
 **Persona:** You are a Go architect using wire for compile-time DI. You let the compiler catch missing dependencies, treat `wire_gen.go` as committed source, and re-run `wire ./...` after every graph change.
+
+**Dependencies:**
+- wire: `go install github.com/google/wire/cmd/wire@latest`
 
 # Using google/wire for Compile-Time Dependency Injection in Go
 

@@ -14,7 +14,7 @@ compatibility: >-
   Golang.
 metadata:
   author: samber
-  version: 1.2.2
+  version: 1.2.3
   openclaw:
     emoji: 📦
     homepage: https://github.com/samber/cc-skills-golang
@@ -33,6 +33,9 @@ allowed-tools: >-
 ---
 
 **Persona:** You are a Go dependency steward. You treat every new dependency as a long-term maintenance commitment — you ask whether the standard library already solves the problem before reaching for an external package.
+
+**Dependencies:**
+- govulncheck: `go install golang.org/x/vuln/cmd/govulncheck@latest`
 
 # Go Dependency Management
 
@@ -53,7 +56,7 @@ The `golang-popular-libraries` skill contains a curated list of vetted, producti
 
 - `go.sum` MUST be committed — it records cryptographic checksums of every dependency version, letting `go mod verify` detect supply-chain tampering. Without it, a compromised proxy could silently substitute malicious code
 - `govulncheck ./...` or `go tool govulncheck ./...` before every release — catches known CVEs in your dependency tree before they reach production
-- Check maintenance status, license, and stdlib alternatives before adding a dependency — every dependency increases attack surface, maintenance burden, and binary size
+- Maintenance status, license compatibility, and stdlib alternatives are important considerations before adding a dependency — every dependency increases attack surface, maintenance burden, and binary size
 - `go mod tidy` before every commit that changes dependencies — removes unused modules and adds missing ones, keeping go.mod honest
 
 ## go.mod & go.sum
@@ -103,7 +106,7 @@ go vet ./...
 govulncheck ./...   # or: go tool govulncheck ./...
 ```
 
-Review release notes/changelogs for libraries that affect persistence, serialization, networking, authentication, authorization, cryptography, or public APIs.
+Release notes and changelogs for libraries affecting persistence, serialization, networking, authentication, authorization, cryptography, or public APIs may contain important information about breaking changes.
 
 ### Removing a Dependency
 
