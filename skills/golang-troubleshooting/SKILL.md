@@ -16,7 +16,7 @@ compatibility: >-
   Golang.
 metadata:
   author: samber
-  version: 1.2.1
+  version: 1.2.2
   openclaw:
     emoji: 🔍
     homepage: https://github.com/samber/cc-skills-golang
@@ -42,6 +42,9 @@ allowed-tools: >-
 
 - **Single-issue debug** (default): Follow the sequential Golden Rules — read the error, reproduce, one hypothesis at a time. Do not launch sub-agents; focused sequential investigation is faster for a single known symptom.
 - **Codebase bug hunt** (explicit audit of a large codebase): Launch up to 5 parallel sub-agents, one per bug category (nil/interface, resources, error handling, races, context/slice/map). Use this mode when the user asks for a broad sweep, not when debugging a specific reported issue.
+
+**Dependencies:**
+- dlv: `go install github.com/go-delve/delve/cmd/dlv@latest`
 
 # Go Troubleshooting Guide
 
@@ -149,7 +152,7 @@ When you don't understand the issue:
 
 Before flagging a bug or proposing a fix, trace the data flow and check for upstream handling. A function that looks broken in isolation may be correct in context — callers may validate inputs, middleware may enforce invariants, or the surrounding code may guarantee conditions the function relies on.
 
-1. **Trace callers** — who calls this function and with what values? Use Grep/Agent to find all call sites.
+1. **Trace callers** — who calls this function and with what values? Call sites can be found with code search tools.
 2. **Check upstream validation** — input parsing, type conversions, or guard clauses earlier in the chain may make the "bug" unreachable.
 3. **Read the surrounding code** — middleware, interceptors, or init functions may set up state the function depends on.
 

@@ -15,7 +15,7 @@ compatibility: >-
   Golang.
 metadata:
   author: samber
-  version: 1.2.1
+  version: 1.2.2
   openclaw:
     emoji: 🧪
     homepage: https://github.com/samber/cc-skills-golang
@@ -45,6 +45,9 @@ allowed-tools: >-
 - **Debug mode** — a test is failing or flaky. Work sequentially: reproduce reliably, isolate the failing assertion, trace the root cause in production code or test setup.
 
 > **Community default.** A company skill that explicitly supersedes `golang-testing` skill takes precedence.
+
+**Dependencies:**
+- gotests: `go install github.com/cweill/gotests/gotests@latest`
 
 # Go Testing Best Practices
 
