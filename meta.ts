@@ -12,7 +12,7 @@ import type { RepositoryConfig } from './src/types'
 export const repositories: Record<string, RepositoryConfig> = {
   'samber-cc-skills-golang': {
     url: 'https://github.com/samber/cc-skills-golang',
-    tag: 'v1.5.0',
+    tag: 'v1.5.1',
     skills: [
       { target: 'golang-benchmark', source: './skills/golang-benchmark/SKILL.md', excludes: ['evals/**'] },
       { target: 'golang-cli', source: './skills/golang-cli/SKILL.md', excludes: ['evals/**'] },
@@ -30,6 +30,7 @@ export const repositories: Record<string, RepositoryConfig> = {
       { target: 'golang-google-wire', source: './skills/golang-google-wire/SKILL.md', excludes: ['evals/**'] },
       { target: 'golang-graphql', source: './skills/golang-graphql/SKILL.md', excludes: ['evals/**'] },
       { target: 'golang-grpc', source: './skills/golang-grpc/SKILL.md', excludes: ['evals/**'] },
+      { target: 'golang-how-to', source: './skills/golang-how-to/SKILL.md', excludes: ['evals/**'] },
       { target: 'golang-lint', source: './skills/golang-lint/SKILL.md', excludes: ['evals/**'] },
       { target: 'golang-modernize', source: './skills/golang-modernize/SKILL.md', excludes: ['evals/**'] },
       { target: 'golang-naming', source: './skills/golang-naming/SKILL.md', excludes: ['evals/**'] },
@@ -70,7 +71,7 @@ export const repositories: Record<string, RepositoryConfig> = {
     url: 'https://github.com/anthropics/skills',
     skills: [
       { target: 'frontend-design', source: './skills/frontend-design/SKILL.md', excludes: ['LICENSE.txt'] },
-      { target: 'skill-creator',  source: './skills/skill-creator/SKILL.md',  excludes: ['LICENSE.txt'] },
+      { target: 'skill-creator', source: './skills/skill-creator/SKILL.md', excludes: ['LICENSE.txt'] },
     ],
   },
   'playwright-cli': {
