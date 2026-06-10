@@ -32,6 +32,8 @@ metadata:
 
 ## 1. 结构与命名
 
+测试文件命名与位置见 `node-naming`。
+
 ```ts
 import { describe, it, expect } from 'vitest'
 import { calculateDiscount } from './pricing'
@@ -174,5 +176,5 @@ describe('POST /users', () => {
 
 ---
 
-交叉引用：异步测试模式见 `node-async`，错误断言见 `node-error-handling`；Vue 组件测试见 `vue-testing-best-practices`，端到端见 `playwright-cli`。
+交叉引用：测试文件命名与位置见 `node-naming`；异步测试模式见 `node-async`，错误断言见 `node-error-handling`；Vue 组件测试见 `vue-testing-best-practices`，端到端见 `playwright-cli`。
 
