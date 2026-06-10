@@ -44,12 +44,13 @@
 | 技能 | 专属领地 |
 | --- | --- |
 | `node-code-style` | 行格式、空行、import 排序、Prettier/oxfmt 配置、注释位置 |
-| `node-naming` | 所有标识符命名：camelCase/PascalCase、布尔前缀、无 `IFoo` 前缀、文件命名、无 `utils` 反模式 |
+| `node-naming` | 所有标识符命名：camelCase/PascalCase、布尔前缀、无 `IFoo` 前缀、文件命名、无 `utils` 反模式；React 组件 `PascalCase.tsx`、Hook `use*`、props `on*`/`is*` → `node-naming` `references/react.md` |
 | `node-documentation` | 导出符号的 TSDoc、模块级文档、README 章节、TypeDoc、`llms.txt` |
 
 **路由示例：**
 
 - "我该如何命名工厂函数？" → `node-naming`。
+- "React 组件文件该用 PascalCase 还是 kebab-case？" → `node-naming`（`references/react.md`）。
 - "import 应该怎么排序？" → `node-code-style`。
 - "我该如何为导出的函数写 TSDoc 注释？" → `node-documentation`。
 
