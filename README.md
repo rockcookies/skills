@@ -140,6 +140,19 @@ Learn more about the CLI usage at [skills](https://github.com/vercel-labs/skills
 | [git-master](skills/git-master) | Git workflow expert — atomic commits, safe rebasing, and history archaeology |
 | [go-rc-fetch](skills/go-rc-fetch) | HTTP client for [rockcookies/go-fetch](https://github.com/rockcookies/go-fetch) — dispatcher middleware, request chaining, response decoding, and exchange logging |
 | [go-rc-gorm-gen](skills/go-rc-gorm-gen) | Type-safe DAO code generation with [rockcookies/go-gen](https://github.com/rockcookies/go-gen) — GenerateModel, query building, custom templates, datatypes, soft delete, and generics |
+| [node-how-to](skills/node-how-to) | Node.js / TypeScript skill orchestrator — task routing, cluster disambiguation, and project skill configuration |
+| [node-async](skills/node-async) | Async & concurrency — `async/await`, Promise patterns, `AbortController`, timeouts, `worker_threads`, event-loop model |
+| [node-code-style](skills/node-code-style) | Code style — Prettier / oxfmt / dprint, import ordering, declarations, comments |
+| [node-design-patterns](skills/node-design-patterns) | Idiomatic design patterns — factories, Builder, functional options, middleware chains, strategy, DI, circuit breakers, retries, graceful shutdown |
+| [node-documentation](skills/node-documentation) | Documentation standards — TSDoc / JSDoc, README structure, CHANGELOG, TypeDoc, `llms.txt` |
+| [node-error-handling](skills/node-error-handling) | Idiomatic error handling — `Error` subclasses, `cause` chains, `try/catch/finally`, `AggregateError`, structured logging |
+| [node-naming](skills/node-naming) | Naming conventions — variables, functions, classes, interfaces, types, constants, files, React components/Hooks/props |
+| [node-observability](skills/node-observability) | Production observability — structured logging (pino/winston), metrics (prom-client), OpenTelemetry tracing, health checks |
+| [node-performance](skills/node-performance) | Performance optimization — event-loop blocking, memory & GC, streaming, caching, `--prof` / clinic / 0x profiling |
+| [node-safety](skills/node-safety) | Defensive coding — null/undefined safety, type guards, `structuredClone`, float comparison, integer precision |
+| [node-security](skills/node-security) | Security best practices — injection prevention, prototype pollution, crypto, secrets, dependency audit, ReDoS, SSRF |
+| [node-testing](skills/node-testing) | Production-ready tests with Vitest — table-driven, mocks, fixtures, snapshots, coverage, async, integration |
+| [node-types](skills/node-types) | TypeScript types & interfaces — `interface` vs `type`, generics, conditional/mapped types, discriminated unions, narrowing |
 
 ### Upstream Skills
 
@@ -151,6 +164,8 @@ Synced from external repositories that maintain their own skills.
 |-------|-------------|
 | [node-dev](skills/node-dev) | Modern JavaScript/TypeScript runtime development conventions and tooling |
 | [unocss](skills/unocss) | UnoCSS instant atomic CSS engine, superset of Tailwind CSS |
+| [vite](skills/vite) | Vite build tool — configuration, plugin API, SSR, and Vite 8 Rolldown migration |
+| [vitest](skills/vitest) | Vitest fast unit testing framework powered by Vite with Jest-compatible API |
 
 #### [anthropics/skills](https://github.com/anthropics/skills)
 
@@ -158,6 +173,15 @@ Synced from external repositories that maintain their own skills.
 |-------|-------------|
 | [skill-creator](skills/skill-creator) | Create, modify, and benchmark agent skills |
 | [frontend-design](skills/frontend-design) | Production-grade frontend interfaces with high design quality |
+
+#### [deckardger/tanstack-agent-skills](https://github.com/deckardger/tanstack-agent-skills)
+
+| Skill | Description |
+|-------|-------------|
+| [tanstack-integration](skills/tanstack-integration) | Integrating TanStack Query with TanStack Router and TanStack Start — full-stack data flow, SSR, caching |
+| [tanstack-query](skills/tanstack-query) | TanStack Query (React Query) — data fetching, caching, mutations, and server state management |
+| [tanstack-router](skills/tanstack-router) | TanStack Router — type-safe routing, data loading, search params, and navigation |
+| [tanstack-start](skills/tanstack-start) | TanStack Start — server functions, middleware, SSR, authentication, and deployment |
 
 #### [microsoft/playwright-cli](https://github.com/microsoft/playwright-cli)
 
@@ -176,6 +200,7 @@ Synced from external repositories that maintain their own skills.
 | Skill | Description |
 |-------|-------------|
 | [web-design-guidelines](skills/web-design-guidelines) | Review UI code for Web Interface Guidelines compliance and UX audits |
+| [react-best-practices](skills/react-best-practices) | React and Next.js performance optimization guidelines from Vercel Engineering |
 
 #### [vueuse/skills](https://github.com/vueuse/skills)
 
@@ -193,6 +218,12 @@ Synced from external repositories that maintain their own skills.
 | [vue-pinia-best-practices](skills/vue-pinia-best-practices) | Pinia stores, state management patterns, and reactivity |
 | [vue-router-best-practices](skills/vue-router-best-practices) | Vue Router 4 patterns, navigation guards, and route-component lifecycle |
 | [vue-testing-best-practices](skills/vue-testing-best-practices) | Vue testing with Vitest, Vue Test Utils, and Playwright for E2E |
+
+#### [yusukebe/hono-skill](https://github.com/yusukebe/hono-skill)
+
+| Skill | Description |
+|-------|-------------|
+| [hono-skills](skills/hono-skills) | Build Hono web applications — routing, middleware, JSX, validation, testing, and streaming |
 
 #### [samber/cc-skills-golang](https://github.com/samber/cc-skills-golang)
 
@@ -250,7 +281,7 @@ This project uses an interactive CLI (`pnpm cli`) to manage upstream skill repos
 2. **Sync skills** — Update upstream repos, then copy skill files into `skills/`
 3. **Cleanup** — Remove orphaned upstream repositories
 
-Repository sources and skill mappings are configured in [meta.ts](meta.ts). The `samber/cc-skills-golang` upstream is pinned to tag `v1.5.0` in `meta.ts`.
+Repository sources and skill mappings are configured in [meta.ts](meta.ts). The `samber/cc-skills-golang` upstream is pinned to tag `v1.5.1` in `meta.ts`.
 
 ## Development
 
