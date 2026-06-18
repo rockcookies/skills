@@ -65,7 +65,10 @@ export const repositories: Record<string, RepositoryConfig> = {
   },
   'vercel-agent-skills': {
     url: 'https://github.com/vercel-labs/agent-skills',
-    skills: [{ target: 'web-design-guidelines', source: './skills/web-design-guidelines/SKILL.md' }],
+    skills: [
+      { target: 'web-design-guidelines', source: './skills/web-design-guidelines/SKILL.md' },
+      { target: 'react-best-practices', source: './skills/react-best-practices/SKILL.md' }
+    ],
   },
   'anthropics-skills': {
     url: 'https://github.com/anthropics/skills',
@@ -96,8 +99,25 @@ export const repositories: Record<string, RepositoryConfig> = {
   'antfu-skills': {
     url: 'https://github.com/antfu/skills',
     skills: [
+      { target: 'vite', source: './skills/vite/SKILL.md', excludes: ['GENERATION.md'] },
+      { target: 'vitest', source: './skills/vitest/SKILL.md', excludes: ['GENERATION.md'] },
       { target: 'unocss', source: './skills/unocss/SKILL.md', excludes: ['GENERATION.md'] },
       { target: 'node-dev', source: './skills/antfu/SKILL.md' },
     ]
   },
+  'hono-skills': {
+    url: 'https://github.com/yusukebe/hono-skill',
+    skills: [
+      { target: 'hono-skills', source: './skills/hono/SKILL.md' }
+    ],
+  },
+  'tanstack-agnet-skills': {
+    url: 'https://github.com/deckardger/tanstack-agent-skills',
+    skills: [
+      { target: 'tanstack-integration', source: './skills/tanstack-integration/SKILL.md' },
+      { target: 'tanstack-query', source: './skills/tanstack-query/SKILL.md' },
+      { target: 'tanstack-router', source: './skills/tanstack-router/SKILL.md' },
+      { target: 'tanstack-start', source: './skills/tanstack-start/SKILL.md' },
+    ],
+  }
 }
