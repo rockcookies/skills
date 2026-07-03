@@ -13,7 +13,7 @@ compatibility: >-
   Golang.
 metadata:
   author: samber
-  version: 0.0.3
+  version: 0.0.4
   openclaw:
     emoji: 🔮
     homepage: https://github.com/samber/cc-skills-golang
@@ -41,7 +41,7 @@ allowed-tools: >-
 
 Both major libraries are schema-first: write SDL (`.graphql` files), bind Go resolvers. Choose based on project size and team preferences.
 
-This skill is not exhaustive. Refer to each library's official documentation and code examples for current API signatures. Context7 can help as a discoverability platform.
+This skill is not exhaustive. Refer to each library's official documentation and code examples for current API signatures. Context7 can help as a discoverability platform. For Go package docs, versions, symbols, and known vulnerabilities, → See `golang-pkg-go-dev` skill.
 
 ## Library Choice
 

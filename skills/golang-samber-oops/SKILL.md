@@ -13,7 +13,7 @@ compatibility: >-
   Golang.
 metadata:
   author: samber
-  version: 1.1.3
+  version: 1.1.4
   openclaw:
     emoji: 💥
     homepage: https://github.com/samber/cc-skills-golang
@@ -43,7 +43,7 @@ Standard Go errors lack context — you see `connection failed` but not which us
 - **Public messages** — user-safe messages separate from technical details
 - **Low-cardinality messages** — variable data in `.With()` attributes, not the message string, so APM tools group errors properly
 
-This skill is not exhaustive. Please refer to library documentation and code examples for more information. Context7 can help as a discoverability platform.
+This skill is not exhaustive. Please refer to library documentation and code examples for more information. Context7 can help as a discoverability platform. For Go package docs, versions, symbols, and known vulnerabilities, → See `golang-pkg-go-dev` skill.
 
 ## Core pattern: Error builder chain
 

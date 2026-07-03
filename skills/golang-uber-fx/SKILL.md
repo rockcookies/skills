@@ -14,7 +14,7 @@ compatibility: >-
   Golang.
 metadata:
   author: samber
-  version: 1.1.0
+  version: 1.1.1
   openclaw:
     emoji: 🏭
     homepage: https://github.com/samber/cc-skills-golang
@@ -40,7 +40,7 @@ Application framework combining a reflection-based DI container (built on `uber-
 - [uber-go.github.io/fx](https://uber-go.github.io/fx/)
 - [github.com/uber-go/fx](https://github.com/uber-go/fx)
 
-This skill is not exhaustive. Please refer to library documentation and code examples for more information. Context7 can help as a discoverability platform.
+This skill is not exhaustive. Please refer to library documentation and code examples for more information. Context7 can help as a discoverability platform. For Go package docs, versions, symbols, and known vulnerabilities, → See `golang-pkg-go-dev` skill.
 
 ```bash
 go get go.uber.org/fx

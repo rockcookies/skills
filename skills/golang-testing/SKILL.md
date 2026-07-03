@@ -47,6 +47,7 @@ allowed-tools: >-
 > **Community default.** A company skill that explicitly supersedes `golang-testing` skill takes precedence.
 
 **Dependencies:**
+
 - gotests: `go install github.com/cweill/gotests/gotests@latest`
 
 # Go Testing Best Practices

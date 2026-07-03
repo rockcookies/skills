@@ -16,7 +16,7 @@ compatibility: >-
   CLI.
 metadata:
   author: samber
-  version: 1.0.1
+  version: 1.0.2
   openclaw:
     emoji: 📋
     homepage: https://github.com/samber/cc-skills-golang
@@ -44,6 +44,7 @@ allowed-tools: >-
 - **Audit** — reviewing existing swagger annotations for completeness, correctness, and security coverage.
 
 **Dependencies:**
+
 - swag: `go install github.com/swaggo/swag/cmd/swag@latest`
 
 ## Setup
@@ -236,6 +237,6 @@ type CreateUserRequest struct {
 - → See `golang-security` for securing the Swagger UI endpoint in production (disable or gate with auth middleware).
 - → See `golang-grpc` for gRPC — use grpc-gateway with its own OpenAPI generator instead of swag.
 
-This skill is not exhaustive. Refer to the swaggo/swag documentation and code examples for up-to-date API signatures and usage patterns. Context7 can help as a discoverability platform.
+This skill is not exhaustive. Refer to the swaggo/swag documentation and code examples for up-to-date API signatures and usage patterns. Context7 can help as a discoverability platform. For Go package docs, versions, symbols, and known vulnerabilities, → See `golang-pkg-go-dev` skill.
 
 If you encounter a bug or unexpected behavior in swag, open an issue at <https://github.com/swaggo/swag/issues>.

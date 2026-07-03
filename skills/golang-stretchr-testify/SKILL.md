@@ -15,7 +15,7 @@ compatibility: >-
   Golang.
 metadata:
   author: samber
-  version: 1.2.0
+  version: 1.2.1
   openclaw:
     emoji: ✅
     homepage: https://github.com/samber/cc-skills-golang
@@ -46,7 +46,7 @@ allowed-tools: >-
 
 testify complements Go's `testing` package with readable assertions, mocks, and suites. It does not replace `testing` — always use `*testing.T` as the entry point.
 
-This skill is not exhaustive. Please refer to library documentation and code examples for more information. Context7 can help as a discoverability platform.
+This skill is not exhaustive. Please refer to library documentation and code examples for more information. Context7 can help as a discoverability platform. For Go package docs, versions, symbols, and known vulnerabilities, → See `golang-pkg-go-dev` skill.
 
 ## assert vs require
 

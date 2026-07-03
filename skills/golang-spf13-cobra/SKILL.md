@@ -18,7 +18,7 @@ compatibility: >-
   Golang.
 metadata:
   author: samber
-  version: 1.0.1
+  version: 1.0.2
   openclaw:
     emoji: 🐍
     homepage: https://github.com/samber/cc-skills-golang
@@ -50,7 +50,7 @@ Cobra is the de facto standard for Go CLI applications. It provides the command/
 - [github.com/spf13/cobra](https://github.com/spf13/cobra)
 - [cobra.dev](https://cobra.dev)
 
-This skill is not exhaustive. Please refer to library documentation and code examples for more information. Context7 can help as a discoverability platform.
+This skill is not exhaustive. Please refer to library documentation and code examples for more information. Context7 can help as a discoverability platform. For Go package docs, versions, symbols, and known vulnerabilities, → See `golang-pkg-go-dev` skill.
 
 ```bash
 go get github.com/spf13/cobra@latest

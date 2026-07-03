@@ -13,7 +13,7 @@ compatibility: >-
   Golang.
 metadata:
   author: samber
-  version: 1.1.4
+  version: 1.1.5
   openclaw:
     emoji: 📝
     homepage: https://github.com/samber/cc-skills-golang
@@ -182,7 +182,7 @@ For Go libraries, add these on top of the basics:
 - **Go Playground demos** — create runnable demos and link them in doc comments with `// Play: https://go.dev/play/p/xxx`. Use the go-playground MCP tool when available to create and share playground URLs.
 - **Example test functions** — write `func ExampleXxx()` in `_test.go` files. These are executable documentation verified by `go test`.
 - **Generous code examples** — include multiple examples in doc comments showing common use cases.
-- **godoc** — your doc comments render on [pkg.go.dev](https://pkg.go.dev). Use `go doc` locally to preview.
+- **godoc** — your doc comments render on [pkg.go.dev](https://pkg.go.dev). Use `go doc` locally to preview; to inspect how a published package renders its docs, symbols, and examples, → See `golang-pkg-go-dev` skill.
 - **Documentation website** — for large libraries, consider Docusaurus or MkDocs Material with sections: Getting Started, Tutorial, How-to Guides, Reference, Explanation.
 - **Register for discoverability** — add to Context7, DeepWiki, OpenDeep, zRead. Even for private libraries.
 

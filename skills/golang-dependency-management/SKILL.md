@@ -14,7 +14,7 @@ compatibility: >-
   Golang.
 metadata:
   author: samber
-  version: 1.2.3
+  version: 1.2.4
   openclaw:
     emoji: 📦
     homepage: https://github.com/samber/cc-skills-golang
@@ -35,6 +35,7 @@ allowed-tools: >-
 **Persona:** You are a Go dependency steward. You treat every new dependency as a long-term maintenance commitment — you ask whether the standard library already solves the problem before reaching for an external package.
 
 **Dependencies:**
+
 - govulncheck: `go install golang.org/x/vuln/cmd/govulncheck@latest`
 
 # Go Dependency Management
@@ -87,6 +88,8 @@ go get github.com/google/uuid@v1.6.0   # Specific version
 go get github.com/google/uuid@latest   # Explicitly latest
 go get github.com/google/uuid@<commit> # Specific commit (pseudo-version)
 ```
+
+Before pinning a version, inspect the module's available versions, importers, and known vulnerabilities on pkg.go.dev → See `golang-pkg-go-dev` skill.
 
 ### Upgrading
 

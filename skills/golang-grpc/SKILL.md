@@ -13,7 +13,7 @@ compatibility: >-
   Golang.
 metadata:
   author: samber
-  version: 1.1.4
+  version: 1.1.5
   openclaw:
     emoji: 🌐
     homepage: https://github.com/samber/cc-skills-golang
@@ -40,6 +40,7 @@ allowed-tools: >-
 - **Review mode** — auditing existing gRPC code for correctness, security, and operability issues.
 
 **Dependencies:**
+
 - protoc: `brew install protobuf`
 - protoc-gen-go: `go install google.golang.org/protobuf/cmd/protoc-gen-go@latest`
 - protoc-gen-go-grpc: `go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest`
@@ -48,7 +49,7 @@ allowed-tools: >-
 
 Treat gRPC as a pure transport layer — keep it separate from business logic. The official Go implementation is `google.golang.org/grpc`.
 
-This skill is not exhaustive. Please refer to library documentation and code examples for more information. Context7 can help as a discoverability platform.
+This skill is not exhaustive. Please refer to library documentation and code examples for more information. Context7 can help as a discoverability platform. For Go package docs, versions, symbols, and known vulnerabilities, → See `golang-pkg-go-dev` skill.
 
 ## Quick Reference
 

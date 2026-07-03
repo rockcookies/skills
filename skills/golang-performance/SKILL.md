@@ -47,6 +47,7 @@ allowed-tools: >-
 - **Optimize mode** — a bottleneck has been identified by profiling. Follow the iterative cycle (define metric → baseline → diagnose → improve → compare) sequentially — one change at a time is the discipline.
 
 **Dependencies:**
+
 - benchstat: `go install golang.org/x/perf/cmd/benchstat@latest`
 
 # Go Performance Optimization

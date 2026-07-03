@@ -14,7 +14,7 @@ compatibility: >-
   Golang.
 metadata:
   author: samber
-  version: 1.1.7
+  version: 1.1.8
   openclaw:
     emoji: 🔒
     homepage: https://github.com/samber/cc-skills-golang
@@ -43,6 +43,7 @@ allowed-tools: >-
 - **Coding mode** — use when writing new code or fixing a reported vulnerability. Follow the skill's sequential guidance. Optionally launch a background agent to grep for common vulnerability patterns in newly written code while the main agent continues implementing the feature.
 
 **Dependencies:**
+
 - govulncheck: `go install golang.org/x/vuln/cmd/govulncheck@latest`
 
 # Go Security
@@ -141,6 +142,8 @@ go tool gosec ./...
 go get -tool golang.org/x/vuln/cmd/govulncheck@latest
 go tool govulncheck ./...
 ```
+
+To check the known CVEs of a specific module or version without scanning the whole tree (e.g. when vetting a dependency on pkg.go.dev), → See `golang-pkg-go-dev` skill.
 
 ### Security Testing
 

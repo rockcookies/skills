@@ -12,7 +12,7 @@ compatibility: >-
   Golang.
 metadata:
   author: samber
-  version: 1.1.5
+  version: 1.1.6
   openclaw:
     emoji: 📚
     homepage: https://github.com/samber/cc-skills-golang
@@ -54,7 +54,7 @@ When recommending libraries:
 
 1. **Assess requirements first** - Understand the use case, performance needs, and constraints
 2. **Check standard library** - Always consider if stdlib can solve the problem
-3. **Prioritize maturity** - MUST check maintenance status, license, and community adoption before recommending
+3. **Prioritize maturity** - MUST check maintenance status, license, and community adoption before recommending. Use a module's `imported-by` count on pkg.go.dev as a popularity and indirect quality signal — widely-imported libraries are more battle-tested and have stronger backward-compatibility pressure; → See `golang-pkg-go-dev` skill to count importers and compare alternatives
 4. **Consider complexity** - Simpler solutions are usually better in Go
 5. **Think about dependencies** - More dependencies = more attack surface and maintenance burden
 
@@ -71,6 +71,7 @@ Remember: The best library is often no library at all. Go's standard library is 
 ## Cross-References
 
 - → See `golang-dependency-management` skill for adding, auditing, and managing dependencies
+- → See `golang-pkg-go-dev` skill to vet a candidate library on pkg.go.dev — versions, importers, licenses, and known vulnerabilities — before adopting it
 - → See `golang-samber-do` skill for samber/do dependency injection details
 - → See `golang-samber-oops` skill for samber/oops error handling details
 - → See `golang-stretchr-testify` skill for testify testing details
