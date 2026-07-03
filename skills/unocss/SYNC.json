@@ -1,7 +1,7 @@
 {
   "source": "upstream/antfu-skills/skills/unocss/SKILL.md",
-  "sha": "50deaeb269d80d92db7a2c5a677290309ae307fc",
-  "synced": "2026-05-22",
+  "sha": "a74f281a27dadc02397bc1a174b0f2c97531b6ae",
+  "synced": "2026-07-03",
   "excludes": [
     "GENERATION.md"
   ]

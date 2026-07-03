@@ -1,7 +1,7 @@
 {
   "source": "upstream/anthropics-skills/skills/frontend-design/SKILL.md",
-  "sha": "57546260929473d4e0d1c1bb75297be2fdfa1949",
-  "synced": "2026-06-18",
+  "sha": "9d2f1ae187231d8199c64b5b762e1bdf2244733d",
+  "synced": "2026-07-03",
   "excludes": [
     "LICENSE.txt"
   ]
