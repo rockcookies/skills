@@ -103,24 +103,30 @@ export class SyncService {
     includes: string[] = [],
     excludes?: string[],
   ): Promise<void> {
-    includes = includes.length === 0 ? ['**/*'] : includes
+    const patterns = includes.length === 0 ? ['**/*', '**/*/.*'] : includes
+    const seen = new Set<string>()
 
-    const files = glob(includes, {
-      exclude: excludes,
-      cwd: sourceDir,
-    })
+    for (const pattern of patterns) {
+      const files = glob(pattern, {
+        exclude: excludes,
+        cwd: sourceDir,
+      })
 
-    for await (const file of files) {
-      const srcPath = join(sourceDir, file)
-      const destPath = join(targetDir, file)
+      for await (const file of files) {
+        if (seen.has(file)) continue
+        seen.add(file)
 
-      const stats = await stat(srcPath)
-      if (stats.isDirectory()) {
-        continue
+        const srcPath = join(sourceDir, file)
+        const destPath = join(targetDir, file)
+
+        const stats = await stat(srcPath)
+        if (stats.isDirectory()) {
+          continue
+        }
+
+        await mkdir(dirname(destPath), { recursive: true })
+        await cp(srcPath, destPath)
       }
-
-      await mkdir(dirname(destPath), { recursive: true })
-      await cp(srcPath, destPath)
     }
   }
 
