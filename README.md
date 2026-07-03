@@ -17,7 +17,7 @@ npx skills add rockcookies/skills --skill='vue-best-practices' -g
 Install all Go-related skills (RockCookies `go-rc-*` plus upstream `golang-*` from [samber/cc-skills-golang](https://github.com/samber/cc-skills-golang)):
 
 ```bash
-npx skills add rockcookies/skills --skill go-rc-fetch --skill go-rc-gorm-gen --skill golang-benchmark --skill golang-cli --skill golang-code-style --skill golang-concurrency --skill golang-context --skill golang-continuous-integration --skill golang-data-structures --skill golang-database --skill golang-dependency-injection --skill golang-dependency-management --skill golang-design-patterns --skill golang-documentation --skill golang-error-handling --skill golang-google-wire --skill golang-graphql --skill golang-grpc --skill golang-how-to --skill golang-lint --skill golang-modernize --skill golang-naming --skill golang-observability --skill golang-performance --skill golang-popular-libraries --skill golang-project-layout --skill golang-safety --skill golang-samber-do --skill golang-samber-hot --skill golang-samber-lo --skill golang-samber-mo --skill golang-samber-oops --skill golang-samber-ro --skill golang-samber-slog --skill golang-security --skill golang-spf13-cobra --skill golang-spf13-viper --skill golang-stay-updated --skill golang-stretchr-testify --skill golang-structs-interfaces --skill golang-swagger --skill golang-testing --skill golang-troubleshooting --skill golang-uber-dig --skill golang-uber-fx
+npx skills add rockcookies/skills --skill go-rc-fetch --skill go-rc-gorm-gen --skill golang-benchmark --skill golang-cli --skill golang-code-style --skill golang-concurrency --skill golang-context --skill golang-continuous-integration --skill golang-data-structures --skill golang-database --skill golang-dependency-injection --skill golang-dependency-management --skill golang-design-patterns --skill golang-documentation --skill golang-error-handling --skill golang-google-wire --skill golang-graphql --skill golang-grpc --skill golang-how-to --skill golang-lint --skill golang-modernize --skill golang-naming --skill golang-observability --skill golang-performance --skill golang-pkg-go-dev --skill golang-popular-libraries --skill golang-project-layout --skill golang-safety --skill golang-samber-do --skill golang-samber-hot --skill golang-samber-lo --skill golang-samber-mo --skill golang-samber-oops --skill golang-samber-ro --skill golang-samber-slog --skill golang-security --skill golang-spf13-cobra --skill golang-spf13-viper --skill golang-stay-updated --skill golang-stretchr-testify --skill golang-structs-interfaces --skill golang-swagger --skill golang-testing --skill golang-troubleshooting --skill golang-uber-dig --skill golang-uber-fx
 ```
 
 ### Recommended bundles for new Go projects
@@ -90,6 +90,7 @@ npx skills add rockcookies/skills \
 | `golang-spf13-cobra` / `golang-spf13-viper` | CLI with Cobra and/or Viper |
 | `golang-cli` | General CLI architecture (beyond Cobra/Viper APIs) |
 | `golang-grpc` / `golang-graphql` / `golang-swagger` | Matching API stack |
+| `golang-pkg-go-dev` | Looking up pkg.go.dev docs, versions, importers, licenses, or CVEs for a Go package |
 | `samber/cc-skills@promql-cli` | Querying Prometheus metrics from the CLI (external to this repo) |
 
 #### Pin skills in the project agent config
@@ -129,6 +130,97 @@ The following Go skills MUST always load for Go-related work on this project:
 
 Learn more about the CLI usage at [skills](https://github.com/vercel-labs/skills).
 
+### Recommended bundles for new Node / TypeScript projects
+
+These bundles come from cross-reference analysis across the hand-maintained `node-*` skills and their links to upstream JS/TS skills. Installing a skill does **not** pull in its linked skills automatically — add the bundle you need explicitly.
+
+| Bundle | Skills | When to use |
+| --- | ---: | --- |
+| **Starter** | 10 | Code quality, testing, and type design for most new Node/TS services |
+| **Minimum viable** | 11 | Starter + `node-async` (async/concurrency links appear throughout the Starter set) |
+| **Production baseline** | 13 | Minimum viable + observability and performance for production services |
+
+#### Starter (10 skills)
+
+Matches the upstream ⭐ recommended set plus `node-how-to` (orchestrator — load it on every Node/TS task).
+
+```bash
+npx skills add rockcookies/skills \
+  --skill node-how-to \
+  --skill node-code-style \
+  --skill node-design-patterns \
+  --skill node-documentation \
+  --skill node-error-handling \
+  --skill node-naming \
+  --skill node-safety \
+  --skill node-security \
+  --skill node-testing \
+  --skill node-types \
+  -g
+```
+
+#### Minimum viable (+1 skill)
+
+Add when cross-skill links in the Starter set would otherwise point at missing async/concurrency guidance.
+
+```bash
+npx skills add rockcookies/skills \
+  --skill node-async \
+  -g
+```
+
+#### Production baseline (+2 skills)
+
+Add for production monitoring and performance work.
+
+```bash
+npx skills add rockcookies/skills \
+  --skill node-observability \
+  --skill node-performance \
+  -g
+```
+
+#### On-demand (install when the codebase needs them)
+
+| Skill | Install when |
+| --- | --- |
+| `antfu` | Project setup — pnpm/monorepo, `@antfu/eslint-config`, tsconfig, library publishing |
+| `vite` / `vitest` | Vite build tooling or Vitest test runner |
+| `unocss` | UnoCSS atomic CSS |
+| `vue-best-practices` and related `vue-*` skills | Vue 3 / Nuxt stack |
+| `vueuse-functions` | VueUse composables |
+| `tanstack-query` / `tanstack-router` / `tanstack-start` / `tanstack-integration` | TanStack data/routing stack |
+| `hono-skills` | Hono web applications |
+| `react-best-practices` | React / Next.js performance |
+| `playwright-cli` | Browser automation or E2E tests |
+| `frontend-design` / `web-design-guidelines` | High-quality UI design or UX audits |
+
+#### Pin skills in the project agent config
+
+After installing, add a `## Required Node skills` block to `CLAUDE.md` or `AGENTS.md` so agents load them every session. Use `/node-how-to configure` or copy the list from [node-how-to/references/project-config.md](skills/node-how-to/references/project-config.md).
+
+Example for the **Production baseline** (13 skills):
+
+```markdown
+## Required Node skills
+
+The following Node/TS skills MUST always load for Node-related work on this project:
+
+- `node-how-to`
+- `node-code-style`
+- `node-design-patterns`
+- `node-documentation`
+- `node-error-handling`
+- `node-naming`
+- `node-safety`
+- `node-security`
+- `node-testing`
+- `node-types`
+- `node-async`
+- `node-observability`
+- `node-performance`
+```
+
 ## Skills
 
 ### Hand-maintained Skills
@@ -140,7 +232,7 @@ Learn more about the CLI usage at [skills](https://github.com/vercel-labs/skills
 | [git-master](skills/git-master) | Git workflow expert — atomic commits, safe rebasing, and history archaeology |
 | [go-rc-fetch](skills/go-rc-fetch) | HTTP client for [rockcookies/go-fetch](https://github.com/rockcookies/go-fetch) — dispatcher middleware, request chaining, response decoding, and exchange logging |
 | [go-rc-gorm-gen](skills/go-rc-gorm-gen) | Type-safe DAO code generation with [rockcookies/go-gen](https://github.com/rockcookies/go-gen) — GenerateModel, query building, custom templates, datatypes, soft delete, and generics |
-| [node-how-to](skills/node-how-to) | Node.js / TypeScript skill orchestrator — task routing, cluster disambiguation, and project skill configuration |
+| [node-how-to](skills/node-how-to) | Node.js / TypeScript skill orchestrator — task routing, cluster disambiguation, upstream skill routing (`antfu`, `vue-*`, `vite`, …), and project skill configuration |
 | [node-async](skills/node-async) | Async & concurrency — `async/await`, Promise patterns, `AbortController`, timeouts, `worker_threads`, event-loop model |
 | [node-code-style](skills/node-code-style) | Code style — Prettier / oxfmt / dprint, import ordering, declarations, comments |
 | [node-design-patterns](skills/node-design-patterns) | Idiomatic design patterns — factories, Builder, functional options, middleware chains, strategy, DI, circuit breakers, retries, graceful shutdown |
@@ -162,7 +254,7 @@ Synced from external repositories that maintain their own skills.
 
 | Skill | Description |
 |-------|-------------|
-| [node-dev](skills/node-dev) | Modern JavaScript/TypeScript runtime development conventions and tooling |
+| [antfu](skills/antfu) | Anthony Fu's opinionated JS/TS tooling — `@antfu/eslint-config`, pnpm catalogs, monorepo, project setup, and library publishing |
 | [unocss](skills/unocss) | UnoCSS instant atomic CSS engine, superset of Tailwind CSS |
 | [vite](skills/vite) | Vite build tool — configuration, plugin API, SSR, and Vite 8 Rolldown migration |
 | [vitest](skills/vitest) | Vitest fast unit testing framework powered by Vite with Jest-compatible API |
@@ -251,6 +343,7 @@ Synced from external repositories that maintain their own skills.
 | [golang-naming](skills/golang-naming) | Naming conventions — packages, constructors, interfaces, errors, enums |
 | [golang-observability](skills/golang-observability) | Structured logging with slog, Prometheus metrics, and OpenTelemetry tracing |
 | [golang-performance](skills/golang-performance) | Performance optimization — allocation reduction, memory layout, GC tuning |
+| [golang-pkg-go-dev](skills/golang-pkg-go-dev) | Package docs via godig (pkg.go.dev API) — versions, symbols, importers, licenses, and CVEs |
 | [golang-popular-libraries](skills/golang-popular-libraries) | Recommends production-ready Go libraries and frameworks |
 | [golang-project-layout](skills/golang-project-layout) | Project layout, directory structure, and workspace setup |
 | [golang-safety](skills/golang-safety) | Defensive coding to prevent panics, nil crashes, and data races |
@@ -281,7 +374,7 @@ This project uses an interactive CLI (`pnpm cli`) to manage upstream skill repos
 2. **Sync skills** — Update upstream repos, then copy skill files into `skills/`
 3. **Cleanup** — Remove orphaned upstream repositories
 
-Repository sources and skill mappings are configured in [meta.ts](meta.ts). The `samber/cc-skills-golang` upstream is pinned to tag `v1.5.1` in `meta.ts`.
+Repository sources and skill mappings are configured in [meta.ts](meta.ts). The `samber/cc-skills-golang` upstream is pinned to tag `v1.7.0` in `meta.ts`.
 
 ## Development
 

@@ -12,7 +12,7 @@ import type { RepositoryConfig } from './src/types'
 export const repositories: Record<string, RepositoryConfig> = {
   'samber-cc-skills-golang': {
     url: 'https://github.com/samber/cc-skills-golang',
-    tag: 'v1.5.1',
+    tag: 'v1.7.0',
     skills: [
       { target: 'golang-benchmark', source: './skills/golang-benchmark/SKILL.md', excludes: ['evals/**'] },
       { target: 'golang-cli', source: './skills/golang-cli/SKILL.md', excludes: ['evals/**'] },
@@ -36,6 +36,7 @@ export const repositories: Record<string, RepositoryConfig> = {
       { target: 'golang-naming', source: './skills/golang-naming/SKILL.md', excludes: ['evals/**'] },
       { target: 'golang-observability', source: './skills/golang-observability/SKILL.md', excludes: ['evals/**'] },
       { target: 'golang-performance', source: './skills/golang-performance/SKILL.md', excludes: ['evals/**'] },
+      { target: 'golang-pkg-go-dev', source: './skills/golang-pkg-go-dev/SKILL.md', excludes: ['evals/**'] },
       { target: 'golang-popular-libraries', source: './skills/golang-popular-libraries/SKILL.md', excludes: ['evals/**'] },
       { target: 'golang-project-layout', source: './skills/golang-project-layout/SKILL.md', excludes: ['evals/**'] },
       { target: 'golang-safety', source: './skills/golang-safety/SKILL.md', excludes: ['evals/**'] },
@@ -102,7 +103,7 @@ export const repositories: Record<string, RepositoryConfig> = {
       { target: 'vite', source: './skills/vite/SKILL.md', excludes: ['GENERATION.md'] },
       { target: 'vitest', source: './skills/vitest/SKILL.md', excludes: ['GENERATION.md'] },
       { target: 'unocss', source: './skills/unocss/SKILL.md', excludes: ['GENERATION.md'] },
-      { target: 'node-dev', source: './skills/antfu/SKILL.md' },
+      { target: 'antfu', source: './skills/antfu/SKILL.md' },
     ]
   },
   'hono-skills': {
