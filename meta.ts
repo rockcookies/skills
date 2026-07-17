@@ -12,7 +12,7 @@ import type { RepositoryConfig } from './src/types'
 export const repositories: Record<string, RepositoryConfig> = {
   'samber-cc-skills-golang': {
     url: 'https://github.com/samber/cc-skills-golang',
-    tag: 'v1.7.0',
+    tag: 'v1.9.0',
     skills: [
       { target: 'golang-benchmark', source: './skills/golang-benchmark/SKILL.md', excludes: ['evals/**'] },
       { target: 'golang-cli', source: './skills/golang-cli/SKILL.md', excludes: ['evals/**'] },
@@ -28,6 +28,7 @@ export const repositories: Record<string, RepositoryConfig> = {
       { target: 'golang-documentation', source: './skills/golang-documentation/SKILL.md', excludes: ['evals/**'] },
       { target: 'golang-error-handling', source: './skills/golang-error-handling/SKILL.md', excludes: ['evals/**'] },
       { target: 'golang-google-wire', source: './skills/golang-google-wire/SKILL.md', excludes: ['evals/**'] },
+      { target: 'golang-gopls', source: './skills/golang-gopls/SKILL.md', excludes: ['evals/**'] },
       { target: 'golang-graphql', source: './skills/golang-graphql/SKILL.md', excludes: ['evals/**'] },
       { target: 'golang-grpc', source: './skills/golang-grpc/SKILL.md', excludes: ['evals/**'] },
       { target: 'golang-how-to', source: './skills/golang-how-to/SKILL.md', excludes: ['evals/**'] },
@@ -39,6 +40,7 @@ export const repositories: Record<string, RepositoryConfig> = {
       { target: 'golang-pkg-go-dev', source: './skills/golang-pkg-go-dev/SKILL.md', excludes: ['evals/**'] },
       { target: 'golang-popular-libraries', source: './skills/golang-popular-libraries/SKILL.md', excludes: ['evals/**'] },
       { target: 'golang-project-layout', source: './skills/golang-project-layout/SKILL.md', excludes: ['evals/**'] },
+      { target: 'golang-refactoring', source: './skills/golang-refactoring/SKILL.md', excludes: ['evals/**'] },
       { target: 'golang-safety', source: './skills/golang-safety/SKILL.md', excludes: ['evals/**'] },
       { target: 'golang-samber-do', source: './skills/golang-samber-do/SKILL.md', excludes: ['evals/**'] },
       { target: 'golang-samber-hot', source: './skills/golang-samber-hot/SKILL.md', excludes: ['evals/**'] },
