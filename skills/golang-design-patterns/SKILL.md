@@ -15,7 +15,7 @@ compatibility: >-
   Golang.
 metadata:
   author: samber
-  version: 1.1.4
+  version: 1.1.5
   openclaw:
     emoji: 🏗
     homepage: https://github.com/samber/cc-skills-golang
@@ -285,3 +285,4 @@ Core principles regardless of architecture:
 - → See `golang-concurrency` skill for goroutine lifecycle and graceful shutdown
 - → See `golang-context` skill for timeout and cancellation patterns
 - → See `golang-project-layout` skill for architecture and directory structure
+- → See `golang-refactoring` skill for safely staging a migration toward one of these patterns (options struct, DI, consumer-side interfaces) across an existing codebase

@@ -11,7 +11,10 @@ description: >-
   use a Go library, Go API docs, import usage, code examples, pkg.go.dev. Not
   for upgrading dependencies (→ See
   `golang-dependency-management` skill) or choosing a
-  library (→ See `golang-popular-libraries` skill).
+  library (→ See `golang-popular-libraries` skill). Not
+  for local symbols, or for navigating an already-used dependency's resolved
+  source, call sites, or generic instantiations — → See
+  `golang-gopls` skill for those.
 user-invocable: true
 license: MIT
 compatibility: >-
@@ -20,7 +23,7 @@ compatibility: >-
   server, and internet access to reach the pkg.go.dev API.
 metadata:
   author: samber
-  version: 1.1.0
+  version: 1.3.0
   openclaw:
     emoji: 🔎
     homepage: https://github.com/samber/cc-skills-golang
@@ -54,6 +57,10 @@ Trigger on questions like:
 - "Show me the docs / symbols for package X."
 - "Which packages import X?"
 - "Search Go packages for Y."
+
+## Choosing between `godig`, gopls, Context7, and govulncheck
+
+In short: `godig` answers questions about the **published ecosystem** (works even for packages not yet in your `go.mod`); `gopls` reasons about **your locally resolved build** (`go.sum`, including `replace`d forks); Context7 is a fallback for non-Go or unindexed docs; `govulncheck` is the whole-tree vulnerability audit (→ `golang-security`). See the `golang-gopls` skill for wiring `gopls` (MCP server, native `LSP` tool, and CLI) with Claude Code, and the `golang-how-to` skill's "`godig` vs gopls vs Context7 vs govulncheck" section for the full task-to-tool matrix.
 
 ## Setup
 

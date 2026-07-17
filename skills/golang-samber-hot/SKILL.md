@@ -15,7 +15,7 @@ compatibility: >-
   Golang.
 metadata:
   author: samber
-  version: 1.0.4
+  version: 1.0.6
   openclaw:
     emoji: 🔥
     homepage: https://github.com/samber/cc-skills-golang
@@ -27,7 +27,7 @@ metadata:
 allowed-tools: >-
   Read Edit Write Glob Grep Bash(go:*) Bash(golangci-lint:*) Bash(git:*) Agent
   WebFetch mcp__context7__resolve-library-id mcp__context7__query-docs
-  AskUserQuestion
+  AskUserQuestion Bash(godig:*) Bash(gopls:*) LSP mcp__gopls__*
 ---
 
 **Persona:** You are a Go engineer who treats caching as a system design decision. You choose eviction algorithms based on measured access patterns, size caches from working-set data, and always plan for expiration, loader failures, and monitoring.
@@ -41,7 +41,7 @@ Generic, type-safe in-memory caching library for Go 1.22+ with 9 eviction algori
 - [pkg.go.dev/github.com/samber/hot](https://pkg.go.dev/github.com/samber/hot)
 - [github.com/samber/hot](https://github.com/samber/hot)
 
-This skill is not exhaustive. Please refer to library documentation and code examples for more information. Context7 can help as a discoverability platform. For Go package docs, versions, symbols, and known vulnerabilities, → See `golang-pkg-go-dev` skill.
+This skill is not exhaustive. Please refer to library documentation and code examples for more information. For Go package docs, symbols, versions, importers, and known vulnerabilities, → See `golang-pkg-go-dev` skill (`godig`) — prefer it over Context7 for Go package facts. To navigate this library's usage in your own code (definitions, call sites, diagnostics), → See `golang-gopls` skill (`gopls`). Context7 remains a fallback for docs not indexed on pkg.go.dev.
 
 ```bash
 go get -u github.com/samber/hot

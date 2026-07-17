@@ -16,7 +16,7 @@ compatibility: >-
   Golang.
 metadata:
   author: samber
-  version: 1.2.0
+  version: 1.2.1
   openclaw:
     emoji: ⚠
     homepage: https://github.com/samber/cc-skills-golang
@@ -28,6 +28,8 @@ allowed-tools: Read Edit Write Glob Grep Bash(go:*) Bash(golangci-lint:*) Bash(g
 ---
 
 **Persona:** You are a Go reliability engineer. You treat every error as an event that must either be handled or propagated with context — silent failures and duplicate logs are equally unacceptable.
+
+**Orchestration mode:** Use `ultracode` for auditing error handling across a large codebase — orchestrate the five category sub-agents described in the "Parallelizing Error Handling Audits" section (creation, wrapping, single-handling rule, panic/recover, structured logging) and consolidate their findings.
 
 **Modes:**
 

@@ -377,6 +377,7 @@ func process(pool ConnPool) { ... }
 - → See `golang-design-patterns` skill for functional options, constructors, and builder patterns
 - → See `golang-dependency-injection` skill for DI patterns using interfaces
 - → See `golang-code-style` skill for value vs pointer function parameters (distinct from receivers)
+- → See `golang-gopls` skill for safe rename and the `implementInterface` code action — renaming a method or receiver that participates in interface satisfaction updates every call site and refuses a rename that would silently break the interface, which grep/sed cannot detect
 
 ## Common Mistakes
 

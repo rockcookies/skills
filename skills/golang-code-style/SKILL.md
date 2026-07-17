@@ -15,7 +15,7 @@ compatibility: >-
   Golang.
 metadata:
   author: samber
-  version: 1.2.0
+  version: 1.2.2
   openclaw:
     emoji: 🎨
     homepage: https://github.com/samber/cc-skills-golang
@@ -25,6 +25,8 @@ metadata:
     install: []
 allowed-tools: Read Edit Write Glob Grep Bash(go:*) Bash(golangci-lint:*) Bash(git:*) Agent
 ---
+
+**Orchestration mode:** Use `ultracode` when reviewing code style across a large codebase — orchestrate the sub-agents described in the "Parallelizing Code Style Reviews" section, each covering an independent style concern, and merge their findings.
 
 > **Community default.** A company skill that explicitly supersedes `golang-code-style` skill takes precedence.
 
@@ -206,7 +208,7 @@ Pass small types (`string`, `int`, `bool`, `time.Time`) by value. Use pointers w
 - **One primary type per file** when it has significant methods
 - **Blank imports** (`_ "pkg"`) register side effects (init functions). Restricting them to `main` and test packages makes side effects visible at the application root, not hidden in library code
 - **Dot imports** pollute the namespace and make it impossible to tell where a name comes from — never use in library code
-- **Unexport aggressively** — you can always export later; unexporting is a breaking change
+- **Unexport aggressively** — you can always export later; unexporting is a breaking change. → See `golang-gopls` skill to unexport safely — its rename updates every call site atomically and refuses the change when lowercasing a method would break interface satisfaction, a breakage grep/sed silently ships.
 
 ## String Handling
 
@@ -243,3 +245,4 @@ Many rules are enforced automatically: `gofmt`, `gofumpt`, `goimports`, `gocriti
 - → See the `golang-design-patterns` skill for functional options, builders, constructors
 - → See the `golang-lint` skill for automated formatting enforcement
 - → See `golang-continuous-integration` skill for automated AI-driven code review in CI using these guidelines
+- → See `golang-refactoring` skill for mechanically applying guard-clause conversion, function extraction, and options-struct migration safely across many call sites once a review surfaces violations at scale

@@ -13,7 +13,7 @@ compatibility: >-
   Golang.
 metadata:
   author: samber
-  version: 0.0.4
+  version: 0.1.1
   openclaw:
     emoji: 🔮
     homepage: https://github.com/samber/cc-skills-golang
@@ -25,7 +25,7 @@ metadata:
 allowed-tools: >-
   Read Edit Write Glob Grep Bash(go:*) Bash(golangci-lint:*) Bash(git:*) Agent
   WebFetch mcp__context7__resolve-library-id mcp__context7__query-docs
-  Bash(curl:*)
+  Bash(curl:*) Bash(godig:*) Bash(gopls:*) LSP mcp__gopls__*
 ---
 
 **Persona:** You are a Go GraphQL engineer. You design schemas deliberately, batch database access to prevent N+1, and treat query complexity limits as non-optional in production.
@@ -41,7 +41,7 @@ allowed-tools: >-
 
 Both major libraries are schema-first: write SDL (`.graphql` files), bind Go resolvers. Choose based on project size and team preferences.
 
-This skill is not exhaustive. Refer to each library's official documentation and code examples for current API signatures. Context7 can help as a discoverability platform. For Go package docs, versions, symbols, and known vulnerabilities, → See `golang-pkg-go-dev` skill.
+This skill is not exhaustive. Refer to each library's official documentation and code examples for current API signatures. For Go package docs, symbols, versions, importers, and known vulnerabilities, → See `golang-pkg-go-dev` skill (`godig`) — prefer it over Context7 for Go package facts. To navigate this library's usage in your own code (definitions, call sites, diagnostics), → See `golang-gopls` skill (`gopls`). Context7 remains a fallback for docs not indexed on pkg.go.dev.
 
 ## Library Choice
 

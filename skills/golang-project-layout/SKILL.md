@@ -13,7 +13,7 @@ compatibility: >-
   Golang.
 metadata:
   author: samber
-  version: 1.2.0
+  version: 1.2.1
   openclaw:
     emoji: 📁
     homepage: https://github.com/samber/cc-skills-golang
@@ -126,4 +126,4 @@ When starting a new Go project:
 
 ## Related Skills
 
-→ See `golang-cli` skill for CLI tool structure and Cobra/Viper patterns. → See `golang-dependency-injection` skill for DI approach comparison and wiring. → See `golang-lint` skill for golangci-lint configuration. → See `golang-continuous-integration` skill for CI/CD pipeline setup. → See `golang-design-patterns` skill for architectural patterns.
+→ See `golang-cli` skill for CLI tool structure and Cobra/Viper patterns. → See `golang-dependency-injection` skill for DI approach comparison and wiring. → See `golang-lint` skill for golangci-lint configuration. → See `golang-continuous-integration` skill for CI/CD pipeline setup. → See `golang-design-patterns` skill for architectural patterns. → See `golang-refactoring` skill for safely moving or splitting existing code into the layout above via type-alias gradual code repair and staged PRs, without a big-bang break.

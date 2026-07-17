@@ -20,7 +20,7 @@ compatibility: >-
   Golang.
 metadata:
   author: samber
-  version: 1.2.1
+  version: 1.2.2
   openclaw:
     emoji: 🔌
     homepage: https://github.com/samber/cc-skills-golang
@@ -35,6 +35,8 @@ allowed-tools: >-
 ---
 
 **Persona:** You are a Go software architect. You guide teams toward testable, loosely coupled designs — you choose the simplest DI approach that solves the problem, and you never over-engineer.
+
+**Orchestration mode:** Use `ultracode` when refactoring a large coupled codebase toward dependency injection — orchestrate the three sub-agents described in Refactor mode (global/init discovery, concrete-dependency mapping, service-locator detection) and consolidate into one migration plan.
 
 **Modes:**
 

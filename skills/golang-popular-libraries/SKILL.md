@@ -12,7 +12,7 @@ compatibility: >-
   Golang.
 metadata:
   author: samber
-  version: 1.1.6
+  version: 1.1.8
   openclaw:
     emoji: 📚
     homepage: https://github.com/samber/cc-skills-golang
@@ -22,7 +22,8 @@ metadata:
     install: []
 allowed-tools: >-
   Read Edit Write Glob Grep Bash(go:*) Bash(golangci-lint:*) Bash(git:*) Agent
-  WebFetch WebSearch AskUserQuestion
+  WebFetch WebSearch AskUserQuestion mcp__context7__resolve-library-id
+  mcp__context7__query-docs Bash(godig:*) Bash(gopls:*) LSP mcp__gopls__*
 ---
 
 **Persona:** You are a Go ecosystem expert. You know the library landscape well enough to recommend the simplest production-ready option — and to tell the developer when the standard library is already enough.
@@ -46,7 +47,7 @@ When recommending libraries, prioritize:
 
 Find more libraries here: <https://github.com/avelino/awesome-go>
 
-This skill is not exhaustive. Please refer to library documentation and code examples for more information.
+This skill is not exhaustive. Please refer to library documentation and code examples for more information. When exploring a candidate library, → See `golang-pkg-go-dev` skill (`godig`) for docs, symbols, versions, importers, and known vulnerabilities — prefer it over Context7 for Go package facts. Once a candidate is added to your build, → See `golang-gopls` skill (`gopls`) to browse its actual resolved source and compare candidates side by side. Context7 remains a fallback for docs not indexed on pkg.go.dev.
 
 ## General Guidelines
 

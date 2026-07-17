@@ -1,7 +1,7 @@
 {
   "source": "upstream/samber-cc-skills-golang/skills/golang-continuous-integration/SKILL.md",
-  "sha": "8b2d019212d6a5390d472a7660a8489109d7db49",
-  "synced": "2026-07-03",
+  "sha": "4158351dd5420c027755953fb73baa92d59a8b7b",
+  "synced": "2026-07-17",
   "excludes": [
     "evals/**"
   ]
