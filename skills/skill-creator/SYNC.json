@@ -1,8 +1,0 @@
-{
-  "source": "upstream/anthropics-skills/skills/skill-creator/SKILL.md",
-  "sha": "9d2f1ae187231d8199c64b5b762e1bdf2244733d",
-  "synced": "2026-07-03",
-  "excludes": [
-    "LICENSE.txt"
-  ]
-}

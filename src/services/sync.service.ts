@@ -1,5 +1,5 @@
 import * as p from '@clack/prompts'
-import yaml from 'js-yaml'
+import { dump, load } from 'js-yaml'
 import { cp, glob, mkdir, readFile, stat, writeFile } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 
@@ -86,9 +86,9 @@ export class SyncService {
     // Process SKILL.md
     const skillContent = await readFile(sourcePath, 'utf-8')
     const fmMatch = skillContent.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?([\s\S]*)$/)
-    const frontMatterData = fmMatch ? (yaml.load(fmMatch[1]) as Record<string, unknown>) : {}
+    const frontMatterData = fmMatch ? (load(fmMatch[1]) as Record<string, unknown>) : {}
     const bodyContent = fmMatch ? fmMatch[2] : skillContent
-    const updated = `---\n${yaml.dump({ ...frontMatterData, name: mapping.target })}---\n${bodyContent}`
+    const updated = `---\n${dump({ ...frontMatterData, name: mapping.target })}---\n${bodyContent}`
     await writeFile(join(outputPath, 'SKILL.md'), updated)
 
     // Write SYNC.json

@@ -1,0 +1,8 @@
+{
+  "source": "upstream/samber-golang/skills/golang-structs-interfaces/SKILL.md",
+  "sha": "4158351dd5420c027755953fb73baa92d59a8b7b",
+  "synced": "2026-07-21",
+  "excludes": [
+    "evals/**"
+  ]
+}

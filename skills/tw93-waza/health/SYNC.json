@@ -1,0 +1,8 @@
+{
+  "source": "upstream/tw93-waza/skills/health/SKILL.md",
+  "sha": "c1a0d6e38c47636a50e40f3123c3e66cb832587d",
+  "synced": "2026-07-21",
+  "excludes": [
+    "scripts/check-update.sh"
+  ]
+}

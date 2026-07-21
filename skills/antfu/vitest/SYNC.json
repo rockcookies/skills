@@ -1,0 +1,8 @@
+{
+  "source": "upstream/antfu/skills/vitest/SKILL.md",
+  "sha": "a74f281a27dadc02397bc1a174b0f2c97531b6ae",
+  "synced": "2026-07-21",
+  "excludes": [
+    "GENERATION.md"
+  ]
+}
