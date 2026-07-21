@@ -10,7 +10,7 @@ import type { RepositoryConfig } from './src/types'
  * - If none specified, uses the default branch
  */
 export const repositories: Record<string, RepositoryConfig> = {
-  'samber-cc-skills-golang': {
+  'samber-golang': {
     url: 'https://github.com/samber/cc-skills-golang',
     tag: 'v1.9.0',
     skills: [
@@ -62,18 +62,18 @@ export const repositories: Record<string, RepositoryConfig> = {
       { target: 'golang-uber-fx', source: './skills/golang-uber-fx/SKILL.md', excludes: ['evals/**'] },
     ],
   },
-  'vercel-skills': {
+  vercel: {
     url: 'https://github.com/vercel-labs/skills',
     skills: [{ target: 'find-skills', source: './skills/find-skills/SKILL.md' }],
   },
-  'vercel-agent-skills': {
+  'vercel-agent': {
     url: 'https://github.com/vercel-labs/agent-skills',
     skills: [
       { target: 'web-design-guidelines', source: './skills/web-design-guidelines/SKILL.md' },
       { target: 'react-best-practices', source: './skills/react-best-practices/SKILL.md' }
     ],
   },
-  'anthropics-skills': {
+  anthropics: {
     url: 'https://github.com/anthropics/skills',
     skills: [
       { target: 'frontend-design', source: './skills/frontend-design/SKILL.md', excludes: ['LICENSE.txt'] },
@@ -99,7 +99,7 @@ export const repositories: Record<string, RepositoryConfig> = {
       { target: 'vue-testing-best-practices', source: './skills/vue-testing-best-practices/SKILL.md' },
     ],
   },
-  'antfu-skills': {
+  antfu: {
     url: 'https://github.com/antfu/skills',
     skills: [
       { target: 'vite', source: './skills/vite/SKILL.md', excludes: ['GENERATION.md'] },
@@ -108,13 +108,13 @@ export const repositories: Record<string, RepositoryConfig> = {
       { target: 'antfu', source: './skills/antfu/SKILL.md' },
     ]
   },
-  'hono-skills': {
+  hono: {
     url: 'https://github.com/yusukebe/hono-skill',
     skills: [
       { target: 'hono-skills', source: './skills/hono/SKILL.md' }
     ],
   },
-  'tanstack-agnet-skills': {
+  'tanstack-agent': {
     url: 'https://github.com/deckardger/tanstack-agent-skills',
     skills: [
       { target: 'tanstack-integration', source: './skills/tanstack-integration/SKILL.md' },
@@ -122,5 +122,74 @@ export const repositories: Record<string, RepositoryConfig> = {
       { target: 'tanstack-router', source: './skills/tanstack-router/SKILL.md' },
       { target: 'tanstack-start', source: './skills/tanstack-start/SKILL.md' },
     ],
-  }
+  },
+  'mattpocock': {
+    url: 'https://github.com/mattpocock/skills',
+    tag: 'v1.1.0',
+    skills: [
+      { target: 'ask-matt', source: './skills/engineering/ask-matt/SKILL.md' },
+      { target: 'code-review', source: './skills/engineering/code-review/SKILL.md' },
+      { target: 'codebase-design', source: './skills/engineering/codebase-design/SKILL.md' },
+      { target: 'diagnosing-bugs', source: './skills/engineering/diagnosing-bugs/SKILL.md' },
+      { target: 'domain-modeling', source: './skills/engineering/domain-modeling/SKILL.md' },
+      { target: 'grill-with-docs', source: './skills/engineering/grill-with-docs/SKILL.md' },
+      { target: 'implement', source: './skills/engineering/implement/SKILL.md' },
+      { target: 'improve-codebase-architecture', source: './skills/engineering/improve-codebase-architecture/SKILL.md' },
+      { target: 'prototype', source: './skills/engineering/prototype/SKILL.md' },
+      { target: 'research', source: './skills/engineering/research/SKILL.md' },
+      { target: 'resolving-merge-conflicts', source: './skills/engineering/resolving-merge-conflicts/SKILL.md' },
+      { target: 'setup-matt-pocock-skills', source: './skills/engineering/setup-matt-pocock-skills/SKILL.md' },
+      { target: 'tdd', source: './skills/engineering/tdd/SKILL.md' },
+      { target: 'to-spec', source: './skills/engineering/to-spec/SKILL.md' },
+      { target: 'to-tickets', source: './skills/engineering/to-tickets/SKILL.md' },
+      { target: 'triage', source: './skills/engineering/triage/SKILL.md' },
+      { target: 'wayfinder', source: './skills/engineering/wayfinder/SKILL.md' },
+      { target: 'grill-me', source: './skills/productivity/grill-me/SKILL.md' },
+      { target: 'grilling', source: './skills/productivity/grilling/SKILL.md' },
+      { target: 'handoff', source: './skills/productivity/handoff/SKILL.md' },
+      { target: 'teach', source: './skills/productivity/teach/SKILL.md' },
+      { target: 'writing-great-skills', source: './skills/productivity/writing-great-skills/SKILL.md' },
+    ],
+  },
+  'shadcn-improve': {
+    url: 'https://github.com/shadcn/improve',
+    skills: [
+      { target: 'improve', source: './skills/improve/SKILL.md' },
+    ],
+  },
+  'tw93-waza': {
+    url: 'https://github.com/tw93/Waza',
+    tag: 'v3.32.0',
+    skills: [
+      { target: 'check', source: './skills/check/SKILL.md', excludes: ['scripts/check-update.sh'] },
+      { target: 'ui', source: './skills/ui/SKILL.md', excludes: ['scripts/check-update.sh'] },
+      { target: 'health', source: './skills/health/SKILL.md', excludes: ['scripts/check-update.sh'] },
+      { target: 'hunt', source: './skills/hunt/SKILL.md', excludes: ['scripts/check-update.sh'] },
+      { target: 'learn', source: './skills/learn/SKILL.md', excludes: ['scripts/check-update.sh'] },
+      { target: 'read', source: './skills/read/SKILL.md', excludes: ['scripts/check-update.sh'] },
+      { target: 'think', source: './skills/think/SKILL.md', excludes: ['scripts/check-update.sh'] },
+      { target: 'write', source: './skills/write/SKILL.md', excludes: ['scripts/check-update.sh'] },
+    ],
+  },
+  "baoyu-design": {
+    url: "https://github.com/jimliu/baoyu-design",
+    skills: [
+      { target: "baoyu-design", source: "./skills/baoyu-design/SKILL.md" },
+    ],
+  },
+  'baoyu': {
+    url: 'https://github.com/JimLiu/baoyu-skills',
+  },
+  'obra-superpowers': {
+    url: 'https://github.com/obra/superpowers',
+  },
+  'humanizer-zh': {
+    url: 'https://github.com/op7418/Humanizer-zh',
+    skills: [
+      // { target: 'humanizer-zh', source: './SKILL.md', includes: ['README.md', 'LICENSE'], excludes: ['LICENSE'] },
+    ],
+  },
+  'humanizer': {
+    url: 'https://github.com/blader/humanizer',
+  },
 }
