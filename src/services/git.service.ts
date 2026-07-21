@@ -5,22 +5,9 @@ import git from 'simple-git'
 
 export class GitService {
   private git: SimpleGit
-  private proxy?: string
 
-  constructor(cwd: string = process.cwd(), proxy?: string) {
+  constructor(cwd: string = process.cwd()) {
     this.git = git(cwd)
-    this.proxy = proxy
-    if (proxy) {
-      this.configureProxy()
-    }
-  }
-
-  private async configureProxy(): Promise<void> {
-    if (!this.proxy) return
-
-    // Configure git http.proxy
-    await this.git.raw(['config', 'http.proxy', this.proxy])
-    await this.git.raw(['config', 'https.proxy', this.proxy])
   }
 
   // 获取当前 HEAD SHA
@@ -42,12 +29,7 @@ export class GitService {
 
   // Clone repository
   async clone(url: string, path: string): Promise<void> {
-    if (this.proxy) {
-      // Use git clone with proxy configuration
-      await this.git.raw(['clone', '-c', `http.proxy=${this.proxy}`, '-c', `https.proxy=${this.proxy}`, url, path])
-    } else {
-      await this.git.clone(url, path)
-    }
+    await this.git.clone(url, path)
   }
 
   // Get working tree diff

@@ -8,7 +8,6 @@ import { formatError } from '../utils/error'
 
 export interface UpstreamOptions {
   force?: boolean
-  proxy?: string
 }
 
 export async function ensureUpstreamRepositories(
@@ -16,7 +15,7 @@ export async function ensureUpstreamRepositories(
   repositories: Record<string, RepositoryConfig>,
   options: UpstreamOptions = {},
 ) {
-  const gitService = new GitService(root, options.proxy)
+  const gitService = new GitService(root)
   const upstreamService = new UpstreamService(root, gitService)
   const spinner = p.spinner()
 

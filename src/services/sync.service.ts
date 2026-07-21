@@ -61,7 +61,7 @@ export class SyncService {
     force: boolean = false,
   ): Promise<void> {
     const sourcePath = join(repoRoot, mapping.source)
-    const outputPath = join(this.root, 'skills', mapping.target)
+    const outputPath = join(this.root, 'skills', upstreamName, mapping.target)
 
     if (!(await pathExists(sourcePath))) {
       throw new Error(`SKILL.md not found: ${sourcePath}`)

@@ -9,7 +9,7 @@ export interface SkillMapping {
   source: string
 
   /**
-   * 目标技能名称，输出到 skills/{target}/SKILL.md
+   * 目标技能名称，输出到 skills/{repoKey}/{target}/SKILL.md
    */
   target: string
 
