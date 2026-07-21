@@ -1,8 +1,0 @@
-{
-  "sources": [
-    "https://github.com/airbnb/javascript/blob/master/react/README.md",
-    "https://react.dev/learn/importing-and-exporting-components"
-  ],
-  "synced": "2026-06-10",
-  "notes": "React naming adapted from community standards; dual file-case by role."
-}
