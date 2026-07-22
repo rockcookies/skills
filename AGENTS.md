@@ -18,8 +18,7 @@ User-facing install catalog and bundles live in [README.md](README.md). Reposito
 ├── skills/                 # published skills: skills/{repoKey}/{target}/
 │   └── custom/             # hand-maintained local skills
 ├── upstream/               # git checkouts (not version-controlled)
-├── meta.ts                 # repo keys, pins (tag/branch/commit), skill mappings
-└── docs/                   # project ledgers / misc docs (not architecture)
+└── meta.ts                 # repo keys, pins (tag/branch/commit), skill mappings
 ```
 
 Synced skills land at `skills/{repoKey}/{target}/SKILL.md`. Hand-maintained skills stay under `skills/custom/{name}/`.
