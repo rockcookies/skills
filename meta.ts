@@ -94,6 +94,7 @@ export const repositories: Record<string, RepositoryConfig> = {
       { target: 'vue-best-practices', source: './skills/vue-best-practices/SKILL.md' },
       { target: 'vue-debug-guides', source: './skills/vue-debug-guides/SKILL.md' },
       { target: 'vue-jsx-best-practices', source: './skills/vue-jsx-best-practices/SKILL.md' },
+      { target: 'vue-options-api-best-practices', source: './skills/vue-options-api-best-practices/SKILL.md' },
       { target: 'vue-pinia-best-practices', source: './skills/vue-pinia-best-practices/SKILL.md' },
       { target: 'vue-router-best-practices', source: './skills/vue-router-best-practices/SKILL.md' },
       { target: 'vue-testing-best-practices', source: './skills/vue-testing-best-practices/SKILL.md' },
@@ -179,6 +180,9 @@ export const repositories: Record<string, RepositoryConfig> = {
   },
   'baoyu': {
     url: 'https://github.com/JimLiu/baoyu-skills',
+    skills: [
+      { target: 'baoyu-image-gen', source: './skills/baoyu-image-gen/SKILL.md' },
+    ]
   },
   'obra-superpowers': {
     url: 'https://github.com/obra/superpowers',
