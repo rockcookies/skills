@@ -6,29 +6,35 @@ Synced skills live at `skills/{repoKey}/{target}/`. Hand-maintained skills live 
 
 ## Installation
 
-```bash
-npx skills add rockcookies/skills --skill='*' -g
-```
-
-Or install specific skills:
+Skills in this repo live under `skills/{repoKey}/{target}/`, so pass `--full-depth` so the CLI discovers nested `SKILL.md` files.
 
 ```bash
-npx skills add rockcookies/skills --skill='vue-best-practices' -g
+npx skills add rockcookies/skills --full-depth --skill '*' -g
 ```
 
-Go skills are synced from [samber/cc-skills-golang](https://github.com/samber/cc-skills-golang) (tag `v1.9.0`). They are **atomic and cross-referencing** — installing only a subset can leave guidelines inconsistent. Prefer the ⭐ set (or all), then add category / library skills as the codebase needs them. Installing a skill does **not** pull linked skills automatically.
+Or a single skill:
+
+```bash
+npx skills add rockcookies/skills --full-depth --skill vue-best-practices -g
+```
+
+Learn more about the CLI at [skills](https://github.com/vercel-labs/skills).
+
+### Go skills ([samber/cc-skills-golang](https://github.com/samber/cc-skills-golang), tag `v1.9.0`)
+
+Atomic and cross-referencing — prefer the ⭐ set (or all), then add category / library skills as needed. Installing a skill does **not** pull linked skills automatically.
 
 ```bash
 # All Go skills
-npx skills add rockcookies/skills --skill='golang-*' -g
+npx skills add rockcookies/skills --full-depth --skill 'golang-*' -g
 ```
 
-### ⭐ Recommended (14 skills)
+#### ⭐ Recommended
 
-Upstream's recommended general-purpose set — install these for every Go project. Includes `golang-how-to` (orchestrator: routes tasks and disambiguates overlapping skills).
+Upstream general-purpose set for every Go project. Includes `golang-how-to` (orchestrator).
 
 ```bash
-npx skills add rockcookies/skills \
+npx skills add rockcookies/skills --full-depth \
   --skill golang-how-to \
   --skill golang-code-style \
   --skill golang-data-structures \
@@ -46,67 +52,118 @@ npx skills add rockcookies/skills \
   -g
 ```
 
-### By category (add when needed)
-
-Layout matches upstream: Code Quality · Architecture & Design · QA & Performance · Project Setup · then framework / library skills.
-
 #### Code Quality
 
-| Skill | Install when |
-| --- | --- |
-| `golang-lint` | Setting up or tuning golangci-lint |
-| `golang-structs-interfaces` | Designing types, receivers, embedding, struct tags |
-
-(⭐ already covers: `golang-code-style`, `golang-documentation`, `golang-error-handling`, `golang-naming`, `golang-safety`, `golang-security`)
+```bash
+npx skills add rockcookies/skills --full-depth \
+  --skill golang-code-style \
+  --skill golang-documentation \
+  --skill golang-error-handling \
+  --skill golang-lint \
+  --skill golang-naming \
+  --skill golang-safety \
+  --skill golang-security \
+  --skill golang-structs-interfaces \
+  -g
+```
 
 #### Architecture & Design
 
-| Skill | Install when |
-| --- | --- |
-| `golang-concurrency` | Goroutines, channels, sync, worker pools |
-| `golang-context` | Deadlines, cancellation, request-scoped values |
-| `golang-dependency-injection` | Choosing or comparing DI (wire, dig, fx, samber/do) |
-
-(⭐ already covers: `golang-data-structures`, `golang-database`, `golang-design-patterns`, `golang-modernize`, `golang-refactoring`)
+```bash
+npx skills add rockcookies/skills --full-depth \
+  --skill golang-concurrency \
+  --skill golang-context \
+  --skill golang-data-structures \
+  --skill golang-database \
+  --skill golang-dependency-injection \
+  --skill golang-design-patterns \
+  --skill golang-modernize \
+  --skill golang-refactoring \
+  -g
+```
 
 #### QA & Performance
 
-| Skill | Install when |
-| --- | --- |
-| `golang-benchmark` | pprof, benchstat, continuous profiling |
-| `golang-performance` | Allocation / GC / hot-path optimization |
-| `golang-observability` | slog, Prometheus, OpenTelemetry in production |
-
-(⭐ already covers: `golang-testing`, `golang-troubleshooting`)
+```bash
+npx skills add rockcookies/skills --full-depth \
+  --skill golang-benchmark \
+  --skill golang-observability \
+  --skill golang-performance \
+  --skill golang-testing \
+  --skill golang-troubleshooting \
+  -g
+```
 
 #### Project Setup
 
-| Skill | Install when |
-| --- | --- |
-| `golang-project-layout` | New project structure or monorepo layout |
-| `golang-cli` | General CLI architecture (beyond Cobra/Viper) |
-| `golang-continuous-integration` | GitHub Actions CI for Go |
-| `golang-dependency-management` | go.mod, replace, multi-module workspaces |
-| `golang-gopls` | Navigate / rename / extract via gopls / LSP |
-| `golang-pkg-go-dev` | pkg.go.dev docs, versions, importers, licenses, CVEs |
-| `golang-popular-libraries` | Choosing a library vs stdlib |
-| `golang-stay-updated` | Tracking Go releases and community news |
+```bash
+npx skills add rockcookies/skills --full-depth \
+  --skill golang-cli \
+  --skill golang-continuous-integration \
+  --skill golang-dependency-management \
+  --skill golang-gopls \
+  --skill golang-pkg-go-dev \
+  --skill golang-popular-libraries \
+  --skill golang-project-layout \
+  --skill golang-stay-updated \
+  -g
+```
 
-#### APIs / DI / Frameworks / Libraries
+#### APIs
 
-| Skill | Install when |
-| --- | --- |
-| `golang-grpc` / `golang-graphql` / `golang-swagger` | Matching API stack |
-| `golang-google-wire` / `golang-uber-dig` / `golang-uber-fx` / `golang-samber-do` | Project uses that DI library |
-| `golang-spf13-cobra` / `golang-spf13-viper` | CLI with Cobra and/or Viper |
-| `golang-samber-lo` / `golang-samber-mo` / `golang-samber-ro` / `golang-samber-hot` / `golang-samber-oops` / `golang-samber-slog` | Project imports the matching `samber/*` package |
-| `golang-stretchr-testify` | Project uses `github.com/stretchr/testify` |
+```bash
+npx skills add rockcookies/skills --full-depth \
+  --skill golang-graphql \
+  --skill golang-grpc \
+  --skill golang-swagger \
+  -g
+```
 
-### Pin skills in the project agent config
+#### Dependency Injection
 
-After installing, add a `## Required Go skills` block to `CLAUDE.md` or `AGENTS.md` so agents load them every session. Use `/golang-how-to configure` or copy from [golang-how-to/references/project-config.md](skills/samber-golang/golang-how-to/references/project-config.md).
+```bash
+npx skills add rockcookies/skills --full-depth \
+  --skill golang-google-wire \
+  --skill golang-uber-dig \
+  --skill golang-uber-fx \
+  --skill golang-samber-do \
+  -g
+```
 
-Example for the ⭐ recommended set:
+#### Frameworks
+
+```bash
+npx skills add rockcookies/skills --full-depth \
+  --skill golang-spf13-cobra \
+  --skill golang-spf13-viper \
+  -g
+```
+
+#### samber/\*
+
+```bash
+npx skills add rockcookies/skills --full-depth \
+  --skill golang-samber-do \
+  --skill golang-samber-hot \
+  --skill golang-samber-lo \
+  --skill golang-samber-mo \
+  --skill golang-samber-oops \
+  --skill golang-samber-ro \
+  --skill golang-samber-slog \
+  -g
+```
+
+#### Testing (library)
+
+```bash
+npx skills add rockcookies/skills --full-depth \
+  --skill golang-stretchr-testify \
+  -g
+```
+
+#### Pin skills in the project agent config
+
+After installing, add a `## Required Go skills` block to `CLAUDE.md` or `AGENTS.md`. Use `/golang-how-to configure` or copy from [golang-how-to/references/project-config.md](skills/samber-golang/golang-how-to/references/project-config.md).
 
 ```markdown
 ## Required Go skills
@@ -129,26 +186,76 @@ The following Go skills MUST always load for Go-related work on this project:
 - `golang-troubleshooting`
 ```
 
-Learn more about the CLI usage at [skills](https://github.com/vercel-labs/skills).
+### JS / TypeScript skills
 
-### Recommended JS / TypeScript skills
+There is no hand-maintained `node-*` suite anymore (only `node-naming` under custom). Install by stack:
 
-There is no hand-maintained `node-*` suite in this repo anymore (only `node-naming` under custom). Pick upstream skills for your stack:
+#### Tooling (antfu)
 
-| Skill | Install when |
-| --- | --- |
-| `antfu` | Project setup — pnpm/monorepo, `@antfu/eslint-config`, tsconfig, library publishing |
-| `vite` / `vitest` | Vite build tooling or Vitest test runner |
-| `unocss` | UnoCSS atomic CSS |
-| `vue-best-practices` and related `vue-*` skills | Vue 3 / Nuxt stack |
-| `vueuse-functions` | VueUse composables |
-| `tanstack-query` / `tanstack-router` / `tanstack-start` / `tanstack-integration` | TanStack data/routing stack |
-| `hono-skills` | Hono web applications |
-| `react-best-practices` | React / Next.js performance |
-| `playwright-cli` | Browser automation or E2E tests |
-| `frontend-design` / `web-design-guidelines` / `ui` / `baoyu-design` | UI design, UX audits, or design artifacts |
-| `baoyu-image-gen` | AI image generation |
-| `node-naming` | JS/TS naming conventions |
+```bash
+npx skills add rockcookies/skills --full-depth \
+  --skill antfu \
+  --skill vite \
+  --skill vitest \
+  --skill unocss \
+  -g
+```
+
+#### Vue
+
+```bash
+npx skills add rockcookies/skills --full-depth \
+  --skill vue-best-practices \
+  --skill vue-debug-guides \
+  --skill vue-jsx-best-practices \
+  --skill vue-options-api-best-practices \
+  --skill vue-pinia-best-practices \
+  --skill vue-router-best-practices \
+  --skill vue-testing-best-practices \
+  --skill vueuse-functions \
+  -g
+```
+
+#### TanStack
+
+```bash
+npx skills add rockcookies/skills --full-depth \
+  --skill tanstack-integration \
+  --skill tanstack-query \
+  --skill tanstack-router \
+  --skill tanstack-start \
+  -g
+```
+
+#### React / Next.js & web guidelines
+
+```bash
+npx skills add rockcookies/skills --full-depth \
+  --skill react-best-practices \
+  --skill web-design-guidelines \
+  -g
+```
+
+#### Hono / Playwright / naming
+
+```bash
+npx skills add rockcookies/skills --full-depth \
+  --skill hono-skills \
+  --skill playwright-cli \
+  --skill node-naming \
+  -g
+```
+
+#### UI / design / image gen
+
+```bash
+npx skills add rockcookies/skills --full-depth \
+  --skill frontend-design \
+  --skill ui \
+  --skill baoyu-design \
+  --skill baoyu-image-gen \
+  -g
+```
 
 ## Skills
 
