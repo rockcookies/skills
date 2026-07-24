@@ -5,6 +5,7 @@ description: >
   下的四份文档（architecture.md、changelog.md、sync.json、extend.md）。
   当用户提到「同步 upstream」「分析上游项目」「更新 upstream 文档」
   「research upstream」，或点名 upstream/ 下某个目录时，必须使用此技能。
+invocation: false
 metadata:
   internal: true
 ---
