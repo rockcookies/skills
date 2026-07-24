@@ -16,34 +16,29 @@ Or install specific skills:
 npx skills add rockcookies/skills --skill='vue-best-practices' -g
 ```
 
-Install all Go-related skills from [samber/cc-skills-golang](https://github.com/samber/cc-skills-golang):
+Go skills are synced from [samber/cc-skills-golang](https://github.com/samber/cc-skills-golang) (tag `v1.9.0`). They are **atomic and cross-referencing** — installing only a subset can leave guidelines inconsistent. Prefer the ⭐ set (or all), then add category / library skills as the codebase needs them. Installing a skill does **not** pull linked skills automatically.
 
 ```bash
-npx skills add rockcookies/skills --skill golang-benchmark --skill golang-cli --skill golang-code-style --skill golang-concurrency --skill golang-context --skill golang-continuous-integration --skill golang-data-structures --skill golang-database --skill golang-dependency-injection --skill golang-dependency-management --skill golang-design-patterns --skill golang-documentation --skill golang-error-handling --skill golang-google-wire --skill golang-gopls --skill golang-graphql --skill golang-grpc --skill golang-how-to --skill golang-lint --skill golang-modernize --skill golang-naming --skill golang-observability --skill golang-performance --skill golang-pkg-go-dev --skill golang-popular-libraries --skill golang-project-layout --skill golang-refactoring --skill golang-safety --skill golang-samber-do --skill golang-samber-hot --skill golang-samber-lo --skill golang-samber-mo --skill golang-samber-oops --skill golang-samber-ro --skill golang-samber-slog --skill golang-security --skill golang-spf13-cobra --skill golang-spf13-viper --skill golang-stay-updated --skill golang-stretchr-testify --skill golang-structs-interfaces --skill golang-swagger --skill golang-testing --skill golang-troubleshooting --skill golang-uber-dig --skill golang-uber-fx
+# All Go skills
+npx skills add rockcookies/skills --skill='golang-*' -g
 ```
 
-### Recommended bundles for new Go projects
+### ⭐ Recommended (14 skills)
 
-These bundles follow the upstream ⭐ recommended set in `golang-how-to`. Installing a skill does **not** pull in its linked skills automatically — add the bundle you need explicitly.
-
-| Bundle | Skills | When to use |
-| --- | ---: | --- |
-| **Starter** | 12 | Upstream ⭐ set plus `golang-how-to` (orchestrator — load it on every Go task) |
-| **Minimum viable** | 17 | Starter + skills the Starter set links most often |
-| **Production baseline** | 22 | Minimum viable + performance, observability, project layout, and CI |
-
-#### Starter (12 skills)
+Upstream's recommended general-purpose set — install these for every Go project. Includes `golang-how-to` (orchestrator: routes tasks and disambiguates overlapping skills).
 
 ```bash
 npx skills add rockcookies/skills \
   --skill golang-how-to \
   --skill golang-code-style \
   --skill golang-data-structures \
+  --skill golang-database \
   --skill golang-design-patterns \
   --skill golang-documentation \
   --skill golang-error-handling \
   --skill golang-modernize \
   --skill golang-naming \
+  --skill golang-refactoring \
   --skill golang-safety \
   --skill golang-security \
   --skill golang-testing \
@@ -51,50 +46,67 @@ npx skills add rockcookies/skills \
   -g
 ```
 
-#### Minimum viable (+5 skills)
+### By category (add when needed)
 
-```bash
-npx skills add rockcookies/skills \
-  --skill golang-database \
-  --skill golang-lint \
-  --skill golang-structs-interfaces \
-  --skill golang-concurrency \
-  --skill golang-context \
-  -g
-```
+Layout matches upstream: Code Quality · Architecture & Design · QA & Performance · Project Setup · then framework / library skills.
 
-#### Production baseline (+5 skills)
-
-```bash
-npx skills add rockcookies/skills \
-  --skill golang-benchmark \
-  --skill golang-performance \
-  --skill golang-observability \
-  --skill golang-project-layout \
-  --skill golang-continuous-integration \
-  -g
-```
-
-#### On-demand (install when the codebase needs them)
+#### Code Quality
 
 | Skill | Install when |
 | --- | --- |
-| `golang-gopls` | Navigating or refactoring Go via gopls / LSP |
-| `golang-refactoring` | Safe at-scale restructuring (rename, extract, move packages) |
-| `golang-stretchr-testify` | Project uses `github.com/stretchr/testify` |
-| `golang-samber-oops` | Project uses `github.com/samber/oops` |
-| `golang-samber-slog` | Project uses `samber/slog-*` handlers |
-| `golang-dependency-injection` | Choosing or comparing DI approaches (wire, dig, fx, samber/do) |
-| `golang-spf13-cobra` / `golang-spf13-viper` | CLI with Cobra and/or Viper |
-| `golang-cli` | General CLI architecture (beyond Cobra/Viper APIs) |
+| `golang-lint` | Setting up or tuning golangci-lint |
+| `golang-structs-interfaces` | Designing types, receivers, embedding, struct tags |
+
+(⭐ already covers: `golang-code-style`, `golang-documentation`, `golang-error-handling`, `golang-naming`, `golang-safety`, `golang-security`)
+
+#### Architecture & Design
+
+| Skill | Install when |
+| --- | --- |
+| `golang-concurrency` | Goroutines, channels, sync, worker pools |
+| `golang-context` | Deadlines, cancellation, request-scoped values |
+| `golang-dependency-injection` | Choosing or comparing DI (wire, dig, fx, samber/do) |
+
+(⭐ already covers: `golang-data-structures`, `golang-database`, `golang-design-patterns`, `golang-modernize`, `golang-refactoring`)
+
+#### QA & Performance
+
+| Skill | Install when |
+| --- | --- |
+| `golang-benchmark` | pprof, benchstat, continuous profiling |
+| `golang-performance` | Allocation / GC / hot-path optimization |
+| `golang-observability` | slog, Prometheus, OpenTelemetry in production |
+
+(⭐ already covers: `golang-testing`, `golang-troubleshooting`)
+
+#### Project Setup
+
+| Skill | Install when |
+| --- | --- |
+| `golang-project-layout` | New project structure or monorepo layout |
+| `golang-cli` | General CLI architecture (beyond Cobra/Viper) |
+| `golang-continuous-integration` | GitHub Actions CI for Go |
+| `golang-dependency-management` | go.mod, replace, multi-module workspaces |
+| `golang-gopls` | Navigate / rename / extract via gopls / LSP |
+| `golang-pkg-go-dev` | pkg.go.dev docs, versions, importers, licenses, CVEs |
+| `golang-popular-libraries` | Choosing a library vs stdlib |
+| `golang-stay-updated` | Tracking Go releases and community news |
+
+#### APIs / DI / Frameworks / Libraries
+
+| Skill | Install when |
+| --- | --- |
 | `golang-grpc` / `golang-graphql` / `golang-swagger` | Matching API stack |
-| `golang-pkg-go-dev` | Looking up pkg.go.dev docs, versions, importers, licenses, or CVEs |
+| `golang-google-wire` / `golang-uber-dig` / `golang-uber-fx` / `golang-samber-do` | Project uses that DI library |
+| `golang-spf13-cobra` / `golang-spf13-viper` | CLI with Cobra and/or Viper |
+| `golang-samber-lo` / `golang-samber-mo` / `golang-samber-ro` / `golang-samber-hot` / `golang-samber-oops` / `golang-samber-slog` | Project imports the matching `samber/*` package |
+| `golang-stretchr-testify` | Project uses `github.com/stretchr/testify` |
 
-#### Pin skills in the project agent config
+### Pin skills in the project agent config
 
-After installing, add a `## Required Go skills` block to `CLAUDE.md` or `AGENTS.md` so agents load them every session. Use `/golang-how-to configure` or copy the list from [golang-how-to/references/project-config.md](skills/samber-golang/golang-how-to/references/project-config.md).
+After installing, add a `## Required Go skills` block to `CLAUDE.md` or `AGENTS.md` so agents load them every session. Use `/golang-how-to configure` or copy from [golang-how-to/references/project-config.md](skills/samber-golang/golang-how-to/references/project-config.md).
 
-Example for the **Production baseline** (22 skills):
+Example for the ⭐ recommended set:
 
 ```markdown
 ## Required Go skills
@@ -104,25 +116,17 @@ The following Go skills MUST always load for Go-related work on this project:
 - `golang-how-to`
 - `golang-code-style`
 - `golang-data-structures`
+- `golang-database`
 - `golang-design-patterns`
 - `golang-documentation`
 - `golang-error-handling`
 - `golang-modernize`
 - `golang-naming`
+- `golang-refactoring`
 - `golang-safety`
 - `golang-security`
 - `golang-testing`
 - `golang-troubleshooting`
-- `golang-database`
-- `golang-lint`
-- `golang-structs-interfaces`
-- `golang-concurrency`
-- `golang-context`
-- `golang-benchmark`
-- `golang-performance`
-- `golang-observability`
-- `golang-project-layout`
-- `golang-continuous-integration`
 ```
 
 Learn more about the CLI usage at [skills](https://github.com/vercel-labs/skills).
