@@ -9,11 +9,8 @@ import type { UpstreamService } from './upstream.service'
 import { emptyDir, ensureDir, pathExists } from '../utils/fs'
 
 interface SyncInfo {
-  source: string
   sha: string
   synced: string
-  includes?: string[]
-  excludes?: string[]
 }
 
 export class SyncService {
@@ -43,58 +40,64 @@ export class SyncService {
       throw new Error(`Upstream repository not found: ${upstreamName}`)
     }
 
+    await this.preflight(upstreamName, repoRoot, config.skills)
+
     const sha = await this.upstreamService.getRepoSha(upstreamName)
     if (!sha) {
       throw new Error(`Cannot get SHA for ${upstreamName}`)
     }
 
-    for (const mapping of config.skills) {
-      await this.syncSkillMapping(upstreamName, repoRoot, mapping, sha, force)
+    const skillsRoot = join(this.root, 'skills', upstreamName)
+    const syncInfo = await this.readSyncInfo(skillsRoot)
+
+    if (!force && syncInfo?.sha === sha) {
+      p.log.warn(`✓ ${upstreamName} is up to date (SHA: ${sha.substring(0, 7)})`)
+      return
     }
+
+    await emptyDir(skillsRoot)
+
+    for (const mapping of config.skills) {
+      await this.syncSkillMapping(repoRoot, skillsRoot, mapping)
+      p.log.success(`✓ Synced '${mapping.target}' from ${upstreamName}`)
+    }
+
+    await this.writeSyncJSON(skillsRoot, sha)
+    p.log.success(`✓ Wrote SYNC.json for ${upstreamName} (SHA: ${sha.substring(0, 7)})`)
   }
 
-  private async syncSkillMapping(
-    upstreamName: string,
-    repoRoot: string,
-    mapping: SkillMapping,
-    sha: string,
-    force: boolean = false,
-  ): Promise<void> {
-    const sourcePath = join(repoRoot, mapping.source)
-    const outputPath = join(this.root, 'skills', upstreamName, mapping.target)
+  private async preflight(upstreamName: string, repoRoot: string, skills: SkillMapping[]): Promise<void> {
+    const missing: string[] = []
 
-    if (!(await pathExists(sourcePath))) {
-      throw new Error(`SKILL.md not found: ${sourcePath}`)
-    }
-
-    await ensureDir(outputPath)
-
-    if (!force && (await pathExists(outputPath))) {
-      const syncInfo = await this.readSyncInfo(outputPath)
-      if (syncInfo?.sha === sha) {
-        p.log.warn(`✓ Skill '${mapping.target}' is up to date (SHA: ${sha.substring(0, 7)})`)
-        return
+    for (const mapping of skills) {
+      const sourcePath = join(repoRoot, mapping.source)
+      if (!(await pathExists(sourcePath))) {
+        missing.push(`${mapping.target}: ${sourcePath}`)
       }
     }
 
-    await emptyDir(outputPath)
+    if (missing.length > 0) {
+      throw new Error(
+        `Preflight failed for ${upstreamName}: ${missing.length} skill source(s) missing:\n${missing.map((m) => `  - ${m}`).join('\n')}`,
+      )
+    }
+  }
 
-    // Copy other files
+  private async syncSkillMapping(repoRoot: string, skillsRoot: string, mapping: SkillMapping): Promise<void> {
+    const sourcePath = join(repoRoot, mapping.source)
+    const outputPath = join(skillsRoot, mapping.target)
+
+    await ensureDir(outputPath)
+
     const skillDir = dirname(sourcePath)
     await this.copySkillFiles(skillDir, outputPath, mapping.includes, mapping.excludes)
 
-    // Process SKILL.md
     const skillContent = await readFile(sourcePath, 'utf-8')
     const fmMatch = skillContent.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?([\s\S]*)$/)
     const frontMatterData = fmMatch ? (load(fmMatch[1]) as Record<string, unknown>) : {}
     const bodyContent = fmMatch ? fmMatch[2] : skillContent
     const updated = `---\n${dump({ ...frontMatterData, name: mapping.target })}---\n${bodyContent}`
     await writeFile(join(outputPath, 'SKILL.md'), updated)
-
-    // Write SYNC.json
-    await this.writeSyncJSON(upstreamName, mapping.source, outputPath, sha, mapping.includes, mapping.excludes)
-
-    p.log.success(`✓ Synced '${mapping.target}' from ${upstreamName}`)
   }
 
   private async copySkillFiles(
@@ -130,34 +133,23 @@ export class SyncService {
     }
   }
 
-  private async readSyncInfo(outputPath: string): Promise<SyncInfo | null> {
-    const syncJsonPath = join(outputPath, 'SYNC.json')
+  private async readSyncInfo(skillsRoot: string): Promise<SyncInfo | null> {
+    const syncJsonPath = join(skillsRoot, 'SYNC.json')
     if (!(await pathExists(syncJsonPath))) return null
     try {
       const content = await readFile(syncJsonPath, 'utf-8')
-      return JSON.parse(content)
+      return JSON.parse(content) as SyncInfo
     } catch {
       return null
     }
   }
 
-  private async writeSyncJSON(
-    upstreamName: string,
-    source: string,
-    outputPath: string,
-    sha: string,
-    includes?: string[],
-    excludes?: string[],
-  ): Promise<void> {
+  private async writeSyncJSON(skillsRoot: string, sha: string): Promise<void> {
     const date = new Date().toISOString().split('T')[0]
-    const cleanSource = source.replace(/^\.\//, '')
     const syncInfo: SyncInfo = {
-      source: `upstream/${upstreamName}/${cleanSource}`,
       sha,
       synced: date,
-      ...(includes?.length && { includes }),
-      ...(excludes?.length && { excludes }),
     }
-    await writeFile(join(outputPath, 'SYNC.json'), `${JSON.stringify(syncInfo, null, 2)}\n`)
+    await writeFile(join(skillsRoot, 'SYNC.json'), `${JSON.stringify(syncInfo, null, 2)}\n`)
   }
 }

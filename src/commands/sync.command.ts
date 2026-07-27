@@ -23,7 +23,7 @@ export async function syncSubmodules(
     spinner.stop('Upstream repositories updated')
   } catch (error) {
     spinner.stop(`Failed to update: ${formatError(error)}`)
-    return
+    throw error
   }
 
   p.log.success('All repositories updated')
@@ -34,7 +34,7 @@ export async function syncSubmodules(
     spinner.stop('Skills synced')
   } catch (error) {
     spinner.stop(`Failed to sync: ${formatError(error)}`)
-    return
+    throw error
   }
 
   p.log.success('All skills synced')
