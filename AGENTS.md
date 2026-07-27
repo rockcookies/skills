@@ -27,11 +27,11 @@ Synced skills land at `skills/{repoKey}/{target}/SKILL.md`. Hand-maintained skil
 
 `pnpm cli` → interactive menu:
 
-| Action | Handler | Behaviour |
-| --- | --- | --- |
-| Manage upstream | `upstream.command.ts` | Clone or update repos under `upstream/` |
-| Sync skills | `sync.command.ts` | Update upstream, then copy mapped skills into `skills/` |
-| Cleanup | `cleanup.command.ts` | Remove orphaned upstream checkouts |
+| Action          | Handler               | Behaviour                                               |
+| --------------- | --------------------- | ------------------------------------------------------- |
+| Manage upstream | `upstream.command.ts` | Clone or update repos under `upstream/`                 |
+| Sync skills     | `sync.command.ts`     | Update upstream, then copy mapped skills into `skills/` |
+| Cleanup         | `cleanup.command.ts`  | Remove orphaned upstream checkouts                      |
 
 Services hold the logic; commands receive them as dependencies. `GitService` wraps `simple-git` and uses the user's git config (including proxy).
 
@@ -44,11 +44,11 @@ Services hold the logic; commands receive them as dependencies. `GitService` wra
 
 ## Pins (see `meta.ts`)
 
-| Key | Upstream | Pin |
-| --- | --- | --- |
-| `samber-golang` | samber/cc-skills-golang | tag `v1.9.0` |
-| `mattpocock` | mattpocock/skills | tag `v1.1.0` |
-| `tw93-waza` | tw93/Waza | tag `v3.32.0` |
+| Key             | Upstream                | Pin           |
+| --------------- | ----------------------- | ------------- |
+| `samber-golang` | samber/cc-skills-golang | tag `v1.9.0`  |
+| `mattpocock`    | mattpocock/skills       | tag `v1.1.0`  |
+| `tw93-waza`     | tw93/Waza               | tag `v3.32.0` |
 
 Unpinned repos track the default branch.
 

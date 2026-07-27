@@ -1,12 +1,14 @@
 {
   "private": true,
   "type": "module",
-  "packageManager": "pnpm@10.28.2",
   "scripts": {
     "lint": "oxlint",
     "fmt": "oxfmt",
     "fmt:check": "oxfmt --check",
     "cli": "tsx src/cli.ts"
+  },
+  "dependencies": {
+    "js-yaml": "^5.2.1"
   },
   "devDependencies": {
     "@clack/prompts": "^1.7.0",
@@ -17,7 +19,5 @@
     "tsx": "^4.23.1",
     "typescript": "^7.0.2"
   },
-  "dependencies": {
-    "js-yaml": "^5.2.1"
-  }
+  "packageManager": "pnpm@10.28.2"
 }
