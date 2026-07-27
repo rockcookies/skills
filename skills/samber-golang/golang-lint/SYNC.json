@@ -1,7 +1,7 @@
 {
   "source": "upstream/samber-golang/skills/golang-lint/SKILL.md",
-  "sha": "4158351dd5420c027755953fb73baa92d59a8b7b",
-  "synced": "2026-07-21",
+  "sha": "15b1a0fcf1b39f7aa7075094e1228cf4cbbb7c3b",
+  "synced": "2026-07-26",
   "excludes": [
     "evals/**"
   ]

@@ -12,7 +12,7 @@ compatibility: >-
   Golang.
 metadata:
   author: samber
-  version: 1.1.8
+  version: 1.1.9
   openclaw:
     emoji: 📚
     homepage: https://github.com/samber/cc-skills-golang
@@ -74,6 +74,7 @@ Remember: The best library is often no library at all. Go's standard library is 
 - → See `golang-dependency-management` skill for adding, auditing, and managing dependencies
 - → See `golang-pkg-go-dev` skill to vet a candidate library on pkg.go.dev — versions, importers, licenses, and known vulnerabilities — before adopting it
 - → See `golang-samber-do` skill for samber/do dependency injection details
+- → See `golang-samber-hot` skill for samber/hot in-memory caching details
 - → See `golang-samber-oops` skill for samber/oops error handling details
 - → See `golang-stretchr-testify` skill for testify testing details
 - → See `golang-grpc` skill for gRPC implementation details
