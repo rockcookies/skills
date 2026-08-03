@@ -160,7 +160,7 @@ export const repositories: Record<string, RepositoryConfig> = {
   },
   'tw93-waza': {
     url: 'https://github.com/tw93/Waza',
-    tag: 'v3.32.0',
+    tag: 'v3.33.0',
     skills: [
       { target: 'check', source: './skills/check/SKILL.md', excludes: ['scripts/check-update.sh'] },
       { target: 'ui', source: './skills/ui/SKILL.md', excludes: ['scripts/check-update.sh'] },
