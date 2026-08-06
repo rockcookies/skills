@@ -126,8 +126,9 @@ export const repositories: Record<string, RepositoryConfig> = {
   },
   'mattpocock': {
     url: 'https://github.com/mattpocock/skills',
-    tag: 'v1.1.0',
+    tag: 'v1.2.0',
     skills: [
+      // engineering
       { target: 'ask-matt', source: './skills/engineering/ask-matt/SKILL.md' },
       { target: 'code-review', source: './skills/engineering/code-review/SKILL.md' },
       { target: 'codebase-design', source: './skills/engineering/codebase-design/SKILL.md' },
@@ -145,11 +146,15 @@ export const repositories: Record<string, RepositoryConfig> = {
       { target: 'to-tickets', source: './skills/engineering/to-tickets/SKILL.md' },
       { target: 'triage', source: './skills/engineering/triage/SKILL.md' },
       { target: 'wayfinder', source: './skills/engineering/wayfinder/SKILL.md' },
+      { target: 'wizard', source: './skills/engineering/wizard/SKILL.md' },
+      // productivity
       { target: 'grill-me', source: './skills/productivity/grill-me/SKILL.md' },
       { target: 'grilling', source: './skills/productivity/grilling/SKILL.md' },
       { target: 'handoff', source: './skills/productivity/handoff/SKILL.md' },
       { target: 'teach', source: './skills/productivity/teach/SKILL.md' },
-      { target: 'writing-great-skills', source: './skills/productivity/writing-great-skills/SKILL.md' },
+      { target: 'to-questionnaire', source: './skills/productivity/to-questionnaire/SKILL.md' },
+      { target: 'wait-what', source: './skills/productivity/wait-what/SKILL.md' },
+      { target: 'writing-for-agents', source: './skills/productivity/writing-for-agents/SKILL.md' },
     ],
   },
   'shadcn-improve': {
