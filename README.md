@@ -20,7 +20,7 @@ npx skills add rockcookies/skills --full-depth --skill vue-best-practices -g
 
 Learn more about the CLI at [skills](https://github.com/vercel-labs/skills).
 
-### Go skills ([samber/cc-skills-golang](https://github.com/samber/cc-skills-golang), tag `v1.9.0`)
+### Go skills ([samber/cc-skills-golang](https://github.com/samber/cc-skills-golang), tag `v1.9.1`)
 
 Atomic and cross-referencing — prefer the ⭐ set (or all), then add category / library skills as needed. Installing a skill does **not** pull linked skills automatically.
 
@@ -312,7 +312,7 @@ Synced from external repositories into `skills/{repoKey}/{target}/`.
 | ------------------------------------------------ | ----------------------------------------------------------------------------------------- |
 | [baoyu-design](skills/baoyu-design/baoyu-design) | Polished design artifacts as self-contained HTML — mockups, prototypes, wireframes, decks |
 
-#### [mattpocock/skills](https://github.com/mattpocock/skills) (tag `v1.1.0`)
+#### [mattpocock/skills](https://github.com/mattpocock/skills) (tag `v1.2.0`)
 
 | Skill                                                                            | Description                                                          |
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
@@ -320,10 +320,10 @@ Synced from external repositories into `skills/{repoKey}/{target}/`.
 | [code-review](skills/mattpocock/code-review)                                     | Review changes since a fixed point along Standards and Spec axes     |
 | [codebase-design](skills/mattpocock/codebase-design)                             | Shared vocabulary for designing deep modules                         |
 | [diagnosing-bugs](skills/mattpocock/diagnosing-bugs)                             | Diagnosis loop for hard bugs and performance regressions             |
-| [domain-modeling](skills/mattpocock/domain-modeling)                             | Pin down domain terminology, ubiquitous language, and ADRs           |
+| [domain-modeling](skills/mattpocock/domain-modeling)                             | Build domain terminology, ubiquitous language, and ADRs              |
 | [grill-me](skills/mattpocock/grill-me)                                           | Relentless interview to sharpen a plan or design                     |
 | [grill-with-docs](skills/mattpocock/grill-with-docs)                             | Grill a plan while creating ADRs and glossary as you go              |
-| [grilling](skills/mattpocock/grilling)                                           | Stress-test a plan before building                                   |
+| [grilling](skills/mattpocock/grilling)                                           | Grill a plan, decision, or idea to stress-test your thinking         |
 | [handoff](skills/mattpocock/handoff)                                             | Compact the conversation into a handoff document for another agent   |
 | [implement](skills/mattpocock/implement)                                         | Implement work from a spec or set of tickets                         |
 | [improve-codebase-architecture](skills/mattpocock/improve-codebase-architecture) | Scan for deepening opportunities, report in HTML, then grill         |
@@ -333,11 +333,14 @@ Synced from external repositories into `skills/{repoKey}/{target}/`.
 | [setup-matt-pocock-skills](skills/mattpocock/setup-matt-pocock-skills)           | One-time setup — issue tracker, triage labels, domain doc layout     |
 | [tdd](skills/mattpocock/tdd)                                                     | Test-driven development — red-green-refactor and integration tests   |
 | [teach](skills/mattpocock/teach)                                                 | Teach a new skill or concept within the workspace                    |
+| [to-questionnaire](skills/mattpocock/to-questionnaire)                           | Turn a decision into a questionnaire for someone else to fill in     |
 | [to-spec](skills/mattpocock/to-spec)                                             | Turn the current conversation into a published spec                  |
 | [to-tickets](skills/mattpocock/to-tickets)                                       | Break a plan into tracer-bullet tickets with blocking edges          |
 | [triage](skills/mattpocock/triage)                                               | Move issues and external PRs through triage roles                    |
-| [wayfinder](skills/mattpocock/wayfinder)                                         | Plan multi-session work as investigation tickets on the tracker      |
-| [writing-great-skills](skills/mattpocock/writing-great-skills)                   | Vocabulary and principles that make a skill predictable              |
+| [wait-what](skills/mattpocock/wait-what)                                         | Re-pitch a message that didn't land in ASD-STE100 + ubiquitous language |
+| [wayfinder](skills/mattpocock/wayfinder)                                         | Plan multi-session work as decision tickets on the tracker           |
+| [wizard](skills/mattpocock/wizard)                                               | Generate an interactive bash wizard for human-only manual steps      |
+| [writing-for-agents](skills/mattpocock/writing-for-agents)                       | Writing documents (skills, AGENTS.md, CLAUDE.md) that agents consume |
 
 #### [microsoft/playwright-cli](https://github.com/microsoft/playwright-cli)
 
@@ -345,7 +348,7 @@ Synced from external repositories into `skills/{repoKey}/{target}/`.
 | ------------------------------------------------------ | ----------------------------------------------------------------------------- |
 | [playwright-cli](skills/playwright-cli/playwright-cli) | Automate browser interactions, test web pages, and work with Playwright tests |
 
-#### [samber/cc-skills-golang](https://github.com/samber/cc-skills-golang) (tag `v1.9.0`)
+#### [samber/cc-skills-golang](https://github.com/samber/cc-skills-golang) (tag `v1.9.1`)
 
 | Skill                                                                               | Description                                                                    |
 | ----------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
@@ -402,7 +405,7 @@ Synced from external repositories into `skills/{repoKey}/{target}/`.
 | ---------------------------------------- | -------------------------------------------------------------------- |
 | [improve](skills/shadcn-improve/improve) | Read-only senior-advisor survey — prioritized plans for other agents |
 
-#### [tw93/Waza](https://github.com/tw93/Waza) (tag `v3.32.0`)
+#### [tw93/Waza](https://github.com/tw93/Waza) (tag `v3.33.0`)
 
 | Skill                             | Description                                                                   |
 | --------------------------------- | ----------------------------------------------------------------------------- |
@@ -464,9 +467,9 @@ Repository sources and skill mappings live in [meta.ts](meta.ts). Pins:
 
 | Key             | Upstream                | Pin           |
 | --------------- | ----------------------- | ------------- |
-| `samber-golang` | samber/cc-skills-golang | tag `v1.9.0`  |
-| `mattpocock`    | mattpocock/skills       | tag `v1.1.0`  |
-| `tw93-waza`     | tw93/Waza               | tag `v3.32.0` |
+| `samber-golang` | samber/cc-skills-golang | tag `v1.9.1`  |
+| `mattpocock`    | mattpocock/skills       | tag `v1.2.0`  |
+| `tw93-waza`     | tw93/Waza               | tag `v3.33.0` |
 
 Unpinned repos track the default branch. Upstreams listed in `meta.ts` with an empty `skills` array are reserved for future use and are skipped by Sync.
 

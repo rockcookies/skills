@@ -46,9 +46,9 @@ Services hold the logic; commands receive them as dependencies. `GitService` wra
 
 | Key             | Upstream                | Pin           |
 | --------------- | ----------------------- | ------------- |
-| `samber-golang` | samber/cc-skills-golang | tag `v1.9.0`  |
-| `mattpocock`    | mattpocock/skills       | tag `v1.1.0`  |
-| `tw93-waza`     | tw93/Waza               | tag `v3.32.0` |
+| `samber-golang` | samber/cc-skills-golang | tag `v1.9.1`  |
+| `mattpocock`    | mattpocock/skills       | tag `v1.2.0`  |
+| `tw93-waza`     | tw93/Waza               | tag `v3.33.0` |
 
 Unpinned repos track the default branch.
 
