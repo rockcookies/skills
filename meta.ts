@@ -126,7 +126,7 @@ export const repositories: Record<string, RepositoryConfig> = {
   },
   'mattpocock': {
     url: 'https://github.com/mattpocock/skills',
-    tag: 'v1.2.0',
+    tag: 'v1.2.3',
     skills: [
       // engineering
       { target: 'ask-matt', source: './skills/engineering/ask-matt/SKILL.md' },
