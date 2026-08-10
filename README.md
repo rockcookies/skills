@@ -312,7 +312,7 @@ Synced from external repositories into `skills/{repoKey}/{target}/`.
 | ------------------------------------------------ | ----------------------------------------------------------------------------------------- |
 | [baoyu-design](skills/baoyu-design/baoyu-design) | Polished design artifacts as self-contained HTML — mockups, prototypes, wireframes, decks |
 
-#### [mattpocock/skills](https://github.com/mattpocock/skills) (tag `v1.2.0`)
+#### [mattpocock/skills](https://github.com/mattpocock/skills) (tag `v1.2.3`)
 
 | Skill                                                                            | Description                                                          |
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
@@ -405,7 +405,7 @@ Synced from external repositories into `skills/{repoKey}/{target}/`.
 | ---------------------------------------- | -------------------------------------------------------------------- |
 | [improve](skills/shadcn-improve/improve) | Read-only senior-advisor survey — prioritized plans for other agents |
 
-#### [tw93/Waza](https://github.com/tw93/Waza) (tag `v3.33.0`)
+#### [tw93/Waza](https://github.com/tw93/Waza) (tag `v3.34.0`)
 
 | Skill                             | Description                                                                   |
 | --------------------------------- | ----------------------------------------------------------------------------- |
@@ -468,8 +468,8 @@ Repository sources and skill mappings live in [meta.ts](meta.ts). Pins:
 | Key             | Upstream                | Pin           |
 | --------------- | ----------------------- | ------------- |
 | `samber-golang` | samber/cc-skills-golang | tag `v1.9.1`  |
-| `mattpocock`    | mattpocock/skills       | tag `v1.2.0`  |
-| `tw93-waza`     | tw93/Waza               | tag `v3.33.0` |
+| `mattpocock`    | mattpocock/skills       | tag `v1.2.3`  |
+| `tw93-waza`     | tw93/Waza               | tag `v3.34.0` |
 
 Unpinned repos track the default branch. Upstreams listed in `meta.ts` with an empty `skills` array are reserved for future use and are skipped by Sync.
 
