@@ -188,7 +188,7 @@ The following Go skills MUST always load for Go-related work on this project:
 
 ### JS / TypeScript skills
 
-There is no hand-maintained `node-*` suite anymore (only `node-naming` under custom). Install by stack:
+Hand-maintained web style skills live under `skills/custom/` (`web-naming`, `web-code-style`, `web-zustand`). Install by stack:
 
 #### Tooling (antfu)
 
@@ -236,13 +236,15 @@ npx skills add rockcookies/skills --full-depth \
   -g
 ```
 
-#### Hono / Playwright / naming
+#### Hono / Playwright / web naming & style
 
 ```bash
 npx skills add rockcookies/skills --full-depth \
   --skill hono-skills \
   --skill playwright-cli \
-  --skill node-naming \
+  --skill web-naming \
+  --skill web-code-style \
+  --skill web-zustand \
   -g
 ```
 
@@ -269,7 +271,9 @@ npx skills add rockcookies/skills --full-depth \
 | [git-atomic-commit](skills/custom/git-atomic-commit)       | Atomic Conventional Commits — one logical change per commit     |
 | [git-rebase-surgeon](skills/custom/git-rebase-surgeon)     | Safe history rewriting — rebase, squash, sync with upstream     |
 | [git-semantic-search](skills/custom/git-semantic-search)   | Git archaeology — Pickaxe, Bisect, and Blame                    |
-| [node-naming](skills/custom/node-naming)                   | JS/TS naming — identifiers, files, React components/Hooks/props |
+| [web-naming](skills/custom/web-naming)                     | Web/React UI naming — identifiers, files, components/Hooks/props |
+| [web-code-style](skills/custom/web-code-style)             | Web/React UI clarity — control flow, JSX complexity, comments    |
+| [web-zustand](skills/custom/web-zustand)                   | Web/React Zustand — StoreImpl, nested slices, action tiers       |
 
 ### Upstream Skills
 
