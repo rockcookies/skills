@@ -1,30 +1,29 @@
 # React 命名约定
 
-React 没有官方 style guide；以下提炼自 [Airbnb React Style Guide](https://github.com/airbnb/javascript/blob/master/react/README.md) 与 [React 文档](https://react.dev/learn/importing-and-exporting-components)，并与 Node 通用规则形成**双轨文件命名**。
+React 没有官方 style guide；以下提炼自 [Airbnb React Style Guide](https://github.com/airbnb/javascript/blob/master/react/README.md) 与 [React 文档](https://react.dev/learn/importing-and-exporting-components)，并与前端非组件模块形成**双轨文件命名**。
 
 ## 双轨文件命名
 
 | 文件角色 | 文件名 | 导出名 |
 |----------|--------|--------|
-| React 组件 | `PascalCase.tsx` | `PascalCase` 同名 |
+| React 组件 | `PascalCase.tsx`（默认） | `PascalCase` 同名 |
 | React Hook | `use` + `camelCase.ts` | 同名 |
-| 非组件逻辑（service/util） | `camelCase.ts` | `camelCase` |
-| Node/后端模块 | `kebab-case.ts` | `camelCase` / `PascalCase` |
+| 非组件逻辑（api/store/formatters） | `kebab-case.ts` | `camelCase` / `PascalCase` |
 
-**关键**：不要用 `kebab-case` 命名组件文件（`user-profile.tsx`）。JSX 靠首字母大小写区分组件与 HTML 标签；小写文件名会诱导小写导入，导致 React 把它当原生元素。
+**默认**组件文件用 `PascalCase.tsx`，与组件标识符对齐。JSX 靠**标识符**首字母区分组件与 HTML 标签（`<UserProfile />` vs `<div />`）；文件名本身不是运行时硬性要求。
 
 ```tsx
-// ✓ Good — UserProfile.tsx
+// ✓ Good：UserProfile.tsx
 export function UserProfile() {
   return <div>...</div>
 }
-
-// ✗ Bad — user-profile.tsx，导入时易写成 <user-profile />
 ```
+
+**仓级覆盖：** 若仓库已统一 kebab-case 组件文件（如 `user-profile.tsx` 导出 `UserProfile`），保持该仓约定。导入时仍须使用 PascalCase 标识符。
 
 ## 组件
 
-- 文件名与组件函数/类名均为 `PascalCase`
+- 文件名（默认）与组件函数/类名均为 `PascalCase`
 - 用组件引用名命名，不用 `displayName` 替代
 - 一个文件一个主组件；小组件可共文件，前提是同一概念
 
@@ -56,7 +55,7 @@ export function PaymentForm({ onSubmit }: PaymentFormProps) {
 
 ## 事件 Props 与处理器
 
-- 回调 prop：`on` + 动作 — `onSave`、`onUserSelect`、`onClose`
+- 回调 prop：`on` + 动作，如 `onSave`、`onUserSelect`、`onClose`
 - 组件内处理器：优先动作名（`saveUserData`），复杂键盘场景可用 `handleKeydown` 再分发
 
 ```tsx
@@ -85,13 +84,12 @@ export function useLocalStorage<T>(key: string, initial: T) { /* ... */ }
 
 ## 非组件模块
 
-Service、util、store 等不含 JSX 的文件用 `camelCase`：
+Service、store、formatter 等不含 JSX 的前端文件用 `kebab-case`：
 
 ```
-userService.ts
-authStore.ts
-formatDate.ts
-apiClient.ts
+user-api.ts
+auth-store.ts
+format-date.ts
 ```
 
 ## 类型文件
@@ -105,7 +103,7 @@ Props 类型：`ComponentNameProps`（`PaymentFormProps`）。
 
 ## 测试文件
 
-与组件同目录、同基名：
+与组件同基名；放在同目录或同级 `__tests__/`（全仓统一一种）：
 
 ```
 UserProfile.tsx
@@ -130,4 +128,4 @@ components/UserProfile/index.ts   // export { UserProfile } from './UserProfile'
 
 ## 与 ESLint 对齐
 
-Airbnb 配置中的 `react/jsx-pascal-case`、`react/boolean-prop-naming` 可自动校验组件名与布尔 prop。项目级规则见 `node-dev`。
+Airbnb 配置中的 `react/jsx-pascal-case`、`react/boolean-prop-naming` 可自动校验组件名与布尔 prop。

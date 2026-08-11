@@ -5,11 +5,11 @@
 返回值的函数用**名词**（返回什么）；执行副作用的函数用**动词**（做什么）。
 
 ```ts
-// 名词 — 返回某物
+// 名词：返回某物
 function defaultConfig(): Config {}
 function userName(): string {}
 
-// 动词 — 执行动作
+// 动词：执行动作
 function writeFile(name: string, data: Buffer): Promise<void> {}
 function sendNotification(user: User): Promise<void> {}
 ```
@@ -29,7 +29,7 @@ export function createFileTransport(): Transport {}
 export function createConsoleTransport(): Transport {}
 ```
 
-不要用 `new` 前缀（Go 风格）：
+不要用 `new` 前缀：
 
 ```ts
 // ✗ Bad
@@ -41,10 +41,10 @@ export function newLogger() {}
 处理器名称应描述**执行的动作**，而非触发的 DOM 事件。
 
 ```tsx
-// ✓ Good — 模板里一眼看出动作
+// ✓ Good：模板里一眼看出动作
 <button onClick={saveUserData}>Save</button>
 
-// ✗ Bad — 看不出点击后做什么
+// ✗ Bad：看不出点击后做什么
 <button onClick={handleClick}>Save</button>
 ```
 
@@ -62,21 +62,21 @@ React 事件 prop 用 `on` + 动作（`onSave`、`onUserSelect`）；内部处�
 
 ## 生命周期与初始化方法
 
-生命周期钩子（`ngOnInit`、`useEffect` 回调体）里不要塞长逻辑。把逻辑提取为有语义的私有/模块级函数，在钩子里调用：
+`useEffect` 回调体等生命周期入口里不要塞长逻辑。把逻辑提取为有语义的函数，在钩子里调用：
 
 ```ts
 // ✓ Good
-function init() {
+useEffect(() => {
   startLogging()
   runBackgroundTask()
-}
+}, [])
 
-// ✗ Bad — 钩子名只描述时机，不描述行为
-function init() {
+// ✗ Bad：钩子里直接堆实现细节
+useEffect(() => {
   logger.setMode('info')
   logger.monitorErrors()
   // ... 数十行
-}
+}, [])
 ```
 
 ## 避免无意义动词

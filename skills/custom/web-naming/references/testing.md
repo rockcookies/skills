@@ -1,30 +1,38 @@
 # 测试文件命名与位置
 
-测试文件命名与位置归 `node-naming`；`describe`/`it` 等行为命名见 `node-testing`。
+测试文件命名与位置归 `web-naming`。`describe` / `it` 等行为描述不在本 skill 范围。
 
-## 后缀：`.test`
+## 后缀：全仓统一
 
-Node/Vitest/Jest 生态默认用 `.test` 后缀（非 Angular 的 `.spec`）。全项目统一一种后缀。
+示例与 Vitest/Jest 常见文档对齐，使用 `.test`。`.spec` 等价：全项目只选一种，不要混用。
 
-| 源文件 | 测试文件 |
-|--------|----------|
-| `user-service.ts` | `user-service.test.ts` |
+| 源文件 | 测试文件（示例） |
+|--------|------------------|
+| `user-api.ts` | `user-api.test.ts` |
 | `UserProfile.tsx` | `UserProfile.test.tsx` |
 | `useAuth.ts` | `useAuth.test.ts` |
 
-## 与源文件同目录（co-locate）
+## 位置：同目录或 `__tests__/`
 
-测试文件放在被测代码同一目录，不要集中到顶层 `tests/` 目录（除非项目已有明确约定）。
+二选一，全仓统一：
+
+1. **与源码同目录** co-locate
+2. **同级 `__tests__/`** 子目录
+
+不要把无关测试集中到顶层大杂烩 `tests/`（除非项目已有明确约定且测试与源码分区清晰）。
 
 ```
-order-processing/
-├── order-processor.ts
-└── order-processor.test.ts
-
+// 同目录
 features/checkout/
 ├── PaymentForm.tsx
 ├── PaymentForm.test.tsx
 └── useCheckout.test.ts
+
+// 或 __tests__/
+features/checkout/
+├── PaymentForm.tsx
+└── __tests__/
+    └── PaymentForm.test.tsx
 ```
 
 ## 集成测试后缀
@@ -36,7 +44,7 @@ user.integration.test.ts
 api.e2e.test.ts
 ```
 
-也可用 Vitest 的 `include`/`testNamePattern` 或 `describe` 标签区分，但文件名后缀最直观。
+也可用 Vitest 的 `include` / `testNamePattern` 或 `describe` 标签区分，但文件名后缀最直观。
 
 ## 测试辅助文件
 
@@ -64,5 +72,3 @@ it.each([
 { name: 'Valid ID', ... }
 { name: 'Empty Input', ... }
 ```
-
-用例内行为命名细则见 `node-testing`。

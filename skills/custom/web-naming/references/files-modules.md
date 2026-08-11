@@ -2,35 +2,35 @@
 
 ## 默认：kebab-case 文件名
 
-Node/后端/通用工具模块的文件名用连字符分词，文件名应反映文件内主要导出的标识符。
+非组件前端模块的文件名用连字符分词，文件名应反映文件内主要导出的标识符。
 
 ```ts
-// user-service.ts
-export class UserService {}
+// user-api.ts
+export async function fetchUser(id: string) {}
 
-// http-client.ts
-export class HTTPClient {}
+// format-date.ts
+export function formatDate(value: Date): string {}
 ```
 
 ```ts
-// ✗ Bad — 通用文件不用 PascalCase
-// UserService.ts
+// ✗ Bad：非组件文件不用 PascalCase
+// UserApi.ts
 
-// ✗ Bad — snake_case 非 JS/TS 惯例
-// user_service.ts
+// ✗ Bad：snake_case 非 JS/TS 惯例
+// user_api.ts
 ```
 
 **例外**：React 组件与 Hook 文件遵循双轨规则，见 [react.md](./react.md)。
 
 ## 一概念一文件
 
-每个源文件聚焦单一概念。一个文件通常只放一个主要可命名导出（一个类、一个服务、一组紧密相关的函数）。
+每个源文件聚焦单一概念。一个文件通常只放一个主要可命名导出（一个组件、一组紧密相关的函数）。
 
 ```ts
-// ✓ Good — order-validator.ts 只含订单校验逻辑
+// ✓ Good：order-validator.ts 只含订单校验逻辑
 export function validateOrder(order: Order): ValidationResult {}
 
-// ✗ Bad — 多个不相关概念挤在一个文件
+// ✗ Bad：多个不相关概念挤在一个文件
 // misc.ts
 export function validateOrder() {}
 export function sendEmail() {}
@@ -50,7 +50,7 @@ export function formatDate() {}
 export function parseUrl() {}
 export function hashPassword() {}
 
-// ✓ Good — 按职责拆分
+// ✓ Good：按职责拆分
 // date.ts
 export function formatDate() {}
 
@@ -63,34 +63,25 @@ export function hashPassword() {}
 
 ## 目录组织
 
-**Node/后端**：按 feature 或领域组织，避免按技术类型分目录（`controllers/`、`services/`、`models/` 堆砌所有类型）。
+相关文件放在一起。全仓选一种布局并保持一致；不硬性禁止 `hooks/`、`components/` 等按类型划分的目录，但避免把无关文件堆进同一个大抽屉。
 
 ```
-src/
-├── order-processing/
-│   ├── order-validator.ts
-│   └── order-processor.ts
-├── user-management/
-│   ├── user-service.ts
-│   └── user-repository.ts
-```
-
-**React**：按 feature 组织，目录名用 `kebab-case`；组件文件在目录内用 `PascalCase`。全项目选一种组件目录风格并保持一致：
-
-```
-// 方案 A — feature + kebab 目录
+// 方案 A：feature 目录 + kebab 目录名
 features/
 └── user-profile/
     ├── UserProfile.tsx
-    └── useUserProfile.ts
+    ├── useUserProfile.ts
+    └── user-profile-api.ts
 
-// 方案 B — PascalCase 组件目录 + 可选 index 重导出
+// 方案 B：组件目录 + 可选 index 重导出
 components/
 └── UserProfile/
     ├── UserProfile.tsx
     ├── UserProfile.test.tsx
     └── index.ts
 ```
+
+目录名用 `kebab-case`；组件文件在目录内用 `PascalCase`（除非仓已统一 kebab 组件文件）。
 
 ## 避免 Stuttering
 
@@ -108,7 +99,7 @@ parseUrl(rawUrl)
 
 ## 类型定义文件
 
-类型密集模块可用 `camelCase` + `.types.ts` 后缀：
+类型密集模块可用基名 + `.types.ts` 后缀：
 
 ```
 user.types.ts

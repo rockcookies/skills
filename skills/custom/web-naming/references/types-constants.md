@@ -39,7 +39,7 @@ class ServerObject {}
 const MAX_RETRY_COUNT = 3
 const DEFAULT_TIMEOUT_MS = 30_000
 
-// ✗ Bad — 值变了名字就过时
+// ✗ Bad：值变了名字就过时
 const THREE = 3
 const TIMEOUT_30000 = 30_000
 ```
@@ -61,7 +61,7 @@ enum OrderStatus {
   Cancelled = 'CANCELLED',
 }
 
-// ✗ Bad — Pending 是数字零值，未赋值变量静默成 Pending
+// ✗ Bad：Pending 是数字零值，未赋值变量静默成 Pending
 enum OrderStatus {
   Pending,
   Paid,
