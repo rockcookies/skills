@@ -2,6 +2,10 @@
 name: git-atomic-commit
 description: >-
   Generates atomic Git commits — each capturing exactly one logical change — formatted as Conventional Commits that match the project's style. Use when the user has multiple files or concerns to commit. For a single-file, single-concern change, write one Conventional Commit directly.
+user-invocable: true
+metadata:
+  author: rockcookies
+  version: 1.0.0
 ---
 
 # Git Atomic Commit

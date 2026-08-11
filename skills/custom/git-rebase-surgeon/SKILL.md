@@ -2,6 +2,10 @@
 name: git-rebase-surgeon
 description: >-
   Safe Git history rewriting with pre-flight validation. Use when the user asks to rebase, squash commits, sync a branch with upstream, or rewrite history.
+user-invocable: true
+metadata:
+  author: rockcookies
+  version: 1.0.0
 ---
 
 # Git Rebase Surgeon

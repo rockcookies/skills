@@ -2,6 +2,10 @@
 name: git-semantic-search
 description: >-
   Git archaeology — trace when code was introduced, removed, or changed using Pickaxe, Bisect, and Blame. Use when the user asks who wrote a line, when a bug started, where a symbol came from, or to hunt down the origin of any code.
+user-invocable: true
+metadata:
+  author: rockcookies
+  version: 1.0.0
 ---
 
 # Git Semantic Search

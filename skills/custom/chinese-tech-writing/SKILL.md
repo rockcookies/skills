@@ -5,8 +5,8 @@ description: >-
   禁止使用：纯代码生成、英文内容创作、数据查询、非写作类任务。
 metadata:
   source_url: https://github.com/miantiao-me/aigc-weekly/blob/master/agent/.opencode/skills/chinese-writing/SKILL.md
-  author: Rock Cookies
-  version: "2026.03.06"
+  author: rockcookies
+  version: 1.0.0
 ---
 
 # 中文写作技能指南
