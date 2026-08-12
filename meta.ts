@@ -66,6 +66,12 @@ export const repositories: Record<string, RepositoryConfig> = {
     url: 'https://github.com/vercel-labs/skills',
     skills: [{ target: 'find-skills', source: './skills/find-skills/SKILL.md' }],
   },
+  'vercel-agent-browser': {
+    url: 'https://github.com/vercel-labs/agent-browser',
+    skills: [
+      { target: 'agent-browser', source: './skills/agent-browser/SKILL.md' },
+    ],
+  },
   'vercel-agent': {
     url: 'https://github.com/vercel-labs/agent-skills',
     skills: [
