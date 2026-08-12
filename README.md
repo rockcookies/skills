@@ -422,6 +422,12 @@ Synced from external repositories into `skills/{repoKey}/{target}/`.
 | [ui](skills/tw93-waza/ui)         | Production-grade UI — pages, components, typography, screenshot polish        |
 | [write](skills/tw93-waza/write)   | Polish Chinese/English prose — drafts, docs, release notes, localization      |
 
+#### [vercel-labs/agent-browser](https://github.com/vercel-labs/agent-browser)
+
+| Skill                                                  | Description                                                                                              |
+| ------------------------------------------------------ | -------------------------------------------------------------------------------------------------------- |
+| [agent-browser](skills/vercel-agent-browser/agent-browser) | Browser automation CLI for AI agents — navigate, fill forms, click, screenshot, scrape, and test web apps; also drives Electron apps and cloud browsers |
+
 #### [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills)
 
 | Skill                                                              | Description                                                          |
