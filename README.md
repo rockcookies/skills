@@ -319,42 +319,42 @@ Synced from external repositories into `skills/{repoKey}/{target}/`.
 
 #### [majiayu000/spellbook](https://github.com/majiayu000/spellbook)
 
-| Skill                                                              | Description                                                                    |
-| ------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
-| [clash-doctor](skills/majiayu-spellbook/clash-doctor)              | Clash Verge diagnostics and config management — proxy rules, subscriptions     |
-| [clash-routes](skills/majiayu-spellbook/clash-routes)              | Inspect per-process proxy routes via the Mihomo API                            |
-| [codebase-audit](skills/majiayu-spellbook/codebase-audit)          | Adaptive parallel codebase audit — findings, adversarial validation, roadmap   |
-| [figma-to-react](skills/majiayu-spellbook/figma-to-react)          | Extract Figma designs into production-ready React/Next.js components           |
+| Skill                                                     | Description                                                                  |
+| --------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| [clash-doctor](skills/majiayu-spellbook/clash-doctor)     | Clash Verge diagnostics and config management — proxy rules, subscriptions   |
+| [clash-routes](skills/majiayu-spellbook/clash-routes)     | Inspect per-process proxy routes via the Mihomo API                          |
+| [codebase-audit](skills/majiayu-spellbook/codebase-audit) | Adaptive parallel codebase audit — findings, adversarial validation, roadmap |
+| [figma-to-react](skills/majiayu-spellbook/figma-to-react) | Extract Figma designs into production-ready React/Next.js components         |
 
 #### [mattpocock/skills](https://github.com/mattpocock/skills) (tag `v1.2.3`)
 
-| Skill                                                                            | Description                                                          |
-| -------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
-| [ask-matt](skills/mattpocock/ask-matt)                                           | Router over the engineering/productivity skills in this set          |
-| [code-review](skills/mattpocock/code-review)                                     | Review changes since a fixed point along Standards and Spec axes     |
-| [codebase-design](skills/mattpocock/codebase-design)                             | Shared vocabulary for designing deep modules                         |
-| [diagnosing-bugs](skills/mattpocock/diagnosing-bugs)                             | Diagnosis loop for hard bugs and performance regressions             |
-| [domain-modeling](skills/mattpocock/domain-modeling)                             | Build domain terminology, ubiquitous language, and ADRs              |
-| [grill-me](skills/mattpocock/grill-me)                                           | Relentless interview to sharpen a plan or design                     |
-| [grill-with-docs](skills/mattpocock/grill-with-docs)                             | Grill a plan while creating ADRs and glossary as you go              |
-| [grilling](skills/mattpocock/grilling)                                           | Grill a plan, decision, or idea to stress-test your thinking         |
-| [handoff](skills/mattpocock/handoff)                                             | Compact the conversation into a handoff document for another agent   |
-| [implement](skills/mattpocock/implement)                                         | Implement work from a spec or set of tickets                         |
-| [improve-codebase-architecture](skills/mattpocock/improve-codebase-architecture) | Scan for deepening opportunities, report in HTML, then grill         |
-| [prototype](skills/mattpocock/prototype)                                         | Throwaway prototype to answer a design question                      |
-| [research](skills/mattpocock/research)                                           | Investigate against high-trust sources; capture findings as Markdown |
-| [resolving-merge-conflicts](skills/mattpocock/resolving-merge-conflicts)         | Resolve an in-progress git merge/rebase conflict                     |
-| [setup-matt-pocock-skills](skills/mattpocock/setup-matt-pocock-skills)           | One-time setup — issue tracker, triage labels, domain doc layout     |
-| [tdd](skills/mattpocock/tdd)                                                     | Test-driven development — red-green-refactor and integration tests   |
-| [teach](skills/mattpocock/teach)                                                 | Teach a new skill or concept within the workspace                    |
-| [to-questionnaire](skills/mattpocock/to-questionnaire)                           | Turn a decision into a questionnaire for someone else to fill in     |
-| [to-spec](skills/mattpocock/to-spec)                                             | Turn the current conversation into a published spec                  |
-| [to-tickets](skills/mattpocock/to-tickets)                                       | Break a plan into tracer-bullet tickets with blocking edges          |
-| [triage](skills/mattpocock/triage)                                               | Move issues and external PRs through triage roles                    |
+| Skill                                                                            | Description                                                             |
+| -------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| [ask-matt](skills/mattpocock/ask-matt)                                           | Router over the engineering/productivity skills in this set             |
+| [code-review](skills/mattpocock/code-review)                                     | Review changes since a fixed point along Standards and Spec axes        |
+| [codebase-design](skills/mattpocock/codebase-design)                             | Shared vocabulary for designing deep modules                            |
+| [diagnosing-bugs](skills/mattpocock/diagnosing-bugs)                             | Diagnosis loop for hard bugs and performance regressions                |
+| [domain-modeling](skills/mattpocock/domain-modeling)                             | Build domain terminology, ubiquitous language, and ADRs                 |
+| [grill-me](skills/mattpocock/grill-me)                                           | Relentless interview to sharpen a plan or design                        |
+| [grill-with-docs](skills/mattpocock/grill-with-docs)                             | Grill a plan while creating ADRs and glossary as you go                 |
+| [grilling](skills/mattpocock/grilling)                                           | Grill a plan, decision, or idea to stress-test your thinking            |
+| [handoff](skills/mattpocock/handoff)                                             | Compact the conversation into a handoff document for another agent      |
+| [implement](skills/mattpocock/implement)                                         | Implement work from a spec or set of tickets                            |
+| [improve-codebase-architecture](skills/mattpocock/improve-codebase-architecture) | Scan for deepening opportunities, report in HTML, then grill            |
+| [prototype](skills/mattpocock/prototype)                                         | Throwaway prototype to answer a design question                         |
+| [research](skills/mattpocock/research)                                           | Investigate against high-trust sources; capture findings as Markdown    |
+| [resolving-merge-conflicts](skills/mattpocock/resolving-merge-conflicts)         | Resolve an in-progress git merge/rebase conflict                        |
+| [setup-matt-pocock-skills](skills/mattpocock/setup-matt-pocock-skills)           | One-time setup — issue tracker, triage labels, domain doc layout        |
+| [tdd](skills/mattpocock/tdd)                                                     | Test-driven development — red-green-refactor and integration tests      |
+| [teach](skills/mattpocock/teach)                                                 | Teach a new skill or concept within the workspace                       |
+| [to-questionnaire](skills/mattpocock/to-questionnaire)                           | Turn a decision into a questionnaire for someone else to fill in        |
+| [to-spec](skills/mattpocock/to-spec)                                             | Turn the current conversation into a published spec                     |
+| [to-tickets](skills/mattpocock/to-tickets)                                       | Break a plan into tracer-bullet tickets with blocking edges             |
+| [triage](skills/mattpocock/triage)                                               | Move issues and external PRs through triage roles                       |
 | [wait-what](skills/mattpocock/wait-what)                                         | Re-pitch a message that didn't land in ASD-STE100 + ubiquitous language |
-| [wayfinder](skills/mattpocock/wayfinder)                                         | Plan multi-session work as decision tickets on the tracker           |
-| [wizard](skills/mattpocock/wizard)                                               | Generate an interactive bash wizard for human-only manual steps      |
-| [writing-for-agents](skills/mattpocock/writing-for-agents)                       | Writing documents (skills, AGENTS.md, CLAUDE.md) that agents consume |
+| [wayfinder](skills/mattpocock/wayfinder)                                         | Plan multi-session work as decision tickets on the tracker              |
+| [wizard](skills/mattpocock/wizard)                                               | Generate an interactive bash wizard for human-only manual steps         |
+| [writing-for-agents](skills/mattpocock/writing-for-agents)                       | Writing documents (skills, AGENTS.md, CLAUDE.md) that agents consume    |
 
 #### [microsoft/playwright-cli](https://github.com/microsoft/playwright-cli)
 
@@ -434,8 +434,8 @@ Synced from external repositories into `skills/{repoKey}/{target}/`.
 
 #### [vercel-labs/agent-browser](https://github.com/vercel-labs/agent-browser)
 
-| Skill                                                  | Description                                                                                              |
-| ------------------------------------------------------ | -------------------------------------------------------------------------------------------------------- |
+| Skill                                                      | Description                                                                                                                                             |
+| ---------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [agent-browser](skills/vercel-agent-browser/agent-browser) | Browser automation CLI for AI agents — navigate, fill forms, click, screenshot, scrape, and test web apps; also drives Electron apps and cloud browsers |
 
 #### [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills)
