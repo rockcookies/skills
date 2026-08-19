@@ -183,6 +183,15 @@ export const repositories: Record<string, RepositoryConfig> = {
       { target: 'write', source: './skills/write/SKILL.md', excludes: ['scripts/check-update.sh'] },
     ],
   },
+  'majiayu-spellbook': {
+    url: 'https://github.com/majiayu000/spellbook',
+    skills: [
+      { target: 'figma-to-react', source: './skills/figma-to-react/SKILL.md' },
+      { target: 'clash-doctor', source: './skills/clash-doctor/SKILL.md' },
+      { target: 'clash-routes', source: './skills/clash-routes/SKILL.md' },
+      { target: 'codebase-audit', source: './skills/codebase-audit/SKILL.md' },
+    ]
+  },
   "baoyu-design": {
     url: "https://github.com/jimliu/baoyu-design",
     skills: [
