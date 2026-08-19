@@ -265,12 +265,13 @@ npx skills add rockcookies/skills --full-depth \
 
 > Opinionated workflows and conventions maintained by RockCookies under `skills/custom/`.
 
-| Skill                                                      | Description                                                     |
-| ---------------------------------------------------------- | --------------------------------------------------------------- |
-| [chinese-tech-writing](skills/custom/chinese-tech-writing) | 高质量中文写作 — 博客、技术文档、产品文案、周刊、报告与教程润色 |
-| [git-atomic-commit](skills/custom/git-atomic-commit)       | Atomic Conventional Commits — one logical change per commit     |
-| [git-rebase-surgeon](skills/custom/git-rebase-surgeon)     | Safe history rewriting — rebase, squash, sync with upstream     |
-| [git-semantic-search](skills/custom/git-semantic-search)   | Git archaeology — Pickaxe, Bisect, and Blame                    |
+| Skill                                                      | Description                                                      |
+| ---------------------------------------------------------- | ---------------------------------------------------------------- |
+| [chinese-tech-writing](skills/custom/chinese-tech-writing) | 高质量中文写作 — 博客、技术文档、产品文案、周刊、报告与教程润色  |
+| [git-atomic-commit](skills/custom/git-atomic-commit)       | Atomic Conventional Commits — one logical change per commit      |
+| [git-rebase-surgeon](skills/custom/git-rebase-surgeon)     | Safe history rewriting — rebase, squash, sync with upstream      |
+| [git-semantic-search](skills/custom/git-semantic-search)   | Git archaeology — Pickaxe, Bisect, and Blame                     |
+| [steelman](skills/custom/steelman)                         | 双向钢人论证 — 重述真问题，强化正反双方，锁定关键变量，硬裁决    |
 | [web-naming](skills/custom/web-naming)                     | Web/React UI naming — identifiers, files, components/Hooks/props |
 | [web-code-style](skills/custom/web-code-style)             | Web/React UI clarity — control flow, JSX complexity, comments    |
 | [web-zustand](skills/custom/web-zustand)                   | Web/React Zustand — StoreImpl, nested slices, action tiers       |
