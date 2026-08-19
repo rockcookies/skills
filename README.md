@@ -316,6 +316,15 @@ Synced from external repositories into `skills/{repoKey}/{target}/`.
 | ------------------------------------------------ | ----------------------------------------------------------------------------------------- |
 | [baoyu-design](skills/baoyu-design/baoyu-design) | Polished design artifacts as self-contained HTML — mockups, prototypes, wireframes, decks |
 
+#### [majiayu000/spellbook](https://github.com/majiayu000/spellbook)
+
+| Skill                                                              | Description                                                                    |
+| ------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| [clash-doctor](skills/majiayu-spellbook/clash-doctor)              | Clash Verge diagnostics and config management — proxy rules, subscriptions     |
+| [clash-routes](skills/majiayu-spellbook/clash-routes)              | Inspect per-process proxy routes via the Mihomo API                            |
+| [codebase-audit](skills/majiayu-spellbook/codebase-audit)          | Adaptive parallel codebase audit — findings, adversarial validation, roadmap   |
+| [figma-to-react](skills/majiayu-spellbook/figma-to-react)          | Extract Figma designs into production-ready React/Next.js components           |
+
 #### [mattpocock/skills](https://github.com/mattpocock/skills) (tag `v1.2.3`)
 
 | Skill                                                                            | Description                                                          |
