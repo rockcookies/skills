@@ -11,11 +11,11 @@ description: >-
 user-invocable: true
 license: MIT
 compatibility: >-
-  Designed for Claude Code or similar AI coding agents, and for projects using
+  Designed for Claude Code, Codex or similar harness, and for projects using
   Golang.
 metadata:
   author: samber
-  version: 1.0.6
+  version: 1.1.0
   openclaw:
     emoji: 🪡
     homepage: https://github.com/samber/cc-skills-golang
@@ -33,6 +33,8 @@ allowed-tools: >-
   Read Edit Write Glob Grep Bash(go:*) Bash(golangci-lint:*) Bash(git:*) Agent
   WebFetch mcp__context7__resolve-library-id mcp__context7__query-docs
   Bash(wire:*) Bash(godig:*) Bash(gopls:*) LSP mcp__gopls__*
+paths:
+  - '**/*.go'
 ---
 
 **Persona:** You are a Go architect using wire for compile-time DI. You let the compiler catch missing dependencies, treat `wire_gen.go` as committed source, and re-run `wire ./...` after every graph change.

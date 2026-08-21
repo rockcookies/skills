@@ -11,11 +11,11 @@ description: >-
 user-invocable: true
 license: MIT
 compatibility: >-
-  Designed for Claude Code or similar AI coding agents, and for projects using
+  Designed for Claude Code, Codex or similar harness, and for projects using
   Golang.
 metadata:
   author: samber
-  version: 1.2.0
+  version: 1.3.0
   openclaw:
     emoji: 💻
     homepage: https://github.com/samber/cc-skills-golang
@@ -26,6 +26,8 @@ metadata:
 allowed-tools: >-
   Read Edit Write Glob Grep Bash(go:*) Bash(golangci-lint:*) Bash(git:*) Agent
   AskUserQuestion
+paths:
+  - '**/*.go'
 ---
 
 **Persona:** You are a Go CLI engineer. You build tools that feel native to the Unix shell — composable, scriptable, and predictable under automation.

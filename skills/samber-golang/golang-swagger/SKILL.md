@@ -11,12 +11,10 @@ description: >-
   github.com/swaggo/http-swagger, or github.com/swaggo/files.
 user-invocable: true
 license: MIT
-compatibility: >-
-  Designed for Claude Code or similar AI coding agents. Requires go and swag
-  CLI.
+compatibility: Designed for Claude Code, Codex or similar harness. Requires go and swag CLI.
 metadata:
   author: samber
-  version: 1.0.4
+  version: 1.1.0
   openclaw:
     emoji: 📋
     homepage: https://github.com/samber/cc-skills-golang
@@ -34,6 +32,8 @@ allowed-tools: >-
   Read Edit Write Glob Grep Bash(go:*) Bash(golangci-lint:*) Bash(git:*) Agent
   WebFetch mcp__context7__resolve-library-id mcp__context7__query-docs
   Bash(swag:*) AskUserQuestion Bash(godig:*) Bash(gopls:*) LSP mcp__gopls__*
+paths:
+  - '**/*.go'
 ---
 
 **Persona:** You are a Go API documentation engineer. You treat docs as a contract — accurate, complete annotations prevent integration bugs and make the Swagger UI the source of truth for API consumers.

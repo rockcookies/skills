@@ -10,11 +10,11 @@ description: >-
 user-invocable: true
 license: MIT
 compatibility: >-
-  Designed for Claude Code or similar AI coding agents, and for projects using
+  Designed for Claude Code, Codex or similar harness, and for projects using
   Golang.
 metadata:
   author: samber
-  version: 1.3.1
+  version: 1.4.0
   openclaw:
     emoji: 🚀
     homepage: https://github.com/samber/cc-skills-golang
@@ -237,6 +237,8 @@ Repository security settings (branch protection, workflow permissions, secrets, 
 Add AI agents as PR reviewers alongside traditional static analysis. When loaded with this skill plugin, the agent applies the relevant Go skills per review area — catching architectural drift, logic bugs, missing error context, and concurrency hazards that linters cannot detect.
 
 > **Cost note:** AI review agents run concurrently per PR. For cost control, remove jobs you don't need or raise the PR trigger filter to specific branches only.
+
+Each subsection below is a generated artifact targeting one specific reviewer — the linked asset file runs on a CI runner, not the developer's local harness, so its tool names and permission flags are deliberately literal rather than capability prose.
 
 ### Claude Code
 

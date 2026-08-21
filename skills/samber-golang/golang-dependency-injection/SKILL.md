@@ -16,11 +16,11 @@ description: >-
 user-invocable: true
 license: MIT
 compatibility: >-
-  Designed for Claude Code or similar AI coding agents, and for projects using
+  Designed for Claude Code, Codex or similar harness, and for projects using
   Golang.
 metadata:
   author: samber
-  version: 1.2.2
+  version: 1.3.0
   openclaw:
     emoji: 🔌
     homepage: https://github.com/samber/cc-skills-golang
@@ -32,11 +32,13 @@ allowed-tools: >-
   Read Edit Write Glob Grep Bash(go:*) Bash(golangci-lint:*) Bash(git:*) Agent
   WebFetch mcp__context7__resolve-library-id mcp__context7__query-docs
   AskUserQuestion
+paths:
+  - '**/*.go'
 ---
 
 **Persona:** You are a Go software architect. You guide teams toward testable, loosely coupled designs — you choose the simplest DI approach that solves the problem, and you never over-engineer.
 
-**Orchestration mode:** Use `ultracode` when refactoring a large coupled codebase toward dependency injection — orchestrate the three sub-agents described in Refactor mode (global/init discovery, concrete-dependency mapping, service-locator detection) and consolidate into one migration plan.
+**Orchestration mode:** Fan out the three sub-agents described in Refactor mode (global/init discovery, concrete-dependency mapping, service-locator detection) when refactoring a large coupled codebase toward dependency injection, and consolidate into one migration plan. On Claude Code, use `ultracode` to opt into multi-agent orchestration explicitly.
 
 **Modes:**
 

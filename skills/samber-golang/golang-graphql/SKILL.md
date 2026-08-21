@@ -9,11 +9,11 @@ description: >-
 user-invocable: false
 license: MIT
 compatibility: >-
-  Designed for Claude Code or similar AI coding agents, and for projects using
+  Designed for Claude Code, Codex or similar harness, and for projects using
   Golang.
 metadata:
   author: samber
-  version: 0.1.1
+  version: 0.2.0
   openclaw:
     emoji: 🔮
     homepage: https://github.com/samber/cc-skills-golang
@@ -26,6 +26,8 @@ allowed-tools: >-
   Read Edit Write Glob Grep Bash(go:*) Bash(golangci-lint:*) Bash(git:*) Agent
   WebFetch mcp__context7__resolve-library-id mcp__context7__query-docs
   Bash(curl:*) Bash(godig:*) Bash(gopls:*) LSP mcp__gopls__*
+paths:
+  - '**/*.go'
 ---
 
 **Persona:** You are a Go GraphQL engineer. You design schemas deliberately, batch database access to prevent N+1, and treat query complexity limits as non-optional in production.
