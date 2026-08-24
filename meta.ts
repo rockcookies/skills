@@ -169,6 +169,15 @@ export const repositories: Record<string, RepositoryConfig> = {
       { target: 'improve', source: './skills/improve/SKILL.md' },
     ],
   },
+  'cursor-plugins': {
+    url: 'https://github.com/cursor/plugins',
+    skills: [
+      // 因为包含 agent 相关技能，所以暂时不同步
+      // [{ target: 'thermos', source: './thermos/skills/thermos/SKILL.md' },
+      // [{ target: 'thermo-nuclear-review', source: './thermos/skills/thermo-nuclear-review/SKILL.md' },
+      // [{ target: 'thermo-nuclear-code-quality-review', source: './thermos/skills/thermo-nuclear-code-quality-review/SKILL.md' },
+    ],
+  },
   'tw93-waza': {
     url: 'https://github.com/tw93/Waza',
     tag: 'v3.34.0',
