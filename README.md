@@ -1,8 +1,8 @@
 # RockCookies' Skills
 
-A curated collection of [Agent Skills](https://agentskills.io/home) for full-stack development, with skills synced from upstream repositories via a CLI tool.
+A curated collection of [Agent Skills](https://agentskills.io/home) and Cursor plugin agents for full-stack development, synced from upstream repositories via a CLI tool.
 
-Synced skills live at `skills/{repoKey}/{target}/`. Hand-maintained skills live under `skills/custom/`. Repository sources and skill mappings are configured in [meta.ts](meta.ts).
+Synced skills live at `skills/{repoKey}/{target}/`. Hand-maintained skills live under `skills/custom/`. Synced agents live at `agents/{repoKey}/{target}.md`. Repository sources and mappings are configured in [meta.ts](meta.ts).
 
 ## Installation
 
@@ -19,6 +19,14 @@ npx skills add rockcookies/skills --full-depth --skill vue-best-practices -g
 ```
 
 Learn more about the CLI at [skills](https://github.com/vercel-labs/skills).
+
+`npx skills add` installs skills only. Copy agent `.md` files (not `SYNC.json`) into Cursor's user agents directory:
+
+```bash
+cp agents/cursor-plugins/*.md ~/.cursor/agents/
+```
+
+Thermos skills launch those subagents by `name`. Install the skills **and** copy the matching agent files, or the orchestrator has nothing to delegate to.
 
 ### Go skills ([samber/cc-skills-golang](https://github.com/samber/cc-skills-golang), tag `v1.9.1`)
 
@@ -259,6 +267,18 @@ npx skills add rockcookies/skills --full-depth \
   -g
 ```
 
+#### Thermos (branch review)
+
+Skills plus matching agents. After installing the skills, copy the agent files as in [Installation](#installation).
+
+```bash
+npx skills add rockcookies/skills --full-depth \
+  --skill thermos \
+  --skill thermo-nuclear-review \
+  --skill thermo-nuclear-code-quality-review \
+  -g
+```
+
 ## Skills
 
 ### Hand-maintained Skills
@@ -295,6 +315,16 @@ Synced from external repositories into `skills/{repoKey}/{target}/`.
 | ---------------------------------------------------- | ------------------------------------------------------------- |
 | [frontend-design](skills/anthropics/frontend-design) | Distinctive, intentional visual design for new or reshaped UI |
 | [skill-creator](skills/anthropics/skill-creator)     | Create, edit, and benchmark agent skills                      |
+
+#### [cursor/plugins](https://github.com/cursor/plugins) (thermos)
+
+`thermos` launches the two review subagents in parallel. Copy `agents/cursor-plugins/*.md` into `~/.cursor/agents/` as well — see [Installation](#installation).
+
+| Skill                                                                                          | Description                                                              |
+| ---------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
+| [thermo-nuclear-code-quality-review](skills/cursor-plugins/thermo-nuclear-code-quality-review) | Strict maintainability audit (structure, file-size growth, spaghetti)    |
+| [thermo-nuclear-review](skills/cursor-plugins/thermo-nuclear-review)                           | Deep branch audit (bugs, breakages, security, devex, feature-flag leaks) |
+| [thermos](skills/cursor-plugins/thermos)                                                       | Run both review subagents in parallel and synthesize findings            |
 
 #### [deckardger/tanstack-agent-skills](https://github.com/deckardger/tanstack-agent-skills)
 
@@ -475,15 +505,28 @@ Synced from external repositories into `skills/{repoKey}/{target}/`.
 | -------------------------------------- | -------------------------------------------------------------------------------------- |
 | [hono-skills](skills/hono/hono-skills) | Build Hono web applications — routing, middleware, JSX, validation, testing, streaming |
 
+## Agents
+
+Synced Cursor plugin subagents at `agents/{repoKey}/{target}.md`. These are not installed by `npx skills add`. Copy the `.md` files into `~/.cursor/agents/` (see [Installation](#installation)).
+
+#### [cursor/plugins](https://github.com/cursor/plugins) (thermos)
+
+Paired with the thermos skills above. The skill `thermos` invokes these by `name`.
+
+| Agent                                                                                                               | Description                                             |
+| ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------- |
+| [thermo-nuclear-code-quality-review-subagent](agents/cursor-plugins/thermo-nuclear-code-quality-review-subagent.md) | Task subagent for the code-quality rubric (diff-scoped) |
+| [thermo-nuclear-review-subagent](agents/cursor-plugins/thermo-nuclear-review-subagent.md)                           | Task subagent for the deep-review rubric (diff-scoped)  |
+
 ## How It Works
 
 This project uses an interactive CLI (`pnpm cli`) to manage upstream skill repositories:
 
 1. **Manage upstream repositories** — Clone or update external git repositories into `upstream/`
-2. **Sync skills** — Update upstream repos, then copy skill files into `skills/{repoKey}/{target}/`
+2. **Sync skills** — Update upstream repos, then copy mapped skills into `skills/{repoKey}/{target}/` and mapped agents into `agents/{repoKey}/{target}.md`
 3. **Cleanup** — Remove orphaned upstream repositories
 
-Repository sources and skill mappings live in [meta.ts](meta.ts). Pins:
+Repository sources and mappings live in [meta.ts](meta.ts). Pins:
 
 | Key             | Upstream                | Pin           |
 | --------------- | ----------------------- | ------------- |
@@ -491,7 +534,7 @@ Repository sources and skill mappings live in [meta.ts](meta.ts). Pins:
 | `mattpocock`    | mattpocock/skills       | tag `v1.2.3`  |
 | `tw93-waza`     | tw93/Waza               | tag `v3.34.0` |
 
-Unpinned repos track the default branch. Upstreams listed in `meta.ts` with an empty `skills` array are reserved for future use and are skipped by Sync.
+Unpinned repos track the default branch. Upstreams listed in `meta.ts` with empty `skills` and empty `agents` are reserved for future use and are skipped by Sync.
 
 ## Development
 
