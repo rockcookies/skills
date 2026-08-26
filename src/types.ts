@@ -24,10 +24,27 @@ export interface SkillMapping {
   excludes?: string[]
 }
 
+/**
+ * 单个 agent 映射配置（Cursor plugin / ~/.cursor/agents 单文件 .md）
+ */
+export interface AgentMapping {
+  /**
+   * 源 agent .md 路径，相对于仓库根目录
+   * - './thermos/agents/thermo-nuclear-review-subagent.md'
+   */
+  source: string
+
+  /**
+   * 目标 agent 名称，输出到 agents/{repoKey}/{target}.md
+   */
+  target: string
+}
+
 export interface RepositoryConfig {
   url: string
   branch?: string
   tag?: string
   commit?: string
   skills?: SkillMapping[]
+  agents?: AgentMapping[]
 }

@@ -28,14 +28,14 @@ export async function syncSubmodules(
 
   p.log.success('All repositories updated')
 
-  spinner.start('Syncing upstream skills...')
+  spinner.start('Syncing upstream skills and agents...')
   try {
-    await syncService.syncUpstreamSkills(repositories, force)
-    spinner.stop('Skills synced')
+    await syncService.syncAll(repositories, force)
+    spinner.stop('Skills and agents synced')
   } catch (error) {
     spinner.stop(`Failed to sync: ${formatError(error)}`)
     throw error
   }
 
-  p.log.success('All skills synced')
+  p.log.success('All skills and agents synced')
 }

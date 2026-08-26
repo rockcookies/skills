@@ -17,7 +17,7 @@ async function main() {
   const action = await p.select({
     message: 'What would you like to do?',
     options: [
-      { value: 'sync', label: 'Sync skills', hint: 'Update upstream and sync skills' },
+      { value: 'sync', label: 'Sync skills', hint: 'Update upstream and sync skills/agents' },
       {
         value: 'upstream',
         label: 'Manage upstream repositories',
