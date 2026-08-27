@@ -499,6 +499,12 @@ Synced from external repositories into `skills/{repoKey}/{target}/`.
 | -------------------------------------------------- | ------------------------------------------------------------------------------ |
 | [vueuse-functions](skills/vueuse/vueuse-functions) | Apply VueUse composables to build concise, maintainable Vue.js / Nuxt features |
 
+#### [warpdotdev/common-skills](https://github.com/warpdotdev/common-skills)
+
+| Skill                                                    | Description                                                                                        |
+| -------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| [skill-doctor](skills/warpdotdev-common/skill-doctor)    | Grades your agent setup by scoring real conversations; drafts skill edits and a shareable report   |
+
 #### [yusukebe/hono-skill](https://github.com/yusukebe/hono-skill)
 
 | Skill                                  | Description                                                                            |
