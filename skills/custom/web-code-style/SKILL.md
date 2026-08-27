@@ -2,36 +2,36 @@
 name: web-code-style
 description: >-
   Web/React UI 代码风格：行宽与语义断行、early return、复杂条件、函数长度与参数对象、
-  文件内声明顺序、JSX 复杂度、注释边界。Use when writing or reviewing React/TS UI
-  code for clarity, nesting, line breaks, or project style standards. Not for
-  naming conventions (→ web-naming). Not for Vue-specific SFC style.
+  文件内声明顺序、组件只管展示、readonly、对象字面量具名字段、JSX 复杂度、注释边界。
+  Use when writing or reviewing React/TS UI code for clarity, nesting, line
+  breaks, or project style standards. Not for naming conventions (→ web-naming).
+  Not for React performance or hooks rules (→ react-best-practices). Not for
+  Vue-specific SFC style.
 when_to_use: >-
-  代码风格, 可读性, 嵌套太深, early return, 断行, 行宽, 参数过多, 函数太长, JSX 复杂度,
-  注释边界, 声明顺序, 清晰度, code style, clarity, nesting, line break, control flow,
-  style review, refactor for readability
+  代码风格，可读性，嵌套太深，early return，断行，行宽，参数过多，函数太长，JSX 复杂度，
+  注释边界，声明顺序，组件只管展示，readonly，对象字面量，清晰度，code style, clarity,
+  nesting, line break, control flow, style review, refactor for readability
 user-invocable: true
 metadata:
   author: rockcookies
-  version: 1.0.0
+  version: 1.1.0
 ---
 
 **Persona:** 你是 Web/React UI 清晰度工程师。格式化器管缩进与引号；本 skill 管需要判断的可读性。
 
-**范围：** 浏览器端 UI 的 TypeScript / TSX。命名见 `web-naming`。
+**范围：** 浏览器端 UI 的 TypeScript / TSX。命名见 `web-naming`。性能与 hooks 规则见 `react-best-practices`。
 
 **模式：**
 
 - **Coding 模式**：写新代码时按下列规则组织控制流与 JSX。
-- **Review 模式**：在 diff 中找过深嵌套、墙式条件、过长参数列表、模板里堆业务逻辑、复述代码的注释。
-- **Audit 模式**：大库审查时用子代理并行覆盖独立关注点（控制流、函数设计、JSX 复杂度、注释），再合并结论。
+- **Review 模式**：在 diff 中找过深嵌套、墙式条件、过长参数列表、模板里堆业务逻辑、组件里塞非 UI 逻辑、可改写的 props、复述代码的注释。
+- **Audit 模式**：大库审查时用子代理并行覆盖独立关注点（控制流、函数设计、JSX 复杂度、文件组织、注释），再合并结论。
 
 ---
 
 # Web / React 代码风格
 
 > 拿不准时，优先保持**文件内 / 仓内**一致性。忽略某条规则时，在代码旁加简短注释说明原因。
-
-命名约定 → 见 `web-naming`。
 
 ## 行宽与断行
 
@@ -109,16 +109,39 @@ type FetchUserOptions = {
 function fetchUser(id: string, options: FetchUserOptions = {}) {}
 ```
 
+## 对象字面量：具名字段
+
+对象字面量用字段名，不要靠位置参数或无名字段顺序传递一组相关值。详见 [details.md](./references/details.md)。
+
+```ts
+openDialog({ title, body, onConfirm })
+```
+
+## 组件只管展示
+
+组件与 Hook 里的代码应服务当前 UI。校验规则、数据变换、与界面无关的业务过程，抽到同目录的普通函数或模块再调用。长示例见 [details.md](./references/details.md)。
+
 ## 文件内组织
 
-相关声明放在一起。常见顺序：
+相关声明放在一起。组件 / Hook 文件常见顺序：
 
 1. imports
 2. 类型 / 常量
-3. 主组件或主 Hook
+3. 主组件或主 Hook：公开 props、事件处理器、hooks
 4. 仅本文件使用的 helpers
 
-一个文件一个主组件（或一个主 Hook）；小组件可共文件，前提是同一概念且体量小。
+公开 API 与 hooks 放在内部 helpers 前面，读文件时先看到模板在用什么。一个文件一个主组件（或一个主 Hook）；小组件可共文件，前提是同一概念且体量小。
+
+## `readonly`
+
+不应被改写的 props 字段、以及初始化后不再赋值的派生值，标 `readonly`，避免把输入当可变草稿。
+
+```ts
+type UserProfileProps = {
+  readonly userId: string
+  readonly onSave: () => void
+}
+```
 
 ## JSX：避免过复杂逻辑
 
@@ -145,7 +168,7 @@ return (
 
 ```ts
 // ✓ Good：说明约束
-// Stripe webhooks 要求原始 body；勿先 JSON.parse
+// 支付回调要原始 body；勿先 JSON.parse
 const rawBody = await request.text()
 
 // ✗ Bad：复述下一行
@@ -160,4 +183,5 @@ const count = 0
 ## 交叉引用
 
 - → `web-naming`：标识符、文件名、组件 / Hook / props 命名
-- → [details.md](./references/details.md)：复杂条件与 options 对象的更长示例
+- → `react-best-practices`：渲染性能、hooks 依赖与订阅
+- → [details.md](./references/details.md)：复杂条件、options 对象、展示外提、`readonly`、具名字段

@@ -46,7 +46,7 @@ type OpenDialogOptions = {
 function openDialog(options: OpenDialogOptions) {}
 ```
 
-新增可选字段时改 options 类型，避免继续拉长位置参数列表。
+新增可选字段时改 options 类型，避免继续拉长位置参数列表。调用处同样用具名字段，不要把一组相关值拆成位置参数。
 
 ## 默认值再覆盖
 
@@ -68,6 +68,60 @@ function resolveTone(isError: boolean, isSuccess: boolean): Tone {
   return tone
 }
 ```
+
+## 组件只管展示：外提校验与变换
+
+```ts
+// order-validator.ts
+export function validateOrder(order: Order): string[] {
+  const errors: string[] = []
+  if (order.items.length === 0) {
+    errors.push('empty items')
+  }
+  return errors
+}
+
+export function formatLineTotal(item: LineItem): string {
+  return (item.unitPrice * item.quantity).toFixed(2)
+}
+```
+
+```tsx
+// OrderForm.tsx：组件只绑数据与反馈
+function OrderForm({ order, onSave }: OrderFormProps) {
+  function submitOrder() {
+    const errors = validateOrder(order)
+    if (errors.length > 0) {
+      return
+    }
+    onSave(order)
+  }
+
+  return <button onClick={submitOrder}>Save</button>
+}
+```
+
+## `readonly` props 与派生
+
+```ts
+type UserProfileProps = {
+  readonly userId: string
+  readonly isEditable: boolean
+  readonly onSave: () => void
+}
+
+function UserProfile({ userId, isEditable, onSave }: UserProfileProps) {
+  const displayId: string = userId
+  return (
+    <section>
+      <p>{displayId}</p>
+      {isEditable ? <button onClick={onSave}>Save</button> : null}
+    </section>
+  )
+}
+```
+
+不要把传入的 props 对象当可变草稿（`props.userId = next`）。要改的是本地 state 或回传的事件载荷。
 
 ## JSX 上提的边界示例
 
