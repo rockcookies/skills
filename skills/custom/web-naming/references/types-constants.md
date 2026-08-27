@@ -2,7 +2,7 @@
 
 ## 接口：无 `I` 前缀
 
-TypeScript 惯例不用匈牙利 `I` 前缀。接口名用 PascalCase 名词。
+TypeScript 惯例不用匈牙利 `I` 前缀。接口名用 PascalCase 名词。不强制「对象形状必须用 `interface` 而不能用 `type`」；文件内保持一种即可。
 
 ```ts
 // ✓ Good
@@ -30,38 +30,34 @@ type UserData = { name: string }
 class ServerObject {}
 ```
 
-## 常量
+## 可辨状态：union 优先
 
-模块顶层不可变常量用 `SCREAMING_SNAKE_CASE`。名称表达**角色**，不表达**字面值**。
+离散状态优先 string union 或 `as const` 对象，不要用数字枚举把 `0` 当成真实业务状态。
 
 ```ts
 // ✓ Good
-const MAX_RETRY_COUNT = 3
-const DEFAULT_TIMEOUT_MS = 30_000
+type OrderStatus = 'pending' | 'paid' | 'cancelled'
 
-// ✗ Bad：值变了名字就过时
-const THREE = 3
-const TIMEOUT_30000 = 30_000
+const OrderStatus = {
+  Pending: 'pending',
+  Paid: 'paid',
+  Cancelled: 'cancelled',
+} as const
+type OrderStatus = (typeof OrderStatus)[keyof typeof OrderStatus]
 ```
 
-局部 `const` 用 `camelCase`。
-
-## 枚举
-
-枚举成员在同一项目内统一用 `PascalCase` 或 `SCREAMING_SNAKE_CASE`（二选一，不要混用）。
-
-**零值哨兵**：用 `Unknown`/`None` 作枚举零值，避免未初始化被误当真实状态。
+需要 `enum` 时，用显式字符串成员，便于序列化与日志：
 
 ```ts
-// ✓ Good
 enum OrderStatus {
-  Unknown = 'UNKNOWN',
-  Pending = 'PENDING',
-  Paid = 'PAID',
-  Cancelled = 'CANCELLED',
+  Pending = 'pending',
+  Paid = 'paid',
+  Cancelled = 'cancelled',
 }
+```
 
-// ✗ Bad：Pending 是数字零值，未赋值变量静默成 Pending
+```ts
+// ✗ Bad：Pending 是数字 0，未赋值变量静默成 Pending
 enum OrderStatus {
   Pending,
   Paid,
@@ -69,7 +65,23 @@ enum OrderStatus {
 }
 ```
 
-字符串枚举优先显式赋值，便于序列化与日志。
+## 常量
+
+只有**模块顶层**不可变常量用 `SCREAMING_SNAKE_CASE`。名称表达**角色**，不表达**字面值**。局部 `const` 用 `camelCase`。
+
+```ts
+// ✓ Good
+const MAX_RETRY_COUNT = 3
+const DEFAULT_TIMEOUT_MS = 30_000
+
+function retry() {
+  const maxRetryCount = 3
+}
+
+// ✗ Bad：值变了名字就过时
+const THREE = 3
+const TIMEOUT_30000 = 30_000
+```
 
 ## 泛型类型参数
 
@@ -82,14 +94,4 @@ function map<TKey, TValue>(entries: [TKey, TValue][]): Map<TKey, TValue> {}
 
 ## React Props 类型
 
-组件 props 类型通常与组件同名加 `Props` 后缀：
-
-```ts
-type UserProfileProps = {
-  userId: string
-  isEditable: boolean
-  onSave: (data: UserData) => void
-}
-```
-
-详见 [react.md](./react.md)。
+组件 props 类型通常与组件同名加 `Props` 后缀。详见 [react.md](./react.md)。

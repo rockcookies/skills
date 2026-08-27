@@ -10,7 +10,7 @@ function defaultConfig(): Config {}
 function userName(): string {}
 
 // 动词：执行动作
-function writeFile(name: string, data: Buffer): Promise<void> {}
+function persistDraft(id: string, body: string): Promise<void> {}
 function sendNotification(user: User): Promise<void> {}
 ```
 
@@ -51,8 +51,8 @@ export function newLogger() {}
 键盘等复杂场景可先写 `handleKeydown`，再内部分发到 `activateBold()` 等具体方法：
 
 ```ts
-function handleKeydown(event: KeyboardEvent) {
-  if (event.ctrlKey && event.key === 'B') {
+function handleKeydown(e: KeyboardEvent) {
+  if (e.ctrlKey && e.key === 'B') {
     activateBold()
   }
 }

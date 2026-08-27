@@ -1,6 +1,6 @@
 # React 命名约定
 
-React 没有官方 style guide；以下提炼自 [Airbnb React Style Guide](https://github.com/airbnb/javascript/blob/master/react/README.md) 与 [React 文档](https://react.dev/learn/importing-and-exporting-components)，并与前端非组件模块形成**双轨文件命名**。
+React 没有官方 style guide；以下与前端非组件模块形成**双轨文件命名**。测试文件名见 [testing.md](./testing.md)；`.types.ts` 见 [files-modules.md](./files-modules.md)。
 
 ## 双轨文件命名
 
@@ -39,6 +39,7 @@ export function PaymentForm({ onSubmit }: PaymentFormProps) {
 - 普通 prop：`camelCase`（`userName`、`phoneNumber`）
 - 值为 React 组件的 prop：`PascalCase`（`Component={Sidebar}`）
 - 布尔 prop：`is`/`has`/`can` 前缀（`isDisabled`、`hasError`、`canSubmit`）
+- Props 类型：`ComponentNameProps`（`PaymentFormProps`）
 
 ```tsx
 // ✓ Good
@@ -92,24 +93,7 @@ auth-store.ts
 format-date.ts
 ```
 
-## 类型文件
-
-```
-user.types.ts
-api.types.ts
-```
-
-Props 类型：`ComponentNameProps`（`PaymentFormProps`）。
-
-## 测试文件
-
-与组件同基名；放在同目录或同级 `__tests__/`（全仓统一一种）：
-
-```
-UserProfile.tsx
-UserProfile.test.tsx
-useAuth.test.ts
-```
+Zustand 的 `*.store.ts` 等后缀由 `web-zustand` 规定；本文件只要求非组件模块走 kebab 轨。
 
 ## 目录与 `index.ts`
 
@@ -125,7 +109,3 @@ components/UserProfile/index.ts   // export { UserProfile } from './UserProfile'
 ```
 
 `index.ts` 仅作 barrel 重导出；主实现文件仍应有具名文件名，避免目录内全是 `index.tsx` 难以导航。
-
-## 与 ESLint 对齐
-
-Airbnb 配置中的 `react/jsx-pascal-case`、`react/boolean-prop-naming` 可自动校验组件名与布尔 prop。

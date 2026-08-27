@@ -6,7 +6,7 @@
 |------|------|------|
 | 变量、函数、方法 | `camelCase` | `fetchUser`, `userCount` |
 | 类、接口、类型、枚举 | `PascalCase` | `UserService`, `HttpClient` |
-| 常量（顶层不可变） | `SCREAMING_SNAKE_CASE` | `MAX_RETRY_COUNT`, `DEFAULT_TIMEOUT_MS` |
+| 常量（模块顶层不可变） | `SCREAMING_SNAKE_CASE` | `MAX_RETRY_COUNT`, `DEFAULT_TIMEOUT_MS` |
 | 私有字段（类内） | `#camelCase`（原生私有）或 `_camelCase`（约定私有） | `#token`, `_cache` |
 
 ```ts
@@ -23,9 +23,11 @@ const max_retry_count = 3
 class IUserRepository {}
 ```
 
+局部 `const` 用 `camelCase`。`SCREAMING_SNAKE_CASE` 只给模块顶层不可变常量。
+
 ## 作用域与长度
 
-名称长度应与作用域成正比：短作用域用短名，包级/模块级用描述性名称。
+名称长度应与作用域成正比：短作用域用短名，模块级用描述性名称。
 
 ```ts
 // 小作用域（循环 3-7 行）
@@ -44,9 +46,10 @@ const DEFAULT_HTTP_TIMEOUT_MS = 30_000
 |------|------|
 | `i`, `j`, `k` | 循环索引 |
 | `n` | 计数或长度 |
-| `err` | 错误 |
-| `ctx` | 上下文对象 |
-| `req`, `res` | HTTP 请求/响应 |
+| `e` | DOM / React 事件 |
+| `prev` | 更新前回值（如 `setState(prev => ...)`） |
+
+AbortSignal 用 `signal`，Error 用 `error`，不要缩成单字母。
 
 ## 布尔命名
 
@@ -97,18 +100,21 @@ function updateAccount(acct: User) {}
 function removePerson(id: string) {}
 ```
 
-## 缩写与首字母缩略词
+## 缩写当词
 
-HTTP/URL/ID 等在 PascalCase 中全大写；camelCase 开头时缩略词全小写。`id` 是惯例例外。
+把 HTTP / URL / ID 等缩写当作普通词：PascalCase 里只大写首字母，camelCase 里不大写整段。平台强制名（如 `XMLHttpRequest`）除外。
 
 ```ts
 // ✓ Good
-class HTTPClient {}
-const httpClient = new HTTPClient()
-function parseURL() {}
+class HttpClient {}
+const httpClient = new HttpClient()
+function parseUrl() {}
 const userId = ''
+function loadHttpUrl() {}
 
 // ✗ Bad
-class HttpClient {}
+class HTTPClient {}
+function parseURL() {}
 const userID = ''
+function loadHTTPURL() {}
 ```

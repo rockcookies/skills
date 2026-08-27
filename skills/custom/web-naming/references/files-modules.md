@@ -61,31 +61,9 @@ export function parseUrl() {}
 export function hashPassword() {}
 ```
 
-## 目录组织
-
-相关文件放在一起。全仓选一种布局并保持一致；不硬性禁止 `hooks/`、`components/` 等按类型划分的目录，但避免把无关文件堆进同一个大抽屉。
-
-```
-// 方案 A：feature 目录 + kebab 目录名
-features/
-└── user-profile/
-    ├── UserProfile.tsx
-    ├── useUserProfile.ts
-    └── user-profile-api.ts
-
-// 方案 B：组件目录 + 可选 index 重导出
-components/
-└── UserProfile/
-    ├── UserProfile.tsx
-    ├── UserProfile.test.tsx
-    └── index.ts
-```
-
-目录名用 `kebab-case`；组件文件在目录内用 `PascalCase`（除非仓已统一 kebab 组件文件）。
-
 ## 避免 Stuttering
 
-导入路径已携带模块名，标识符不要再重复。
+导入路径已携带模块名，标识符不要再重复：
 
 ```ts
 // ✓ Good
@@ -96,6 +74,22 @@ parse(rawUrl)
 import { parseUrl } from './url.ts'
 parseUrl(rawUrl)
 ```
+
+职责拆分后的 `parseUrl`（文件是 `url.ts`、函数描述「解析 URL」）若调用点不带模块前缀、读起来也不重复，可以保留。判断标准是**调用点**会不会把同一概念读两遍。
+
+## 目录组织
+
+相关文件放在一起。全仓选一种布局并保持一致；不硬性禁止 `hooks/`、`components/` 等按类型划分的目录，但避免把无关文件堆进同一个大抽屉。
+
+```
+features/
+└── user-profile/
+    ├── UserProfile.tsx
+    ├── useUserProfile.ts
+    └── user-profile-api.ts
+```
+
+目录名用 `kebab-case`；组件文件在目录内用 `PascalCase`（除非仓已统一 kebab 组件文件）。组件目录与 `index.ts` 见 [react.md](./react.md)。
 
 ## 类型定义文件
 
