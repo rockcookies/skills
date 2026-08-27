@@ -169,6 +169,12 @@ export const repositories: Record<string, RepositoryConfig> = {
       { target: 'improve', source: './skills/improve/SKILL.md' },
     ],
   },
+  'warpdotdev-common': {
+    url: 'https://github.com/warpdotdev/common-skills',
+    skills: [
+      { target: 'skill-doctor', source: './.agents/skills/skill-doctor/SKILL.md' },
+    ],
+  },
   'cursor-plugins': {
     url: 'https://github.com/cursor/plugins',
     skills: [
