@@ -28,7 +28,7 @@ cp agents/cursor-plugins/*.md ~/.cursor/agents/
 
 Thermos skills launch those subagents by `name`. Install the skills **and** copy the matching agent files, or the orchestrator has nothing to delegate to.
 
-### Go skills ([samber/cc-skills-golang](https://github.com/samber/cc-skills-golang), tag `v1.9.1`)
+### Go skills ([samber/cc-skills-golang](https://github.com/samber/cc-skills-golang), tag `v2.0.0`)
 
 Atomic and cross-referencing — prefer the ⭐ set (or all), then add category / library skills as needed. Installing a skill does **not** pull linked skills automatically.
 
@@ -392,7 +392,7 @@ Synced from external repositories into `skills/{repoKey}/{target}/`.
 | ------------------------------------------------------ | ----------------------------------------------------------------------------- |
 | [playwright-cli](skills/playwright-cli/playwright-cli) | Automate browser interactions, test web pages, and work with Playwright tests |
 
-#### [samber/cc-skills-golang](https://github.com/samber/cc-skills-golang) (tag `v1.9.1`)
+#### [samber/cc-skills-golang](https://github.com/samber/cc-skills-golang) (tag `v2.0.0`)
 
 | Skill                                                                               | Description                                                                    |
 | ----------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
@@ -449,7 +449,7 @@ Synced from external repositories into `skills/{repoKey}/{target}/`.
 | ---------------------------------------- | -------------------------------------------------------------------- |
 | [improve](skills/shadcn-improve/improve) | Read-only senior-advisor survey — prioritized plans for other agents |
 
-#### [tw93/Waza](https://github.com/tw93/Waza) (tag `v3.34.0`)
+#### [tw93/Waza](https://github.com/tw93/Waza) (tag `v3.34.1`)
 
 | Skill                             | Description                                                                   |
 | --------------------------------- | ----------------------------------------------------------------------------- |
@@ -530,9 +530,9 @@ Repository sources and mappings live in [meta.ts](meta.ts). Pins:
 
 | Key             | Upstream                | Pin           |
 | --------------- | ----------------------- | ------------- |
-| `samber-golang` | samber/cc-skills-golang | tag `v1.9.1`  |
+| `samber-golang` | samber/cc-skills-golang | tag `v2.0.0`  |
 | `mattpocock`    | mattpocock/skills       | tag `v1.2.3`  |
-| `tw93-waza`     | tw93/Waza               | tag `v3.34.0` |
+| `tw93-waza`     | tw93/Waza               | tag `v3.34.1` |
 
 Unpinned repos track the default branch. Upstreams listed in `meta.ts` with empty `skills` and empty `agents` are reserved for future use and are skipped by Sync.
 
