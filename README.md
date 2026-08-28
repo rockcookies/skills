@@ -335,6 +335,12 @@ Synced from external repositories into `skills/{repoKey}/{target}/`.
 | [tanstack-router](skills/tanstack-agent/tanstack-router)           | TanStack Router — type-safe routing, data loading, search params     |
 | [tanstack-start](skills/tanstack-agent/tanstack-start)             | TanStack Start — server functions, middleware, SSR, auth, deployment |
 
+#### [humanlayer/skills](https://github.com/humanlayer/skills)
+
+| Skill                                | Description                                                                                      |
+| ------------------------------------ | ------------------------------------------------------------------------------------------------ |
+| [show-me](skills/humanlayer/show-me) | Visual explanations — diagrams, call trees, Mermaid diffs, and focused HTML artifacts            |
+
 #### [JimLiu/baoyu-skills](https://github.com/JimLiu/baoyu-skills)
 
 | Skill                                           | Description                                                                     |
@@ -448,6 +454,12 @@ Synced from external repositories into `skills/{repoKey}/{target}/`.
 | Skill                                    | Description                                                          |
 | ---------------------------------------- | -------------------------------------------------------------------- |
 | [improve](skills/shadcn-improve/improve) | Read-only senior-advisor survey — prioritized plans for other agents |
+
+#### [tt-a1i/simplify-codebase](https://github.com/tt-a1i/simplify-codebase)
+
+| Skill                                                                      | Description                                                                                  |
+| -------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| [simplify-codebase](skills/tt-a1i-simplify-codebase/simplify-codebase)     | Evidence-backed simplification audit — delete dead code, duplicate state, redundant layers   |
 
 #### [tw93/Waza](https://github.com/tw93/Waza) (tag `v3.34.1`)
 
