@@ -210,6 +210,12 @@ export const repositories: Record<string, RepositoryConfig> = {
       { target: 'codebase-audit', source: './skills/codebase-audit/SKILL.md' },
     ]
   },
+  'humanlayer': {
+    url: 'https://github.com/humanlayer/skills',
+    skills: [
+      { target: 'show-me', source: './plugins/show-me/skills/show-me/SKILL.md' },
+    ],
+  },
   "baoyu-design": {
     url: "https://github.com/jimliu/baoyu-design",
     skills: [
