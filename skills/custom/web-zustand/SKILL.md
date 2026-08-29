@@ -7,20 +7,17 @@ description: >-
   public/internal/dispatch actions, nested state, selectors, or optimistic
   updates in React/TS apps. Not for identifier/file naming (→ web-naming).
   Not for UI clarity or JSX structure (→ web-code-style). Not for Vitest store
-  tests, SWR/fetch pipelines, or List-Detail data-shape design.
+  tests, SWR/fetch pipelines, or List-Detail data-shape design. Not for how
+  service responses should be typed/validated before entering the store
+  (→ typescript-best-practices, if present in the repo).
 when_to_use: >-
-  zustand, store, slice, StoreImpl, internal_dispatch, internal_*, 乐观更新,
-  selector, isEqual, createZustandNamespace, nested state, 状态管理, setState,
-  optimistic update, store review
-user-invocable: true
+  zustand, 状态管理, 平铺状态, 整树订阅, store 审查, loadingIds, 乐观删除
 metadata:
   author: rockcookies
-  version: 1.0.0
+  version: 1.2.0
 ---
 
-**Persona:** 你是 Web/React 客户端状态工程师。默认产出可维护的 StoreImpl + 嵌套 slice，而不是散落的 `create()` 钩子。
-
-**范围：** 浏览器端 Zustand store 的结构、action 分层、嵌套状态与 selector。通用标识符/文件命名见 `web-naming`；UI 清晰度见 `web-code-style`。
+**范围：** 浏览器端 Zustand store 的结构、action 分层、嵌套状态与 selector。默认 StoreImpl + 嵌套 slice，而不是散落的 `create()` 钩子。通用标识符/文件命名见 `web-naming`；UI 清晰度见 `web-code-style`。仓内若有 `typescript-best-practices`：进 store 前的 parse、单个异步子状态要不要建成判别联合，以它为准（建模原则见 `type-system-discipline`，若仓内有）。本 skill 管进 store 之后怎么写、怎么 dispatch。未部署时跟仓内 service 层现有类型；列表默认 `loadingIds`。
 
 **模式：**
 
@@ -96,6 +93,8 @@ internal_dispatchLayout(partial: Partial<LayoutState>, action?: string) {
 - 一次性初始化多个字段
 - `mount` / 生命周期场景
 
+> `internal_dispatch*` 的 `Partial<T>` 是 Zustand patch 语义：约束的是子状态 `T` 本身，不是这个 patch 参数。`T` 内部互斥组合是否建成判别联合，见范围。
+
 ## 乐观更新（摘要）
 
 创建/更新：先 `internal_dispatch*` 写入 → 调服务 → `refresh` 对齐；失败时回滚临时项。
@@ -140,3 +139,8 @@ Action 名：公开动词 / `internal_*` / `internal_dispatch*`。
 
 - Action 模式：[references/action-patterns.md](./references/action-patterns.md)
 - Slice 与 selector：[references/slice-organization.md](./references/slice-organization.md)
+
+## 交叉引用
+
+- → `web-naming`：store/slice/action 相关标识符与文件命名
+- → `web-code-style`：store 之外的通用可读性规则

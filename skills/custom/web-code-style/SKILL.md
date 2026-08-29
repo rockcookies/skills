@@ -6,20 +6,17 @@ description: >-
   Use when writing or reviewing React/TS UI code for clarity, nesting, line
   breaks, or project style standards. Not for naming conventions (→ web-naming).
   Not for React performance or hooks rules (→ react-best-practices). Not for
-  Vue-specific SFC style.
+  Vue-specific SFC style. Not for type-level correctness (→ typescript-best-practices,
+  if present in the repo).
 when_to_use: >-
-  代码风格，可读性，嵌套太深，early return，断行，行宽，参数过多，函数太长，JSX 复杂度，
-  注释边界，声明顺序，组件只管展示，readonly，对象字面量，清晰度，code style, clarity,
-  nesting, line break, control flow, style review, refactor for readability
-user-invocable: true
+  嵌套太深, 墙式条件, 可读性, 风格审查, 参数过多, 函数太长, 过深嵌套,
+  模板堆逻辑, 控制流, 清晰度
 metadata:
   author: rockcookies
-  version: 1.1.0
+  version: 1.3.0
 ---
 
-**Persona:** 你是 Web/React UI 清晰度工程师。格式化器管缩进与引号；本 skill 管需要判断的可读性。
-
-**范围：** 浏览器端 UI 的 TypeScript / TSX。命名见 `web-naming`。性能与 hooks 规则见 `react-best-practices`。
+**范围：** 浏览器端 UI 的 TypeScript / TSX。格式化器管缩进与引号；本 skill 管需要判断的可读性。命名见 `web-naming`。性能与 hooks 规则见 `react-best-practices`。仓内若有 `typescript-best-practices`：类型建模正确性（判别联合、`any`/`unknown`、类型守卫、穷尽匹配）和 Object args（默认对象参数、热路径例外）以它为准，本 skill 不重复。未部署时不对类型建模作要求；参数对象用本 skill 的门槛（约 ≥4）。
 
 **模式：**
 

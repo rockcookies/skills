@@ -100,6 +100,10 @@ internal_setLoading(id: string, loading: boolean): void {
 }
 ```
 
+## 单个异步子状态
+
+列表默认 `loadingIds`。单个异步操作若已出现互斥字段组合（例如同时 `isLoading` 又 `error`），仓内若有 `typescript-best-practices` 则按其判别联合建模。判别字段命名见 `web-naming` 的 [types-constants.md](../../web-naming/references/types-constants.md)。
+
 ## 跨 Store
 
 直接导入另一 store 单例；读用 `get`，改用对方公开 slice 方法；需要时用 `subscribe(selector, listener)`：

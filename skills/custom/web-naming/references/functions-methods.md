@@ -90,3 +90,7 @@ function doThing() {}
 function processPayment() {}
 function validateSchema() {}
 ```
+
+## 构造 / 校验函数命名（branded types）
+
+把非受信数据转换成 branded type 或经过校验的领域类型的函数，用 `to` + 类型名（`toUserId`）或 `parse` + 类型名（`parseUserId`）。命名细节见 [types-constants.md](./types-constants.md)。转换该不该做、放在哪一层，仓内若有 `typescript-best-practices` 则以它为准。

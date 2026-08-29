@@ -65,6 +65,46 @@ enum OrderStatus {
 }
 ```
 
+## 判别联合的判别字段命名
+
+变体各自带不同关联数据（而不只是一个标签）时，判别字段命名如下：
+
+- 判别字段统一叫 `kind` 或 `type`，二选一，仓内只用一种，不要一个文件 `kind` 另一个文件 `type`。没有仓级约定时默认 `kind`（`type` 与 TS 关键字 `type` 读起来容易混淆）。
+- 字面量值用 kebab-case 或 camelCase 短词，与该联合本身的语义保持一致，不要用全大写：
+
+```ts
+// ✓ Good
+type SaveState =
+  | { kind: 'idle' }
+  | { kind: 'saving' }
+  | { kind: 'error', message: string }
+  | { kind: 'saved', at: Date }
+
+// ✗ Bad：判别字段名不统一、字面量大小写不一致
+type SaveState =
+  | { type: 'Idle' }
+  | { kind: 'SAVING' }
+```
+
+## Branded types 命名
+
+`UserId`、`OrderId` 这类语义化基础类型（底层是 string/number、但不能互换）的命名：
+
+- 类型名用 PascalCase 名词，与它所代表的领域概念同名（`UserId`，不是 `UserIdType` 或 `BrandedUserId`）。
+- brand 标记字段统一叫 `__brand`，用 `readonly`，不对外导出这个内部字段名：
+
+```ts
+// ✓ Good
+type UserId = string & { readonly __brand: 'UserId' }
+type OrderId = string & { readonly __brand: 'OrderId' }
+
+function toUserId(raw: string): UserId {
+  return raw as UserId // 仅在校验函数内部做一次
+}
+```
+
+- 构造/校验函数用 `to` + 类型名（`toUserId`）或 `parse` + 类型名（`parseUserId`），不要用裸 `as` 在调用点强转——转换只应发生在这一个函数里，见 [functions-methods.md](./functions-methods.md)。
+
 ## 常量
 
 只有**模块顶层**不可变常量用 `SCREAMING_SNAKE_CASE`。名称表达**角色**，不表达**字面值**。局部 `const` 用 `camelCase`。

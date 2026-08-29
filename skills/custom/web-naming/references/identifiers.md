@@ -1,29 +1,6 @@
 # 变量、布尔、缩写与作用域
 
-## 大小写规则
-
-| 元素 | 约定 | 示例 |
-|------|------|------|
-| 变量、函数、方法 | `camelCase` | `fetchUser`, `userCount` |
-| 类、接口、类型、枚举 | `PascalCase` | `UserService`, `HttpClient` |
-| 常量（模块顶层不可变） | `SCREAMING_SNAKE_CASE` | `MAX_RETRY_COUNT`, `DEFAULT_TIMEOUT_MS` |
-| 私有字段（类内） | `#camelCase`（原生私有）或 `_camelCase`（约定私有） | `#token`, `_cache` |
-
-```ts
-// ✓ Good
-const maxRetryCount = 3
-const MAX_RETRY_COUNT = 3
-function fetchUser(id: string) {}
-class UserRepository {}
-interface Repository<T> {}
-
-// ✗ Bad
-const MaxRetryCount = 3
-const max_retry_count = 3
-class IUserRepository {}
-```
-
-局部 `const` 用 `camelCase`。`SCREAMING_SNAKE_CASE` 只给模块顶层不可变常量。
+大小写见 SKILL 速查表。局部 `const` 用 `camelCase`；`SCREAMING_SNAKE_CASE` 只给模块顶层不可变常量。
 
 ## 作用域与长度
 
@@ -69,6 +46,17 @@ const write = true
 ```
 
 React boolean props 同样适用：`isDisabled`、`hasError`、`canSubmit`。详见 [react.md](./react.md)。
+
+**类型守卫函数同样适用这套前缀。** 返回类型谓词（`x is T`）的函数按其检验的是"是不是"还是"有没有"选 `isX` / `hasX`，不要用裸动词（`checkX`、`validateX`）当类型守卫的名字——名字要让调用者一眼看出用完之后类型会被收窄：
+
+```ts
+// ✓ Good
+function isUser(value: unknown): value is User {}
+function hasPermission(user: User): user is AdminUser {}
+
+// ✗ Bad：看不出这是类型守卫
+function checkUser(value: unknown): value is User {}
+```
 
 ## 避免类型入名
 

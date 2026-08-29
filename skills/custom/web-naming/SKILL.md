@@ -9,26 +9,22 @@ description: >-
   HTTPClient, userId vs userID, string unions vs numeric enums, useAuth hooks,
   onSave props, Button.test.tsx, PascalCase components, or reviewing naming in UI
   PRs. Not for general code clarity or control flow (→ web-code-style). Not for
-  Vue-specific SFC conventions (→ vue-* skills).
+  Vue-specific SFC conventions (→ vue-* skills). Not for whether a type should be
+  a discriminated union / branded type in the first place (→ typescript-best-practices,
+  if present in the repo) — this skill only names what that one models.
 when_to_use: >-
-  命名，起名，变量名，函数名，文件名，组件名，Hook 命名，props 命名，camelCase,
-  PascalCase, SCREAMING_SNAKE, HttpClient, HTTPClient, userId, userID,
-  string union，数字枚举，useAuth, onSave, IFoo, utils 反模式，kebab-case,
-  naming, identifier, file name, UserProfile.tsx, user-profile.ts, Button.test.tsx,
-  rename, naming review
-user-invocable: true
+  起名, 命名审查, 变量名, 函数名, 文件名, 组件名, Hook 文件, props 命名,
+  userID, HTTPClient, 数字枚举, IFoo, utils 抽屉, stuttering, 双轨
 metadata:
   author: rockcookies
-  version: 2.1.0
+  version: 2.3.0
 ---
 
-**Persona:** 你是 Web/React UI 代码可读性工程师。你相信好名字是最廉价的文档，坏名字是最隐蔽的 bug 源。
-
-**范围：** 浏览器端 UI（React 组件、Hook、props、前端模块与相关测试文件名）。不覆盖纯后端 Node/Hono 库。Vue 专有约定见仓内 `vue-*` skills。
+**范围：** 浏览器端 UI（React 组件、Hook、props、前端模块与相关测试文件名）。不覆盖纯后端 Node/Hono 库。Vue 专有约定见仓内 `vue-*` skills。仓内若有 `typescript-best-practices`：要不要判别联合 / branded type 以它为准（原则见 `type-system-discipline`，若仓内有）。本 skill 只规定这些结构的命名。未部署时用本 skill 的 string union / 数字枚举建议。
 
 **模式：**
 
-- **Coding 模式**：为新代码选名。按速查表与容易遗漏项依次检查；有疑义时，以最能表达意图的名字为准。
+- **Coding 模式**：为新代码选名。按速查表与反模式表依次检查；有疑义时，以最能表达意图的名字为准。
 - **Review 模式**：审查 PR diff 中的命名。重点找全大写缩写（`HTTPClient`）、`userID`、数字枚举当真实零值、`IFoo` 前缀、`utils`/`helpers`、布尔裸名、组件文件用小写（除非该仓已统一 kebab 组件文件）。
 - **Audit 模式**：全库命名审计。用子代理并行扫描：(1) 布尔裸名与缩写大小写，(2) `I` 前缀接口与数字枚举，(3) `utils/helpers` 文件，(4) 文件命名风格与双轨一致性。
 
@@ -47,7 +43,10 @@ metadata:
 | 常量（模块顶层不可变） | `SCREAMING_SNAKE_CASE` | `MAX_RETRY_COUNT`, `DEFAULT_TIMEOUT_MS` |
 | 私有字段（类内） | `#camelCase` 或 `_camelCase` | `#token`, `_cache` |
 | 布尔变量/参数/字段 | `is`/`has`/`can`/`should` 前缀 | `isReady`, `hasPermission` |
+| 类型守卫函数（`x is T`） | 同布尔规则：`is`/`has` 前缀 | `isX`, `hasX` |
 | 缩写 | 当普通词，不大写整段 | `HttpClient`, `parseUrl`, `userId` |
+| 工厂函数 | `create*` | `createLogger`（非 `newLogger`） |
+| 导入标识符 | 路径已有模块名则不 stutter | 见 [files-modules.md](./references/files-modules.md) |
 | 非组件前端模块文件 | `kebab-case` | `user-api.ts`, `format-date.ts` |
 | React 组件文件 | `PascalCase.tsx` | `UserProfile.tsx` |
 | React Hook 文件 | `use` + `camelCase.ts` | `useAuth.ts` |
@@ -65,30 +64,14 @@ metadata:
 
 **仓级覆盖：** 若仓库已统一使用 kebab-case 组件文件，保持该仓约定，不要在 Review 里逐文件「纠正」为 PascalCase。
 
-## 容易遗漏的约定
-
-这些约定正确但不显眼，是最常见的命名失误源：
-
-**缩写当词：** `HttpClient`、`parseUrl`、`userId`。不要写 `HTTPClient`、`parseURL`、`userID`。平台强制名（如 `XMLHttpRequest`）除外。
-
-**双轨文件命名：** `user-api.ts`（非组件）与 `UserProfile.tsx`（组件）并存是刻意的。按文件角色选轨，不要混用，除非仓已统一 kebab 组件文件。
-
-**事件处理器按动作命名：** `saveUserData()` 优于 `handleClick()`；React 回调 prop 用 `onSave`，不要把 `onClick` 当业务语义。
-
-**可辨状态用 union：** `type OrderStatus = 'pending' | 'paid'`，不要用数字枚举把 `0` 当成真实业务状态。
-
-**工厂函数用 `create*`：** `createLogger()`，不用 `newLogger()`。
-
-**导入路径不要 stuttering：** 模块名已在路径里时，导出名不要再重复。见 [files-modules.md](./references/files-modules.md)。
-
 ## 分类详解
 
 完整规则、示例与理由见：
 
-- **[变量、布尔、缩写与作用域](./references/identifiers.md)**：大小写、作用域长度、布尔前缀、缩写当词、概念名一致
+- **[变量、布尔、缩写与作用域](./references/identifiers.md)**：作用域长度、布尔前缀、缩写当词、概念名一致
 - **[文件、目录与模块](./references/files-modules.md)**：kebab-case 默认、一概念一文件、utils 反模式、stuttering、目录组织
 - **[函数、方法与事件处理器](./references/functions-methods.md)**：动词/名词、工厂函数、事件处理器语义命名
-- **[类型、接口、常量与枚举](./references/types-constants.md)**：无 `I` 前缀、常量角色命名、union 优先、泛型
+- **[类型、接口、常量与枚举](./references/types-constants.md)**：无 `I` 前缀、常量角色命名、union 优先、泛型、判别字段与 branded types 命名
 - **[测试文件命名](./references/testing.md)**：`.test` 示例、co-locate / `__tests__/`、集成测试后缀
 - **[React 命名](./references/react.md)**：组件/Hook/props/事件、双轨细则、目录与 index 模式
 
@@ -113,6 +96,7 @@ metadata:
 | 非组件文件 `UserService.ts` | `user-service.ts` |
 | React prop `UserName` | `userName` |
 | 测试集中到顶层无关 `tests/` | 与源码同目录或同级 `__tests__/` |
+| 类型守卫裸名 `checkX` | `isX` / `hasX` |
 
 ## 能 lint 的交给 ESLint
 
