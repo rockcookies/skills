@@ -13,6 +13,7 @@ export const repositories: Record<string, RepositoryConfig> = {
   'samber-golang': {
     url: 'https://github.com/samber/cc-skills-golang',
     tag: 'v2.0.0',
+    transforms: ['rewireSkillRefs'],
     skills: [
       { target: 'golang-benchmark', source: './skills/golang-benchmark/SKILL.md' },
       { target: 'golang-cli', source: './skills/golang-cli/SKILL.md' },
@@ -81,9 +82,10 @@ export const repositories: Record<string, RepositoryConfig> = {
   },
   anthropics: {
     url: 'https://github.com/anthropics/skills',
+    excludes: ['LICENSE.txt'],
     skills: [
-      { target: 'frontend-design', source: './skills/frontend-design/SKILL.md', excludes: ['LICENSE.txt'] },
-      { target: 'skill-creator', source: './skills/skill-creator/SKILL.md', excludes: ['LICENSE.txt'] },
+      { target: 'frontend-design', source: './skills/frontend-design/SKILL.md' },
+      { target: 'skill-creator', source: './skills/skill-creator/SKILL.md' },
     ],
   },
   'playwright-cli': {
@@ -108,10 +110,11 @@ export const repositories: Record<string, RepositoryConfig> = {
   },
   antfu: {
     url: 'https://github.com/antfu/skills',
+    excludes: ['GENERATION.md'],
     skills: [
-      { target: 'vite', source: './skills/vite/SKILL.md', excludes: ['GENERATION.md'] },
-      { target: 'vitest', source: './skills/vitest/SKILL.md', excludes: ['GENERATION.md'] },
-      { target: 'unocss', source: './skills/unocss/SKILL.md', excludes: ['GENERATION.md'] },
+      { target: 'vite', source: './skills/vite/SKILL.md' },
+      { target: 'vitest', source: './skills/vitest/SKILL.md' },
+      { target: 'unocss', source: './skills/unocss/SKILL.md' },
       { target: 'antfu', source: './skills/antfu/SKILL.md' },
     ]
   },
@@ -190,15 +193,16 @@ export const repositories: Record<string, RepositoryConfig> = {
   'tw93-waza': {
     url: 'https://github.com/tw93/Waza',
     tag: 'v3.34.1',
+    excludes: ['scripts/check-update.sh'],
     skills: [
-      { target: 'check', source: './skills/check/SKILL.md', excludes: ['scripts/check-update.sh'] },
-      { target: 'ui', source: './skills/ui/SKILL.md', excludes: ['scripts/check-update.sh'] },
-      { target: 'health', source: './skills/health/SKILL.md', excludes: ['scripts/check-update.sh'] },
-      { target: 'hunt', source: './skills/hunt/SKILL.md', excludes: ['scripts/check-update.sh'] },
-      { target: 'learn', source: './skills/learn/SKILL.md', excludes: ['scripts/check-update.sh'] },
-      { target: 'read', source: './skills/read/SKILL.md', excludes: ['scripts/check-update.sh'] },
-      { target: 'think', source: './skills/think/SKILL.md', excludes: ['scripts/check-update.sh'] },
-      { target: 'write', source: './skills/write/SKILL.md', excludes: ['scripts/check-update.sh'] },
+      { target: 'check', source: './skills/check/SKILL.md' },
+      { target: 'ui', source: './skills/ui/SKILL.md' },
+      { target: 'health', source: './skills/health/SKILL.md' },
+      { target: 'hunt', source: './skills/hunt/SKILL.md' },
+      { target: 'learn', source: './skills/learn/SKILL.md' },
+      { target: 'read', source: './skills/read/SKILL.md' },
+      { target: 'think', source: './skills/think/SKILL.md' },
+      { target: 'write', source: './skills/write/SKILL.md' },
     ],
   },
   'majiayu-spellbook': {

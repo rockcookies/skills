@@ -10,6 +10,7 @@ export interface UpstreamOptions {
   force?: boolean
 }
 
+/** 确保 upstream/ 里有 checkout 并钉到 pin。force 会删掉 checkout 再 clone。 */
 export async function ensureUpstreamRepositories(
   root: string,
   repositories: Record<string, RepositoryConfig>,

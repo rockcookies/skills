@@ -1,32 +1,24 @@
 import * as p from '@clack/prompts'
-import { dump, load } from 'js-yaml'
-import { cp, glob, mkdir, readFile, stat, writeFile } from 'node:fs/promises'
-import { dirname, join } from 'node:path'
+import { cp, glob, mkdir, readFile, writeFile } from 'node:fs/promises'
+import { basename, dirname, join } from 'node:path'
 
-import type { AgentMapping, RepositoryConfig, SkillMapping } from '../types'
+import type { AgentMapping, RepositoryConfig, SkillMapping, SyncInfo, SyncItemRecord } from '../types'
 import type { UpstreamService } from './upstream.service'
 
+import { composeTransforms } from '../transforms/compose'
+import { applyMarkdownTransforms, transformId } from '../transforms/pipeline'
+import { hashNamedTransforms } from '../transforms/registry'
+import { digestFile, digestTree } from '../utils/digest'
 import { emptyDir, ensureDir, pathExists } from '../utils/fs'
+import { listSkillFiles } from '../utils/glob-files'
+import { shouldSkipItem } from './sync-skip'
 
-interface SyncInfo {
-  sha: string
-  synced: string
-}
-
-interface SourceMapping {
-  source: string
-  target: string
-  kind: 'skill' | 'agent'
-}
-
+/** 按 mapping 拷贝 + 变换。不删除 dest 里未再映射的目录/文件。 */
 export class SyncService {
-  private upstreamService: UpstreamService
-  private root: string
-
-  constructor(root: string, upstreamService: UpstreamService) {
-    this.root = root
-    this.upstreamService = upstreamService
-  }
+  constructor(
+    private root: string,
+    private upstreamService: UpstreamService,
+  ) {}
 
   async syncAll(repositories: Record<string, RepositoryConfig>, force: boolean = false): Promise<void> {
     for (const [name, config] of Object.entries(repositories)) {
@@ -49,11 +41,7 @@ export class SyncService {
       throw new Error(`Upstream repository not found: ${upstreamName}`)
     }
 
-    const sources: SourceMapping[] = [
-      ...skills.map((mapping) => ({ ...mapping, kind: 'skill' as const })),
-      ...agents.map((mapping) => ({ ...mapping, kind: 'agent' as const })),
-    ]
-    await this.preflight(upstreamName, repoRoot, sources)
+    await this.preflight(upstreamName, repoRoot, skills, agents)
 
     const sha = await this.upstreamService.getRepoSha(upstreamName)
     if (!sha) {
@@ -61,78 +49,163 @@ export class SyncService {
     }
 
     if (skills.length) {
-      await this.syncSkillsKind(upstreamName, repoRoot, skills, sha, force)
+      await this.syncSkillsKind(upstreamName, repoRoot, config, skills, sha, force)
     }
 
     if (agents.length) {
-      await this.syncAgentsKind(upstreamName, repoRoot, agents, sha, force)
+      await this.syncAgentsKind(upstreamName, repoRoot, config, agents, sha, force)
     }
   }
 
   private async syncSkillsKind(
     upstreamName: string,
     repoRoot: string,
+    config: RepositoryConfig,
     skills: SkillMapping[],
     sha: string,
     force: boolean,
   ): Promise<void> {
     const skillsRoot = join(this.root, 'skills', upstreamName)
-    if (await this.shouldSkipKind(skillsRoot, sha, force)) {
-      p.log.warn(`✓ ${upstreamName} skills are up to date (SHA: ${sha.substring(0, 7)})`)
-      return
-    }
-
-    await emptyDir(skillsRoot)
+    await ensureDir(skillsRoot)
+    const previous = await this.readSyncInfo(skillsRoot)
+    const items: Record<string, SyncItemRecord> = {}
 
     for (const mapping of skills) {
-      await this.syncSkillMapping(repoRoot, skillsRoot, mapping)
+      const composed = composeTransforms(config, 'skill', mapping)
+      const moduleHashes = hashNamedTransforms(composed.transforms)
+      const id = transformId(composed, mapping.includes, moduleHashes)
+      const skillDir = dirname(join(repoRoot, mapping.source))
+      const files = await listSkillFiles(skillDir, mapping.includes, composed.excludes)
+      const skillMd = basename(mapping.source)
+      const sourceFiles = files.includes(skillMd) ? files : [...files, skillMd]
+      const sourceDigest = await digestTree(skillDir, sourceFiles)
+      const destPath = join(skillsRoot, mapping.target)
+      const destExists = await pathExists(join(destPath, 'SKILL.md'))
+      const skip = shouldSkipItem({
+        force,
+        destExists,
+        recorded: previous?.items?.[mapping.target],
+        sourceDigest,
+        transformId: id,
+      })
+
+      if (skip) {
+        p.log.warn(`✓ ${upstreamName}/${mapping.target} unchanged`)
+        items[mapping.target] = previous!.items![mapping.target]
+        continue
+      }
+
+      // 只清空当前这条 dest，再拷贝；未映射的邻居目录不动
+      await emptyDir(destPath)
+      await this.copySkillFiles(skillDir, destPath, mapping.includes, composed.excludes)
+      const skillMdDest = join(destPath, 'SKILL.md')
+      if (!(await pathExists(skillMdDest))) {
+        await writeFile(skillMdDest, await readFile(join(repoRoot, mapping.source), 'utf-8'))
+      }
+      await this.applyDestMarkdown(destPath, mapping.target, composed)
+      items[mapping.target] = { sourceDigest, transformId: id }
       p.log.success(`✓ Synced skill '${mapping.target}' from ${upstreamName}`)
     }
 
-    await this.writeSyncJSON(skillsRoot, sha)
+    await this.writeSyncJSON(skillsRoot, sha, items)
     p.log.success(`✓ Wrote skills SYNC.json for ${upstreamName} (SHA: ${sha.substring(0, 7)})`)
   }
 
   private async syncAgentsKind(
     upstreamName: string,
     repoRoot: string,
+    config: RepositoryConfig,
     agents: AgentMapping[],
     sha: string,
     force: boolean,
   ): Promise<void> {
     const agentsRoot = join(this.root, 'agents', upstreamName)
-    if (await this.shouldSkipKind(agentsRoot, sha, force)) {
-      p.log.warn(`✓ ${upstreamName} agents are up to date (SHA: ${sha.substring(0, 7)})`)
-      return
-    }
-
-    await emptyDir(agentsRoot)
+    await ensureDir(agentsRoot)
+    const previous = await this.readSyncInfo(agentsRoot)
+    const items: Record<string, SyncItemRecord> = {}
 
     for (const mapping of agents) {
-      await this.syncAgentMapping(repoRoot, agentsRoot, mapping)
+      const composed = composeTransforms(config, 'agent', mapping)
+      const moduleHashes = hashNamedTransforms(composed.transforms)
+      const id = transformId(composed, undefined, moduleHashes)
+      const sourcePath = join(repoRoot, mapping.source)
+      const sourceDigest = await digestFile(sourcePath)
+      const destPath = join(agentsRoot, `${mapping.target}.md`)
+      const destExists = await pathExists(destPath)
+      const skip = shouldSkipItem({
+        force,
+        destExists,
+        recorded: previous?.items?.[mapping.target],
+        sourceDigest,
+        transformId: id,
+      })
+
+      if (skip) {
+        p.log.warn(`✓ ${upstreamName}/${mapping.target} agent unchanged`)
+        items[mapping.target] = previous!.items![mapping.target]
+        continue
+      }
+
+      const content = await readFile(sourcePath, 'utf-8')
+      await writeFile(
+        destPath,
+        applyMarkdownTransforms(content, {
+          isFrontmatterFile: true,
+          name: mapping.target,
+          composed,
+        }),
+      )
+      items[mapping.target] = { sourceDigest, transformId: id }
       p.log.success(`✓ Synced agent '${mapping.target}' from ${upstreamName}`)
     }
 
-    await this.writeSyncJSON(agentsRoot, sha)
+    await this.writeSyncJSON(agentsRoot, sha, items)
     p.log.success(`✓ Wrote agents SYNC.json for ${upstreamName} (SHA: ${sha.substring(0, 7)})`)
   }
 
-  private async shouldSkipKind(destRoot: string, sha: string, force: boolean): Promise<boolean> {
-    if (force) return false
-    const syncInfo = await this.readSyncInfo(destRoot)
-    return syncInfo?.sha === sha
-  }
-
-  private async preflight(upstreamName: string, repoRoot: string, sources: SourceMapping[]): Promise<void> {
-    const missing: string[] = []
-
-    for (const mapping of sources) {
-      const sourcePath = join(repoRoot, mapping.source)
-      if (!(await pathExists(sourcePath))) {
-        missing.push(`${mapping.kind} ${mapping.target}: ${sourcePath}`)
+  /** .md / .mdc 跑正文变换；只有 SKILL.md 改 YAML 并把 name 写成 dest target。 */
+  private async applyDestMarkdown(
+    destDir: string,
+    name: string,
+    composed: ReturnType<typeof composeTransforms>,
+  ): Promise<void> {
+    for (const pattern of ['**/*.md', '**/*.mdc']) {
+      for await (const file of glob(pattern, { cwd: destDir })) {
+        const full = join(destDir, file)
+        const normalized = file.split('\\').join('/')
+        const isEntry = normalized === 'SKILL.md'
+        const content = await readFile(full, 'utf-8')
+        await writeFile(
+          full,
+          applyMarkdownTransforms(content, {
+            isFrontmatterFile: isEntry,
+            name: isEntry ? name : undefined,
+            composed,
+          }),
+        )
       }
     }
+  }
 
+  private async preflight(
+    upstreamName: string,
+    repoRoot: string,
+    skills: SkillMapping[],
+    agents: AgentMapping[],
+  ): Promise<void> {
+    const missing: string[] = []
+    for (const mapping of skills) {
+      const sourcePath = join(repoRoot, mapping.source)
+      if (!(await pathExists(sourcePath))) {
+        missing.push(`skill ${mapping.target}: ${sourcePath}`)
+      }
+    }
+    for (const mapping of agents) {
+      const sourcePath = join(repoRoot, mapping.source)
+      if (!(await pathExists(sourcePath))) {
+        missing.push(`agent ${mapping.target}: ${sourcePath}`)
+      }
+    }
     if (missing.length > 0) {
       throw new Error(
         `Preflight failed for ${upstreamName}: ${missing.length} source(s) missing:\n${missing.map((m) => `  - ${m}`).join('\n')}`,
@@ -140,64 +213,17 @@ export class SyncService {
     }
   }
 
-  private async syncSkillMapping(repoRoot: string, skillsRoot: string, mapping: SkillMapping): Promise<void> {
-    const sourcePath = join(repoRoot, mapping.source)
-    const outputPath = join(skillsRoot, mapping.target)
-
-    await ensureDir(outputPath)
-
-    const skillDir = dirname(sourcePath)
-    await this.copySkillFiles(skillDir, outputPath, mapping.includes, mapping.excludes)
-
-    const skillContent = await readFile(sourcePath, 'utf-8')
-    await writeFile(join(outputPath, 'SKILL.md'), this.rewriteFrontmatterName(skillContent, mapping.target))
-  }
-
-  private async syncAgentMapping(repoRoot: string, agentsRoot: string, mapping: AgentMapping): Promise<void> {
-    const sourcePath = join(repoRoot, mapping.source)
-    const destPath = join(agentsRoot, `${mapping.target}.md`)
-
-    const agentContent = await readFile(sourcePath, 'utf-8')
-    await writeFile(destPath, this.rewriteFrontmatterName(agentContent, mapping.target))
-  }
-
-  private rewriteFrontmatterName(content: string, name: string): string {
-    const fmMatch = content.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?([\s\S]*)$/)
-    const frontMatterData = fmMatch ? (load(fmMatch[1]) as Record<string, unknown>) : {}
-    const bodyContent = fmMatch ? fmMatch[2] : content
-    return `---\n${dump({ ...frontMatterData, name })}---\n${bodyContent}`
-  }
-
   private async copySkillFiles(
     sourceDir: string,
     targetDir: string,
-    includes: string[] = [],
-    excludes?: string[],
+    includes: string[] | undefined,
+    excludes: string[] | undefined,
   ): Promise<void> {
-    const patterns = includes.length === 0 ? ['**/*', '**/*/.*'] : includes
-    const seen = new Set<string>()
-
-    for (const pattern of patterns) {
-      const files = glob(pattern, {
-        exclude: excludes,
-        cwd: sourceDir,
-      })
-
-      for await (const file of files) {
-        if (seen.has(file)) continue
-        seen.add(file)
-
-        const srcPath = join(sourceDir, file)
-        const destPath = join(targetDir, file)
-
-        const stats = await stat(srcPath)
-        if (stats.isDirectory()) {
-          continue
-        }
-
-        await mkdir(dirname(destPath), { recursive: true })
-        await cp(srcPath, destPath)
-      }
+    const files = await listSkillFiles(sourceDir, includes, excludes)
+    for (const file of files) {
+      const destPath = join(targetDir, file)
+      await mkdir(dirname(destPath), { recursive: true })
+      await cp(join(sourceDir, file), destPath)
     }
   }
 
@@ -205,19 +231,15 @@ export class SyncService {
     const syncJsonPath = join(destRoot, 'SYNC.json')
     if (!(await pathExists(syncJsonPath))) return null
     try {
-      const content = await readFile(syncJsonPath, 'utf-8')
-      return JSON.parse(content) as SyncInfo
+      return JSON.parse(await readFile(syncJsonPath, 'utf-8')) as SyncInfo
     } catch {
       return null
     }
   }
 
-  private async writeSyncJSON(destRoot: string, sha: string): Promise<void> {
+  private async writeSyncJSON(destRoot: string, sha: string, items: Record<string, SyncItemRecord>): Promise<void> {
     const date = new Date().toISOString().split('T')[0]
-    const syncInfo: SyncInfo = {
-      sha,
-      synced: date,
-    }
+    const syncInfo: SyncInfo = { sha, synced: date, items }
     await writeFile(join(destRoot, 'SYNC.json'), `${JSON.stringify(syncInfo, null, 2)}\n`)
   }
 }

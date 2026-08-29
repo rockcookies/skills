@@ -14,21 +14,19 @@ export class UpstreamService {
     this.git = git
   }
 
-  // Initialize all upstream repositories
   async initAll(repos: Record<string, RepositoryConfig>): Promise<void> {
     for (const [name, config] of Object.entries(repos)) {
       await this.ensureRepo(name, config)
     }
   }
 
-  // Update all upstream repositories to specified ref
   async updateAll(repos: Record<string, RepositoryConfig>): Promise<void> {
     for (const [name, config] of Object.entries(repos)) {
       await this.ensureRepo(name, config)
     }
   }
 
-  // Force update all upstream repositories (delete and reclone)
+  /** 删掉 checkout 再 clone，与 dest 技能目录无关 */
   async forceUpdateAll(repos: Record<string, RepositoryConfig>): Promise<void> {
     const { rmSync } = await import('node:fs')
     for (const [name, config] of Object.entries(repos)) {
@@ -40,29 +38,26 @@ export class UpstreamService {
     }
   }
 
-  // Get repository current SHA
   async getRepoSha(repoName: string): Promise<string> {
     const repoPath = join(this.root, 'upstream', repoName)
     const sha = await this.gitForPath(repoPath).revparse(['HEAD'])
     return sha.trim()
   }
 
-  // Get latest git tag of a repository
   async getRepoLatestTag(repoName: string): Promise<string> {
     const repoPath = join(this.root, 'upstream', repoName)
     const tag = await this.gitForPath(repoPath).raw(['describe', '--tags', '--abbrev=0'])
     return tag.trim()
   }
 
-  // Clone or update single repository
+  /** 没有 checkout 就 clone，然后一律 reset 到 pin（首次 clone 不能停在默认分支）。 */
   async ensureRepo(name: string, config: RepositoryConfig): Promise<void> {
     const upstreamPath = join(this.root, 'upstream', name)
 
     if (!existsSync(upstreamPath)) {
       await this.cloneRepo(config, upstreamPath)
-    } else {
-      await this.updateRepo(config, upstreamPath)
     }
+    await this.updateRepo(config, upstreamPath)
   }
 
   private async cloneRepo(config: RepositoryConfig, upstreamPath: string): Promise<void> {
@@ -77,10 +72,9 @@ export class UpstreamService {
   private async updateRepo(config: RepositoryConfig, upstreamPath: string): Promise<void> {
     const repoGit = this.gitForPath(upstreamPath)
 
-    // Fetch all updates
     await repoGit.fetch(['--tags', '--force'])
 
-    // Determine target ref based on priority: commit > tag > branch > default
+    // pin 优先级：commit > tag > branch > 默认分支
     let ref: string
     if (config.commit) {
       ref = config.commit

@@ -20,6 +20,7 @@ export function ensureDirSync(dir: PathLike, mode?: Mode) {
   })
 }
 
+/** 清空目录内容；目录不存在则创建。Sync 用来重写当前 mapping 的 dest，不是清邻居。 */
 export async function emptyDir(dir: string) {
   let items: string[]
 

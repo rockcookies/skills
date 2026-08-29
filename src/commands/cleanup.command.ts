@@ -6,6 +6,7 @@ import type { RepositoryConfig } from '../types'
 
 import { formatError } from '../utils/error'
 
+/** 只删 meta.ts 里已经没有的 upstream/ 目录，不动 skills/ 与 agents/ */
 export async function cleanupUpstreamRepositories(root: string, repositories: Record<string, RepositoryConfig>) {
   const upstreamDir = join(root, 'upstream')
 

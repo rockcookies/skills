@@ -5,6 +5,7 @@
     "lint": "oxlint",
     "fmt": "oxfmt",
     "fmt:check": "oxfmt --check",
+    "test": "tsx --test src/utils/digest.test.ts src/transforms/frontmatter.test.ts src/transforms/rewire-skill-refs.test.ts src/services/sync-skip.test.ts src/services/catalog.service.test.ts",
     "cli": "tsx src/cli.ts"
   },
   "dependencies": {

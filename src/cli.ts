@@ -26,7 +26,7 @@ async function main() {
       {
         value: 'cleanup',
         label: 'Cleanup upstream repositories',
-        hint: 'Remove orphaned repositories',
+        hint: 'Remove unused upstream/ checkouts (not dest skills)',
       },
     ],
   })
@@ -53,7 +53,7 @@ async function main() {
     }
     case 'sync': {
       const shouldForce = await p.confirm({
-        message: 'Force sync (skip SHA check)?',
+        message: 'Force sync (re-run all items)?',
         initialValue: false,
       })
 
