@@ -1,4 +1,10 @@
 {
   "sha": "cbc09311c468e10fba47964e9b3830fe625c9b01",
-  "synced": "2026-08-28"
+  "synced": "2026-08-29",
+  "items": {
+    "playwright-cli": {
+      "sourceDigest": "sha256:ca6dd630e13327e05768508e1cca74f3993829154085e463edebd40e029d9192",
+      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    }
+  }
 }

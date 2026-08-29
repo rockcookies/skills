@@ -9,8 +9,7 @@ description: >-
   when using or adopting samber/ro, when the codebase imports
   github.com/samber/ro, or when building asynchronous event-driven pipelines,
   real-time data processing, streams, or reactive architectures in Go. Not for
-  finite slice transforms (→ See `golang-samber-lo`
-  skill).
+  finite slice transforms (→ See `golang-samber-lo` skill).
 user-invocable: true
 license: MIT
 compatibility: >-

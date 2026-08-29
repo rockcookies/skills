@@ -8,11 +8,8 @@ description: >-
   designing service architecture, setting up dependency injection, refactoring
   tightly coupled code, managing singletons or service factories, or when the
   user asks about inversion of control, service containers, or wiring
-  dependencies in Go. For a specific DI library, → See
-  `golang-google-wire`,
-  `golang-uber-dig`,
-  `golang-uber-fx`, or
-  `golang-samber-do` skills.
+  dependencies in Go. For a specific DI library, → See `golang-google-wire`,
+  `golang-uber-dig`, `golang-uber-fx`, or `golang-samber-do` skills.
 user-invocable: true
 license: MIT
 compatibility: >-

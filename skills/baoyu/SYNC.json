@@ -1,4 +1,10 @@
 {
   "sha": "6b7a2e417500561a5ecdd0b168332f4142584617",
-  "synced": "2026-07-27"
+  "synced": "2026-08-29",
+  "items": {
+    "baoyu-image-gen": {
+      "sourceDigest": "sha256:991b94fd29d11e49bb50e1feb201979feac0daaa8f410a23d0e1cbaf88bc5cd3",
+      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    }
+  }
 }

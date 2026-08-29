@@ -7,8 +7,8 @@ description: >-
   setting up CI benchmark regression detection, or investigating production
   performance with Prometheus runtime metrics. Also use when the developer needs
   deep analysis on a specific performance indicator - this skill provides the
-  measurement methodology, while `golang-performance`
-  provides the optimization patterns.
+  measurement methodology, while `golang-performance` provides the optimization
+  patterns.
 user-invocable: true
 license: MIT
 compatibility: >-

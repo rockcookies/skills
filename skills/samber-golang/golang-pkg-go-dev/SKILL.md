@@ -9,12 +9,10 @@ description: >-
   versions exist, whether a dependency has CVEs, or who imports a package —
   prefer this over Context7 for any Go package or module. Triggers on: how to
   use a Go library, Go API docs, import usage, code examples, pkg.go.dev. Not
-  for upgrading dependencies (→ See
-  `golang-dependency-management` skill) or choosing a
-  library (→ See `golang-popular-libraries` skill). Not
-  for local symbols, or for navigating an already-used dependency's resolved
-  source, call sites, or generic instantiations — → See
-  `golang-gopls` skill for those.
+  for upgrading dependencies (→ See `golang-dependency-management` skill) or
+  choosing a library (→ See `golang-popular-libraries` skill). Not for local
+  symbols, or for navigating an already-used dependency's resolved source, call
+  sites, or generic instantiations — → See `golang-gopls` skill for those.
 user-invocable: true
 license: MIT
 compatibility: >-

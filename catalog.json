@@ -1,0 +1,655 @@
+{
+  "generated": "2026-08-29T15:03:43.470Z",
+  "items": [
+    {
+      "kind": "agent",
+      "name": "thermo-nuclear-code-quality-review-subagent",
+      "digest": "sha256:718ec401c6e31146a78bca06f9c0872e1902316e23ac41325eadc0bc1d8ef8c6"
+    },
+    {
+      "kind": "agent",
+      "name": "thermo-nuclear-review-subagent",
+      "digest": "sha256:1aa413ec2547e2398b9cb277591bff372007d0939de5aa677df8147dbec582ff"
+    },
+    {
+      "kind": "skill",
+      "name": "agent-browser",
+      "digest": "sha256:ed622b4b918d4978435a9b7f440ec63e30c147902e640beb0d6b7f507f24b8e2"
+    },
+    {
+      "kind": "skill",
+      "name": "antfu",
+      "digest": "sha256:24b70e87a0ef584ef85c9bfd3976430d29ae047e1aaf9155c02cf666bd659720"
+    },
+    {
+      "kind": "skill",
+      "name": "ask-matt",
+      "digest": "sha256:95deb72991a5a1608d3f74edd69ce1dc5e86ba0f8c90645aedf9113b655b5212"
+    },
+    {
+      "kind": "skill",
+      "name": "baoyu-design",
+      "digest": "sha256:d45a5ce6ca3aa8f84230b703bf2f21db2e8ed1bb99d058a0c6253e1eb7afc7a7"
+    },
+    {
+      "kind": "skill",
+      "name": "baoyu-image-gen",
+      "digest": "sha256:a7e729470767623168326710675e01c503c6372167f85584b5d428f56832b3a7"
+    },
+    {
+      "kind": "skill",
+      "name": "boundary-discipline",
+      "digest": "sha256:31a4b8534aaa72aa96d823b1c74d02db88bd806824239c964c03d3184ae7eee6"
+    },
+    {
+      "kind": "skill",
+      "name": "check",
+      "digest": "sha256:14053be1cc70e1b529dc390969597de3f614b73f089ab1970b437ecb530e6ce0"
+    },
+    {
+      "kind": "skill",
+      "name": "chinese-tech-writing",
+      "digest": "sha256:5a37da52930c2d6ac4b221c643e4aa64d2fc89aeb8bd63e0e7943df28dcb4187"
+    },
+    {
+      "kind": "skill",
+      "name": "clash-doctor",
+      "digest": "sha256:8005643e56b9d82e1deb73a6ea99664bac2318769dd19907951e39d2d6295874"
+    },
+    {
+      "kind": "skill",
+      "name": "clash-routes",
+      "digest": "sha256:2b0ad5b4017b5456bcb3e23abb2f3439ec6f858634e134374d390d66dbf471a2"
+    },
+    {
+      "kind": "skill",
+      "name": "code-review",
+      "digest": "sha256:c507bfd9d7962a628a26ab7c37e3b51d105f1b65e60e43227df82e8983a496e9"
+    },
+    {
+      "kind": "skill",
+      "name": "codebase-audit",
+      "digest": "sha256:ae72a26c8524509d6023daa3fe9372bf4b151a5a8c72245317d585e880f4ff00"
+    },
+    {
+      "kind": "skill",
+      "name": "codebase-design",
+      "digest": "sha256:83c00c312b93f941f69cab540ab5c7de966dc58a04c0d53595a9e95602c452e3"
+    },
+    {
+      "kind": "skill",
+      "name": "diagnosing-bugs",
+      "digest": "sha256:5548bef0923fe569b44470c71fa7ada9b9183b24d4761113f267c4b6ec981a0e"
+    },
+    {
+      "kind": "skill",
+      "name": "domain-modeling",
+      "digest": "sha256:060e35261ce9dbd10d0f04b61a700119db82c435b49002317802bdd18528a377"
+    },
+    {
+      "kind": "skill",
+      "name": "encode-lessons-in-structure",
+      "digest": "sha256:e622e726e829b33c9c04a4828e3a5047622b98616e5b91f316780fc6f9b41c22"
+    },
+    {
+      "kind": "skill",
+      "name": "figma-to-react",
+      "digest": "sha256:c8fd737188edf00e5216c498b04cc73f84bd582dbd5be721ab464cad0f6ec121"
+    },
+    {
+      "kind": "skill",
+      "name": "find-skills",
+      "digest": "sha256:30018f8f6130d7597e6f9a647cdb94d8e1529f9fedbc3bf515426ed2f37c8002"
+    },
+    {
+      "kind": "skill",
+      "name": "frontend-design",
+      "digest": "sha256:b32c598698bdf84e8b511c7b94b6fa1d8197a82ae5dca9c22a91e969d77db063"
+    },
+    {
+      "kind": "skill",
+      "name": "git-atomic-commit",
+      "digest": "sha256:6e25a12f756e95cddbc49eaf48605b85219643e3598b8d04cbeac5d9d653e900"
+    },
+    {
+      "kind": "skill",
+      "name": "git-rebase-surgeon",
+      "digest": "sha256:b004a365c7524c4f2fb00b4232a81532664b7f2aef85e398979aa7af2e98b492"
+    },
+    {
+      "kind": "skill",
+      "name": "git-semantic-search",
+      "digest": "sha256:c29df20a33210e6689b7f9efbe103a0f6b94e13631c251ee246f5eaccb1ee875"
+    },
+    {
+      "kind": "skill",
+      "name": "golang-benchmark",
+      "digest": "sha256:02f42230915d6424a02e72d00e8842cc89a87037252d6f24e5ce302818d6a1e1"
+    },
+    {
+      "kind": "skill",
+      "name": "golang-cli",
+      "digest": "sha256:1732e984a359226eeaf722fabb0bc710ac7d0e7722baeab1bcffa16275312368"
+    },
+    {
+      "kind": "skill",
+      "name": "golang-code-style",
+      "digest": "sha256:82c1516aa042902e1bc9c386a18cae5182d7f119882b56603c1c769abf384814"
+    },
+    {
+      "kind": "skill",
+      "name": "golang-concurrency",
+      "digest": "sha256:712cacb14fae6dcae7c456edda33fea7246ebdd93d671b164e8fc8ddefc9780e"
+    },
+    {
+      "kind": "skill",
+      "name": "golang-context",
+      "digest": "sha256:a7273757afdaea2ac651bdea5b015621d618edb0aee5fd53add15c402c5d71ea"
+    },
+    {
+      "kind": "skill",
+      "name": "golang-continuous-integration",
+      "digest": "sha256:9f7bd3f40cb5140a98cf5215c7cb60c73b298252a389ff83173c44d94e9fdcb0"
+    },
+    {
+      "kind": "skill",
+      "name": "golang-data-structures",
+      "digest": "sha256:5a468101a23bb838e436a93b388506d9f2e66ee164f09bdcb8b6ff31a0dbc81a"
+    },
+    {
+      "kind": "skill",
+      "name": "golang-database",
+      "digest": "sha256:2f8744528e8eaabef59db1d4139a8f79781d53e79071032422c49cfc9db53b22"
+    },
+    {
+      "kind": "skill",
+      "name": "golang-dependency-injection",
+      "digest": "sha256:4eda5a4136e1be6b5fb831bde367385ad31e2d9ebc48b25a9d181eedc5f0b8b7"
+    },
+    {
+      "kind": "skill",
+      "name": "golang-dependency-management",
+      "digest": "sha256:4248c24b09978c3956cba26334d389f1582857e1747b658d6619e2e2910c0ad4"
+    },
+    {
+      "kind": "skill",
+      "name": "golang-design-patterns",
+      "digest": "sha256:723f97c019eadf742e3affbfc1c80d9d50f7f6ca2ba1d06da18020994f85dc6c"
+    },
+    {
+      "kind": "skill",
+      "name": "golang-documentation",
+      "digest": "sha256:7146d33e5188b86929ad7e4f12f22909dfe8371f3b3c5a25bda33b7a328b21bb"
+    },
+    {
+      "kind": "skill",
+      "name": "golang-error-handling",
+      "digest": "sha256:c2b7edc148dbabc64936fe7e8a95c839eefe54f6ea34b2619b7336c3615edffe"
+    },
+    {
+      "kind": "skill",
+      "name": "golang-google-wire",
+      "digest": "sha256:72eec266062d33bd241402325b8aa5d4cad40bec20294120d45e6d688e47c885"
+    },
+    {
+      "kind": "skill",
+      "name": "golang-gopls",
+      "digest": "sha256:51139227cc4e2380003abb03d66cd402a4d6506b9e5923a25a9c9a17bc3399ae"
+    },
+    {
+      "kind": "skill",
+      "name": "golang-graphql",
+      "digest": "sha256:ba1f68500907724d586ace7e0ed0e9090e30875b87c0d202a730a08414bc99fd"
+    },
+    {
+      "kind": "skill",
+      "name": "golang-grpc",
+      "digest": "sha256:d763cb6daf1931079d3d5f622c5a742fb84edf9f74d674321ec42965d09a2136"
+    },
+    {
+      "kind": "skill",
+      "name": "golang-how-to",
+      "digest": "sha256:807d8c2a7e5dddd9a0c5b24ee4dbd4e8a5091eb50b678f777b350651ba465631"
+    },
+    {
+      "kind": "skill",
+      "name": "golang-lint",
+      "digest": "sha256:2a1a1b1e3494089329c08a3e78adb6a7a078eec75f574877ab6a8571b0c22ab9"
+    },
+    {
+      "kind": "skill",
+      "name": "golang-modernize",
+      "digest": "sha256:bbfa7c92ade7cded7560e61d39fb27995d8b9b50642360ec167f8c586c33891c"
+    },
+    {
+      "kind": "skill",
+      "name": "golang-naming",
+      "digest": "sha256:41f622d972b807e8ea00f3e7d2daa4597765844ae0918e502de95162c9bdb907"
+    },
+    {
+      "kind": "skill",
+      "name": "golang-observability",
+      "digest": "sha256:3c7335449a77afc56b59d2778c2a780d1cddb7dce1033fc3a81f8e3dde0a7e04"
+    },
+    {
+      "kind": "skill",
+      "name": "golang-performance",
+      "digest": "sha256:8ea6cffa26e50440c1496c6d17cf0059c7146494a236cde33061bba6e5d656ee"
+    },
+    {
+      "kind": "skill",
+      "name": "golang-pkg-go-dev",
+      "digest": "sha256:0da3023d85da3273e643de995fdd20dac63aea6121e1af22378fd59cfecdfa09"
+    },
+    {
+      "kind": "skill",
+      "name": "golang-popular-libraries",
+      "digest": "sha256:fa339c99f8fb1b7319060a6cb72150a17aff23fde380c09de9bcf0f7356be3f7"
+    },
+    {
+      "kind": "skill",
+      "name": "golang-project-layout",
+      "digest": "sha256:a967864fb38227650196ddc94d35f9ff058cce4eebb547e9a0723c02c44ce1f3"
+    },
+    {
+      "kind": "skill",
+      "name": "golang-refactoring",
+      "digest": "sha256:7d4d6c587d900daf340454c5279ce587a5c1f509646c78f26a3298ec5f4053f9"
+    },
+    {
+      "kind": "skill",
+      "name": "golang-safety",
+      "digest": "sha256:cb31e9d134a454b9ad1971fd28d4f5fe61f7e10048b65468ea4747276d979045"
+    },
+    {
+      "kind": "skill",
+      "name": "golang-samber-do",
+      "digest": "sha256:44d4dc4651c5d7fc9cafb2b4e12a0b2c7bb49ff2bcd3dab8f456a71e14b322fb"
+    },
+    {
+      "kind": "skill",
+      "name": "golang-samber-hot",
+      "digest": "sha256:6943ec51ec175aaaad79fd5fe21b4c78ee8c78d14b8354e28e7280c7e8ddab7a"
+    },
+    {
+      "kind": "skill",
+      "name": "golang-samber-lo",
+      "digest": "sha256:bd96efd5b4c8c5284504fea08286b9ef354d805ddb37ad820451e3b49f175099"
+    },
+    {
+      "kind": "skill",
+      "name": "golang-samber-mo",
+      "digest": "sha256:7a2548000dc1cfb1cdc1932ff02229cf3bee85a615eeaf3aa9bf12a8034c600a"
+    },
+    {
+      "kind": "skill",
+      "name": "golang-samber-oops",
+      "digest": "sha256:16004b9bbe48dd86d692434cd0931f93c9144f56575b5192e6216df6c8e1d38f"
+    },
+    {
+      "kind": "skill",
+      "name": "golang-samber-ro",
+      "digest": "sha256:630b0d982ddc8ff1bb2d50147208766e0960dfc2f2f566eb3ae5733a4549daa5"
+    },
+    {
+      "kind": "skill",
+      "name": "golang-samber-slog",
+      "digest": "sha256:885d10af1e785fb719544739d558c5bb4ba732d5e51d04a886e63bc35fa9dacd"
+    },
+    {
+      "kind": "skill",
+      "name": "golang-security",
+      "digest": "sha256:7190e584ab2e6fae9d88c16ec51e73d27f92243852f922d571b33ff881c5c7ec"
+    },
+    {
+      "kind": "skill",
+      "name": "golang-spf13-cobra",
+      "digest": "sha256:3d5af582062d151ff1e3ec2dd1f7f7bc0162c1a1d2b7e89b705240253bf31256"
+    },
+    {
+      "kind": "skill",
+      "name": "golang-spf13-viper",
+      "digest": "sha256:e9d6babc4a8fe1a985741141a6af6ff04ea14fc7fa44d5f2df37dc9ca27aa852"
+    },
+    {
+      "kind": "skill",
+      "name": "golang-stay-updated",
+      "digest": "sha256:c9311a6b28614222f2c1bfab418ec013f23ddc2442bc087eaec4cec05497245a"
+    },
+    {
+      "kind": "skill",
+      "name": "golang-stretchr-testify",
+      "digest": "sha256:b1f5ce6c4d2e0b1f4a70a99677cf11bced5179264addd2b5fbf636d03be17b67"
+    },
+    {
+      "kind": "skill",
+      "name": "golang-structs-interfaces",
+      "digest": "sha256:3599b3a6216bd8729d161016ead58f1a69b880547d9e56a940d0333b8f4c0b04"
+    },
+    {
+      "kind": "skill",
+      "name": "golang-swagger",
+      "digest": "sha256:74d338633f46cdae2ab8255b0a0dcfec25bf7c3442cc4455e2e76e43b1f706e1"
+    },
+    {
+      "kind": "skill",
+      "name": "golang-testing",
+      "digest": "sha256:b7ba8149d905c95e710dc8a13e068dba8253bac61ae94d71b1a4072e9ddc8d9e"
+    },
+    {
+      "kind": "skill",
+      "name": "golang-troubleshooting",
+      "digest": "sha256:96271d4a138b53d8098c0e08d089eece910419fe54d43265ef0f83d8132d51f4"
+    },
+    {
+      "kind": "skill",
+      "name": "golang-uber-dig",
+      "digest": "sha256:994d8cf590509d511d0acbff2de050dca6c0ab2a01b64e6d1bb22cdfaa0493d9"
+    },
+    {
+      "kind": "skill",
+      "name": "golang-uber-fx",
+      "digest": "sha256:56740a9dd14a1bf631999c4568c51ae07845059ddb72d62b5aa6ae192032f36d"
+    },
+    {
+      "kind": "skill",
+      "name": "grill-me",
+      "digest": "sha256:3d923fd174557e6575ede77106811ae29ef8bddb60e9156962679b02721e9e80"
+    },
+    {
+      "kind": "skill",
+      "name": "grill-with-docs",
+      "digest": "sha256:7acbe1b2cce086dab0a54249e5862b5110dbb357ca96eda19f7b73019a80e641"
+    },
+    {
+      "kind": "skill",
+      "name": "grilling",
+      "digest": "sha256:e904421df323f6e909b9a80d22b1c3d96bf185fe29927a7c15dccfc3b9da6c4e"
+    },
+    {
+      "kind": "skill",
+      "name": "handoff",
+      "digest": "sha256:11fecf7492185a080635e3c268b1726495d6b1d06bf1250b44ee27a6dad2f28c"
+    },
+    {
+      "kind": "skill",
+      "name": "health",
+      "digest": "sha256:827c279db1abdab73c2d88a4b2241863b4b41992b1fbfaa6939ca84418a39544"
+    },
+    {
+      "kind": "skill",
+      "name": "hono-skills",
+      "digest": "sha256:e9287e426e3182cbda0308f2fc2e4fc911a3e319497a92105dfe0870d43d73f4"
+    },
+    {
+      "kind": "skill",
+      "name": "hunt",
+      "digest": "sha256:68a398ac0aa3a9305e3a1034c477b064fae64500c641478726c1fe74aba36ad6"
+    },
+    {
+      "kind": "skill",
+      "name": "implement",
+      "digest": "sha256:f34feaf6ce711aa7c7c7d2d812a7bd6cc6bc31953d656a88b5247765063d8fa9"
+    },
+    {
+      "kind": "skill",
+      "name": "improve",
+      "digest": "sha256:d480f020d345aa36a65c28af577f853043082222866df559027baa2e339e532c"
+    },
+    {
+      "kind": "skill",
+      "name": "improve-codebase-architecture",
+      "digest": "sha256:797e16db9421838cb0fa394874a9b43583c74934e89dab36d1b30b02c0b1ef27"
+    },
+    {
+      "kind": "skill",
+      "name": "learn",
+      "digest": "sha256:718f4d13d4e807cb26113863c7d7843012a63b41b4d21245bdedb9b3f8ed2d42"
+    },
+    {
+      "kind": "skill",
+      "name": "playwright-cli",
+      "digest": "sha256:a664ed8631f2ffe415f1ada5df80ed54d56120ac13d7eaa07ea5482766054708"
+    },
+    {
+      "kind": "skill",
+      "name": "prototype",
+      "digest": "sha256:b0a42981de8813d4438c1ca2b0a0cadba472502c22e7c3a6659498c1fb4aec45"
+    },
+    {
+      "kind": "skill",
+      "name": "react-best-practices",
+      "digest": "sha256:cc106316a01cd84e889e21081f8524513935f4762fb6f2a1c41195cc2b20ac53"
+    },
+    {
+      "kind": "skill",
+      "name": "read",
+      "digest": "sha256:bcac2c5f5c9b2580498001b5b07493f067c4820edae8d8bab892c81adce600e4"
+    },
+    {
+      "kind": "skill",
+      "name": "research",
+      "digest": "sha256:60bb9acfaaddfa41129e6b263cb47491ea4d4eb50bc29ec0d2d950162a54c555"
+    },
+    {
+      "kind": "skill",
+      "name": "resolving-merge-conflicts",
+      "digest": "sha256:d72abb45d743b98fd645c6498b2c92ab4953305cb549c5897d63832b8d6a7baa"
+    },
+    {
+      "kind": "skill",
+      "name": "setup-matt-pocock-skills",
+      "digest": "sha256:443e2252ca39a1db0e7a1caebf10d81fc14e1a31047efa08baf41e4bbe855e60"
+    },
+    {
+      "kind": "skill",
+      "name": "show-me",
+      "digest": "sha256:81ea04fe069e9c6856cd04192fe99a1ed3c225d4ae407725657332f89e5973f2"
+    },
+    {
+      "kind": "skill",
+      "name": "simplify-codebase",
+      "digest": "sha256:81b3d3d945a72efc2bf3e72b506ff75f5085dc807c4ca8f9b7c27e5779f78003"
+    },
+    {
+      "kind": "skill",
+      "name": "skill-creator",
+      "digest": "sha256:1501ac5257c6e4a0cfbd91bea2e699f86dbcff04fcda5ee8e7cf994ef77d9899"
+    },
+    {
+      "kind": "skill",
+      "name": "skill-doctor",
+      "digest": "sha256:3c84c673994709de4e1b773e3087f752bfccaf5d8c5ab9bc8a76ef68ddaacdfb"
+    },
+    {
+      "kind": "skill",
+      "name": "steelman",
+      "digest": "sha256:6874d260a9e9e2e5e73e936980c68e2c51fbaa3d181a0ac4de8036344735de64"
+    },
+    {
+      "kind": "skill",
+      "name": "tanstack-integration",
+      "digest": "sha256:8c5857fdf32bae4e5139839b35740d667decc36b8e0f2c458ab3d9db98601408"
+    },
+    {
+      "kind": "skill",
+      "name": "tanstack-query",
+      "digest": "sha256:7ddca3868fb252ad3e81561ec8dbccd98dab451ba13df9b56e90a490e9b60035"
+    },
+    {
+      "kind": "skill",
+      "name": "tanstack-router",
+      "digest": "sha256:e1545eeb05c4f0bf9cae762898867fa4d1455562602d8decac7b98b180935386"
+    },
+    {
+      "kind": "skill",
+      "name": "tanstack-start",
+      "digest": "sha256:d30dac9d3a7a2bf8c9ff45e5c0c7fb48cd5c42d913271c66b944cb6f45b927ea"
+    },
+    {
+      "kind": "skill",
+      "name": "tdd",
+      "digest": "sha256:c3fb3b9979ab6696e05027af5e491a39a74367dd7484d6e12d8a0443c37b98d5"
+    },
+    {
+      "kind": "skill",
+      "name": "teach",
+      "digest": "sha256:e7fdc2a83cca469e830c3e25dc7bd0e72883c8fec954b87c444461d000d296ce"
+    },
+    {
+      "kind": "skill",
+      "name": "thermo-nuclear-code-quality-review",
+      "digest": "sha256:7ee9561406b93232609f4f7c8e54544601aee55ff74c4b6d633ca9d827710365"
+    },
+    {
+      "kind": "skill",
+      "name": "thermo-nuclear-review",
+      "digest": "sha256:f35e4e82337e5ca80c2c67244101e3e18b61338019b34002bec9bd225785ffdc"
+    },
+    {
+      "kind": "skill",
+      "name": "thermos",
+      "digest": "sha256:825696eaa95b5c66b8f5b45d03547bbbe89add91957ca430b57d5df4ec6c41a1"
+    },
+    {
+      "kind": "skill",
+      "name": "think",
+      "digest": "sha256:fb6dac949ab718d47fb25eef95998f8a25cd31f9d25407081dfe04266dd4a654"
+    },
+    {
+      "kind": "skill",
+      "name": "to-questionnaire",
+      "digest": "sha256:8e6aa411148a1f7727fc0709a182ad7ba0b7c38cb476746dc28e8e92347231b5"
+    },
+    {
+      "kind": "skill",
+      "name": "to-spec",
+      "digest": "sha256:9c80dbf2f54aef56247b28658872eb98f5d4118ed29762abe75d77e59fe1df3a"
+    },
+    {
+      "kind": "skill",
+      "name": "to-tickets",
+      "digest": "sha256:3350a1d1e0dd421b43553394c04f4aae5ae222f3e1c7664a34c6f6579eb0963f"
+    },
+    {
+      "kind": "skill",
+      "name": "triage",
+      "digest": "sha256:926b28c98fc1f9b49c3d0cdf2e003f358a961e8518affc5a2a7fd5e9e1e928d7"
+    },
+    {
+      "kind": "skill",
+      "name": "type-system-discipline",
+      "digest": "sha256:c1bf50f8be152b786d7b1d04cd767fcd4fadd2e4d2ea804b86be545aa2a4a9a3"
+    },
+    {
+      "kind": "skill",
+      "name": "typescript-best-practices",
+      "digest": "sha256:a2dec68a765d1a96973dabd9e628b9b9dc3cfc0f485585eafc5c2678716dd68a"
+    },
+    {
+      "kind": "skill",
+      "name": "ui",
+      "digest": "sha256:38c64f049d91b2dfaa06362482ff12c2a5a2e2b50288fc896b4557dbdc205a0f"
+    },
+    {
+      "kind": "skill",
+      "name": "unocss",
+      "digest": "sha256:c6923915139f3d3d1424d0f03a71a9b2d6109a6896d0d86eb62ce05c39089bfb"
+    },
+    {
+      "kind": "skill",
+      "name": "vite",
+      "digest": "sha256:bce14c0bb93a50df671e8f3afdca04fe6826872006abfaa7f2a88839361e53e4"
+    },
+    {
+      "kind": "skill",
+      "name": "vitest",
+      "digest": "sha256:fcd5facd1dfa8bfb94c100ea7282896168daf2ffb54ed81ab242ac6bccd1faa9"
+    },
+    {
+      "kind": "skill",
+      "name": "vue-best-practices",
+      "digest": "sha256:701e9c1bc7bee28a6b1ea2d0e1686eef34ce96182b49d61feff113058b0bc696"
+    },
+    {
+      "kind": "skill",
+      "name": "vue-debug-guides",
+      "digest": "sha256:3eef4920bad55259529b909dac90dab926bef21846fcbe08410cd8de13b8fc9a"
+    },
+    {
+      "kind": "skill",
+      "name": "vue-jsx-best-practices",
+      "digest": "sha256:a09f2fcaa2cb31c52f96408b22161d82889f2a2d2146cfb0ef254e712c2073cf"
+    },
+    {
+      "kind": "skill",
+      "name": "vue-options-api-best-practices",
+      "digest": "sha256:f36ea6595c7ca42f5bdf0296a1e955ed20f6e9f005e1bd3acdb95a95ceb51540"
+    },
+    {
+      "kind": "skill",
+      "name": "vue-pinia-best-practices",
+      "digest": "sha256:f5516fd165ababe452e670bc9863fadf162672f90dcb823e5edeafebb4d74402"
+    },
+    {
+      "kind": "skill",
+      "name": "vue-router-best-practices",
+      "digest": "sha256:b08846c3bbf7dd4b59ce8b86f771d4dbb8ac3ea02d6f78857ead53479b52646f"
+    },
+    {
+      "kind": "skill",
+      "name": "vue-testing-best-practices",
+      "digest": "sha256:b80272cde710ea1f5e7808f994432565f1ef3c4c9ed79ab2033a1af4c190fb06"
+    },
+    {
+      "kind": "skill",
+      "name": "vueuse-functions",
+      "digest": "sha256:b7f5532bb8ab45ab50f6340695bc73f7eb5b4ac78cb178e3ce91ce80c4373b56"
+    },
+    {
+      "kind": "skill",
+      "name": "wait-what",
+      "digest": "sha256:a5aa1f148096c4a98d23f5d5204cea169d250622274b438153465b9c8f34508d"
+    },
+    {
+      "kind": "skill",
+      "name": "wayfinder",
+      "digest": "sha256:812056dc622b710cc2b1942fb5861c200cbad4040232510f76714008de3232af"
+    },
+    {
+      "kind": "skill",
+      "name": "web-code-style",
+      "digest": "sha256:4f3a469138cf106114776d08ecff24a06a186a07d1fdba42717f3f3848af800b"
+    },
+    {
+      "kind": "skill",
+      "name": "web-design-guidelines",
+      "digest": "sha256:e9e931c965d9f4f5678ed8931956f03b9eb4bd11288c6538dc229e7c8ce6ddf5"
+    },
+    {
+      "kind": "skill",
+      "name": "web-naming",
+      "digest": "sha256:c7acb89376b634c2bfcb78c803518b8dad8d88196f20eb00df37399acbaa7bd2"
+    },
+    {
+      "kind": "skill",
+      "name": "web-zustand",
+      "digest": "sha256:2bda2658ac32f91d250ff27c9f98c912f315a114bfaa94d0fb2bf680c5fa0726"
+    },
+    {
+      "kind": "skill",
+      "name": "wizard",
+      "digest": "sha256:b042b7d1424f13a87688eea3b6b37847b9ae742978bc099be87499d310e45c28"
+    },
+    {
+      "kind": "skill",
+      "name": "write",
+      "digest": "sha256:7efd7c5b05e82ed447c995815f2a51d52d272e8f1b9d2c8ee1b10a22acf89e37"
+    },
+    {
+      "kind": "skill",
+      "name": "writing-for-agents",
+      "digest": "sha256:2e070f73aed0b630fb4ad5495cdc5ee305b64f191661709f00426701d0e0f3f0"
+    }
+  ]
+}

@@ -7,9 +7,8 @@ description: >-
   benchmarks have identified a bottleneck and you need the right optimization
   pattern to fix it. Also use when performing performance code review to suggest
   improvements or benchmarks that could help identify quick performance gains.
-  Not for measurement methodology (→ See
-  `golang-benchmark` skill) or debugging workflow (→ See
-  `golang-troubleshooting` skill).
+  Not for measurement methodology (→ See `golang-benchmark` skill) or debugging
+  workflow (→ See `golang-troubleshooting` skill).
 user-invocable: true
 license: MIT
 compatibility: >-

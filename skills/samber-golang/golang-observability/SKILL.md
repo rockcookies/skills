@@ -10,8 +10,7 @@ description: >-
   (zap/logrus/zerolog) to slog, adding observability to new features, or
   implementing GDPR/CCPA-compliant tracking with Customer Data Platforms (CDP).
   Not for temporary deep-dive performance investigation (→ See
-  `golang-benchmark` and
-  `golang-performance` skills).
+  `golang-benchmark` and `golang-performance` skills).
 user-invocable: true
 license: MIT
 compatibility: >-

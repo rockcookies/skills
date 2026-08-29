@@ -1,4 +1,106 @@
 {
   "sha": "6acc160e4e0cd062dbbbd7a1b26ae92855edf07e",
-  "synced": "2026-08-07"
+  "synced": "2026-08-29",
+  "items": {
+    "ask-matt": {
+      "sourceDigest": "sha256:67579667867e06bfd5224d54a040b2f9a63d05fc710723e4900a57bc96e12df8",
+      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    },
+    "code-review": {
+      "sourceDigest": "sha256:69160774c64fb2e5c4291063e6cb1f861882f9e6c514c7d38d471c597a9cdc13",
+      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    },
+    "codebase-design": {
+      "sourceDigest": "sha256:747e6738172adc6d558e7a600729de93f6809796a4c9d393b977d6b1bd60889e",
+      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    },
+    "diagnosing-bugs": {
+      "sourceDigest": "sha256:b02dc694b8ebba49039288c153db487000b56af3462cc28900d3ac4ee2446bce",
+      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    },
+    "domain-modeling": {
+      "sourceDigest": "sha256:874510c005186b7160e0b8d12fb1473c07857d24bd8d71e425c1f59295bdae5e",
+      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    },
+    "grill-with-docs": {
+      "sourceDigest": "sha256:76351a6cf000d83887815cd41c505084d875c7bbaa4e850067b19c1f2f929188",
+      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    },
+    "implement": {
+      "sourceDigest": "sha256:589eccf86ddfbe12342279d989afacc11ad989c88ddabd40fa1042e4a2ba873f",
+      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    },
+    "improve-codebase-architecture": {
+      "sourceDigest": "sha256:27177960068b4d4fc9a80502ff5c2f296eed4d7763f8f83dbaac99ce78cc6825",
+      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    },
+    "prototype": {
+      "sourceDigest": "sha256:b16ba35b04b9b96ab9afa9521eaab81f18c05b250589be34fef03adb4dcd7123",
+      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    },
+    "research": {
+      "sourceDigest": "sha256:aa93ec24a7a0c0ddf755dca7c06c2fecfbf86756e07ed9d00ebb5aeed3e9bc14",
+      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    },
+    "resolving-merge-conflicts": {
+      "sourceDigest": "sha256:0ef4b33185650b23b7430fa0a025adb6ec059109516348316678b104dc5c02fb",
+      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    },
+    "setup-matt-pocock-skills": {
+      "sourceDigest": "sha256:082cf8685d1b5abe106635c18d4198cf846ad1bd9f31df70355aceebbb133e63",
+      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    },
+    "tdd": {
+      "sourceDigest": "sha256:7512cc30aa1065c060d5735cae33eb0867215675adb5aac65a9cdca2ebbc345f",
+      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    },
+    "to-spec": {
+      "sourceDigest": "sha256:9872f14137e5fecb472dd2c919c61e710649ec007b3f7a3e5f625651591bc195",
+      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    },
+    "to-tickets": {
+      "sourceDigest": "sha256:75a2c0f672e73b5b69db8c3edfb57accd7d2cc8e3e21ef254ee92c46f48e62f0",
+      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    },
+    "triage": {
+      "sourceDigest": "sha256:4a805f954094279b0e10e4cd0958c5f65d67fba8573096533b404d279ccfe129",
+      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    },
+    "wayfinder": {
+      "sourceDigest": "sha256:93c2491fd21e733c38ca1cae5732f91d5476c4f24641fb1a43e9b59538c0f3a6",
+      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    },
+    "wizard": {
+      "sourceDigest": "sha256:b0a99d058d659e7be9ce2da12c1368f1659449f32d64f36f66005fd9d37b06c7",
+      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    },
+    "grill-me": {
+      "sourceDigest": "sha256:4dc070d01986ff254c2082787e6b791aa168c1e3be4cb24ed356a4d73d35e72a",
+      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    },
+    "grilling": {
+      "sourceDigest": "sha256:d17a3089c5549eea829cf9684ea6715a6131522e007fe5b01e9cb1feb9d04d49",
+      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    },
+    "handoff": {
+      "sourceDigest": "sha256:a258813de0687f1cb7fbdf527819add75266bd61d923569cf65b6fe84dc75ae8",
+      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    },
+    "teach": {
+      "sourceDigest": "sha256:dd53978b5e8046ad4489b11a33ae8af85a1402ff4df7bb2839e2bcc3b8128aaa",
+      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    },
+    "to-questionnaire": {
+      "sourceDigest": "sha256:c6ef173431d8470087d0a1f2051033630757a05418d24ea73f44dc7714cae46b",
+      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    },
+    "wait-what": {
+      "sourceDigest": "sha256:a5aa1f148096c4a98d23f5d5204cea169d250622274b438153465b9c8f34508d",
+      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    },
+    "writing-for-agents": {
+      "sourceDigest": "sha256:52cc3c701e5a79f90771d1d23fdfec419b75110f8b4ac40350a5397cfeca48c3",
+      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    }
+  }
 }

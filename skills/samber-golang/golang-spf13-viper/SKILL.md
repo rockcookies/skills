@@ -8,8 +8,8 @@ description: >-
   OnConfigChange for hot reload, viper.New() for test isolation, and remote KV
   integration. Apply when using or adopting spf13/viper, or when the codebase
   imports `github.com/spf13/viper`. For CLI command structure alongside viper,
-  see the `golang-spf13-cobra` skill. For general CLI
-  architecture, see `golang-cli`.
+  see the `golang-spf13-cobra` skill. For general CLI architecture, see
+  `golang-cli`.
 user-invocable: true
 license: MIT
 compatibility: >-

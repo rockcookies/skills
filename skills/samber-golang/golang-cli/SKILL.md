@@ -6,8 +6,8 @@ description: >-
   layering, version embedding, exit codes, I/O patterns, signal handling, shell
   completion, argument validation, and CLI unit testing. Also triggers when code
   uses cobra, viper, or urfave/cli. For cobra-specific APIs → See
-  `golang-spf13-cobra` skill; for viper configuration
-  layering → See `golang-spf13-viper` skill.
+  `golang-spf13-cobra` skill; for viper configuration layering → See
+  `golang-spf13-viper` skill.
 user-invocable: true
 license: MIT
 compatibility: >-

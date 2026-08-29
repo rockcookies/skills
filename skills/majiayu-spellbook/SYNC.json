@@ -1,4 +1,22 @@
 {
   "sha": "9e96aa5f52e8504cbbf9d359def29f9abcde57ce",
-  "synced": "2026-08-26"
+  "synced": "2026-08-29",
+  "items": {
+    "figma-to-react": {
+      "sourceDigest": "sha256:78563e155984b26746060996e0308886742dc8f83a88b95e19a4d340310af1de",
+      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    },
+    "clash-doctor": {
+      "sourceDigest": "sha256:8ac2f23edf28b2462a826cd8272cf7a09da6a7ce63a2f668bc813ca1e0551412",
+      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    },
+    "clash-routes": {
+      "sourceDigest": "sha256:6724387479590924e139b0382261684a8aefd91194ac8d337055aea42f417c13",
+      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    },
+    "codebase-audit": {
+      "sourceDigest": "sha256:345469b029991ce9c66455796a1b975c14733f17ffdbdcd9ca2ba4f9ab8b6f0e",
+      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    }
+  }
 }

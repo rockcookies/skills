@@ -6,9 +6,8 @@ description: >-
   Covers debugging methodology, common Go pitfalls, test-driven debugging, pprof
   setup and capture, Delve debugger, race detection, GODEBUG tracing, and
   production debugging. Start here for any 'something is wrong' situation. Not
-  for interpreting profiles or benchmarking (→ See
-  `golang-benchmark` skill) or applying optimization
-  patterns (→ See `golang-performance` skill).
+  for interpreting profiles or benchmarking (→ See `golang-benchmark` skill) or
+  applying optimization patterns (→ See `golang-performance` skill).
 user-invocable: true
 license: MIT
 compatibility: >-

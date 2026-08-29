@@ -1,4 +1,22 @@
 {
   "sha": "0e8bcdc6af4959739e0f6a2dfb35dc70d513940a",
-  "synced": "2026-07-27"
+  "synced": "2026-08-29",
+  "items": {
+    "tanstack-integration": {
+      "sourceDigest": "sha256:4bce93561196fb3684d759ecac19fb5f529e2f5134eeedc4e814b9f353c9ff4d",
+      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    },
+    "tanstack-query": {
+      "sourceDigest": "sha256:51ac257bc898f6de3d0b76faa92bad6553560e2c97c391352588dee9f6be87b1",
+      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    },
+    "tanstack-router": {
+      "sourceDigest": "sha256:c2b3312301385955c3a9c064f93a6fe92d90d681052223e0837f3844d4673f47",
+      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    },
+    "tanstack-start": {
+      "sourceDigest": "sha256:05b2669b1952546f406a1ba89a5b3c1fce30806c0255380b45e893296fd84fc1",
+      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    }
+  }
 }

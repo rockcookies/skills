@@ -1,4 +1,10 @@
 {
   "sha": "026d4ea012bdd5cada72ac8cc13f21ba4edf2245",
-  "synced": "2026-08-02"
+  "synced": "2026-08-29",
+  "items": {
+    "baoyu-design": {
+      "sourceDigest": "sha256:d64582855e768fb11ed00a4411ffa5ed8aa68aa971a90d7c47179ee475e69ba6",
+      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    }
+  }
 }

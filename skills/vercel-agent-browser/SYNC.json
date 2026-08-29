@@ -1,4 +1,10 @@
 {
   "sha": "fbd046c23a2c1156891bda294aaaee715c23b3f1",
-  "synced": "2026-08-27"
+  "synced": "2026-08-29",
+  "items": {
+    "agent-browser": {
+      "sourceDigest": "sha256:0c772d52ba79da5e86d85a8473dd7e8938425600540e4813812da00b0d44851c",
+      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    }
+  }
 }

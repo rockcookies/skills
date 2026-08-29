@@ -1,4 +1,14 @@
 {
-  "sha": "20e89cc4bb256eb7b1fcbdc68f7175284709a847",
-  "synced": "2026-08-28"
+  "sha": "063bee94c3f4df8453406c830b0a7df0f2860278",
+  "synced": "2026-08-29",
+  "items": {
+    "web-design-guidelines": {
+      "sourceDigest": "sha256:b6849640846e0e39a09629c4cebfd25529b67a1174eb4d3d86f49783094669f9",
+      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    },
+    "react-best-practices": {
+      "sourceDigest": "sha256:7bebea6ff54a8241d38954afaa1ec1a36823c9d3127d42716bf9c27f44581caf",
+      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    }
+  }
 }

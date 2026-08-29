@@ -1,4 +1,22 @@
 {
   "sha": "a74f281a27dadc02397bc1a174b0f2c97531b6ae",
-  "synced": "2026-07-27"
+  "synced": "2026-08-29",
+  "items": {
+    "vite": {
+      "sourceDigest": "sha256:01d5ecd1738540a7dc1efe398ab045e4f3b5d513af9b49ea2cd777f5b87d21c4",
+      "transformId": "sha256:9a0731abd7ae821e16890cb0d94c17d01f719678719bc118517a9c6ab604c461"
+    },
+    "vitest": {
+      "sourceDigest": "sha256:61c758305472f72310a37f9f0fc188ae5390ab3e6c237a07475cc62edb6f8e91",
+      "transformId": "sha256:9a0731abd7ae821e16890cb0d94c17d01f719678719bc118517a9c6ab604c461"
+    },
+    "unocss": {
+      "sourceDigest": "sha256:6c87946fe68a0fd60168d9f8f7954f8fe2d39a4279380ca8bb2fb53fc19374e6",
+      "transformId": "sha256:9a0731abd7ae821e16890cb0d94c17d01f719678719bc118517a9c6ab604c461"
+    },
+    "antfu": {
+      "sourceDigest": "sha256:22722358cd3acf9aa3a51b2fcb510d3912820b32188967e5e4978ddf2e2be425",
+      "transformId": "sha256:9a0731abd7ae821e16890cb0d94c17d01f719678719bc118517a9c6ab604c461"
+    }
+  }
 }

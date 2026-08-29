@@ -12,9 +12,9 @@ description: >-
   clean up, refactor, or improve Go code — also for renaming at scale,
   extracting functions/interfaces, moving code between packages, splitting
   packages, or planning a multi-step refactor. Target styles owned elsewhere →
-  See `golang-naming` (renames),
-  `@golang-project-layout` (splits), `@golang-modernize` (idioms),
-  `@golang-code-style` (control flow), `@golang-design-patterns` (patterns/DI).
+  See `golang-naming` (renames), `@golang-project-layout` (splits),
+  `@golang-modernize` (idioms), `@golang-code-style` (control flow),
+  `@golang-design-patterns` (patterns/DI).
 user-invocable: true
 license: MIT
 compatibility: >-

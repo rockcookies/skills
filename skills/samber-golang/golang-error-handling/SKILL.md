@@ -7,8 +7,8 @@ description: >-
   and samber/oops for production errors. Built to make logs usable at scale with
   log aggregation 3rd-party tools. Apply when creating, wrapping, inspecting, or
   logging errors in Go code. For samber/oops specifics → See
-  `golang-samber-oops` skill; for slog handler ecosystem
-  → See `golang-samber-slog` skill.
+  `golang-samber-oops` skill; for slog handler ecosystem → See
+  `golang-samber-slog` skill.
 user-invocable: true
 license: MIT
 compatibility: >-

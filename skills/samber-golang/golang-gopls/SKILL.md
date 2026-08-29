@@ -11,9 +11,8 @@ description: >-
   understanding a file's or package's dependencies, running diagnostics after an
   edit, or extracting/inlining/renaming. Not for the published ecosystem —
   packages not in your `go.mod`, versions, licenses, importers — → See
-  `golang-pkg-go-dev` skill (`godig`). Not for a
-  whole-tree vulnerability audit → See `golang-security`
-  skill (`govulncheck`).
+  `golang-pkg-go-dev` skill (`godig`). Not for a whole-tree vulnerability audit
+  → See `golang-security` skill (`govulncheck`).
 user-invocable: true
 license: MIT
 compatibility: >-

@@ -6,8 +6,7 @@ description: >-
   snapshot testing, code coverage, integration tests, idiomatic test naming. Use
   when writing or reviewing Go tests, choosing a testing approach, setting up Go
   test CI, or debugging flaky/slow tests. For testify-specific APIs see
-  `golang-stretchr-testify`; for measurement methodology
-  see `golang-benchmark`.
+  `golang-stretchr-testify`; for measurement methodology see `golang-benchmark`.
 user-invocable: true
 license: MIT
 compatibility: >-

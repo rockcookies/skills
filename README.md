@@ -2,7 +2,7 @@
 
 A curated collection of [Agent Skills](https://agentskills.io/home) and Cursor plugin agents for full-stack development, synced from upstream repositories via a CLI tool.
 
-Synced skills live at `skills/{repoKey}/{target}/`. Hand-maintained skills live under `skills/custom/`. Synced agents live at `agents/{repoKey}/{target}.md`. Repository sources and mappings are configured in [meta.ts](meta.ts).
+Synced skills live at `skills/{repoKey}/{target}/`. Hand-maintained skills live under `skills/custom/`. Synced agents live at `agents/{repoKey}/{target}.md`. Repository sources and mappings are configured in [meta.ts](meta.ts). After sync, [catalog.json](catalog.json) records a content digest for every published skill (including custom) and agent.
 
 ## Installation
 
@@ -147,7 +147,7 @@ npx skills add rockcookies/skills --full-depth \
   -g
 ```
 
-#### samber/\*
+#### samber/*
 
 ```bash
 npx skills add rockcookies/skills --full-depth \
@@ -337,9 +337,9 @@ Synced from external repositories into `skills/{repoKey}/{target}/`.
 
 #### [humanlayer/skills](https://github.com/humanlayer/skills)
 
-| Skill                                | Description                                                                                      |
-| ------------------------------------ | ------------------------------------------------------------------------------------------------ |
-| [show-me](skills/humanlayer/show-me) | Visual explanations — diagrams, call trees, Mermaid diffs, and focused HTML artifacts            |
+| Skill                                | Description                                                                           |
+| ------------------------------------ | ------------------------------------------------------------------------------------- |
+| [show-me](skills/humanlayer/show-me) | Visual explanations — diagrams, call trees, Mermaid diffs, and focused HTML artifacts |
 
 #### [JimLiu/baoyu-skills](https://github.com/JimLiu/baoyu-skills)
 
@@ -457,9 +457,9 @@ Synced from external repositories into `skills/{repoKey}/{target}/`.
 
 #### [tt-a1i/simplify-codebase](https://github.com/tt-a1i/simplify-codebase)
 
-| Skill                                                                      | Description                                                                                  |
-| -------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| [simplify-codebase](skills/tt-a1i-simplify-codebase/simplify-codebase)     | Evidence-backed simplification audit — delete dead code, duplicate state, redundant layers   |
+| Skill                                                                  | Description                                                                                |
+| ---------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| [simplify-codebase](skills/tt-a1i-simplify-codebase/simplify-codebase) | Evidence-backed simplification audit — delete dead code, duplicate state, redundant layers |
 
 #### [tw93/Waza](https://github.com/tw93/Waza) (tag `v3.34.1`)
 
@@ -513,9 +513,9 @@ Synced from external repositories into `skills/{repoKey}/{target}/`.
 
 #### [warpdotdev/common-skills](https://github.com/warpdotdev/common-skills)
 
-| Skill                                                    | Description                                                                                        |
-| -------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
-| [skill-doctor](skills/warpdotdev-common/skill-doctor)    | Grades your agent setup by scoring real conversations; drafts skill edits and a shareable report   |
+| Skill                                                 | Description                                                                                      |
+| ----------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| [skill-doctor](skills/warpdotdev-common/skill-doctor) | Grades your agent setup by scoring real conversations; drafts skill edits and a shareable report |
 
 #### [yusukebe/hono-skill](https://github.com/yusukebe/hono-skill)
 

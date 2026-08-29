@@ -8,9 +8,9 @@ description: >-
   template customization, man-page and markdown doc generation, and testing with
   SetArgs/SetOut/SetErr. Apply when using or adopting spf13/cobra, or when the
   codebase imports `github.com/spf13/cobra`. For configuration layering
-  alongside cobra, see the `golang-spf13-viper` skill.
-  For general CLI architecture (project layout, exit codes, signal handling, I/O
-  patterns), see `golang-cli`.
+  alongside cobra, see the `golang-spf13-viper` skill. For general CLI
+  architecture (project layout, exit codes, signal handling, I/O patterns), see
+  `golang-cli`.
 user-invocable: true
 license: MIT
 compatibility: >-

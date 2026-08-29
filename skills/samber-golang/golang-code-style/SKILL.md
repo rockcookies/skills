@@ -4,10 +4,9 @@ description: >-
   Golang code style conventions — line length and breaking, variable
   declarations, control flow clarity, when comments help vs hurt. Use when
   writing or reviewing Go code, asking about style or clarity, or establishing
-  project coding standards. Not for naming conventions (→ See
-  `golang-naming` skill), linter configuration (→ See
-  `golang-lint` skill), or doc comments (→ See
-  `golang-documentation` skill).
+  project coding standards. Not for naming conventions (→ See `golang-naming`
+  skill), linter configuration (→ See `golang-lint` skill), or doc comments (→
+  See `golang-documentation` skill).
 user-invocable: true
 license: MIT
 compatibility: >-

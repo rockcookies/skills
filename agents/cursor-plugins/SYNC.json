@@ -1,4 +1,14 @@
 {
-  "sha": "397c8660da6d3d873a91e18c2ca2f22cac1f0ac1",
-  "synced": "2026-08-28"
+  "sha": "68836ddaf5697224520f1847d90cdb90ca8babaa",
+  "synced": "2026-08-29",
+  "items": {
+    "thermo-nuclear-review-subagent": {
+      "sourceDigest": "sha256:9dfa8ed88d1ea5d775edb5557b8a8ecfa9f2977b904c55c902b0ceb648b563d0",
+      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    },
+    "thermo-nuclear-code-quality-review-subagent": {
+      "sourceDigest": "sha256:636800f1e5acf501f339779a8867b95d633396930b3356a2b0c9a0018343f02d",
+      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    }
+  }
 }
