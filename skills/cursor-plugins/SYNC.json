@@ -1,4 +1,34 @@
 {
-  "sha": "397c8660da6d3d873a91e18c2ca2f22cac1f0ac1",
-  "synced": "2026-08-28"
+  "sha": "68836ddaf5697224520f1847d90cdb90ca8babaa",
+  "synced": "2026-08-29",
+  "items": {
+    "encode-lessons-in-structure": {
+      "sourceDigest": "sha256:08f85539bd42435932cd69ca421f0f85fe87e419b24e6b98d8b0a96d77e6306c",
+      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    },
+    "boundary-discipline": {
+      "sourceDigest": "sha256:27acb2e1d1f0dac91648272515b693a450fcc426044e2c50e70ee433971eafdc",
+      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    },
+    "type-system-discipline": {
+      "sourceDigest": "sha256:58534afcf0e703a66a8af6a0f55c1d8290a31f4110f0ff21adabba100a5dfe1c",
+      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    },
+    "typescript-best-practices": {
+      "sourceDigest": "sha256:a2dec68a765d1a96973dabd9e628b9b9dc3cfc0f485585eafc5c2678716dd68a",
+      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    },
+    "thermos": {
+      "sourceDigest": "sha256:4374efc81fc3ce192122b45978eb5dee21528e65a2e1622b36a98ae891f85fba",
+      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    },
+    "thermo-nuclear-review": {
+      "sourceDigest": "sha256:c86e66eafdce00c71728140cbabe5edf834b7b7613d423771c93b5d64936ed28",
+      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    },
+    "thermo-nuclear-code-quality-review": {
+      "sourceDigest": "sha256:e4ddbf2e7dacd1503b9e02701cd953fef3abeccb04b718aefe701f1921ff4db9",
+      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    }
+  }
 }

@@ -181,6 +181,10 @@ export const repositories: Record<string, RepositoryConfig> = {
   'cursor-plugins': {
     url: 'https://github.com/cursor/plugins',
     skills: [
+      { target: 'encode-lessons-in-structure', source: './pstack/skills/principle-encode-lessons-in-structure/SKILL.md' },
+      { target: 'boundary-discipline', source: './pstack/skills/principle-boundary-discipline/SKILL.md' },
+      { target: 'type-system-discipline', source: './pstack/skills/principle-type-system-discipline/SKILL.md' },
+      { target: 'typescript-best-practices', source: './pstack/skills/typescript-best-practices/SKILL.md' },
       { target: 'thermos', source: './thermos/skills/thermos/SKILL.md' },
       { target: 'thermo-nuclear-review', source: './thermos/skills/thermo-nuclear-review/SKILL.md' },
       { target: 'thermo-nuclear-code-quality-review', source: './thermos/skills/thermo-nuclear-code-quality-review/SKILL.md' },
