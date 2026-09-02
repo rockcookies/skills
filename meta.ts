@@ -119,7 +119,7 @@ export const repositories: Record<string, RepositoryConfig> = {
     ]
   },
   hono: {
-    url: 'https://github.com/yusukebe/hono-skill',
+    url: 'https://github.com/honojs/skills',
     skills: [
       { target: 'hono-skills', source: './skills/hono/SKILL.md' }
     ],
@@ -181,6 +181,7 @@ export const repositories: Record<string, RepositoryConfig> = {
   'cursor-plugins': {
     url: 'https://github.com/cursor/plugins',
     skills: [
+      { target: 'unslop', source: './pstack/skills/unslop/SKILL.md' },
       { target: 'encode-lessons-in-structure', source: './pstack/skills/principle-encode-lessons-in-structure/SKILL.md' },
       { target: 'boundary-discipline', source: './pstack/skills/principle-boundary-discipline/SKILL.md' },
       { target: 'type-system-discipline', source: './pstack/skills/principle-type-system-discipline/SKILL.md' },
@@ -215,6 +216,7 @@ export const repositories: Record<string, RepositoryConfig> = {
       { target: 'figma-to-react', source: './skills/figma-to-react/SKILL.md' },
       { target: 'clash-doctor', source: './skills/clash-doctor/SKILL.md' },
       { target: 'clash-routes', source: './skills/clash-routes/SKILL.md' },
+      { target: 'ip-check', source: './skills/ip-check/SKILL.md' },
       { target: 'codebase-audit', source: './skills/codebase-audit/SKILL.md' },
     ]
   },
