@@ -244,6 +244,18 @@ npx skills add rockcookies/skills --full-depth \
   -g
 ```
 
+#### TypeScript principles & unslop (cursor/plugins)
+
+```bash
+npx skills add rockcookies/skills --full-depth \
+  --skill typescript-best-practices \
+  --skill type-system-discipline \
+  --skill boundary-discipline \
+  --skill encode-lessons-in-structure \
+  --skill unslop \
+  -g
+```
+
 #### Hono / Playwright / web naming & style
 
 ```bash
@@ -316,15 +328,20 @@ Synced from external repositories into `skills/{repoKey}/{target}/`.
 | [frontend-design](skills/anthropics/frontend-design) | Distinctive, intentional visual design for new or reshaped UI |
 | [skill-creator](skills/anthropics/skill-creator)     | Create, edit, and benchmark agent skills                      |
 
-#### [cursor/plugins](https://github.com/cursor/plugins) (thermos)
+#### [cursor/plugins](https://github.com/cursor/plugins)
 
-`thermos` launches the two review subagents in parallel. Copy `agents/cursor-plugins/*.md` into `~/.cursor/agents/` as well — see [Installation](#installation).
+`thermos` launches the two review subagents in parallel. Copy `agents/cursor-plugins/*.md` into `~/.cursor/agents/` as well — see [Installation](#installation). The TypeScript and principle skills cross-reference each other; install them as a set.
 
 | Skill                                                                                          | Description                                                              |
 | ---------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
+| [boundary-discipline](skills/cursor-plugins/boundary-discipline)                               | Validation and error handling at system boundaries; trust internal types |
+| [encode-lessons-in-structure](skills/cursor-plugins/encode-lessons-in-structure)               | Encode recurring fixes as lint rules, flags, checks, or scripts          |
 | [thermo-nuclear-code-quality-review](skills/cursor-plugins/thermo-nuclear-code-quality-review) | Strict maintainability audit (structure, file-size growth, spaghetti)    |
 | [thermo-nuclear-review](skills/cursor-plugins/thermo-nuclear-review)                           | Deep branch audit (bugs, breakages, security, devex, feature-flag leaks) |
 | [thermos](skills/cursor-plugins/thermos)                                                       | Run both review subagents in parallel and synthesize findings            |
+| [type-system-discipline](skills/cursor-plugins/type-system-discipline)                         | Make illegal states unrepresentable — sum types, brands, boundary parse  |
+| [typescript-best-practices](skills/cursor-plugins/typescript-best-practices)                   | TypeScript rules grounding the type-system principles in .ts/.tsx        |
+| [unslop](skills/cursor-plugins/unslop)                                                         | Cut AI tells from writing — puffery, chatbot phrases, hedging, jargon    |
 
 #### [deckardger/tanstack-agent-skills](https://github.com/deckardger/tanstack-agent-skills)
 
@@ -361,6 +378,7 @@ Synced from external repositories into `skills/{repoKey}/{target}/`.
 | [clash-routes](skills/majiayu-spellbook/clash-routes)     | Inspect per-process proxy routes via the Mihomo API                          |
 | [codebase-audit](skills/majiayu-spellbook/codebase-audit) | Adaptive parallel codebase audit — findings, adversarial validation, roadmap |
 | [figma-to-react](skills/majiayu-spellbook/figma-to-react) | Extract Figma designs into production-ready React/Next.js components         |
+| [ip-check](skills/majiayu-spellbook/ip-check)             | IP / socks5 proxy quality — registry, geo consensus, reputation, AI unlocks  |
 
 #### [mattpocock/skills](https://github.com/mattpocock/skills) (tag `v1.2.3`)
 
