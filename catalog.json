@@ -1,5 +1,5 @@
 {
-  "generated": "2026-08-29T15:03:43.470Z",
+  "generated": "2026-09-02T01:07:45.574Z",
   "items": [
     {
       "kind": "agent",
@@ -19,7 +19,7 @@
     {
       "kind": "skill",
       "name": "antfu",
-      "digest": "sha256:24b70e87a0ef584ef85c9bfd3976430d29ae047e1aaf9155c02cf666bd659720"
+      "digest": "sha256:ff9b48c687b40719dfa18297e6114384a91b11ea0580c11d33442499ce3eafd6"
     },
     {
       "kind": "skill",
@@ -49,17 +49,17 @@
     {
       "kind": "skill",
       "name": "chinese-tech-writing",
-      "digest": "sha256:5a37da52930c2d6ac4b221c643e4aa64d2fc89aeb8bd63e0e7943df28dcb4187"
+      "digest": "sha256:cc1f45d1564745874bb85e71ebf9c95d65c9c78ec4b042f6039716645fe3682a"
     },
     {
       "kind": "skill",
       "name": "clash-doctor",
-      "digest": "sha256:8005643e56b9d82e1deb73a6ea99664bac2318769dd19907951e39d2d6295874"
+      "digest": "sha256:1644c55bd090c0b1163aa1458133dca9e219250427b9cad936ef2ad75deb7d99"
     },
     {
       "kind": "skill",
       "name": "clash-routes",
-      "digest": "sha256:2b0ad5b4017b5456bcb3e23abb2f3439ec6f858634e134374d390d66dbf471a2"
+      "digest": "sha256:2c2724d3a1abe4503a2e5da667567e2f9d21f7f10b831ffbc59c6d4fb5f9edd5"
     },
     {
       "kind": "skill",
@@ -99,27 +99,27 @@
     {
       "kind": "skill",
       "name": "find-skills",
-      "digest": "sha256:30018f8f6130d7597e6f9a647cdb94d8e1529f9fedbc3bf515426ed2f37c8002"
+      "digest": "sha256:605ec0b4eab729b0cfd808e998fa18be4473f12f2ff07c95344b3bed23f6f30c"
     },
     {
       "kind": "skill",
       "name": "frontend-design",
-      "digest": "sha256:b32c598698bdf84e8b511c7b94b6fa1d8197a82ae5dca9c22a91e969d77db063"
+      "digest": "sha256:7d4fac933a118f7520afdfc58aa816e82d8257f6cb07e1b8a6e18308eb307c5a"
     },
     {
       "kind": "skill",
       "name": "git-atomic-commit",
-      "digest": "sha256:6e25a12f756e95cddbc49eaf48605b85219643e3598b8d04cbeac5d9d653e900"
+      "digest": "sha256:df69198b8f1e02ae13ed326952b86ec8656cd3a9df2a8a4d33439b855d5156eb"
     },
     {
       "kind": "skill",
       "name": "git-rebase-surgeon",
-      "digest": "sha256:b004a365c7524c4f2fb00b4232a81532664b7f2aef85e398979aa7af2e98b492"
+      "digest": "sha256:dcd63bb7d3ee7d6517c7f7a25593a50977a3e26ef0175127272317a971bd828b"
     },
     {
       "kind": "skill",
       "name": "git-semantic-search",
-      "digest": "sha256:c29df20a33210e6689b7f9efbe103a0f6b94e13631c251ee246f5eaccb1ee875"
+      "digest": "sha256:e557eba43b0956098ffed0ad60bbdbba7534d80b62c38fafd8ddcfa73d49d976"
     },
     {
       "kind": "skill",
@@ -194,7 +194,7 @@
     {
       "kind": "skill",
       "name": "golang-gopls",
-      "digest": "sha256:51139227cc4e2380003abb03d66cd402a4d6506b9e5923a25a9c9a17bc3399ae"
+      "digest": "sha256:fef194787250d7cfb43d007a6677ceb556eb7ccc8841ba94ef1ed5cb3484b47e"
     },
     {
       "kind": "skill",
@@ -209,7 +209,7 @@
     {
       "kind": "skill",
       "name": "golang-how-to",
-      "digest": "sha256:807d8c2a7e5dddd9a0c5b24ee4dbd4e8a5091eb50b678f777b350651ba465631"
+      "digest": "sha256:5014151400cccbc1e7bd559d4675cb44729b6755a591a8bdfee7f46095c6300b"
     },
     {
       "kind": "skill",
@@ -234,12 +234,12 @@
     {
       "kind": "skill",
       "name": "golang-performance",
-      "digest": "sha256:8ea6cffa26e50440c1496c6d17cf0059c7146494a236cde33061bba6e5d656ee"
+      "digest": "sha256:a1407b6d82b9df7c9a6df756588d0d2e3f7c051d2b07eb1e56d9b4c9934ac94a"
     },
     {
       "kind": "skill",
       "name": "golang-pkg-go-dev",
-      "digest": "sha256:0da3023d85da3273e643de995fdd20dac63aea6121e1af22378fd59cfecdfa09"
+      "digest": "sha256:57046d4690f1fb06f1bd8602b8272577cf532f8e79638f164d12167295851e84"
     },
     {
       "kind": "skill",
@@ -254,7 +254,7 @@
     {
       "kind": "skill",
       "name": "golang-refactoring",
-      "digest": "sha256:7d4d6c587d900daf340454c5279ce587a5c1f509646c78f26a3298ec5f4053f9"
+      "digest": "sha256:dabb2f662f9434b9fa1f822331935a3ec298f74b8efb54ab5ef891896ff7ea7d"
     },
     {
       "kind": "skill",
@@ -274,7 +274,7 @@
     {
       "kind": "skill",
       "name": "golang-samber-lo",
-      "digest": "sha256:bd96efd5b4c8c5284504fea08286b9ef354d805ddb37ad820451e3b49f175099"
+      "digest": "sha256:df19f9768dee452928274e828aa22b93c5a7bebec21bfc5c60f5ec6f9806fd97"
     },
     {
       "kind": "skill",
@@ -379,7 +379,7 @@
     {
       "kind": "skill",
       "name": "hono-skills",
-      "digest": "sha256:e9287e426e3182cbda0308f2fc2e4fc911a3e319497a92105dfe0870d43d73f4"
+      "digest": "sha256:9e8808c62cc0efc0e6923c149555c782703d89623203bb9e7413d0debf7867df"
     },
     {
       "kind": "skill",
@@ -403,13 +403,18 @@
     },
     {
       "kind": "skill",
+      "name": "ip-check",
+      "digest": "sha256:fbfb95fb0312f5723e0774478c582d84113cb7b1518fa53fed62a28a4118dbf8"
+    },
+    {
+      "kind": "skill",
       "name": "learn",
       "digest": "sha256:718f4d13d4e807cb26113863c7d7843012a63b41b4d21245bdedb9b3f8ed2d42"
     },
     {
       "kind": "skill",
       "name": "playwright-cli",
-      "digest": "sha256:a664ed8631f2ffe415f1ada5df80ed54d56120ac13d7eaa07ea5482766054708"
+      "digest": "sha256:9acf30a803e67a6908d2d388f041fed72aa06a93ce0ebfb5a9be85294a4c5e4d"
     },
     {
       "kind": "skill",
@@ -459,7 +464,7 @@
     {
       "kind": "skill",
       "name": "skill-doctor",
-      "digest": "sha256:3c84c673994709de4e1b773e3087f752bfccaf5d8c5ab9bc8a76ef68ddaacdfb"
+      "digest": "sha256:756c6630d3db3f6185388e00c76394c219a2cd3e1b139e99811d89dc30eb48f7"
     },
     {
       "kind": "skill",
@@ -469,22 +474,22 @@
     {
       "kind": "skill",
       "name": "tanstack-integration",
-      "digest": "sha256:8c5857fdf32bae4e5139839b35740d667decc36b8e0f2c458ab3d9db98601408"
+      "digest": "sha256:27a8d1121e5e645bc6b7c475a25c71f3e602eecfbb8d587440214e2be7db11e4"
     },
     {
       "kind": "skill",
       "name": "tanstack-query",
-      "digest": "sha256:7ddca3868fb252ad3e81561ec8dbccd98dab451ba13df9b56e90a490e9b60035"
+      "digest": "sha256:337d50db3992cdf54361a13b330d9da61d63d65601c710264569e5945ffd67d2"
     },
     {
       "kind": "skill",
       "name": "tanstack-router",
-      "digest": "sha256:e1545eeb05c4f0bf9cae762898867fa4d1455562602d8decac7b98b180935386"
+      "digest": "sha256:0bf8f1bc625ce08e0122661446777ca4166a6f07e8350867441ff2703168b7f1"
     },
     {
       "kind": "skill",
       "name": "tanstack-start",
-      "digest": "sha256:d30dac9d3a7a2bf8c9ff45e5c0c7fb48cd5c42d913271c66b944cb6f45b927ea"
+      "digest": "sha256:1e5f6f776082eb740d856b3a44f8eddd610ccfef7a03d7a53291379a5c363882"
     },
     {
       "kind": "skill",
@@ -544,7 +549,7 @@
     {
       "kind": "skill",
       "name": "typescript-best-practices",
-      "digest": "sha256:a2dec68a765d1a96973dabd9e628b9b9dc3cfc0f485585eafc5c2678716dd68a"
+      "digest": "sha256:b5d569df7bfb55a352155359726654d7ef30b8308cabcc091a3f9c2592282f01"
     },
     {
       "kind": "skill",
@@ -558,13 +563,18 @@
     },
     {
       "kind": "skill",
+      "name": "unslop",
+      "digest": "sha256:d2f1d4eb746e41dc9b467b270356afd926965a4df620eb5da6d0cbe0610f5615"
+    },
+    {
+      "kind": "skill",
       "name": "vite",
       "digest": "sha256:bce14c0bb93a50df671e8f3afdca04fe6826872006abfaa7f2a88839361e53e4"
     },
     {
       "kind": "skill",
       "name": "vitest",
-      "digest": "sha256:fcd5facd1dfa8bfb94c100ea7282896168daf2ffb54ed81ab242ac6bccd1faa9"
+      "digest": "sha256:3e75964285cf5e8b7d198e14f4be5eb8a4bf88a1d270f904a31b58619be860ae"
     },
     {
       "kind": "skill",
@@ -629,7 +639,7 @@
     {
       "kind": "skill",
       "name": "web-naming",
-      "digest": "sha256:c7acb89376b634c2bfcb78c803518b8dad8d88196f20eb00df37399acbaa7bd2"
+      "digest": "sha256:ffda61aed518b759a2bf9f72947341938bf4ec9f7f2992623a2c21ba0be5425a"
     },
     {
       "kind": "skill",

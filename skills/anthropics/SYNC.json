@@ -1,9 +1,9 @@
 {
-  "sha": "3b3fad96af16a10759d930941b4520ba0c40edae",
-  "synced": "2026-08-29",
+  "sha": "53048666b05b4799081517d00e09e0a2dd688678",
+  "synced": "2026-09-02",
   "items": {
     "frontend-design": {
-      "sourceDigest": "sha256:3f100f6373fe2aca21e84f9ffb02f2a5432c0fb18abfc708b414cd4c8ff938a4",
+      "sourceDigest": "sha256:27a7e2aa16c37cadafdb00052e6551391ab83f9a85074e566d8c7fa592442a61",
       "transformId": "sha256:099aa6b4847699bc46361bf12ce9fb0ba2c0344cd8d021ca85b649c8e80fd881"
     },
     "skill-creator": {

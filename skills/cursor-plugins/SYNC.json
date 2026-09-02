@@ -1,7 +1,11 @@
 {
-  "sha": "68836ddaf5697224520f1847d90cdb90ca8babaa",
-  "synced": "2026-08-29",
+  "sha": "23a56e2dac2efd54788056db8eced26e371d7b5e",
+  "synced": "2026-09-02",
   "items": {
+    "unslop": {
+      "sourceDigest": "sha256:d2f1d4eb746e41dc9b467b270356afd926965a4df620eb5da6d0cbe0610f5615",
+      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    },
     "encode-lessons-in-structure": {
       "sourceDigest": "sha256:08f85539bd42435932cd69ca421f0f85fe87e419b24e6b98d8b0a96d77e6306c",
       "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
@@ -15,7 +19,7 @@
       "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
     },
     "typescript-best-practices": {
-      "sourceDigest": "sha256:a2dec68a765d1a96973dabd9e628b9b9dc3cfc0f485585eafc5c2678716dd68a",
+      "sourceDigest": "sha256:86ccd1c103b55eb67c2983e23816477a263e8f41d1c548f503479675984aca09",
       "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
     },
     "thermos": {

@@ -1,6 +1,6 @@
 {
   "sha": "053894c088317d7ba2038cffcbf5fd57b5494fa6",
-  "synced": "2026-08-29",
+  "synced": "2026-09-02",
   "items": {
     "golang-benchmark": {
       "sourceDigest": "sha256:d27a37084edc0e3f7c8ae6973aa4a35fb37a9cdfe47fa7c52b6b3ad1b44ccf10",
@@ -59,7 +59,7 @@
       "transformId": "sha256:86fe7cfea0bb7fdb20b86c9f158a36ea1e273952abe5a80ebb92f0764758314c"
     },
     "golang-gopls": {
-      "sourceDigest": "sha256:185002aa08fb6f6fc6b08f191724a505aaa1f417d72bce190643e869ba94626c",
+      "sourceDigest": "sha256:a0ccf4e8d50f1d9b5bd61130cf61e9756b03322a2ec1c0d6c61d2ff0b8710f06",
       "transformId": "sha256:86fe7cfea0bb7fdb20b86c9f158a36ea1e273952abe5a80ebb92f0764758314c"
     },
     "golang-graphql": {
@@ -71,7 +71,7 @@
       "transformId": "sha256:86fe7cfea0bb7fdb20b86c9f158a36ea1e273952abe5a80ebb92f0764758314c"
     },
     "golang-how-to": {
-      "sourceDigest": "sha256:69cbc7773fdb274cf9ebc76deba6a9c944484e08836b195e1a479b405fd92b7d",
+      "sourceDigest": "sha256:4cd3bdfb641af6e68691eac815032c9e80861ee859edc3adc6ac4005182a2918",
       "transformId": "sha256:86fe7cfea0bb7fdb20b86c9f158a36ea1e273952abe5a80ebb92f0764758314c"
     },
     "golang-lint": {
@@ -91,11 +91,11 @@
       "transformId": "sha256:86fe7cfea0bb7fdb20b86c9f158a36ea1e273952abe5a80ebb92f0764758314c"
     },
     "golang-performance": {
-      "sourceDigest": "sha256:1a65dc9958bba5019dfb6941828830ecf182dabb15b0cd62161f7a44104deaab",
+      "sourceDigest": "sha256:c5af54fb595532c7dc9d3aca0385ba35287ba1bf4fb94b1ea3f13c5b9a2f4b02",
       "transformId": "sha256:86fe7cfea0bb7fdb20b86c9f158a36ea1e273952abe5a80ebb92f0764758314c"
     },
     "golang-pkg-go-dev": {
-      "sourceDigest": "sha256:71cb8b982d12861f7a96dfdec8d9f406f9bf821b9685c2e779fa79f0dd1da371",
+      "sourceDigest": "sha256:d90b0002e36bc3061515faeac4ad68852e1f16ae5dbd0843acc33cf370823879",
       "transformId": "sha256:86fe7cfea0bb7fdb20b86c9f158a36ea1e273952abe5a80ebb92f0764758314c"
     },
     "golang-popular-libraries": {
@@ -107,7 +107,7 @@
       "transformId": "sha256:86fe7cfea0bb7fdb20b86c9f158a36ea1e273952abe5a80ebb92f0764758314c"
     },
     "golang-refactoring": {
-      "sourceDigest": "sha256:be813436b7e06d5037157f9666ee8e0b7a8242e63c4b7a818b7b5a3d982f42e0",
+      "sourceDigest": "sha256:93c58c87faa595a6f43ca6e6ed4901ed97fb1d1304a32283aa0c2d486d746ddc",
       "transformId": "sha256:86fe7cfea0bb7fdb20b86c9f158a36ea1e273952abe5a80ebb92f0764758314c"
     },
     "golang-safety": {
@@ -123,7 +123,7 @@
       "transformId": "sha256:86fe7cfea0bb7fdb20b86c9f158a36ea1e273952abe5a80ebb92f0764758314c"
     },
     "golang-samber-lo": {
-      "sourceDigest": "sha256:65fb5e5e2b30f5036c10e69658562fedfb0cb1c5f6c30ef5a13101b7b15a9104",
+      "sourceDigest": "sha256:e9291c3d1cccf5532ab22bd7d184242ed3b7f37cad5563f6560b4a9a70a007c7",
       "transformId": "sha256:86fe7cfea0bb7fdb20b86c9f158a36ea1e273952abe5a80ebb92f0764758314c"
     },
     "golang-samber-mo": {
