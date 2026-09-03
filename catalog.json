@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-02T01:07:45.574Z",
+  "generated": "2026-09-03T07:10:20.235Z",
   "items": [
     {
       "kind": "agent",
@@ -44,7 +44,7 @@
     {
       "kind": "skill",
       "name": "check",
-      "digest": "sha256:14053be1cc70e1b529dc390969597de3f614b73f089ab1970b437ecb530e6ce0"
+      "digest": "sha256:55f68b18dc99330fd15c0354b329097f9bd27a72d0c7dedcff256b012e902985"
     },
     {
       "kind": "skill",
@@ -374,17 +374,17 @@
     {
       "kind": "skill",
       "name": "health",
-      "digest": "sha256:827c279db1abdab73c2d88a4b2241863b4b41992b1fbfaa6939ca84418a39544"
+      "digest": "sha256:b0592f780d1bbf851326325bee72b3153d5561b50621ac26ce8f6de7a7326412"
     },
     {
       "kind": "skill",
       "name": "hono-skills",
-      "digest": "sha256:9e8808c62cc0efc0e6923c149555c782703d89623203bb9e7413d0debf7867df"
+      "digest": "sha256:f78684c6e6fb27fb545e0228a474d5e2ebb93699949b816d877e7c32facb57c4"
     },
     {
       "kind": "skill",
       "name": "hunt",
-      "digest": "sha256:68a398ac0aa3a9305e3a1034c477b064fae64500c641478726c1fe74aba36ad6"
+      "digest": "sha256:8bfd9a3e320937c32264c893277cf974bbbb67c2a7a4e6bdb76adbecfc193bc4"
     },
     {
       "kind": "skill",
@@ -409,7 +409,7 @@
     {
       "kind": "skill",
       "name": "learn",
-      "digest": "sha256:718f4d13d4e807cb26113863c7d7843012a63b41b4d21245bdedb9b3f8ed2d42"
+      "digest": "sha256:d76f85d2be21059cfe30a9c6ccac40a86d9946d4531bac8b641bad741e3bb06b"
     },
     {
       "kind": "skill",
@@ -429,7 +429,7 @@
     {
       "kind": "skill",
       "name": "read",
-      "digest": "sha256:bcac2c5f5c9b2580498001b5b07493f067c4820edae8d8bab892c81adce600e4"
+      "digest": "sha256:9948e176ffdff86b0989cf7a65d1d3b6537a9ba8faeabec74ceedb4ded757589"
     },
     {
       "kind": "skill",
@@ -464,7 +464,7 @@
     {
       "kind": "skill",
       "name": "skill-doctor",
-      "digest": "sha256:756c6630d3db3f6185388e00c76394c219a2cd3e1b139e99811d89dc30eb48f7"
+      "digest": "sha256:c123dd41b9c9ba3e05c04a676b28880aa74528773b2c34b3e77c6e8a8f0a5545"
     },
     {
       "kind": "skill",
@@ -519,7 +519,7 @@
     {
       "kind": "skill",
       "name": "think",
-      "digest": "sha256:fb6dac949ab718d47fb25eef95998f8a25cd31f9d25407081dfe04266dd4a654"
+      "digest": "sha256:21640060d04f4dc791c844bd0dbb3aad8cb82115b191eb00d050397a84bde633"
     },
     {
       "kind": "skill",
@@ -554,7 +554,7 @@
     {
       "kind": "skill",
       "name": "ui",
-      "digest": "sha256:38c64f049d91b2dfaa06362482ff12c2a5a2e2b50288fc896b4557dbdc205a0f"
+      "digest": "sha256:b5a27a55fca7283acb8c4995550adef1e19dc8c57bd7adfb3c9cc868e11e4a38"
     },
     {
       "kind": "skill",
@@ -654,7 +654,7 @@
     {
       "kind": "skill",
       "name": "write",
-      "digest": "sha256:7efd7c5b05e82ed447c995815f2a51d52d272e8f1b9d2c8ee1b10a22acf89e37"
+      "digest": "sha256:c1d49b1cde7c633cc15f2445aa4a5d9eb078865d3b892f91c59793b01bf11dd0"
     },
     {
       "kind": "skill",
