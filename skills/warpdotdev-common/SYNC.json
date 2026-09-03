@@ -1,9 +1,9 @@
 {
-  "sha": "f589e224907eda566c13755529f59db563090d14",
-  "synced": "2026-09-02",
+  "sha": "b811c24365ae505bfc9646458957b886e29110b5",
+  "synced": "2026-09-03",
   "items": {
     "skill-doctor": {
-      "sourceDigest": "sha256:c58bee75febbb843f517370b0d4c26b81041bd34e38ad9329f46636e8e65636f",
+      "sourceDigest": "sha256:7e0a32f84c3fe695b326710ac0fabd2a9902ad1743534863c9d03c75c7e8da83",
       "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
     }
   }
