@@ -228,9 +228,6 @@ export const repositories: Record<string, RepositoryConfig> = {
   },
   'tt-a1i-simplify-codebase': {
     url: 'https://github.com/tt-a1i/simplify-codebase',
-    skills: [
-      { target: 'simplify-codebase', source: './SKILL.md', includes: ['references/**/*'] },
-    ],
   },
   "baoyu-design": {
     url: "https://github.com/jimliu/baoyu-design",

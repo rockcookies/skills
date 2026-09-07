@@ -474,12 +474,6 @@ Synced from external repositories into `skills/{repoKey}/{target}/`.
 | ---------------------------------------- | -------------------------------------------------------------------- |
 | [improve](skills/shadcn-improve/improve) | Read-only senior-advisor survey — prioritized plans for other agents |
 
-#### [tt-a1i/simplify-codebase](https://github.com/tt-a1i/simplify-codebase)
-
-| Skill                                                                  | Description                                                                                |
-| ---------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
-| [simplify-codebase](skills/tt-a1i-simplify-codebase/simplify-codebase) | Evidence-backed simplification audit — delete dead code, duplicate state, redundant layers |
-
 #### [tw93/Waza](https://github.com/tw93/Waza) (tag `v3.36.0`)
 
 | Skill                             | Description                                                                   |
