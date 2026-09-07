@@ -229,6 +229,9 @@ export const repositories: Record<string, RepositoryConfig> = {
   'tt-a1i-simplify-codebase': {
     url: 'https://github.com/tt-a1i/simplify-codebase',
   },
+  'zhaoxuya520-reverse': {
+    url: 'https://github.com/zhaoxuya520/reverse-skill',
+  },
   "baoyu-design": {
     url: "https://github.com/jimliu/baoyu-design",
     skills: [
