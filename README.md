@@ -479,7 +479,7 @@ Synced from external repositories into `skills/{repoKey}/{target}/`.
 | ---------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
 | [simplify-codebase](skills/tt-a1i-simplify-codebase/simplify-codebase) | Evidence-backed simplification audit — delete dead code, duplicate state, redundant layers |
 
-#### [tw93/Waza](https://github.com/tw93/Waza) (tag `v3.35.0`)
+#### [tw93/Waza](https://github.com/tw93/Waza) (tag `v3.36.0`)
 
 | Skill                             | Description                                                                   |
 | --------------------------------- | ----------------------------------------------------------------------------- |
@@ -568,7 +568,7 @@ Repository sources and mappings live in [meta.ts](meta.ts). Pins:
 | --------------- | ----------------------- | ------------- |
 | `samber-golang` | samber/cc-skills-golang | tag `v2.0.0`  |
 | `mattpocock`    | mattpocock/skills       | tag `v1.2.3`  |
-| `tw93-waza`     | tw93/Waza               | tag `v3.35.0` |
+| `tw93-waza`     | tw93/Waza               | tag `v3.36.0` |
 
 Unpinned repos track the default branch. Upstreams listed in `meta.ts` with empty `skills` and empty `agents` are reserved for future use and are skipped by Sync.
 

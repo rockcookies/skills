@@ -55,7 +55,7 @@ Services hold the logic; commands receive them as dependencies. `GitService` wra
 | --------------- | ----------------------- | ------------- |
 | `samber-golang` | samber/cc-skills-golang | tag `v2.0.0`  |
 | `mattpocock`    | mattpocock/skills       | tag `v1.2.3`  |
-| `tw93-waza`     | tw93/Waza               | tag `v3.35.0` |
+| `tw93-waza`     | tw93/Waza               | tag `v3.36.0` |
 
 Unpinned repos track the default branch.
 
