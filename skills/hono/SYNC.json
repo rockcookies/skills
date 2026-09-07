@@ -1,9 +1,9 @@
 {
-  "sha": "b04b90bfe0a3a41789045bc114b5834d0333e15c",
-  "synced": "2026-09-03",
+  "sha": "b53a71865bcfbcec721a9a902df2a3620d33096a",
+  "synced": "2026-09-07",
   "items": {
     "hono-skills": {
-      "sourceDigest": "sha256:9b2bfe9d5643387954c10b53aa422556168c0b90c17cc99c039ff9c572bb639d",
+      "sourceDigest": "sha256:b7bab3b9029181baadc8cc41fd5451b69f83350693970aed8be59043450b210b",
       "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
     }
   }
