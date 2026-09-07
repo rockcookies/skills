@@ -242,6 +242,7 @@ export const repositories: Record<string, RepositoryConfig> = {
     url: 'https://github.com/JimLiu/baoyu-skills',
     skills: [
       { target: 'baoyu-image-gen', source: './skills/baoyu-image-gen/SKILL.md' },
+      { target: 'baoyu-infographic', source: './skills/baoyu-infographic/SKILL.md' },
     ]
   },
   'obra-superpowers': {

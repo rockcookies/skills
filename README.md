@@ -360,9 +360,10 @@ Synced from external repositories into `skills/{repoKey}/{target}/`.
 
 #### [JimLiu/baoyu-skills](https://github.com/JimLiu/baoyu-skills)
 
-| Skill                                           | Description                                                                     |
-| ----------------------------------------------- | ------------------------------------------------------------------------------- |
-| [baoyu-image-gen](skills/baoyu/baoyu-image-gen) | AI image generation across OpenAI, Google, DashScope, Z.AI, Replicate, and more |
+| Skill                                                   | Description                                                                     |
+| ------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| [baoyu-image-gen](skills/baoyu/baoyu-image-gen)         | AI image generation across OpenAI, Google, DashScope, Z.AI, Replicate, and more |
+| [baoyu-infographic](skills/baoyu/baoyu-infographic)     | Publication-ready infographics — 21 layout types × 22 visual styles             |
 
 #### [jimliu/baoyu-design](https://github.com/jimliu/baoyu-design)
 
