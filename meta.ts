@@ -226,9 +226,6 @@ export const repositories: Record<string, RepositoryConfig> = {
       { target: 'show-me', source: './plugins/show-me/skills/show-me/SKILL.md' },
     ],
   },
-  'tt-a1i-simplify-codebase': {
-    url: 'https://github.com/tt-a1i/simplify-codebase',
-  },
   'zhaoxuya520-reverse': {
     url: 'https://github.com/zhaoxuya520/reverse-skill',
   },
@@ -244,9 +241,6 @@ export const repositories: Record<string, RepositoryConfig> = {
       { target: 'baoyu-image-gen', source: './skills/baoyu-image-gen/SKILL.md' },
       { target: 'baoyu-infographic', source: './skills/baoyu-infographic/SKILL.md' },
     ]
-  },
-  'obra-superpowers': {
-    url: 'https://github.com/obra/superpowers',
   },
   'humanizer-zh': {
     url: 'https://github.com/op7418/Humanizer-zh',
