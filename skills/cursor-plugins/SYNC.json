@@ -1,25 +1,25 @@
 {
-  "sha": "93b00b89ef425a9c1bac0d0b317dfc49c930ac99",
-  "synced": "2026-09-07",
+  "sha": "27e2a62ff94f9af4b5e68435e41cdceacadb840c",
+  "synced": "2026-09-09",
   "items": {
     "unslop": {
-      "sourceDigest": "sha256:d2f1d4eb746e41dc9b467b270356afd926965a4df620eb5da6d0cbe0610f5615",
+      "sourceDigest": "sha256:d52ac35fba8c0807c60d447908b96c01e03b10b0966da6e26e4ceabfd8025308",
       "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
     },
     "encode-lessons-in-structure": {
-      "sourceDigest": "sha256:08f85539bd42435932cd69ca421f0f85fe87e419b24e6b98d8b0a96d77e6306c",
+      "sourceDigest": "sha256:d9219cef780cb1c338ebe86d749e44a7cef8183e27451098cc85e532fa7148e7",
       "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
     },
     "boundary-discipline": {
-      "sourceDigest": "sha256:27acb2e1d1f0dac91648272515b693a450fcc426044e2c50e70ee433971eafdc",
+      "sourceDigest": "sha256:80c1aec9d05cf01247240ac4fa392b71cdccb6b0095f52647123c1988270eee5",
       "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
     },
     "type-system-discipline": {
-      "sourceDigest": "sha256:58534afcf0e703a66a8af6a0f55c1d8290a31f4110f0ff21adabba100a5dfe1c",
+      "sourceDigest": "sha256:a6caa0deae3d3e4e0e57c5313cc5365cdb97070cfa3f8298cbf841871641229c",
       "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
     },
     "typescript-best-practices": {
-      "sourceDigest": "sha256:86ccd1c103b55eb67c2983e23816477a263e8f41d1c548f503479675984aca09",
+      "sourceDigest": "sha256:b46893cc3f9dfb2120e500badc0a8cecb0bfb96189234008c575bea1df5eea19",
       "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
     },
     "thermos": {
