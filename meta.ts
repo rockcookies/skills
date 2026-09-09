@@ -172,10 +172,16 @@ export const repositories: Record<string, RepositoryConfig> = {
       { target: 'improve', source: './skills/improve/SKILL.md' },
     ],
   },
-  'warpdotdev-common': {
-    url: 'https://github.com/warpdotdev/common-skills',
+  'impeccable': {
+    url: 'https://github.com/pbakaus/impeccable',
     skills: [
-      { target: 'skill-doctor', source: './.agents/skills/skill-doctor/SKILL.md' },
+      { target: 'impeccable', source: './.claude/skills/impeccable/SKILL.md' },
+    ],
+    agents: [
+      { target: 'impeccable-asset-producer', source: './.claude/agents/impeccable-asset-producer.md' },
+      { target: 'impeccable-documenter', source: './.claude/agents/impeccable-documenter.md' },
+      { target: 'impeccable-finish-reviewer', source: './.claude/agents/impeccable-finish-reviewer.md' },
+      { target: 'impeccable-manual-edit-applier', source: './.claude/agents/impeccable-manual-edit-applier.md' },
     ],
   },
   'cursor-plugins': {
