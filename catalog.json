@@ -1,6 +1,26 @@
 {
-  "generated": "2026-09-07T01:50:57.039Z",
+  "generated": "2026-09-09T01:31:35.597Z",
   "items": [
+    {
+      "kind": "agent",
+      "name": "impeccable-asset-producer",
+      "digest": "sha256:c234c526407a934a83c149eec92c267b817644c3878ab978dff20c28812ba4ac"
+    },
+    {
+      "kind": "agent",
+      "name": "impeccable-documenter",
+      "digest": "sha256:160879836669b566958796ff672780852b16fc47a2633b0de8c01cbdc089d666"
+    },
+    {
+      "kind": "agent",
+      "name": "impeccable-finish-reviewer",
+      "digest": "sha256:44c9d81ecb1ddd5dcdb50270e8825537a4128b2116f3a81fe3dfb420a60c9add"
+    },
+    {
+      "kind": "agent",
+      "name": "impeccable-manual-edit-applier",
+      "digest": "sha256:0aac04f46701c7763285b34cca985fc2d61782b38081cf56b231fffc5cfbbadf"
+    },
     {
       "kind": "agent",
       "name": "thermo-nuclear-code-quality-review-subagent",
@@ -44,7 +64,7 @@
     {
       "kind": "skill",
       "name": "boundary-discipline",
-      "digest": "sha256:31a4b8534aaa72aa96d823b1c74d02db88bd806824239c964c03d3184ae7eee6"
+      "digest": "sha256:89da97ec23f5627f58b142da9de177291058e194d2f978ce9e91dcf31278bbd7"
     },
     {
       "kind": "skill",
@@ -94,7 +114,7 @@
     {
       "kind": "skill",
       "name": "encode-lessons-in-structure",
-      "digest": "sha256:e622e726e829b33c9c04a4828e3a5047622b98616e5b91f316780fc6f9b41c22"
+      "digest": "sha256:236bc3d1e03e04af8043fe81c6ab656af5375a5b2fcea9f74feb1e2de3b6878a"
     },
     {
       "kind": "skill",
@@ -384,12 +404,17 @@
     {
       "kind": "skill",
       "name": "hono-skills",
-      "digest": "sha256:17b5fde5783f5361400aa96784cebc6257cfb76a5649fdefd1493bb6853e8529"
+      "digest": "sha256:88893a7d56a1a1aae5c1a0d58bc5a99fdf2a9f75cc2c3ded002369a7a02ec840"
     },
     {
       "kind": "skill",
       "name": "hunt",
       "digest": "sha256:4bae7c345edcbcc06a31c9b5acccf6bc27c47f1f295af1dd855a62b7f8f5fcce"
+    },
+    {
+      "kind": "skill",
+      "name": "impeccable",
+      "digest": "sha256:2c925b4f8c3f684f4833761e0a3a7ef541ab81c6bdbd267825592b53186ddc06"
     },
     {
       "kind": "skill",
@@ -460,11 +485,6 @@
       "kind": "skill",
       "name": "skill-creator",
       "digest": "sha256:1501ac5257c6e4a0cfbd91bea2e699f86dbcff04fcda5ee8e7cf994ef77d9899"
-    },
-    {
-      "kind": "skill",
-      "name": "skill-doctor",
-      "digest": "sha256:c123dd41b9c9ba3e05c04a676b28880aa74528773b2c34b3e77c6e8a8f0a5545"
     },
     {
       "kind": "skill",
@@ -544,12 +564,12 @@
     {
       "kind": "skill",
       "name": "type-system-discipline",
-      "digest": "sha256:c1bf50f8be152b786d7b1d04cd767fcd4fadd2e4d2ea804b86be545aa2a4a9a3"
+      "digest": "sha256:6aa78bba87bfa94bdbdc21aca9f981e7d016da42eeb861d30b2fddf1b84bcec0"
     },
     {
       "kind": "skill",
       "name": "typescript-best-practices",
-      "digest": "sha256:b5d569df7bfb55a352155359726654d7ef30b8308cabcc091a3f9c2592282f01"
+      "digest": "sha256:b746f3b04f2f630fb3de08b719a3cf5e4df766605abd262d8b11a2734c5fd01c"
     },
     {
       "kind": "skill",
@@ -564,7 +584,7 @@
     {
       "kind": "skill",
       "name": "unslop",
-      "digest": "sha256:d2f1d4eb746e41dc9b467b270356afd926965a4df620eb5da6d0cbe0610f5615"
+      "digest": "sha256:d52ac35fba8c0807c60d447908b96c01e03b10b0966da6e26e4ceabfd8025308"
     },
     {
       "kind": "skill",
