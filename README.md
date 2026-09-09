@@ -276,6 +276,7 @@ npx skills add rockcookies/skills --full-depth \
   --skill ui \
   --skill baoyu-design \
   --skill baoyu-image-gen \
+  --skill impeccable \
   -g
 ```
 
@@ -417,6 +418,12 @@ Synced from external repositories into `skills/{repoKey}/{target}/`.
 | ------------------------------------------------------ | ----------------------------------------------------------------------------- |
 | [playwright-cli](skills/playwright-cli/playwright-cli) | Automate browser interactions, test web pages, and work with Playwright tests |
 
+#### [pbakaus/impeccable](https://github.com/pbakaus/impeccable)
+
+| Skill                                      | Description                                                                                                          |
+| ------------------------------------------ | -------------------------------------------------------------------------------------------------------------------- |
+| [impeccable](skills/impeccable/impeccable) | Design, critique, and polish frontend UI — UX audit, visual hierarchy, typography, color, motion, and design systems |
+
 #### [samber/cc-skills-golang](https://github.com/samber/cc-skills-golang) (tag `v2.0.0`)
 
 | Skill                                                                               | Description                                                                    |
@@ -524,13 +531,7 @@ Synced from external repositories into `skills/{repoKey}/{target}/`.
 | -------------------------------------------------- | ------------------------------------------------------------------------------ |
 | [vueuse-functions](skills/vueuse/vueuse-functions) | Apply VueUse composables to build concise, maintainable Vue.js / Nuxt features |
 
-#### [warpdotdev/common-skills](https://github.com/warpdotdev/common-skills)
-
-| Skill                                                 | Description                                                                                      |
-| ----------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
-| [skill-doctor](skills/warpdotdev-common/skill-doctor) | Grades your agent setup by scoring real conversations; drafts skill edits and a shareable report |
-
-#### [yusukebe/hono-skill](https://github.com/yusukebe/hono-skill)
+#### [honojs/skills](https://github.com/honojs/skills)
 
 | Skill                                  | Description                                                                            |
 | -------------------------------------- | -------------------------------------------------------------------------------------- |
@@ -548,6 +549,17 @@ Paired with the thermos skills above. The skill `thermos` invokes these by `name
 | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------- |
 | [thermo-nuclear-code-quality-review-subagent](agents/cursor-plugins/thermo-nuclear-code-quality-review-subagent.md) | Task subagent for the code-quality rubric (diff-scoped) |
 | [thermo-nuclear-review-subagent](agents/cursor-plugins/thermo-nuclear-review-subagent.md)                           | Task subagent for the deep-review rubric (diff-scoped)  |
+
+#### [pbakaus/impeccable](https://github.com/pbakaus/impeccable)
+
+Paired with the `impeccable` skill. The skill's build flow spawns these by `name` for finish review, design-system documentation, asset production, and live manual edits.
+
+| Agent                                                                                 | Description                                                                                |
+| ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| [impeccable-asset-producer](agents/impeccable/impeccable-asset-producer.md)           | Produces clean reusable raster assets from approved mock references without redesigning    |
+| [impeccable-documenter](agents/impeccable/impeccable-documenter.md)                   | Records DESIGN.md and its sidecar from the shipped build artifact                          |
+| [impeccable-finish-reviewer](agents/impeccable/impeccable-finish-reviewer.md)         | Reviews a finished build against its direction contract and returns ordered material fixes |
+| [impeccable-manual-edit-applier](agents/impeccable/impeccable-manual-edit-applier.md) | Applies leased live manual copy-edit batches to source files                               |
 
 ## How It Works
 
