@@ -1,9 +1,9 @@
 {
-  "sha": "6b7a2e417500561a5ecdd0b168332f4142584617",
-  "synced": "2026-09-09",
+  "sha": "1567581c26ec29f4216c6e6835415bf30343b0e3",
+  "synced": "2026-09-11",
   "items": {
     "baoyu-image-gen": {
-      "sourceDigest": "sha256:991b94fd29d11e49bb50e1feb201979feac0daaa8f410a23d0e1cbaf88bc5cd3",
+      "sourceDigest": "sha256:d468e71b359eb10a93eb6255b46b7ef42773a0a3d7d80b138a8ddf7b7568787f",
       "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
     },
     "baoyu-infographic": {
