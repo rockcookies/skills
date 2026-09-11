@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-09T01:31:35.597Z",
+  "generated": "2026-09-11T08:20:21.448Z",
   "items": [
     {
       "kind": "agent",
@@ -54,7 +54,7 @@
     {
       "kind": "skill",
       "name": "baoyu-image-gen",
-      "digest": "sha256:a7e729470767623168326710675e01c503c6372167f85584b5d428f56832b3a7"
+      "digest": "sha256:9ec511a08a8b6ce463d5e4251d1dd631eb94e12a59ad482051f4bb2d5d1179f9"
     },
     {
       "kind": "skill",
@@ -70,11 +70,6 @@
       "kind": "skill",
       "name": "check",
       "digest": "sha256:1025f1f7b08f324d577172c0967947ce6ce5227ed8c6be2f5bab100ca82fc2bd"
-    },
-    {
-      "kind": "skill",
-      "name": "chinese-tech-writing",
-      "digest": "sha256:cc1f45d1564745874bb85e71ebf9c95d65c9c78ec4b042f6039716645fe3682a"
     },
     {
       "kind": "skill",
@@ -100,6 +95,11 @@
       "kind": "skill",
       "name": "codebase-design",
       "digest": "sha256:83c00c312b93f941f69cab540ab5c7de966dc58a04c0d53595a9e95602c452e3"
+    },
+    {
+      "kind": "skill",
+      "name": "cursor-plan-pipeline",
+      "digest": "sha256:bc7bb4702f2f214212a24828db8917e6d6c132a7427bd344d946f366079d4145"
     },
     {
       "kind": "skill",
@@ -378,6 +378,11 @@
     },
     {
       "kind": "skill",
+      "name": "grill-and-think",
+      "digest": "sha256:9bb8fb4233acd0c545591e3069a308e959dc75e9d5418190f36519813f01a500"
+    },
+    {
+      "kind": "skill",
       "name": "grill-me",
       "digest": "sha256:3d923fd174557e6575ede77106811ae29ef8bddb60e9156962679b02721e9e80"
     },
@@ -414,7 +419,7 @@
     {
       "kind": "skill",
       "name": "impeccable",
-      "digest": "sha256:2c925b4f8c3f684f4833761e0a3a7ef541ab81c6bdbd267825592b53186ddc06"
+      "digest": "sha256:e6d79d158d75b6b74c3ac41661322ecf46578928bd86fabf9adafea910ab6092"
     },
     {
       "kind": "skill",
@@ -499,17 +504,17 @@
     {
       "kind": "skill",
       "name": "tanstack-query",
-      "digest": "sha256:337d50db3992cdf54361a13b330d9da61d63d65601c710264569e5945ffd67d2"
+      "digest": "sha256:17e7ca0fcc523a22bfa2d59d61fb2f98847336dff1e8522baf07d3d44f534afc"
     },
     {
       "kind": "skill",
       "name": "tanstack-router",
-      "digest": "sha256:0bf8f1bc625ce08e0122661446777ca4166a6f07e8350867441ff2703168b7f1"
+      "digest": "sha256:18b495877af7295a5733ae40d26da3992346f542d2fbd3c59fedbd2f6110edc4"
     },
     {
       "kind": "skill",
       "name": "tanstack-start",
-      "digest": "sha256:1e5f6f776082eb740d856b3a44f8eddd610ccfef7a03d7a53291379a5c363882"
+      "digest": "sha256:3e5d354a0b1ac6366c6fb890469eb35977f828597c69597c306399d0aad5fbc8"
     },
     {
       "kind": "skill",
@@ -520,6 +525,11 @@
       "kind": "skill",
       "name": "teach",
       "digest": "sha256:e7fdc2a83cca469e830c3e25dc7bd0e72883c8fec954b87c444461d000d296ce"
+    },
+    {
+      "kind": "skill",
+      "name": "tech-writing",
+      "digest": "sha256:c39fe80091912ff10ba9cd228942ce884063201132282ab3d64210ec8b1eb1a5"
     },
     {
       "kind": "skill",
@@ -665,6 +675,11 @@
       "kind": "skill",
       "name": "web-zustand",
       "digest": "sha256:2bda2658ac32f91d250ff27c9f98c912f315a114bfaa94d0fb2bf680c5fa0726"
+    },
+    {
+      "kind": "skill",
+      "name": "week-retro",
+      "digest": "sha256:2d12a85255ef9e9cf66fc798eafd67ddc6637728ef6d389b83b4222cf3f3fe30"
     },
     {
       "kind": "skill",
