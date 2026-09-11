@@ -13,7 +13,7 @@ description: >-
   become bolder or more delightful, loud designs that should become quieter,
   live browser iteration on UI elements, or ambitious visual effects that should
   feel technically extraordinary. Not for backend-only or non-UI tasks.
-version: 4.3.0
+version: 4.3.1
 user-invocable: true
 argument-hint: >-
   [shape · audit|critique ·
