@@ -302,9 +302,9 @@ npx skills add rockcookies/skills --full-depth \
 | ---------------------------------------------------------- | ---------------------------------------------------------------- |
 | [tech-writing](skills/custom/tech-writing)                 | 中英双语技术写作 — 博客、文档、产品文案、周刊、报告与教程润色    |
 | [cursor-plan-pipeline](skills/custom/cursor-plan-pipeline) | Cursor Plan Mode 流水线（拷问 → 计划闸口 → 实现 → 审查）         |
-| [git-atomic-commit](skills/custom/git-atomic-commit)       | Atomic Conventional Commits — one logical change per commit      |
-| [git-rebase-surgeon](skills/custom/git-rebase-surgeon)     | Safe history rewriting — rebase, squash, sync with upstream      |
-| [git-semantic-search](skills/custom/git-semantic-search)   | Git archaeology — Pickaxe, Bisect, and Blame                     |
+| [git-atomic-commit](skills/custom/git-atomic-commit)       | Atomic commits 3.0 — one revertable commit; index isolation      |
+| [git-rebase-surgeon](skills/custom/git-rebase-surgeon)     | Safe rebase 3.0 — SEQUENCE_EDITOR, backup, explicit lease        |
+| [git-semantic-search](skills/custom/git-semantic-search)   | Git archaeology 3.0 — Pickaxe/Blame/Bisect with clean-worktree   |
 | [grill-and-think](skills/custom/grill-and-think)           | 跨运行时设计流水线（拷问 → 深思 → 实现 → 审查）                  |
 | [steelman](skills/custom/steelman)                         | 双向钢人论证 — 重述真问题，强化正反双方，锁定关键变量，硬裁决    |
 | [web-naming](skills/custom/web-naming)                     | Web/React UI naming — identifiers, files, components/Hooks/props |
