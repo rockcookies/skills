@@ -188,6 +188,9 @@ export const repositories: Record<string, RepositoryConfig> = {
     url: 'https://github.com/cursor/plugins',
     skills: [
       { target: 'unslop', source: './pstack/skills/unslop/SKILL.md' },
+      { target: 'how', source: './pstack/skills/how/SKILL.md' },
+      { target: 'why', source: './pstack/skills/why/SKILL.md' },
+      { target: 'technical-writing', source: './pstack/skills/technical-writing/SKILL.md' },
       { target: 'encode-lessons-in-structure', source: './pstack/skills/principle-encode-lessons-in-structure/SKILL.md' },
       { target: 'boundary-discipline', source: './pstack/skills/principle-boundary-discipline/SKILL.md' },
       { target: 'type-system-discipline', source: './pstack/skills/principle-type-system-discipline/SKILL.md' },

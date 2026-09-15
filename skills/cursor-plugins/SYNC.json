@@ -1,9 +1,21 @@
 {
-  "sha": "5bf2b1544db739998121a306340631963c2ff3de",
-  "synced": "2026-09-14",
+  "sha": "c1c0a32802223f4be824112dd83d33ad29a8b26c",
+  "synced": "2026-09-15",
   "items": {
     "unslop": {
       "sourceDigest": "sha256:d52ac35fba8c0807c60d447908b96c01e03b10b0966da6e26e4ceabfd8025308",
+      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    },
+    "how": {
+      "sourceDigest": "sha256:565b947d45d960f3f980b1f4ce11717a8df9e386c3534c26d9aeb7467e793437",
+      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    },
+    "why": {
+      "sourceDigest": "sha256:8a8d4a61e3bf1061a4e19bd3df54c9e86eac994a2cf5ee6f620fba3cd9977fe1",
+      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    },
+    "technical-writing": {
+      "sourceDigest": "sha256:f1a6d762c1af79d9d8426d76fbe30dfe2843e7da6340df5e92d7bbcbc72697d1",
       "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
     },
     "encode-lessons-in-structure": {

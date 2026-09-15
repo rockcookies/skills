@@ -256,6 +256,29 @@ npx skills add rockcookies/skills --full-depth \
   -g
 ```
 
+#### how & why (cursor/plugins)
+
+Companions driving parallel `generalPurpose` Task subagents: `how` explains how a subsystem works; `why` investigates the forces that shaped it through available MCPs.
+
+```bash
+npx skills add rockcookies/skills --full-depth \
+  --skill how \
+  --skill why \
+  -g
+```
+
+#### Writing (unslop & technical-writing)
+
+`technical-writing` applies `unslop` on every doc it touches; `technical-writing-zh` (custom) orchestrates both for Chinese output. Install all three together.
+
+```bash
+npx skills add rockcookies/skills --full-depth \
+  --skill unslop \
+  --skill technical-writing \
+  --skill technical-writing-zh \
+  -g
+```
+
 #### Hono / Playwright / web naming & style
 
 ```bash
@@ -340,12 +363,15 @@ Synced from external repositories into `skills/{repoKey}/{target}/`.
 | ---------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
 | [boundary-discipline](skills/cursor-plugins/boundary-discipline)                               | Validation and error handling at system boundaries; trust internal types |
 | [encode-lessons-in-structure](skills/cursor-plugins/encode-lessons-in-structure)               | Encode recurring fixes as lint rules, flags, checks, or scripts          |
+| [how](skills/cursor-plugins/how)                                                               | Subsystem walkthroughs — "how does X work", placement, ownership         |
+| [technical-writing](skills/cursor-plugins/technical-writing)                                   | Layered writing standard — Diátaxis, Google style, STE, Global English   |
 | [thermo-nuclear-code-quality-review](skills/cursor-plugins/thermo-nuclear-code-quality-review) | Strict maintainability audit (structure, file-size growth, spaghetti)    |
 | [thermo-nuclear-review](skills/cursor-plugins/thermo-nuclear-review)                           | Deep branch audit (bugs, breakages, security, devex, feature-flag leaks) |
 | [thermos](skills/cursor-plugins/thermos)                                                       | Run both review subagents in parallel and synthesize findings            |
 | [type-system-discipline](skills/cursor-plugins/type-system-discipline)                         | Make illegal states unrepresentable — sum types, brands, boundary parse  |
 | [typescript-best-practices](skills/cursor-plugins/typescript-best-practices)                   | TypeScript rules grounding the type-system principles in .ts/.tsx        |
 | [unslop](skills/cursor-plugins/unslop)                                                         | Cut AI tells from writing — puffery, chatbot phrases, hedging, jargon    |
+| [why](skills/cursor-plugins/why)                                                               | Design rationale — parallel MCP evidence investigators, cited synthesis  |
 
 #### [deckardger/tanstack-agent-skills](https://github.com/deckardger/tanstack-agent-skills)
 

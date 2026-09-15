@@ -413,6 +413,11 @@
     },
     {
       "kind": "skill",
+      "name": "how",
+      "digest": "sha256:9bbbdff9e8cb9333847b1d60276eb9573cf58502dd45a18685fd618739c78e6f"
+    },
+    {
+      "kind": "skill",
       "name": "hunt",
       "digest": "sha256:4bae7c345edcbcc06a31c9b5acccf6bc27c47f1f295af1dd855a62b7f8f5fcce"
     },
@@ -680,6 +685,11 @@
       "kind": "skill",
       "name": "week-retro",
       "digest": "sha256:2d12a85255ef9e9cf66fc798eafd67ddc6637728ef6d389b83b4222cf3f3fe30"
+    },
+    {
+      "kind": "skill",
+      "name": "why",
+      "digest": "sha256:c81d1921a7dbd656a2cc42ecc9c1fe27f9513d9e795bd0a4898344dd8acbb9c3"
     },
     {
       "kind": "skill",
