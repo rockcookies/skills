@@ -533,8 +533,13 @@
     },
     {
       "kind": "skill",
-      "name": "tech-writing",
-      "digest": "sha256:c39fe80091912ff10ba9cd228942ce884063201132282ab3d64210ec8b1eb1a5"
+      "name": "technical-writing",
+      "digest": "sha256:10d22bffd2e0779a2b9245581bec5d40009ca9a95f9b193b1cd9b80a756d6971"
+    },
+    {
+      "kind": "skill",
+      "name": "technical-writing-zh",
+      "digest": "sha256:3ba855a5d7c266b04888ed8b92a03bbe0a7003e881fd278bbf579b688f010e6f"
     },
     {
       "kind": "skill",

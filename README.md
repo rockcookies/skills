@@ -323,7 +323,7 @@ npx skills add rockcookies/skills --full-depth \
 
 | Skill                                                      | Description                                                      |
 | ---------------------------------------------------------- | ---------------------------------------------------------------- |
-| [tech-writing](skills/custom/tech-writing)                 | 中英双语技术写作 — 博客、文档、产品文案、周刊、报告与教程润色    |
+| [technical-writing-zh](skills/custom/technical-writing-zh) | 中文写作补充（编排 unslop + technical-writing）                  |
 | [cursor-plan-pipeline](skills/custom/cursor-plan-pipeline) | Cursor Plan Mode 流水线（拷问 → 计划闸口 → 实现 → 审查）         |
 | [git-atomic-commit](skills/custom/git-atomic-commit)       | Atomic commits 3.0 — one revertable commit; index isolation      |
 | [git-rebase-surgeon](skills/custom/git-rebase-surgeon)     | Safe rebase 3.0 — SEQUENCE_EDITOR, backup, explicit lease        |
