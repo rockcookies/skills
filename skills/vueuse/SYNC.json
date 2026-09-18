@@ -1,9 +1,9 @@
 {
-  "sha": "5706f866118f04a6238bf77368dafa4a2c34b96b",
-  "synced": "2026-09-15",
+  "sha": "004812b4aa0815f5745ac30a6a7dc4927aec7b3d",
+  "synced": "2026-09-18",
   "items": {
     "vueuse-functions": {
-      "sourceDigest": "sha256:4f3a53e3f049561f896830569f85517dea0fd68201bf6f7cb40fd3f21182a97b",
+      "sourceDigest": "sha256:473b5b7a30399939593ee7ce3d98a84c45cc036cc8f0ec222b2b1829ce764f6e",
       "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
     }
   }
