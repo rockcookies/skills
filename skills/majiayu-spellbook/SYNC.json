@@ -1,6 +1,6 @@
 {
-  "sha": "0cd11050a94f3cd078fc8a4f987a79cfe913ef1f",
-  "synced": "2026-09-15",
+  "sha": "e7d729438b8e83bdda9d1c37c737899398a3fe6b",
+  "synced": "2026-09-18",
   "items": {
     "figma-to-react": {
       "sourceDigest": "sha256:78563e155984b26746060996e0308886742dc8f83a88b95e19a4d340310af1de",
@@ -19,7 +19,7 @@
       "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
     },
     "codebase-audit": {
-      "sourceDigest": "sha256:345469b029991ce9c66455796a1b975c14733f17ffdbdcd9ca2ba4f9ab8b6f0e",
+      "sourceDigest": "sha256:d8984262fd1ae80df171fb97e74f2f936d5ad6955e60993a6f8c796b6f9b0776",
       "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
     }
   }
