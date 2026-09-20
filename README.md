@@ -510,6 +510,12 @@ Synced from external repositories into `skills/{repoKey}/{target}/`.
 | ---------------------------------------- | -------------------------------------------------------------------- |
 | [improve](skills/shadcn-improve/improve) | Read-only senior-advisor survey — prioritized plans for other agents |
 
+#### [tw93/Kami](https://github.com/tw93/Kami) (tag `V1.15.0`)
+
+| Skill                         | Description                                                                                    |
+| ----------------------------- | ---------------------------------------------------------------------------------------------- |
+| [kami](skills/tw93-kami/kami) | Typeset resumes, one-pagers, white papers, letters, portfolios, slide decks, and landing pages |
+
 #### [tw93/Waza](https://github.com/tw93/Waza) (tag `v3.38.0`)
 
 | Skill                             | Description                                                                   |
@@ -604,6 +610,7 @@ Repository sources and mappings live in [meta.ts](meta.ts). Pins:
 | --------------- | ----------------------- | ------------- |
 | `samber-golang` | samber/cc-skills-golang | tag `v2.0.0`  |
 | `mattpocock`    | mattpocock/skills       | tag `v1.2.3`  |
+| `tw93-kami`     | tw93/Kami               | tag `V1.15.0` |
 | `tw93-waza`     | tw93/Waza               | tag `v3.38.0` |
 
 Unpinned repos track the default branch. Upstreams listed in `meta.ts` with empty `skills` and empty `agents` are reserved for future use and are skipped by Sync.
