@@ -218,6 +218,13 @@ export const repositories: Record<string, RepositoryConfig> = {
       { target: 'write', source: './skills/write/SKILL.md' },
     ],
   },
+  'tw93-kami': {
+    url: 'https://github.com/tw93/Kami',
+    tag: 'V1.15.0',
+    skills: [
+      { target: 'kami', source: './skills/kami/SKILL.md' }
+    ],
+  },
   'majiayu-spellbook': {
     url: 'https://github.com/majiayu000/spellbook',
     skills: [
