@@ -1,0 +1,10 @@
+{
+  "sha": "1470ee9964126d385cb2bf530dc11fc708347e59",
+  "synced": "2026-09-20",
+  "items": {
+    "kami": {
+      "sourceDigest": "sha256:622687e0a2d487ee8c233f67a3fb192e193e80dbc7a3fc5a5e37af192c7e0b11",
+      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    }
+  }
+}
