@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-20T01:10:29.066Z",
+  "generated": "2026-09-20T02:40:11.174Z",
   "items": [
     {
       "kind": "agent",
@@ -445,6 +445,11 @@
       "kind": "skill",
       "name": "ip-check",
       "digest": "sha256:fbfb95fb0312f5723e0774478c582d84113cb7b1518fa53fed62a28a4118dbf8"
+    },
+    {
+      "kind": "skill",
+      "name": "kami",
+      "digest": "sha256:ff2465da3eee2ea41541d8f880d836bc075d55df4d89751b90922755ba77bace"
     },
     {
       "kind": "skill",
