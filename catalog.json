@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-20T02:40:11.174Z",
+  "generated": "2026-09-21T05:58:41.628Z",
   "items": [
     {
       "kind": "agent",
@@ -408,8 +408,13 @@
     },
     {
       "kind": "skill",
-      "name": "hono-skills",
-      "digest": "sha256:90217d34da04b4b67fa6cfb4d1d7b46fc3fc98b70b4bef6e3b219dad48ee3ab0"
+      "name": "hono",
+      "digest": "sha256:937d527c0be84a4be489d97675cdf98ca91637bd5ff4c460eae3bedf11f017e1"
+    },
+    {
+      "kind": "skill",
+      "name": "hono-jsx",
+      "digest": "sha256:43dd6172ec6f771a7a16c751c29074fbcb2946d50afcb2dfb020da5bd9e9f26c"
     },
     {
       "kind": "skill",
@@ -449,7 +454,7 @@
     {
       "kind": "skill",
       "name": "kami",
-      "digest": "sha256:ff2465da3eee2ea41541d8f880d836bc075d55df4d89751b90922755ba77bace"
+      "digest": "sha256:5aa2dd347058afd3529fce60eef7a3fb48d6793ec254046b79728afec0767196"
     },
     {
       "kind": "skill",
