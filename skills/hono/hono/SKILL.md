@@ -1,5 +1,5 @@
 ---
-name: hono-skills
+name: hono
 description: >-
   Use when building Hono web applications or when the user asks about Hono APIs,
   routing, middleware, JSX, validation, testing, or streaming. TRIGGER when code
@@ -361,6 +361,8 @@ app.post('/users', sValidator('json', schema), (c) => {
 ---
 
 ## JSX
+
+To build UI with it (layouts with `jsxRenderer`, Vite, client-side code), use the `hono-jsx` skill. This section covers the syntax only.
 
 ### Setup
 
