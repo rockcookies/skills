@@ -121,7 +121,8 @@ export const repositories: Record<string, RepositoryConfig> = {
   hono: {
     url: 'https://github.com/honojs/skills',
     skills: [
-      { target: 'hono-skills', source: './skills/hono/SKILL.md' }
+      { target: 'hono', source: './skills/hono/SKILL.md' },
+      { target: 'hono-jsx', source: './skills/hono-jsx/SKILL.md' }
     ],
   },
   'tanstack-agent': {
