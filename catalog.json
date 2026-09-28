@@ -1,10 +1,10 @@
 {
-  "generated": "2026-09-21T05:58:41.628Z",
+  "generated": "2026-09-27T23:52:13.162Z",
   "items": [
     {
       "kind": "agent",
       "name": "impeccable-asset-producer",
-      "digest": "sha256:c234c526407a934a83c149eec92c267b817644c3878ab978dff20c28812ba4ac"
+      "digest": "sha256:24c079c304e1f341929c241a6f32a2b88763d4dfa28c4e41614f1fc2e869025e"
     },
     {
       "kind": "agent",
@@ -14,7 +14,7 @@
     {
       "kind": "agent",
       "name": "impeccable-finish-reviewer",
-      "digest": "sha256:44c9d81ecb1ddd5dcdb50270e8825537a4128b2116f3a81fe3dfb420a60c9add"
+      "digest": "sha256:043cb3b6e56ffa671b3e1b20b34eb683fb0646bbe6e0a9cf60db2487e6b2211f"
     },
     {
       "kind": "agent",
@@ -49,7 +49,7 @@
     {
       "kind": "skill",
       "name": "baoyu-design",
-      "digest": "sha256:d45a5ce6ca3aa8f84230b703bf2f21db2e8ed1bb99d058a0c6253e1eb7afc7a7"
+      "digest": "sha256:a15b9f4ed3d6cc43817bce04a89b696d6e642a8db0f4544f55e4b990a243608b"
     },
     {
       "kind": "skill",
@@ -419,7 +419,7 @@
     {
       "kind": "skill",
       "name": "how",
-      "digest": "sha256:9bbbdff9e8cb9333847b1d60276eb9573cf58502dd45a18685fd618739c78e6f"
+      "digest": "sha256:0a9ba5f9d4ad051fd40b65e106b1879d4f787111ea076b6a7b2d340fa3c5f8c4"
     },
     {
       "kind": "skill",
@@ -429,7 +429,7 @@
     {
       "kind": "skill",
       "name": "impeccable",
-      "digest": "sha256:3b8ace075936ccf8924b2ca84dd988773a14c3db8dd40818bbc5328a8dcbbbaa"
+      "digest": "sha256:7fa25d85d72252badd5e840174b6a28cce4cc79ee3792fa0de637850eb701d33"
     },
     {
       "kind": "skill",
@@ -454,7 +454,7 @@
     {
       "kind": "skill",
       "name": "kami",
-      "digest": "sha256:5aa2dd347058afd3529fce60eef7a3fb48d6793ec254046b79728afec0767196"
+      "digest": "sha256:ff725b5109e93b47f19b0d4d6200231e9137bdf47ed60faf50ecccc8e148fa56"
     },
     {
       "kind": "skill",
@@ -544,7 +544,7 @@
     {
       "kind": "skill",
       "name": "technical-writing",
-      "digest": "sha256:10d22bffd2e0779a2b9245581bec5d40009ca9a95f9b193b1cd9b80a756d6971"
+      "digest": "sha256:1246a6cbfa47e3a247c1cfcd1317b3ffde2e8a7c47ba753d263774cb97ea3092"
     },
     {
       "kind": "skill",
@@ -614,7 +614,7 @@
     {
       "kind": "skill",
       "name": "unslop",
-      "digest": "sha256:d52ac35fba8c0807c60d447908b96c01e03b10b0966da6e26e4ceabfd8025308"
+      "digest": "sha256:1f0556b68df9c971db7390c91b1d9103c0103eef4fa495c5a135e297ec90bf00"
     },
     {
       "kind": "skill",
@@ -704,7 +704,7 @@
     {
       "kind": "skill",
       "name": "why",
-      "digest": "sha256:c81d1921a7dbd656a2cc42ecc9c1fe27f9513d9e795bd0a4898344dd8acbb9c3"
+      "digest": "sha256:6e9f5092b42d3ab650657e46e10fb6c0ca905d26cd45379055d80791b23b6192"
     },
     {
       "kind": "skill",
