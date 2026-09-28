@@ -1,21 +1,21 @@
 {
-  "sha": "6ed0f7a9504f577d7529064103cecce9be7dfc5e",
-  "synced": "2026-09-21",
+  "sha": "ecc249f1e306fc64ddf83c7bed16cacf7c2239db",
+  "synced": "2026-09-27",
   "items": {
     "unslop": {
-      "sourceDigest": "sha256:d52ac35fba8c0807c60d447908b96c01e03b10b0966da6e26e4ceabfd8025308",
+      "sourceDigest": "sha256:1f0556b68df9c971db7390c91b1d9103c0103eef4fa495c5a135e297ec90bf00",
       "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
     },
     "how": {
-      "sourceDigest": "sha256:565b947d45d960f3f980b1f4ce11717a8df9e386c3534c26d9aeb7467e793437",
+      "sourceDigest": "sha256:bc44f740a64fb3309f560ad01bbf410c208f0063f8fe14d7aad1154c78ddb3e5",
       "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
     },
     "why": {
-      "sourceDigest": "sha256:8a8d4a61e3bf1061a4e19bd3df54c9e86eac994a2cf5ee6f620fba3cd9977fe1",
+      "sourceDigest": "sha256:538f6911b5f55a0c89fc7cab8ac1fa1d49cd7cf6b679cd10d0ccb22862c7fbcc",
       "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
     },
     "technical-writing": {
-      "sourceDigest": "sha256:f1a6d762c1af79d9d8426d76fbe30dfe2843e7da6340df5e92d7bbcbc72697d1",
+      "sourceDigest": "sha256:ead99271dc9bf7b80a31e2cf46997c720387e93434a6e45855e9369359c09707",
       "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
     },
     "encode-lessons-in-structure": {
