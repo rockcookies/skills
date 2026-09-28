@@ -1,9 +1,9 @@
 {
-  "sha": "f2c7051853848826aac2f4646581d62a732155ad",
-  "synced": "2026-09-21",
+  "sha": "9d715cc4f5564a990ca8345abfdd5df6dc9b41c8",
+  "synced": "2026-09-27",
   "items": {
     "impeccable-asset-producer": {
-      "sourceDigest": "sha256:c6a0ec6c28ae55fe539f0f41a507b1638495afd285d6eb15c00245fc8cc7e7fe",
+      "sourceDigest": "sha256:1d9564d5aec172b880a55bf8cb88042ec90d1226b81357bf386ec0f55237671d",
       "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
     },
     "impeccable-documenter": {
@@ -11,7 +11,7 @@
       "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
     },
     "impeccable-finish-reviewer": {
-      "sourceDigest": "sha256:8f651cb1f8cde0acc5cc511b77fddd98558a527f54974698a1650b0fd7e849a7",
+      "sourceDigest": "sha256:08398fa2d8e2b06b849f1c0f032e1e93b832e9294aed35c1c7f62b938d62ee80",
       "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
     },
     "impeccable-manual-edit-applier": {
