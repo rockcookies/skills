@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-01T01:38:54.501Z",
+  "generated": "2026-10-01T07:39:02.469Z",
   "items": [
     {
       "kind": "agent",
@@ -679,7 +679,12 @@
     {
       "kind": "skill",
       "name": "web-code-style",
-      "digest": "sha256:414de2c2723cb263ce75c931e4d4e3b51c8e6924bba2ee9cf93a5723b06988b4"
+      "digest": "sha256:0b2a8a1aca638ec12b8a313cf8acf4a802bf859a8182ce90d05f1be4697cc8e4"
+    },
+    {
+      "kind": "skill",
+      "name": "web-css-guidelines",
+      "digest": "sha256:e7b507e385d054ecf1388feb96ea859abc237ef9e21557da02c9faff06bda658"
     },
     {
       "kind": "skill",
@@ -689,7 +694,7 @@
     {
       "kind": "skill",
       "name": "web-zustand",
-      "digest": "sha256:8349362c8981755946f2f2b3e5b9379ed82c3e7fa896805362b4ede76d5a0c7a"
+      "digest": "sha256:49e4e48311173b8aea8965c5ef891847179ba3a5f3735ba67a312fa429b8b0b9"
     },
     {
       "kind": "skill",
