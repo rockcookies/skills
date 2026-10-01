@@ -17,7 +17,7 @@ metadata:
   version: 1.2.0
 ---
 
-**范围：** 浏览器端 Zustand store 的结构、action 分层、嵌套状态与 selector。默认 StoreImpl + 嵌套 slice，而不是散落的 `create()` 钩子。通用标识符/文件命名与 UI 清晰度见 `web-code-style`。进 store 前的 parse、单个异步子状态要不要建成判别联合，以 `typescript-best-practices` 为准（建模原则见 `type-system-discipline`）。本 skill 管进 store 之后怎么写、怎么 dispatch。列表默认 `loadingIds`。
+**范围：** 浏览器端 Zustand store 的结构、action 分层、嵌套状态与 selector。默认 StoreImpl + 嵌套 slice，而不是散落的 `create()` 钩子。通用标识符/文件命名与 UI 清晰度见 `web-code-style`。进 store 前的 parse、单个异步子状态要不要建成判别联合，以 `typescript-best-practices` 为准（建模原则见 `type-system-discipline`）。本 skill 管进 store 之后怎么写、怎么 dispatch。文件级依赖见「依赖」。列表默认 `loadingIds`。
 
 **模式：**
 
@@ -140,6 +140,12 @@ Action 名：公开动词 / `internal_*` / `internal_dispatch*`。
 - Action 模式：[references/action-patterns.md](./references/action-patterns.md)
 - Slice 与 selector：[references/slice-organization.md](./references/slice-organization.md)
 
-## 交叉引用
+## 依赖
 
-- → `web-code-style`：store/slice/action 相关标识符与文件命名，及 store 之外的通用可读性规则
+本 skill 依赖以下技能的规则文件。涉及对应问题时先读再写，不在此复制其内容，规则冲突时以它们为准：
+
+- `web-code-style/references/naming-core.md` — store/slice/action 相关标识符命名。写或审 store 代码命名时先读。
+- `web-code-style/references/naming-files.md` — store 之外的文件命名（store 目录后缀是本 skill 自己的规则，见默认目录）。
+- `web-code-style/references/style-core.md` — store 之外的控制流、函数与注释可读性规则。
+- `typescript-best-practices/references/patterns.md` — 进 store 前的 parse、单个异步子状态要不要建成判别联合。涉及这些判断时先读。
+- `type-system-discipline/SKILL.md` — 类型建模原则，上一条的依据。

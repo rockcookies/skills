@@ -1,32 +1,34 @@
 ---
 name: web-code-style
 description: >-
-  Web 全栈（React 前端与 Node 服务端）的命名约定与代码风格：变量/函数/类型/常量/文件名命名，
-  React 组件/Hook/props/事件命名，以及 early return、复杂条件、参数对象、间接层与状态范围、
-  组件只管展示、JSX 复杂度、注释边界。在起名、选文件名、纠结 UserProfile.tsx 还是 user-profile.ts、
-  handleClick 还是 saveUserData、userID 还是 userId，或编写、审查 Web 代码的可读性
-  （嵌套过深、墙式条件、参数过多、JSX 里堆逻辑、注释复述代码）时使用，即使用户没有明说「命名」或「风格」。
-  不管渲染性能与 hooks 规则（→ react-best-practices）、类型建模（→ typescript-best-practices）、
+  Web 全栈（React 前端与 Node 服务端）的命名约定与代码风格：标识符、文件、组件/Hook/props
+  命名，控制流、函数设计、间接层、JSX 复杂度与注释。写或审 Web 代码时使用，
+  即使用户没有明说「命名」或「风格」。
+  Not for 渲染性能与 hooks 规则（→ react-best-practices）、类型建模（→ typescript-best-practices）、
   Vue SFC（→ vue-* skills）、formatter/linter 已覆盖的机械规则。
+when_to_use: >-
+  web-code-style, 起名, 命名审查, 变量名, 文件名, 组件命名, Hook, props 命名, userID, HTTPClient,
+  数字枚举, utils 抽屉, 双轨, 可读性, 风格审查, 控制流, 嵌套太深, 墙式条件, 参数过多, 函数太长,
+  JSX 堆逻辑
+user-invocable: true
 metadata:
   author: rockcookies
   version: 3.0.0
-  replaces: web-naming@2.3.0
 ---
 
-**范围：** Web 全栈的 TypeScript：React（TSX）前端与 Node 服务端。命名与代码风格的通用规则适用任何层；React 专属规则（组件/Hook 文件名、props、JSX）只用于前端。本 skill 建在仓内技能之上：类型建模、`any`/`unknown`、判别联合、穷尽匹配、Object args 的热路径例外，以 `typescript-best-practices` 为准（建模原则见 `type-system-discipline`）；渲染性能与 hooks 规则见 `react-best-practices`。这里只规定它们怎么命名、怎么写得易读。
+**范围：** Web 全栈的 TypeScript：React（TSX）前端与 Node 服务端。命名与代码风格的通用规则适用任何层；React 专属规则（组件/Hook 文件名、props、JSX）只用于前端。类型建模与渲染性能归仓内对应技能（见「依赖」），本 skill 只规定它们怎么命名、怎么写得易读。
 
 ## 按任务读对应 references
 
 | 任务 | 读哪些 references |
 |------|-------------------|
-| 命名（任何层） | `naming-core.md`、`naming-files.md` |
-| React 前端的组件/Hook/props/文件名 | `naming-react.md` |
-| 写/审控制流、函数、注释（任何层） | `style-core.md` |
-| 写/审组件、JSX、文件内组织 | `style-ui.md` |
-| 需要长示例 | `examples.md` |
+| 命名（任何层） | `references/naming-core.md`、`references/naming-files.md` |
+| React 前端的组件/Hook/props/文件名 | `references/naming-react.md` |
+| 写/审控制流、函数、注释（任何层） | `references/style-core.md` |
+| 写/审组件、JSX、文件内组织 | `references/style-ui.md` |
+| 需要长示例 | `references/examples.md` |
 
-只读与当前任务相关的文件，不要一次全读。monorepo 里按**目标文件所在包**选路由：前端包用 React 双轨文件命名，服务端包一律走 `naming-files.md` 的 kebab-case 默认轨。Vue SFC 见仓内 `vue-*` skills。
+只读与当前任务相关的文件，不要一次全读。monorepo 里按**目标文件所在包**选路由：前端包用 React 双轨文件命名，服务端包一律走 `references/naming-files.md` 的 kebab-case 默认轨。Vue SFC 见仓内 `vue-*` skills。
 
 ## 优先级与工具边界
 
@@ -38,7 +40,7 @@ metadata:
 
 - **Coding**：写新代码时按速查表与对应 references 组织。
 - **Review**：只找工具抓不到的问题：布尔裸名、`handleClick`、`utils`、数字枚举当真实零值、概念名不一致、文件命名与仓约定不符，以及过深嵌套、墙式条件、单调用者包装、JSX 里求值、复述型注释。按「审查输出」汇报。
-- **Audit**：全库审查按关注点分组（命名、控制流与函数、UI 与 JSX、文件组织、注释）。有 pstack 时用 `/swarm` 并行，否则顺序扫描，最后合并去重。
+- **Audit**：全库审查按关注点分组（命名、控制流与函数、UI 与 JSX、文件组织、注释），可并行扫描后合并去重。
 
 ## 速查表（命名的唯一规则来源）
 
@@ -71,8 +73,11 @@ React 专属的文件名、props、测试后缀等见对应 references，这里�
 
 不顺手做无关重构。改完运行仓内的 typecheck / lint / test 再汇报。
 
-## 交叉引用
+## 依赖
 
-- → `react-best-practices`：渲染性能、hooks 依赖与订阅
-- → `typescript-best-practices`：判别联合/branded type 是否该用、`as` 与类型守卫的正确性（建模原则见 `type-system-discipline`）
-- → `web-zustand`：`*.store.ts` 等 Zustand 文件后缀
+本 skill 依赖以下技能的规则文件。涉及对应问题时先读再判断，不在此复制其内容，规则冲突时以它们为准：
+
+- `web-zustand/references/slice-organization.md` — Zustand 的 `*.store.ts` 等 store 文件后缀与目录布局。涉及 Zustand store/slice 文件命名时先读。
+- `typescript-best-practices/references/patterns.md` — 判别联合/branded type 是否该用、`as` 与类型守卫的正确性。涉及类型建模判断时先读。
+- `type-system-discipline/SKILL.md` — 类型建模原则，上一条的依据。涉及「怎么建模」而非「怎么命名」时先读。
+- `react-best-practices/SKILL.md` — 渲染性能、hooks 依赖与订阅。涉及 React 渲染行为时先读。

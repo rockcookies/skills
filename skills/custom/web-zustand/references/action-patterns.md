@@ -102,7 +102,7 @@ internal_setLoading(id: string, loading: boolean): void {
 
 ## 单个异步子状态
 
-列表默认 `loadingIds`。单个异步操作若已出现互斥字段组合（例如同时 `isLoading` 又 `error`），按 `typescript-best-practices` 的判别联合建模。判别字段命名见 `web-code-style` 的 [naming-core.md](../../web-code-style/references/naming-core.md)。
+列表默认 `loadingIds`。单个异步操作若已出现互斥字段组合（例如同时 `isLoading` 又 `error`），按 `typescript-best-practices/references/patterns.md` 的判别联合建模。判别字段命名见 `web-code-style/references/naming-core.md`。
 
 ## 跨 Store
 

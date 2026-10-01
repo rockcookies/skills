@@ -70,7 +70,7 @@ type OrderStatus = (typeof OrderStatus)[keyof typeof OrderStatus]
 
 ## 判别联合与 branded type 的命名
 
-只管命名，要不要用以 `typescript-best-practices` 为准。
+只管命名，要不要用以 `typescript-best-practices/references/patterns.md` 为准。
 
 判别字段统一叫 `kind`，仓内只用一种，值用小写短词，不要全大写：
 
@@ -96,6 +96,5 @@ function parseUserId(raw: string): UserId {
 
 ## 其他
 
-- 接口无 `I` 前缀。不强制“对象形状必须用 `interface` 而不能用 `type`”，文件内保持一种即可。
+- 不强制“对象形状必须用 `interface` 而不能用 `type`”，文件内保持一种即可。
 - 类型名不加 `Struct`、`Object`、`Data`、`Type` 这类无信息后缀。
-- 泛型：简单场景用 `T`、`K`、`V`，复杂场景用 `TKey`、`TValue`。

@@ -46,7 +46,7 @@ JSX 靠**标识符**首字母区分组件与 HTML 标签（`<UserProfile />` vs 
 
 ## 非组件模块
 
-Service、store、formatter 等不含 JSX 的文件用 `kebab-case`：`user-api.ts`、`auth-store.ts`、`format-date.ts`。Zustand 的 `*.store.ts` 等后缀由 `web-zustand` 规定。
+Service、store、formatter 等不含 JSX 的文件用 `kebab-case`：`user-api.ts`、`auth-store.ts`、`format-date.ts`。Zustand 的 `*.store.ts` 等后缀由 `web-zustand/references/slice-organization.md` 规定，涉及 store 文件命名时先读它，以其为准。
 
 ## 目录布局
 
