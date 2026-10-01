@@ -1,9 +1,9 @@
 {
-  "sha": "74354ecc7a43da16d91a9bc54fa8db8283a3fcf5",
-  "synced": "2026-09-27",
+  "sha": "b85c7a736bb473bf55b584e54a09ffa698d6d871",
+  "synced": "2026-10-01",
   "items": {
     "playwright-cli": {
-      "sourceDigest": "sha256:39002c9e17215a293697f5fda07fa48d8d721be9678091ba4176cd64702a148f",
+      "sourceDigest": "sha256:07ae67abce70ecca934584b8b96bab20d26d2a45bf1e297bc071c439a8344cf3",
       "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
     }
   }
