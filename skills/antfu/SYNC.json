@@ -1,21 +1,21 @@
 {
-  "sha": "e98e476e315f068f72d53bd3afb34fdd4d5851c3",
-  "synced": "2026-09-27",
+  "sha": "e53a142a2420e8cd812cfe9ed0484ab01bc856aa",
+  "synced": "2026-10-01",
   "items": {
     "vite": {
-      "sourceDigest": "sha256:01d5ecd1738540a7dc1efe398ab045e4f3b5d513af9b49ea2cd777f5b87d21c4",
+      "sourceDigest": "sha256:0c48cc8622c3002f3955e8b026309a22a28f07c74dbff2c53e679d9d7fe2d621",
       "transformId": "sha256:9a0731abd7ae821e16890cb0d94c17d01f719678719bc118517a9c6ab604c461"
     },
     "vitest": {
-      "sourceDigest": "sha256:48b372067b126cbb78e65e37b77c3dad8eab6fc900da740744faab2613f55812",
+      "sourceDigest": "sha256:ce55e626b48ce6b14b703caaa30847643b17900e9c2edbeb04277832f9f5671f",
       "transformId": "sha256:9a0731abd7ae821e16890cb0d94c17d01f719678719bc118517a9c6ab604c461"
     },
     "unocss": {
-      "sourceDigest": "sha256:6c87946fe68a0fd60168d9f8f7954f8fe2d39a4279380ca8bb2fb53fc19374e6",
+      "sourceDigest": "sha256:745db2077b4e77897a880111f97c0ac777a469a3355cdaab2fae8d8344ccb828",
       "transformId": "sha256:9a0731abd7ae821e16890cb0d94c17d01f719678719bc118517a9c6ab604c461"
     },
     "antfu": {
-      "sourceDigest": "sha256:bf9ea05fb45d5066ca5a2c9413b1dd83f60a01cb3d67f152095dd9252ac7dbd0",
+      "sourceDigest": "sha256:7084c839ed30ced22d3fb11acd7a583bef659c500fce1b6d8dc1dc0b51354cce",
       "transformId": "sha256:9a0731abd7ae821e16890cb0d94c17d01f719678719bc118517a9c6ab604c461"
     }
   }
