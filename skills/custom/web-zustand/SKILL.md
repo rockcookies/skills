@@ -5,11 +5,11 @@ description: >-
   internal_* / internal_dispatch*）、isEqual 守卫、devtools namespace、selector
   聚合与乐观更新。Use when writing or reviewing Zustand stores, slices,
   public/internal/dispatch actions, nested state, selectors, or optimistic
-  updates in React/TS apps. Not for identifier/file naming (→ web-naming).
-  Not for UI clarity or JSX structure (→ web-code-style). Not for Vitest store
+  updates in React/TS apps. Not for identifier/file naming or UI clarity
+  outside stores (→ web-code-style). Not for Vitest store
   tests, SWR/fetch pipelines, or List-Detail data-shape design. Not for how
   service responses should be typed/validated before entering the store
-  (→ typescript-best-practices, if present in the repo).
+  (→ typescript-best-practices).
 when_to_use: >-
   zustand, 状态管理, 平铺状态, 整树订阅, store 审查, loadingIds, 乐观删除
 metadata:
@@ -17,7 +17,7 @@ metadata:
   version: 1.2.0
 ---
 
-**范围：** 浏览器端 Zustand store 的结构、action 分层、嵌套状态与 selector。默认 StoreImpl + 嵌套 slice，而不是散落的 `create()` 钩子。通用标识符/文件命名见 `web-naming`；UI 清晰度见 `web-code-style`。仓内若有 `typescript-best-practices`：进 store 前的 parse、单个异步子状态要不要建成判别联合，以它为准（建模原则见 `type-system-discipline`，若仓内有）。本 skill 管进 store 之后怎么写、怎么 dispatch。未部署时跟仓内 service 层现有类型；列表默认 `loadingIds`。
+**范围：** 浏览器端 Zustand store 的结构、action 分层、嵌套状态与 selector。默认 StoreImpl + 嵌套 slice，而不是散落的 `create()` 钩子。通用标识符/文件命名与 UI 清晰度见 `web-code-style`。进 store 前的 parse、单个异步子状态要不要建成判别联合，以 `typescript-best-practices` 为准（建模原则见 `type-system-discipline`）。本 skill 管进 store 之后怎么写、怎么 dispatch。列表默认 `loadingIds`。
 
 **模式：**
 
@@ -142,5 +142,4 @@ Action 名：公开动词 / `internal_*` / `internal_dispatch*`。
 
 ## 交叉引用
 
-- → `web-naming`：store/slice/action 相关标识符与文件命名
-- → `web-code-style`：store 之外的通用可读性规则
+- → `web-code-style`：store/slice/action 相关标识符与文件命名，及 store 之外的通用可读性规则

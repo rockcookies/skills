@@ -196,7 +196,7 @@ The following Go skills MUST always load for Go-related work on this project:
 
 ### JS / TypeScript skills
 
-Hand-maintained web style skills live under `skills/custom/` (`web-naming`, `web-code-style`, `web-zustand`). Install by stack:
+Hand-maintained web style skills live under `skills/custom/` (`web-code-style`, `web-zustand`). Install by stack:
 
 #### Tooling (antfu)
 
@@ -278,14 +278,13 @@ npx skills add rockcookies/skills --full-depth \
   -g
 ```
 
-#### Hono / Playwright / web naming & style
+#### Hono / Playwright / web style
 
 ```bash
 npx skills add rockcookies/skills --full-depth \
   --skill hono \
   --skill hono-jsx \
   --skill playwright-cli \
-  --skill web-naming \
   --skill web-code-style \
   --skill web-zustand \
   -g
@@ -321,19 +320,18 @@ npx skills add rockcookies/skills --full-depth \
 
 > Opinionated workflows and conventions maintained by RockCookies under `skills/custom/`.
 
-| Skill                                                      | Description                                                      |
-| ---------------------------------------------------------- | ---------------------------------------------------------------- |
-| [technical-writing-zh](skills/custom/technical-writing-zh) | 中文写作补充（编排 unslop + technical-writing）                  |
-| [cursor-plan-pipeline](skills/custom/cursor-plan-pipeline) | Cursor Plan Mode 流水线（拷问 → 计划闸口 → 实现 → 审查）         |
-| [git-atomic-commit](skills/custom/git-atomic-commit)       | Atomic commits 3.0 — one revertable commit; index isolation      |
-| [git-rebase-surgeon](skills/custom/git-rebase-surgeon)     | Safe rebase 3.0 — SEQUENCE_EDITOR, backup, explicit lease        |
-| [git-semantic-search](skills/custom/git-semantic-search)   | Git archaeology 3.0 — Pickaxe/Blame/Bisect with clean-worktree   |
-| [grill-and-think](skills/custom/grill-and-think)           | 跨运行时设计流水线（拷问 → 深思 → 实现 → 审查）                  |
-| [steelman](skills/custom/steelman)                         | 双向钢人论证 — 重述真问题，强化正反双方，锁定关键变量，硬裁决    |
-| [web-naming](skills/custom/web-naming)                     | Web/React UI naming — identifiers, files, components/Hooks/props |
-| [web-code-style](skills/custom/web-code-style)             | Web/React UI clarity — control flow, JSX complexity, comments    |
-| [web-zustand](skills/custom/web-zustand)                   | Web/React Zustand — StoreImpl, nested slices, action tiers       |
-| [week-retro](skills/custom/week-retro)                     | 周回顾 workflow learning loop                                    |
+| Skill                                                      | Description                                                                         |
+| ---------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| [technical-writing-zh](skills/custom/technical-writing-zh) | 中文写作补充（编排 unslop + technical-writing）                                     |
+| [cursor-plan-pipeline](skills/custom/cursor-plan-pipeline) | Cursor Plan Mode 流水线（拷问 → 计划闸口 → 实现 → 审查）                            |
+| [git-atomic-commit](skills/custom/git-atomic-commit)       | Atomic commits 3.0 — one revertable commit; index isolation                         |
+| [git-rebase-surgeon](skills/custom/git-rebase-surgeon)     | Safe rebase 3.0 — SEQUENCE_EDITOR, backup, explicit lease                           |
+| [git-semantic-search](skills/custom/git-semantic-search)   | Git archaeology 3.0 — Pickaxe/Blame/Bisect with clean-worktree                      |
+| [grill-and-think](skills/custom/grill-and-think)           | 跨运行时设计流水线（拷问 → 深思 → 实现 → 审查）                                     |
+| [steelman](skills/custom/steelman)                         | 双向钢人论证 — 重述真问题，强化正反双方，锁定关键变量，硬裁决                       |
+| [web-code-style](skills/custom/web-code-style)             | Web fullstack naming + clarity — identifiers, files, Hooks/props, control flow, JSX |
+| [web-zustand](skills/custom/web-zustand)                   | Web/React Zustand — StoreImpl, nested slices, action tiers                          |
+| [week-retro](skills/custom/week-retro)                     | 周回顾 workflow learning loop                                                       |
 
 ### Upstream Skills
 
@@ -390,10 +388,10 @@ Synced from external repositories into `skills/{repoKey}/{target}/`.
 
 #### [JimLiu/baoyu-skills](https://github.com/JimLiu/baoyu-skills)
 
-| Skill                                                   | Description                                                                     |
-| ------------------------------------------------------- | ------------------------------------------------------------------------------- |
-| [baoyu-image-gen](skills/baoyu/baoyu-image-gen)         | AI image generation across OpenAI, Google, DashScope, Z.AI, Replicate, and more |
-| [baoyu-infographic](skills/baoyu/baoyu-infographic)     | Publication-ready infographics — 21 layout types × 22 visual styles             |
+| Skill                                               | Description                                                                     |
+| --------------------------------------------------- | ------------------------------------------------------------------------------- |
+| [baoyu-image-gen](skills/baoyu/baoyu-image-gen)     | AI image generation across OpenAI, Google, DashScope, Z.AI, Replicate, and more |
+| [baoyu-infographic](skills/baoyu/baoyu-infographic) | Publication-ready infographics — 21 layout types × 22 visual styles             |
 
 #### [jimliu/baoyu-design](https://github.com/jimliu/baoyu-design)
 
@@ -568,10 +566,10 @@ Synced from external repositories into `skills/{repoKey}/{target}/`.
 
 #### [honojs/skills](https://github.com/honojs/skills)
 
-| Skill                                  | Description                                                                            |
-| -------------------------------------- | -------------------------------------------------------------------------------------- |
-| [hono](skills/hono/hono)               | Build Hono web applications — routing, middleware, JSX, validation, testing, streaming |
-| [hono-jsx](skills/hono/hono-jsx)       | Build Hono UI with hono/jsx — jsxRenderer layouts, Vite setup, forms, client components |
+| Skill                            | Description                                                                             |
+| -------------------------------- | --------------------------------------------------------------------------------------- |
+| [hono](skills/hono/hono)         | Build Hono web applications — routing, middleware, JSX, validation, testing, streaming  |
+| [hono-jsx](skills/hono/hono-jsx) | Build Hono UI with hono/jsx — jsxRenderer layouts, Vite setup, forms, client components |
 
 ## Agents
 
