@@ -251,7 +251,7 @@ npx skills add rockcookies/skills --full-depth \
   --skill typescript-best-practices \
   --skill type-system-discipline \
   --skill boundary-discipline \
-  --skill encode-lessons-in-structure
+  --skill encode-lessons-in-structure \
   -g
 ```
 
@@ -263,6 +263,35 @@ Companions driving parallel `generalPurpose` Task subagents: `how` explains how 
 npx skills add rockcookies/skills --full-depth \
   --skill how \
   --skill why \
+  -g
+```
+
+#### pstack set (cursor/plugins)
+
+Eleven more engineering principles plus the workflow skills built on them: `pstack-tdd` (aliased — `tdd` is taken), the `create-verification-skill` / `maintain-verification-skill` pair, `show-me-your-work`, and the subagent fan-outs `interrogate` / `arena` / `swarm` / `blast-radius` / `architect`. The fan-outs read an optional `~/.cursor/rules/pstack-models.mdc` model rule and fall back to sensible defaults without it.
+
+```bash
+npx skills add rockcookies/skills --full-depth \
+  --skill architect \
+  --skill arena \
+  --skill blast-radius \
+  --skill build-the-lever \
+  --skill create-verification-skill \
+  --skill exhaust-the-design-space \
+  --skill fix-root-causes \
+  --skill foundational-thinking \
+  --skill interrogate \
+  --skill laziness-protocol \
+  --skill maintain-verification-skill \
+  --skill migrate-callers-then-delete-legacy-apis \
+  --skill outcome-oriented-execution \
+  --skill prove-it-works \
+  --skill pstack-tdd \
+  --skill redesign-from-first-principles \
+  --skill separate-before-serializing-shared-state \
+  --skill show-me-your-work \
+  --skill subtract-before-you-add \
+  --skill swarm \
   -g
 ```
 
@@ -357,19 +386,39 @@ Synced from external repositories into `skills/{repoKey}/{target}/`.
 
 `thermos` launches the two review subagents in parallel. Copy `agents/cursor-plugins/*.md` into `~/.cursor/agents/` as well — see [Installation](#installation). The TypeScript and principle skills cross-reference each other; install them as a set.
 
-| Skill                                                                                          | Description                                                              |
-| ---------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
-| [boundary-discipline](skills/cursor-plugins/boundary-discipline)                               | Validation and error handling at system boundaries; trust internal types |
-| [encode-lessons-in-structure](skills/cursor-plugins/encode-lessons-in-structure)               | Encode recurring fixes as lint rules, flags, checks, or scripts          |
-| [how](skills/cursor-plugins/how)                                                               | Subsystem walkthroughs — "how does X work", placement, ownership         |
-| [technical-writing](skills/cursor-plugins/technical-writing)                                   | Layered writing standard — Diátaxis, Google style, STE, Global English   |
-| [thermo-nuclear-code-quality-review](skills/cursor-plugins/thermo-nuclear-code-quality-review) | Strict maintainability audit (structure, file-size growth, spaghetti)    |
-| [thermo-nuclear-review](skills/cursor-plugins/thermo-nuclear-review)                           | Deep branch audit (bugs, breakages, security, devex, feature-flag leaks) |
-| [thermos](skills/cursor-plugins/thermos)                                                       | Run both review subagents in parallel and synthesize findings            |
-| [type-system-discipline](skills/cursor-plugins/type-system-discipline)                         | Make illegal states unrepresentable — sum types, brands, boundary parse  |
-| [typescript-best-practices](skills/cursor-plugins/typescript-best-practices)                   | TypeScript rules grounding the type-system principles in .ts/.tsx        |
-| [unslop](skills/cursor-plugins/unslop)                                                         | Cut AI tells from writing — puffery, chatbot phrases, hedging, jargon    |
-| [why](skills/cursor-plugins/why)                                                               | Design rationale — parallel MCP evidence investigators, cited synthesis  |
+| Skill                                                                                                      | Description                                                                  |
+| ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| [architect](skills/cursor-plugins/architect)                                                               | Sketch types, signatures, and module structure before code; loop to done     |
+| [arena](skills/cursor-plugins/arena)                                                                       | N parallel candidates on one task, judged; graft strongest parts into base   |
+| [blast-radius](skills/cursor-plugins/blast-radius)                                                         | Find what a change could break beyond the diff; prove safety by running code |
+| [boundary-discipline](skills/cursor-plugins/boundary-discipline)                                           | Validation and error handling at system boundaries; trust internal types     |
+| [build-the-lever](skills/cursor-plugins/build-the-lever)                                                   | Build the tool that does or proves the work instead of hand-running it       |
+| [create-verification-skill](skills/cursor-plugins/create-verification-skill)                               | Generate a project-local verification skill that drives the app like a user  |
+| [encode-lessons-in-structure](skills/cursor-plugins/encode-lessons-in-structure)                           | Encode recurring fixes as lint rules, flags, checks, or scripts              |
+| [exhaust-the-design-space](skills/cursor-plugins/exhaust-the-design-space)                                 | Build 2-3 competing prototypes and compare side by side before committing    |
+| [fix-root-causes](skills/cursor-plugins/fix-root-causes)                                                   | Trace each symptom to its root cause; reproduce first, no symptom guards     |
+| [foundational-thinking](skills/cursor-plugins/foundational-thinking)                                       | Pick core types and data structures before logic; get structures right       |
+| [how](skills/cursor-plugins/how)                                                                           | Subsystem walkthroughs - "how does X work", placement, ownership             |
+| [interrogate](skills/cursor-plugins/interrogate)                                                           | Adversarial multi-reviewer interrogation - stress test, find blind spots     |
+| [laziness-protocol](skills/cursor-plugins/laziness-protocol)                                               | Bias toward deletion and the smallest change that solves the problem         |
+| [maintain-verification-skill](skills/cursor-plugins/maintain-verification-skill)                           | Periodic upkeep keeping the verification skill and feature map honest        |
+| [migrate-callers-then-delete-legacy-apis](skills/cursor-plugins/migrate-callers-then-delete-legacy-apis)   | Migrate callers and delete the old API in one wave; no shim layers           |
+| [outcome-oriented-execution](skills/cursor-plugins/outcome-oriented-execution)                             | Converge on the target architecture; no throwaway compatibility states       |
+| [prove-it-works](skills/cursor-plugins/prove-it-works)                                                     | Verify against the real artifact - run, read values, inspect diff            |
+| [pstack-tdd](skills/cursor-plugins/pstack-tdd)                                                             | Red-green-refactor TDD; on explicit TDD requests or obvious regression tests |
+| [redesign-from-first-principles](skills/cursor-plugins/redesign-from-first-principles)                     | Redesign as if the new requirement had been foundational from day one        |
+| [separate-before-serializing-shared-state](skills/cursor-plugins/separate-before-serializing-shared-state) | Eliminate sharing first; serialize structurally only with one real writer    |
+| [show-me-your-work](skills/cursor-plugins/show-me-your-work)                                               | TSV decision log (what, why, evidence, result) for unattended work           |
+| [subtract-before-you-add](skills/cursor-plugins/subtract-before-you-add)                                   | Remove dead weight, redundant guards, stub refs; build on simpler base       |
+| [swarm](skills/cursor-plugins/swarm)                                                                       | Fan out N parallel workers, drain them, return one report                    |
+| [technical-writing](skills/cursor-plugins/technical-writing)                                               | Layered writing standard - Diataxis, Google style, STE, Global English       |
+| [thermo-nuclear-code-quality-review](skills/cursor-plugins/thermo-nuclear-code-quality-review)             | Strict maintainability audit (structure, file-size growth, spaghetti)        |
+| [thermo-nuclear-review](skills/cursor-plugins/thermo-nuclear-review)                                       | Deep branch audit (bugs, breakages, security, devex, feature-flag leaks)     |
+| [thermos](skills/cursor-plugins/thermos)                                                                   | Run both review subagents in parallel and synthesize findings                |
+| [typescript-best-practices](skills/cursor-plugins/typescript-best-practices)                               | TypeScript rules grounding the type-system principles in .ts/.tsx            |
+| [type-system-discipline](skills/cursor-plugins/type-system-discipline)                                     | Make illegal states unrepresentable - sum types, brands, boundary parse      |
+| [unslop](skills/cursor-plugins/unslop)                                                                     | Cut AI tells from writing - puffery, chatbot phrases, hedging, jargon        |
+| [why](skills/cursor-plugins/why)                                                                           | Design rationale - parallel MCP evidence investigators, cited synthesis      |
 
 #### [deckardger/tanstack-agent-skills](https://github.com/deckardger/tanstack-agent-skills)
 
