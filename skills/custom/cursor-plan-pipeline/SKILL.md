@@ -10,14 +10,14 @@ when_to_use: >-
 user-invocable: true
 metadata:
   author: rockcookies
-  version: 1.2.0
+  version: 1.2.1
 ---
 
 # Cursor Plan Mode 流水线
 
 仅用于 **Cursor Plan Mode**。其它运行时用 `/grill-and-think`。
 
-本技能编排现有 skill 的顺序与闸口；`grill-me` / `grill-with-docs`、`think`、`check` 按各自 SKILL.md 运行。列出的 skill 缺失时停下并报告缺哪个，不要假装模拟。
+本技能编排现有 skill 的顺序与闸口；Stage 1 直接按 `grilling`（`--docs` 时再加 `domain-modeling`）、`think`、`check` 的 SKILL.md 运行。不要经 `grill-me` / `grill-with-docs`（二者为 user-invoked，`disable-model-invocation: true`，其它 skill 调不到）。列出的 skill 缺失时停下并报告缺哪个，不要假装模拟。
 
 阶段之间等宿主 UI 批准或用户明确批准后再进入下一阶段。
 
@@ -25,7 +25,7 @@ metadata:
 
 用户给出的粗略想法（slash 参数或当前消息）。没有想法时先问清楚，再进入 Stage 1。
 
-参数含 `--docs` → Stage 1 用 **grill-with-docs**；否则用 **grill-me**。
+参数含 `--docs` → Stage 1 读并遵循 **grilling** + **domain-modeling**；否则只读并遵循 **grilling**。
 
 一次流水线只切一个可合并切片。用户用编号列出、且指向**不同包或不同层**的独立改动时：只对**第一项**进入 Stage 1，其余标明「下一轮」后停下。同一切片内的配套改动（实现 + 测试 + 配置）不算多项。仅当用户在被告知拆分后仍明确要求同一轮做多项，才继续。若同时触发重新设计路径：先切片，再只对留下的第一项走 Stage 1。
 
@@ -54,8 +54,8 @@ Plan Mode 下只读探查、拷问、写计划；不改项目文件。
 
 ### 拷问
 
-1. 调用对应拷问 skill，主题为上面的想法（若走了重新设计路径，主题已含继承/作废结论）。
-2. 按该 skill 连环追问，直到设计树钉死。
+1. 读取并遵循 **grilling** skill（若可用技能目录有其 `fullPath` 则 Read 该文件；否则按约定路径找 `grilling/SKILL.md`）。参数含 `--docs` 时，同时读取并遵循 **domain-modeling** skill，在拷问过程中产出 ADR / glossary。主题为上面的想法（若走了重新设计路径，主题已含继承/作废结论）。不要调用 `grill-me` / `grill-with-docs`。
+2. 按 grilling 连环追问，直到设计树钉死。
 3. 写简短的 **「已对齐需求」摘要**。
 
 ## Stage 2 —— 审查并出计划（Think checklist + CreatePlan）
@@ -106,7 +106,7 @@ Plan Mode 下只读探查、拷问、写计划；不改项目文件。
 ## 交叉引用
 
 - → `grill-and-think`：非 Cursor / 无 Plan Mode 闸口
-- → `grill-me` / `grill-with-docs`：Stage 1
+- → `grilling`（`--docs` 时 + `domain-modeling`）：Stage 1；勿经 `grill-me` / `grill-with-docs`
 - → `think`：Stage 2 审查清单（Official Solutions / Simplicity Gate / Validate / Hard Rules / Output）
 - → `check`：Stage 4
 - → `git-atomic-commit`：检查通过后的本地原子提交（若已安装）
