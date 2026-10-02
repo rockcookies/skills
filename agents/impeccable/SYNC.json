@@ -1,9 +1,9 @@
 {
-  "sha": "c74755d920985f7a92cef691ca970ba95f90126e",
-  "synced": "2026-10-01",
+  "sha": "508d7e8955de3b3caf2d8676e85206723d41a887",
+  "synced": "2026-10-02",
   "items": {
     "impeccable-asset-producer": {
-      "sourceDigest": "sha256:cc68bb30e3e2863df21bb88fe0f3ffc4ec51258eda3d461ef81c08c6fa51384e",
+      "sourceDigest": "sha256:45dcea8da47cc21f447041daa942cf5d92cddde9a5a02c196cedbd159c829304",
       "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
     },
     "impeccable-documenter": {

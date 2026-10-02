@@ -1,10 +1,10 @@
 {
-  "generated": "2026-10-01T07:39:02.469Z",
+  "generated": "2026-10-02T02:59:13.037Z",
   "items": [
     {
       "kind": "agent",
       "name": "impeccable-asset-producer",
-      "digest": "sha256:8fbf7304f2dcf2bf1b34000177069d7591be2e09db3bd47a2f4f1936bba08e90"
+      "digest": "sha256:b3c5a58915a36b602cb77100c41a893ca745b0f896af5896cf07288e897e7b04"
     },
     {
       "kind": "agent",
@@ -43,6 +43,16 @@
     },
     {
       "kind": "skill",
+      "name": "architect",
+      "digest": "sha256:14e5a8b7f39cbd861b74516b214cbbdd0e3e0c3fa0e9dd43a217764073dfe2da"
+    },
+    {
+      "kind": "skill",
+      "name": "arena",
+      "digest": "sha256:99547bd407a0d2c7a2f34af79d432e4c67d7e10b56c98c3221fab79bccc7deed"
+    },
+    {
+      "kind": "skill",
       "name": "ask-matt",
       "digest": "sha256:95deb72991a5a1608d3f74edd69ce1dc5e86ba0f8c90645aedf9113b655b5212"
     },
@@ -63,8 +73,18 @@
     },
     {
       "kind": "skill",
+      "name": "blast-radius",
+      "digest": "sha256:18fe635828fb4deb0173dac94054a87257c59609cfb2165cdbcd81c366486faf"
+    },
+    {
+      "kind": "skill",
       "name": "boundary-discipline",
       "digest": "sha256:89da97ec23f5627f58b142da9de177291058e194d2f978ce9e91dcf31278bbd7"
+    },
+    {
+      "kind": "skill",
+      "name": "build-the-lever",
+      "digest": "sha256:d1cd0656bc9182d573d18b785fc73441189463d961db4b5cc93bf671c5d6152b"
     },
     {
       "kind": "skill",
@@ -98,8 +118,13 @@
     },
     {
       "kind": "skill",
+      "name": "create-verification-skill",
+      "digest": "sha256:1d8405eff21d1f62a4414597530ae7a5238948beac5a197104c66f1030e8c120"
+    },
+    {
+      "kind": "skill",
       "name": "cursor-plan-pipeline",
-      "digest": "sha256:8bb1961c99f458474dc8ee538429fba75d1c0cdd76317f183730051933317d02"
+      "digest": "sha256:97a776935763d3824b3f3dd71021d125539014a780fbe1408fcca1bbcc23770f"
     },
     {
       "kind": "skill",
@@ -118,6 +143,11 @@
     },
     {
       "kind": "skill",
+      "name": "exhaust-the-design-space",
+      "digest": "sha256:15684dbe25acc74b7baf9167a8012a2881a9b471b3fc1a2c26b365bfa26fda84"
+    },
+    {
+      "kind": "skill",
       "name": "figma-to-react",
       "digest": "sha256:c8fd737188edf00e5216c498b04cc73f84bd582dbd5be721ab464cad0f6ec121"
     },
@@ -125,6 +155,16 @@
       "kind": "skill",
       "name": "find-skills",
       "digest": "sha256:605ec0b4eab729b0cfd808e998fa18be4473f12f2ff07c95344b3bed23f6f30c"
+    },
+    {
+      "kind": "skill",
+      "name": "fix-root-causes",
+      "digest": "sha256:6cde559c9a1802760f404c6f90061a97e6ca174321f7ce82a5529268642feecc"
+    },
+    {
+      "kind": "skill",
+      "name": "foundational-thinking",
+      "digest": "sha256:eb6aae0aa625be28180007a201d6d4986e53890ad6326ef71bfad5e3d29fec53"
     },
     {
       "kind": "skill",
@@ -429,7 +469,7 @@
     {
       "kind": "skill",
       "name": "impeccable",
-      "digest": "sha256:42e2a1918bc4edeaa6867fb364d1122ab99da10d08641fa8b8c28b93d4d672d6"
+      "digest": "sha256:b58655ee6206703365565e83314f0fccaaa8d912fcc642a4e27a91f7a8e88727"
     },
     {
       "kind": "skill",
@@ -448,6 +488,11 @@
     },
     {
       "kind": "skill",
+      "name": "interrogate",
+      "digest": "sha256:45ab9c430637c484c1ebff44a5ffa3b94500aca1124f49813b0addf42abf6e7b"
+    },
+    {
+      "kind": "skill",
       "name": "ip-check",
       "digest": "sha256:fbfb95fb0312f5723e0774478c582d84113cb7b1518fa53fed62a28a4118dbf8"
     },
@@ -458,8 +503,28 @@
     },
     {
       "kind": "skill",
+      "name": "laziness-protocol",
+      "digest": "sha256:c24536fce00aab685820b3e2dd4230a78830be32061ae71dd88511528b00edb0"
+    },
+    {
+      "kind": "skill",
       "name": "learn",
       "digest": "sha256:1d70633d88d0aff670cfb3bccbb2573f0ee036827345d2949f49a57e058e7f57"
+    },
+    {
+      "kind": "skill",
+      "name": "maintain-verification-skill",
+      "digest": "sha256:ad69c64488a22bf8f43ee29aefd58b952551daf74d172083526ea133052be772"
+    },
+    {
+      "kind": "skill",
+      "name": "migrate-callers-then-delete-legacy-apis",
+      "digest": "sha256:c1319cd81c0536287e22e7e24f416fa6033b05aca239a83c252d614d0017e11a"
+    },
+    {
+      "kind": "skill",
+      "name": "outcome-oriented-execution",
+      "digest": "sha256:1b1486d78691c0439a8960b5dd1902651da4c9fa821f452409f4d217b2677cba"
     },
     {
       "kind": "skill",
@@ -473,6 +538,16 @@
     },
     {
       "kind": "skill",
+      "name": "prove-it-works",
+      "digest": "sha256:691283bf24406dacfa37057b91858031bf26f58622d00ad9020f71f8151d88b1"
+    },
+    {
+      "kind": "skill",
+      "name": "pstack-tdd",
+      "digest": "sha256:4097bc9875fb4474bd755bd30a58020cb8537877ffbe06efb0a1b18cfacb17cd"
+    },
+    {
+      "kind": "skill",
       "name": "react-best-practices",
       "digest": "sha256:cc106316a01cd84e889e21081f8524513935f4762fb6f2a1c41195cc2b20ac53"
     },
@@ -480,6 +555,11 @@
       "kind": "skill",
       "name": "read",
       "digest": "sha256:37d7feb8ca566b45f81f31812a0d230f8fa0c5a524881c637953d6e60aa8c047"
+    },
+    {
+      "kind": "skill",
+      "name": "redesign-from-first-principles",
+      "digest": "sha256:02f7804b255111855af81572e3cdf2bdead3077dc3d60e561c4a3b2b152f6c4d"
     },
     {
       "kind": "skill",
@@ -493,6 +573,11 @@
     },
     {
       "kind": "skill",
+      "name": "separate-before-serializing-shared-state",
+      "digest": "sha256:987b226ab9788071a7103f241428c29fea1237554f21f8590b47d5161e1a38ea"
+    },
+    {
+      "kind": "skill",
       "name": "setup-matt-pocock-skills",
       "digest": "sha256:443e2252ca39a1db0e7a1caebf10d81fc14e1a31047efa08baf41e4bbe855e60"
     },
@@ -503,6 +588,11 @@
     },
     {
       "kind": "skill",
+      "name": "show-me-your-work",
+      "digest": "sha256:45d3181c71aa60259e5dfab064623b4692c89b26a82ae846a432f2ad4cb3596a"
+    },
+    {
+      "kind": "skill",
       "name": "skill-creator",
       "digest": "sha256:1501ac5257c6e4a0cfbd91bea2e699f86dbcff04fcda5ee8e7cf994ef77d9899"
     },
@@ -510,6 +600,16 @@
       "kind": "skill",
       "name": "steelman",
       "digest": "sha256:6874d260a9e9e2e5e73e936980c68e2c51fbaa3d181a0ac4de8036344735de64"
+    },
+    {
+      "kind": "skill",
+      "name": "subtract-before-you-add",
+      "digest": "sha256:e5ef2bd15adf79d154e2b3e4e953205d98878a47880377ed197f9b9c638bb49b"
+    },
+    {
+      "kind": "skill",
+      "name": "swarm",
+      "digest": "sha256:547b65bf48f5bb315cf120360511036de6d7260b139d5c2b75c985a4f48daced"
     },
     {
       "kind": "skill",
