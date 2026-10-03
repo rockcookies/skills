@@ -1,14 +1,16 @@
 {
-  "sha": "1567581c26ec29f4216c6e6835415bf30343b0e3",
-  "synced": "2026-10-02",
-  "items": {
-    "baoyu-image-gen": {
-      "sourceDigest": "sha256:d468e71b359eb10a93eb6255b46b7ef42773a0a3d7d80b138a8ddf7b7568787f",
-      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+  "upstream_committed_sha": "1567581c26ec29f4216c6e6835415bf30343b0e3",
+  "upstream_committed_at": "2026-09-10T10:13:43-05:00",
+  "items_digest": "sha256:d153dbbfc60c1e338991ea8f3b8557cc5e726cf62f0b71c62586141ae9938758",
+  "items_changed_at": "2026-10-03T02:06:56.876Z",
+  "items": [
+    {
+      "name": "baoyu-image-gen",
+      "digest": "sha256:9ec511a08a8b6ce463d5e4251d1dd631eb94e12a59ad482051f4bb2d5d1179f9"
     },
-    "baoyu-infographic": {
-      "sourceDigest": "sha256:ec400d9ce52ffe8266ed1e6543f0f03abbd5a4f20f32a743d8315b14fca0d5bc",
-      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    {
+      "name": "baoyu-infographic",
+      "digest": "sha256:8ce8299637ec0a635d1f1cbd95cde95e2fe932f1ef1597ea6c977c0df7ce019e"
     }
-  }
+  ]
 }

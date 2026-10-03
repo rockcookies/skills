@@ -1,10 +1,12 @@
 {
-  "sha": "ca7c8088db69e315a8b2deea43820270457f8f3c",
-  "synced": "2026-10-02",
-  "items": {
-    "show-me": {
-      "sourceDigest": "sha256:9ec65956d8006f0dd235190b114e33500c5bc92be1e81d35de176293f6e09a1b",
-      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+  "upstream_committed_sha": "ca7c8088db69e315a8b2deea43820270457f8f3c",
+  "upstream_committed_at": "2026-09-17T05:05:06-07:00",
+  "items_digest": "sha256:e646757e57b57f2b4134cdcf16145fb7a46b01e6994901b8c9e454e90cb706eb",
+  "items_changed_at": "2026-10-03T02:06:55.069Z",
+  "items": [
+    {
+      "name": "show-me",
+      "digest": "sha256:36c5f5eb43655630cd05587d56c97eaf83697e9bba22828522ecceac0d152438"
     }
-  }
+  ]
 }

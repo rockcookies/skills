@@ -1,10 +1,12 @@
 {
-  "sha": "508d7e8955de3b3caf2d8676e85206723d41a887",
-  "synced": "2026-10-02",
-  "items": {
-    "impeccable": {
-      "sourceDigest": "sha256:b4d98c5cf553b9dea135209116572641e5ead84098cf8c9ec8053d02d2ad918b",
-      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+  "upstream_committed_sha": "e103efe779e2dd01274dabae83531fef00bf2563",
+  "upstream_committed_at": "2026-10-03T00:25:32Z",
+  "items_digest": "sha256:3df113aeb4f83a88caa56e2380e6e09de699511b7818b53e41781b6f3543b72e",
+  "items_changed_at": "2026-10-03T02:06:52.801Z",
+  "items": [
+    {
+      "name": "impeccable",
+      "digest": "sha256:299857560f655a84319fda2537b0a9c3b774af10d404b87875ed4acf69478203"
     }
-  }
+  ]
 }

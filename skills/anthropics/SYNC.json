@@ -1,14 +1,16 @@
 {
-  "sha": "8a1541c4a3ffa5a20a5a91de0dcf3f0bab1d1ef4",
-  "synced": "2026-10-02",
-  "items": {
-    "frontend-design": {
-      "sourceDigest": "sha256:3e8baee0b5e62e550b0336abed9301343f54fc3597eba0e7679c0dba39e7cb09",
-      "transformId": "sha256:099aa6b4847699bc46361bf12ce9fb0ba2c0344cd8d021ca85b649c8e80fd881"
+  "upstream_committed_sha": "8a1541c4a3ffa5a20a5a91de0dcf3f0bab1d1ef4",
+  "upstream_committed_at": "2026-09-28T19:20:03-07:00",
+  "items_digest": "sha256:f1fa659a2cfe6ee91ee875a44b2d0c33cf4d1d2ca15d460411911f6d261307f7",
+  "items_changed_at": "2026-10-03T02:06:47.806Z",
+  "items": [
+    {
+      "name": "frontend-design",
+      "digest": "sha256:af3dcb552c0adc73759e4f9d75e72e4a6d6b96b60e567ac0f7618f1ce8fbfee9"
     },
-    "skill-creator": {
-      "sourceDigest": "sha256:42f9f0983bf55fde69b77fa11fb68fc76324814c2599ab1b7acd90c59ad0a72a",
-      "transformId": "sha256:099aa6b4847699bc46361bf12ce9fb0ba2c0344cd8d021ca85b649c8e80fd881"
+    {
+      "name": "skill-creator",
+      "digest": "sha256:1501ac5257c6e4a0cfbd91bea2e699f86dbcff04fcda5ee8e7cf994ef77d9899"
     }
-  }
+  ]
 }

@@ -1,14 +1,16 @@
 {
-  "sha": "063bee94c3f4df8453406c830b0a7df0f2860278",
-  "synced": "2026-10-02",
-  "items": {
-    "web-design-guidelines": {
-      "sourceDigest": "sha256:b6849640846e0e39a09629c4cebfd25529b67a1174eb4d3d86f49783094669f9",
-      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+  "upstream_committed_sha": "063bee94c3f4df8453406c830b0a7df0f2860278",
+  "upstream_committed_at": "2026-08-28T15:36:07+02:00",
+  "items_digest": "sha256:f731cf2404a7f71d2a6d4d7dba0b799ff531379510f4f9c7f997ab8b4afeca5f",
+  "items_changed_at": "2026-10-03T02:06:47.377Z",
+  "items": [
+    {
+      "name": "react-best-practices",
+      "digest": "sha256:cc106316a01cd84e889e21081f8524513935f4762fb6f2a1c41195cc2b20ac53"
     },
-    "react-best-practices": {
-      "sourceDigest": "sha256:7bebea6ff54a8241d38954afaa1ec1a36823c9d3127d42716bf9c27f44581caf",
-      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    {
+      "name": "web-design-guidelines",
+      "digest": "sha256:e9e931c965d9f4f5678ed8931956f03b9eb4bd11288c6538dc229e7c8ce6ddf5"
     }
-  }
+  ]
 }

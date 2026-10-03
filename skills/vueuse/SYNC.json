@@ -1,10 +1,12 @@
 {
-  "sha": "004812b4aa0815f5745ac30a6a7dc4927aec7b3d",
-  "synced": "2026-10-02",
-  "items": {
-    "vueuse-functions": {
-      "sourceDigest": "sha256:473b5b7a30399939593ee7ce3d98a84c45cc036cc8f0ec222b2b1829ce764f6e",
-      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+  "upstream_committed_sha": "004812b4aa0815f5745ac30a6a7dc4927aec7b3d",
+  "upstream_committed_at": "2026-09-16T23:42:23+08:00",
+  "items_digest": "sha256:3be6eb93700ab768905a78c71a3d32e43fae329ec72012a7ae01a84f8b4b1897",
+  "items_changed_at": "2026-10-03T02:06:49.074Z",
+  "items": [
+    {
+      "name": "vueuse-functions",
+      "digest": "sha256:699b389f8279290431de92739e145743b8ddbee5134968a165686d01ab0be597"
     }
-  }
+  ]
 }

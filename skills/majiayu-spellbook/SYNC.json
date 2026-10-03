@@ -1,26 +1,28 @@
 {
-  "sha": "b432601620cf346d9b4f0920cce91487d2869938",
-  "synced": "2026-10-02",
-  "items": {
-    "figma-to-react": {
-      "sourceDigest": "sha256:78563e155984b26746060996e0308886742dc8f83a88b95e19a4d340310af1de",
-      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+  "upstream_committed_sha": "414b597ec113b9c8d37c8de912ef80f92d9ad2f3",
+  "upstream_committed_at": "2026-10-02T20:45:00+08:00",
+  "items_digest": "sha256:811206721aa75745657914f0c1c7671889a4cc898e081bd4d449a080f364f26c",
+  "items_changed_at": "2026-10-03T02:06:54.706Z",
+  "items": [
+    {
+      "name": "clash-doctor",
+      "digest": "sha256:1644c55bd090c0b1163aa1458133dca9e219250427b9cad936ef2ad75deb7d99"
     },
-    "clash-doctor": {
-      "sourceDigest": "sha256:909b507fd5e3c4099580524880572bc3ad88787f1745223af3c6a60c49cbbf54",
-      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    {
+      "name": "clash-routes",
+      "digest": "sha256:2c2724d3a1abe4503a2e5da667567e2f9d21f7f10b831ffbc59c6d4fb5f9edd5"
     },
-    "clash-routes": {
-      "sourceDigest": "sha256:ad607ca8ea572f55c20989124ffa4198c544eb603cfa488882097e0919f080d8",
-      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    {
+      "name": "codebase-audit",
+      "digest": "sha256:ae72a26c8524509d6023daa3fe9372bf4b151a5a8c72245317d585e880f4ff00"
     },
-    "ip-check": {
-      "sourceDigest": "sha256:b29fb71a7eebbd4c9cf126a7e37fc5890d241b6a30d7c50727db80f359f42424",
-      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    {
+      "name": "figma-to-react",
+      "digest": "sha256:c8fd737188edf00e5216c498b04cc73f84bd582dbd5be721ab464cad0f6ec121"
     },
-    "codebase-audit": {
-      "sourceDigest": "sha256:d8984262fd1ae80df171fb97e74f2f936d5ad6955e60993a6f8c796b6f9b0776",
-      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    {
+      "name": "ip-check",
+      "digest": "sha256:fbfb95fb0312f5723e0774478c582d84113cb7b1518fa53fed62a28a4118dbf8"
     }
-  }
+  ]
 }

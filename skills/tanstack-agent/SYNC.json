@@ -1,22 +1,24 @@
 {
-  "sha": "b2fc14c974b2ca09b38de09c28237f240175205b",
-  "synced": "2026-10-02",
-  "items": {
-    "tanstack-integration": {
-      "sourceDigest": "sha256:7e091d69c99cf5e49e1fec22c29fdda6d5829f814273771eb1c690ea999dbca0",
-      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+  "upstream_committed_sha": "b2fc14c974b2ca09b38de09c28237f240175205b",
+  "upstream_committed_at": "2026-09-09T23:09:46+08:00",
+  "items_digest": "sha256:6a2affdfa686a304fd479dccd5a794d0addff0289aacf3c6b1dcd13214009558",
+  "items_changed_at": "2026-10-03T02:06:51.480Z",
+  "items": [
+    {
+      "name": "tanstack-integration",
+      "digest": "sha256:27a8d1121e5e645bc6b7c475a25c71f3e602eecfbb8d587440214e2be7db11e4"
     },
-    "tanstack-query": {
-      "sourceDigest": "sha256:b8afcd32977334f6af67b9e192abcc6d0f71473c7af244baf4c346c7cf093d90",
-      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    {
+      "name": "tanstack-query",
+      "digest": "sha256:17e7ca0fcc523a22bfa2d59d61fb2f98847336dff1e8522baf07d3d44f534afc"
     },
-    "tanstack-router": {
-      "sourceDigest": "sha256:3ab9bb66c788024326c833f09474b1923dcc1e4838da73b35d5a373fd1fcde3a",
-      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    {
+      "name": "tanstack-router",
+      "digest": "sha256:18b495877af7295a5733ae40d26da3992346f542d2fbd3c59fedbd2f6110edc4"
     },
-    "tanstack-start": {
-      "sourceDigest": "sha256:284814f8b4aa62d82f59cf5a593a18d04330ac23a0112fecddf00a6c9ba20d2e",
-      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    {
+      "name": "tanstack-start",
+      "digest": "sha256:3e5d354a0b1ac6366c6fb890469eb35977f828597c69597c306399d0aad5fbc8"
     }
-  }
+  ]
 }

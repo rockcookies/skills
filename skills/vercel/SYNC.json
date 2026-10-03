@@ -1,10 +1,12 @@
 {
-  "sha": "3694740352eeef5cdd689af694c485f1ff62eec3",
-  "synced": "2026-10-02",
-  "items": {
-    "find-skills": {
-      "sourceDigest": "sha256:aeacfcbfeb7855c5b15790e996fb6b62dc72d4c920947f6b46764e25eb6bd855",
-      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+  "upstream_committed_sha": "18f96ea131dab3b0fcc9b27cf7c6f6cbb6174680",
+  "upstream_committed_at": "2026-10-02T09:25:54-07:00",
+  "items_digest": "sha256:a9eb4b21e059efbd7de18bd0fcf452a551e434616c6741a799b843e617b79ce0",
+  "items_changed_at": "2026-10-03T02:06:46.605Z",
+  "items": [
+    {
+      "name": "find-skills",
+      "digest": "sha256:605ec0b4eab729b0cfd808e998fa18be4473f12f2ff07c95344b3bed23f6f30c"
     }
-  }
+  ]
 }

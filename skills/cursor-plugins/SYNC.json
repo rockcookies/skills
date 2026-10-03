@@ -1,130 +1,100 @@
 {
-  "sha": "c47b12849e43f18d5c374c7069c744cc55b0ea00",
-  "synced": "2026-10-02",
-  "items": {
-    "unslop": {
-      "sourceDigest": "sha256:1f0556b68df9c971db7390c91b1d9103c0103eef4fa495c5a135e297ec90bf00",
-      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+  "upstream_committed_sha": "7022c81efb48d8b5eb15498ce6043a3bd74b694c",
+  "upstream_committed_at": "2026-10-02T11:53:26-04:00",
+  "items_digest": "sha256:2c77868c7d1a975dff3f09ac5226fd20068a4f717de630c135771bd55719c628",
+  "items_changed_at": "2026-10-03T02:06:53.282Z",
+  "items": [
+    {
+      "name": "boundary-discipline",
+      "digest": "sha256:89da97ec23f5627f58b142da9de177291058e194d2f978ce9e91dcf31278bbd7"
     },
-    "how": {
-      "sourceDigest": "sha256:bc44f740a64fb3309f560ad01bbf410c208f0063f8fe14d7aad1154c78ddb3e5",
-      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    {
+      "name": "build-the-lever",
+      "digest": "sha256:d1cd0656bc9182d573d18b785fc73441189463d961db4b5cc93bf671c5d6152b"
     },
-    "why": {
-      "sourceDigest": "sha256:538f6911b5f55a0c89fc7cab8ac1fa1d49cd7cf6b679cd10d0ccb22862c7fbcc",
-      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    {
+      "name": "encode-lessons-in-structure",
+      "digest": "sha256:236bc3d1e03e04af8043fe81c6ab656af5375a5b2fcea9f74feb1e2de3b6878a"
     },
-    "technical-writing": {
-      "sourceDigest": "sha256:ead99271dc9bf7b80a31e2cf46997c720387e93434a6e45855e9369359c09707",
-      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    {
+      "name": "exhaust-the-design-space",
+      "digest": "sha256:15684dbe25acc74b7baf9167a8012a2881a9b471b3fc1a2c26b365bfa26fda84"
     },
-    "encode-lessons-in-structure": {
-      "sourceDigest": "sha256:d9219cef780cb1c338ebe86d749e44a7cef8183e27451098cc85e532fa7148e7",
-      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    {
+      "name": "fix-root-causes",
+      "digest": "sha256:6cde559c9a1802760f404c6f90061a97e6ca174321f7ce82a5529268642feecc"
     },
-    "boundary-discipline": {
-      "sourceDigest": "sha256:80c1aec9d05cf01247240ac4fa392b71cdccb6b0095f52647123c1988270eee5",
-      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    {
+      "name": "foundational-thinking",
+      "digest": "sha256:eb6aae0aa625be28180007a201d6d4986e53890ad6326ef71bfad5e3d29fec53"
     },
-    "type-system-discipline": {
-      "sourceDigest": "sha256:a6caa0deae3d3e4e0e57c5313cc5365cdb97070cfa3f8298cbf841871641229c",
-      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    {
+      "name": "how",
+      "digest": "sha256:0a9ba5f9d4ad051fd40b65e106b1879d4f787111ea076b6a7b2d340fa3c5f8c4"
     },
-    "typescript-best-practices": {
-      "sourceDigest": "sha256:b46893cc3f9dfb2120e500badc0a8cecb0bfb96189234008c575bea1df5eea19",
-      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    {
+      "name": "laziness-protocol",
+      "digest": "sha256:c24536fce00aab685820b3e2dd4230a78830be32061ae71dd88511528b00edb0"
     },
-    "laziness-protocol": {
-      "sourceDigest": "sha256:d3ecaf1920aeb029eb6cf4980e7dc3d92fd23791beeeee1b9e7b3475950d21d6",
-      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    {
+      "name": "migrate-callers-then-delete-legacy-apis",
+      "digest": "sha256:c1319cd81c0536287e22e7e24f416fa6033b05aca239a83c252d614d0017e11a"
     },
-    "subtract-before-you-add": {
-      "sourceDigest": "sha256:b6bd2b0115be4714d809af02ef9d82580198857e8c2fd0ea95846cf75b65b5ec",
-      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    {
+      "name": "outcome-oriented-execution",
+      "digest": "sha256:1b1486d78691c0439a8960b5dd1902651da4c9fa821f452409f4d217b2677cba"
     },
-    "foundational-thinking": {
-      "sourceDigest": "sha256:5c3c5d8994d279d2140f6bcaddf25ddb3c64fbae0d167eedae093d1d36624465",
-      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    {
+      "name": "prove-it-works",
+      "digest": "sha256:691283bf24406dacfa37057b91858031bf26f58622d00ad9020f71f8151d88b1"
     },
-    "build-the-lever": {
-      "sourceDigest": "sha256:5839b82d6ffa6f1cf7726a6c26237280e2771ba6c5e786b14418df0318a29d0b",
-      "transformId": "sha256:029544ca23990658209f88229d5db1415f7e7db0be9cc3047a0f2db79c39d2bd"
+    {
+      "name": "pstack-tdd",
+      "digest": "sha256:4097bc9875fb4474bd755bd30a58020cb8537877ffbe06efb0a1b18cfacb17cd"
     },
-    "migrate-callers-then-delete-legacy-apis": {
-      "sourceDigest": "sha256:70c2d7f377082ce6084bbbf1bcc626aaf2b2ec7fe95d7c470681910607e27e18",
-      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    {
+      "name": "redesign-from-first-principles",
+      "digest": "sha256:02f7804b255111855af81572e3cdf2bdead3077dc3d60e561c4a3b2b152f6c4d"
     },
-    "prove-it-works": {
-      "sourceDigest": "sha256:2805d86034937683a8cdd46efdad8e07913748a7f2bce7c8bac963007edcb1a2",
-      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    {
+      "name": "separate-before-serializing-shared-state",
+      "digest": "sha256:987b226ab9788071a7103f241428c29fea1237554f21f8590b47d5161e1a38ea"
     },
-    "fix-root-causes": {
-      "sourceDigest": "sha256:1e1b84fe08ee39ae923aebfe610d05bbbeb395d616be438ac2217ec82f33e3dd",
-      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    {
+      "name": "subtract-before-you-add",
+      "digest": "sha256:e5ef2bd15adf79d154e2b3e4e953205d98878a47880377ed197f9b9c638bb49b"
     },
-    "redesign-from-first-principles": {
-      "sourceDigest": "sha256:f5ae2d82a68751be5c4d96016c6d2782d6e72e36dceb8df33ac16355bbf1a5f2",
-      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    {
+      "name": "technical-writing",
+      "digest": "sha256:1246a6cbfa47e3a247c1cfcd1317b3ffde2e8a7c47ba753d263774cb97ea3092"
     },
-    "exhaust-the-design-space": {
-      "sourceDigest": "sha256:3c15bcea930a370c56eb156f7be74e43e92bab1d402128b7cfc6cff28adbb143",
-      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    {
+      "name": "thermo-nuclear-code-quality-review",
+      "digest": "sha256:7ee9561406b93232609f4f7c8e54544601aee55ff74c4b6d633ca9d827710365"
     },
-    "outcome-oriented-execution": {
-      "sourceDigest": "sha256:bb8c62327e213be8d18baa4410e383c7ed78b3fcccd6742e92dfc214171b6a49",
-      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    {
+      "name": "thermo-nuclear-review",
+      "digest": "sha256:f35e4e82337e5ca80c2c67244101e3e18b61338019b34002bec9bd225785ffdc"
     },
-    "separate-before-serializing-shared-state": {
-      "sourceDigest": "sha256:621ca36cbe68fb0b9d6a85cf6121b66d88d0aa86f364e148bb8bdff5df1546a3",
-      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    {
+      "name": "thermos",
+      "digest": "sha256:825696eaa95b5c66b8f5b45d03547bbbe89add91957ca430b57d5df4ec6c41a1"
     },
-    "pstack-tdd": {
-      "sourceDigest": "sha256:c612026b317887e871047c24d9533af62b76515a6f7cf258b8a672b086df848f",
-      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    {
+      "name": "type-system-discipline",
+      "digest": "sha256:6aa78bba87bfa94bdbdc21aca9f981e7d016da42eeb861d30b2fddf1b84bcec0"
     },
-    "create-verification-skill": {
-      "sourceDigest": "sha256:394b984d0496fa5bff40ee72fa4dfbfcbf3fe6df516656c77cbbc2e42093438e",
-      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    {
+      "name": "typescript-best-practices",
+      "digest": "sha256:b746f3b04f2f630fb3de08b719a3cf5e4df766605abd262d8b11a2734c5fd01c"
     },
-    "maintain-verification-skill": {
-      "sourceDigest": "sha256:ec564fcd06f8af7b0e95cb945107ee8b5702fcfdfdf6360c07a1c27c284f23bd",
-      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    {
+      "name": "unslop",
+      "digest": "sha256:1f0556b68df9c971db7390c91b1d9103c0103eef4fa495c5a135e297ec90bf00"
     },
-    "show-me-your-work": {
-      "sourceDigest": "sha256:0f804aab6f92576e55bd96348c715877da3ecabb9ae416cbe7d1fc28a8e8bce2",
-      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
-    },
-    "interrogate": {
-      "sourceDigest": "sha256:984649bd0f4fab3fde2c6f7f8d67911ebfc9e6d3815ae540fb256e0db333be2a",
-      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
-    },
-    "arena": {
-      "sourceDigest": "sha256:ce1ae3d861b99cdc7b83b2506fa3e792244f6a3aed8fd0a29a57c6779076873c",
-      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
-    },
-    "swarm": {
-      "sourceDigest": "sha256:13180560af88cf79c1c1a9be3e5e351af4067983bfc13baf09256ad2d4f347c1",
-      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
-    },
-    "blast-radius": {
-      "sourceDigest": "sha256:2be32f95faefdd4f67878c011cfc85b0914c2d98267bfb6f85a0950125ec02fe",
-      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
-    },
-    "architect": {
-      "sourceDigest": "sha256:caf760eb4d701b08b5332cdd116e54ee2383eba2bebd98f72ea3a7aa2bcc971a",
-      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
-    },
-    "thermos": {
-      "sourceDigest": "sha256:4374efc81fc3ce192122b45978eb5dee21528e65a2e1622b36a98ae891f85fba",
-      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
-    },
-    "thermo-nuclear-review": {
-      "sourceDigest": "sha256:c86e66eafdce00c71728140cbabe5edf834b7b7613d423771c93b5d64936ed28",
-      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
-    },
-    "thermo-nuclear-code-quality-review": {
-      "sourceDigest": "sha256:e4ddbf2e7dacd1503b9e02701cd953fef3abeccb04b718aefe701f1921ff4db9",
-      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    {
+      "name": "why",
+      "digest": "sha256:6e9f5092b42d3ab650657e46e10fb6c0ca905d26cd45379055d80791b23b6192"
     }
-  }
+  ]
 }

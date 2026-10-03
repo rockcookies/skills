@@ -1,10 +1,12 @@
 {
-  "sha": "e69e0f79f20d24783c37a813f7f63b3769062439",
-  "synced": "2026-10-02",
-  "items": {
-    "kami": {
-      "sourceDigest": "sha256:5fed5cd707aa91319cced0fff6126d239e0724363ac2d85a14d6650da9f5bd18",
-      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+  "upstream_committed_sha": "e69e0f79f20d24783c37a813f7f63b3769062439",
+  "upstream_committed_at": "2026-09-25T09:21:09+08:00",
+  "items_digest": "sha256:685f8ceedbb88bf057de4d1cd7426b01b8a6603f0773362f2452071fedd978a6",
+  "items_changed_at": "2026-10-03T02:06:54.286Z",
+  "items": [
+    {
+      "name": "kami",
+      "digest": "sha256:ff725b5109e93b47f19b0d4d6200231e9137bdf47ed60faf50ecccc8e148fa56"
     }
-  }
+  ]
 }

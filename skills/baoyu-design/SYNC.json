@@ -1,10 +1,12 @@
 {
-  "sha": "6530033592bf7fa58bc1a5a2a2ad278da45213a9",
-  "synced": "2026-10-02",
-  "items": {
-    "baoyu-design": {
-      "sourceDigest": "sha256:247c4d12b9154dcc84a93691e88e1c95854692aafbf2fbf858426afe279fc3e7",
-      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+  "upstream_committed_sha": "6530033592bf7fa58bc1a5a2a2ad278da45213a9",
+  "upstream_committed_at": "2026-09-23T00:34:43-05:00",
+  "items_digest": "sha256:d94f9f9611a2c5ecfa9d2e32dce01df09af9ecd52b3396df1eb5e7902964c574",
+  "items_changed_at": "2026-10-03T02:06:56.046Z",
+  "items": [
+    {
+      "name": "baoyu-design",
+      "digest": "sha256:a15b9f4ed3d6cc43817bce04a89b696d6e642a8db0f4544f55e4b990a243608b"
     }
-  }
+  ]
 }

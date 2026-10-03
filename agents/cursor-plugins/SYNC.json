@@ -1,14 +1,16 @@
 {
-  "sha": "c47b12849e43f18d5c374c7069c744cc55b0ea00",
-  "synced": "2026-10-02",
-  "items": {
-    "thermo-nuclear-review-subagent": {
-      "sourceDigest": "sha256:9dfa8ed88d1ea5d775edb5557b8a8ecfa9f2977b904c55c902b0ceb648b563d0",
-      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+  "upstream_committed_sha": "7022c81efb48d8b5eb15498ce6043a3bd74b694c",
+  "upstream_committed_at": "2026-10-02T11:53:26-04:00",
+  "items_digest": "sha256:6179cb16e129c70c5b630596e622e70167592ae0bd4b58172e58141f41c58402",
+  "items_changed_at": "2026-10-03T02:06:53.291Z",
+  "items": [
+    {
+      "name": "thermo-nuclear-code-quality-review-subagent",
+      "digest": "sha256:718ec401c6e31146a78bca06f9c0872e1902316e23ac41325eadc0bc1d8ef8c6"
     },
-    "thermo-nuclear-code-quality-review-subagent": {
-      "sourceDigest": "sha256:636800f1e5acf501f339779a8867b95d633396930b3356a2b0c9a0018343f02d",
-      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    {
+      "name": "thermo-nuclear-review-subagent",
+      "digest": "sha256:1aa413ec2547e2398b9cb277591bff372007d0939de5aa677df8147dbec582ff"
     }
-  }
+  ]
 }

@@ -1,14 +1,16 @@
 {
-  "sha": "8b1938be37331c68a02c3b75896b2ea3839d7d09",
-  "synced": "2026-10-02",
-  "items": {
-    "hono": {
-      "sourceDigest": "sha256:eb1da249b3a66b94bb20749757eb899f28a23f5e86ffdd54ad608c532b37bba0",
-      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+  "upstream_committed_sha": "8b1938be37331c68a02c3b75896b2ea3839d7d09",
+  "upstream_committed_at": "2026-09-20T18:25:41+09:00",
+  "items_digest": "sha256:9a1bddd68c71ff8404646bcd396425c21fd0fe14f305cd867a55decba90bbd71",
+  "items_changed_at": "2026-10-03T02:06:50.913Z",
+  "items": [
+    {
+      "name": "hono",
+      "digest": "sha256:937d527c0be84a4be489d97675cdf98ca91637bd5ff4c460eae3bedf11f017e1"
     },
-    "hono-jsx": {
-      "sourceDigest": "sha256:fd1555d5e72fdc1d7947e38271d0f93e551ac8748f38285a4deb9a6060906775",
-      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    {
+      "name": "hono-jsx",
+      "digest": "sha256:43dd6172ec6f771a7a16c751c29074fbcb2946d50afcb2dfb020da5bd9e9f26c"
     }
-  }
+  ]
 }

@@ -1,22 +1,24 @@
 {
-  "sha": "508d7e8955de3b3caf2d8676e85206723d41a887",
-  "synced": "2026-10-02",
-  "items": {
-    "impeccable-asset-producer": {
-      "sourceDigest": "sha256:45dcea8da47cc21f447041daa942cf5d92cddde9a5a02c196cedbd159c829304",
-      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+  "upstream_committed_sha": "e103efe779e2dd01274dabae83531fef00bf2563",
+  "upstream_committed_at": "2026-10-03T00:25:32Z",
+  "items_digest": "sha256:518b2a8eecfd57f5335cea96df1416756d445d21d1975d2858dcb9e2de67cfac",
+  "items_changed_at": "2026-10-03T02:06:52.815Z",
+  "items": [
+    {
+      "name": "impeccable-asset-producer",
+      "digest": "sha256:b3c5a58915a36b602cb77100c41a893ca745b0f896af5896cf07288e897e7b04"
     },
-    "impeccable-documenter": {
-      "sourceDigest": "sha256:6bc62a59f6fef0b749927c8d10e9849ab2411199d86d70772a86f8e83ac309f5",
-      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    {
+      "name": "impeccable-documenter",
+      "digest": "sha256:160879836669b566958796ff672780852b16fc47a2633b0de8c01cbdc089d666"
     },
-    "impeccable-finish-reviewer": {
-      "sourceDigest": "sha256:08398fa2d8e2b06b849f1c0f032e1e93b832e9294aed35c1c7f62b938d62ee80",
-      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    {
+      "name": "impeccable-finish-reviewer",
+      "digest": "sha256:043cb3b6e56ffa671b3e1b20b34eb683fb0646bbe6e0a9cf60db2487e6b2211f"
     },
-    "impeccable-manual-edit-applier": {
-      "sourceDigest": "sha256:b2d71ff0df7ed49e06dfc4acfce3d3f7eb48afa68be04763ee8c08354df50a07",
-      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    {
+      "name": "impeccable-manual-edit-applier",
+      "digest": "sha256:0aac04f46701c7763285b34cca985fc2d61782b38081cf56b231fffc5cfbbadf"
     }
-  }
+  ]
 }

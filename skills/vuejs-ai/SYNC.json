@@ -1,34 +1,36 @@
 {
-  "sha": "c9d355ff23f654309dd02006be671859df0a134c",
-  "synced": "2026-10-02",
-  "items": {
-    "vue-best-practices": {
-      "sourceDigest": "sha256:d2b8abfbfc1445ab7f339b197a87ebc8fa58c3abb1ed854092ccec0ac2d11018",
-      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+  "upstream_committed_sha": "c9d355ff23f654309dd02006be671859df0a134c",
+  "upstream_committed_at": "2026-03-26T06:50:25+01:00",
+  "items_digest": "sha256:c0c6c58f76e426c72ac9debe54f29d658b6328ab88a05bbf930433f6fcb894c7",
+  "items_changed_at": "2026-10-03T02:06:50.038Z",
+  "items": [
+    {
+      "name": "vue-best-practices",
+      "digest": "sha256:701e9c1bc7bee28a6b1ea2d0e1686eef34ce96182b49d61feff113058b0bc696"
     },
-    "vue-debug-guides": {
-      "sourceDigest": "sha256:447c12f4b8766959bedd41b758f1513b3175f5e7df028673639361953c35d114",
-      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    {
+      "name": "vue-debug-guides",
+      "digest": "sha256:3eef4920bad55259529b909dac90dab926bef21846fcbe08410cd8de13b8fc9a"
     },
-    "vue-jsx-best-practices": {
-      "sourceDigest": "sha256:a09f2fcaa2cb31c52f96408b22161d82889f2a2d2146cfb0ef254e712c2073cf",
-      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    {
+      "name": "vue-jsx-best-practices",
+      "digest": "sha256:a09f2fcaa2cb31c52f96408b22161d82889f2a2d2146cfb0ef254e712c2073cf"
     },
-    "vue-options-api-best-practices": {
-      "sourceDigest": "sha256:5713f0ca7571cd634bca148e6c9ca8e2b10fb56d945f53f735ce96eb371554b9",
-      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    {
+      "name": "vue-options-api-best-practices",
+      "digest": "sha256:f36ea6595c7ca42f5bdf0296a1e955ed20f6e9f005e1bd3acdb95a95ceb51540"
     },
-    "vue-pinia-best-practices": {
-      "sourceDigest": "sha256:1396428aef22659abd276f96adff115c1748d5c65fdda16afdf38f329b442c30",
-      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    {
+      "name": "vue-pinia-best-practices",
+      "digest": "sha256:f5516fd165ababe452e670bc9863fadf162672f90dcb823e5edeafebb4d74402"
     },
-    "vue-router-best-practices": {
-      "sourceDigest": "sha256:7563639e008345b508fa87e13f0f5a394dfcd4c5875188d86543476f07ac2429",
-      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    {
+      "name": "vue-router-best-practices",
+      "digest": "sha256:b08846c3bbf7dd4b59ce8b86f771d4dbb8ac3ea02d6f78857ead53479b52646f"
     },
-    "vue-testing-best-practices": {
-      "sourceDigest": "sha256:70a0d822ca6da55a55470c45abf12966b592a87dea8468bd074dcf8d973c90a8",
-      "transformId": "sha256:a33475ec5601b90be66758a5776a70b53e1af71dc734949942e11b5938c3aedd"
+    {
+      "name": "vue-testing-best-practices",
+      "digest": "sha256:b80272cde710ea1f5e7808f994432565f1ef3c4c9ed79ab2033a1af4c190fb06"
     }
-  }
+  ]
 }
