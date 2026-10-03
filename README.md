@@ -2,7 +2,7 @@
 
 A curated collection of [Agent Skills](https://agentskills.io/home) and Cursor plugin agents for full-stack development, synced from upstream repositories via a CLI tool.
 
-Synced skills live at `skills/{repoKey}/{target}/`. Hand-maintained skills live under `skills/custom/`. Synced agents live at `agents/{repoKey}/{target}.md`. Repository sources and mappings are configured in [meta.ts](meta.ts). After sync, [catalog.json](catalog.json) records a content digest for every published skill (including custom) and agent.
+Synced skills live at `skills/{repoKey}/{name}/`. Hand-maintained skills live under `skills/custom/`. Synced agents live at `agents/{repoKey}/{name}.md`. Repository sources and mappings are configured in [meta.ts](meta.ts). After sync, each repo writes `SYNC.json` with upstream commit identity and per-item content digests.
 
 ## Installation
 

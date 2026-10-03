@@ -11,8 +11,14 @@ import { ensureUpstreamRepositories } from './commands/upstream.command'
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const root = join(__dirname, '..')
 
+function hasFlag(flag: string): boolean {
+  return process.argv.includes(flag)
+}
+
 async function main() {
   p.intro('Skills Manager')
+
+  const argvForce = hasFlag('--force')
 
   const action = await p.select({
     message: 'What would you like to do?',
@@ -38,10 +44,12 @@ async function main() {
 
   switch (action) {
     case 'upstream': {
-      const shouldForce = await p.confirm({
-        message: 'Force update (delete and reclone)?',
-        initialValue: false,
-      })
+      const shouldForce =
+        argvForce ||
+        (await p.confirm({
+          message: 'Force update (delete and reclone)?',
+          initialValue: false,
+        }))
 
       if (p.isCancel(shouldForce)) {
         p.cancel('Cancelled')
@@ -52,10 +60,12 @@ async function main() {
       break
     }
     case 'sync': {
-      const shouldForce = await p.confirm({
-        message: 'Force sync (re-run all items)?',
-        initialValue: false,
-      })
+      const shouldForce =
+        argvForce ||
+        (await p.confirm({
+          message: 'Force sync (also remove orphan dests not in mapping)?',
+          initialValue: false,
+        }))
 
       if (p.isCancel(shouldForce)) {
         p.cancel('Cancelled')

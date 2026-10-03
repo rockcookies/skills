@@ -1,7 +1,7 @@
 import { glob, stat } from 'node:fs/promises'
 import { join } from 'node:path'
 
-/** dest 技能目录全量文件列表，用于 catalog 树哈希（含点文件）。 */
+/** dest 技能目录全量文件列表，用于树哈希（含点文件）。 */
 export async function listFilesRecursive(dir: string): Promise<string[]> {
   const seen = new Set<string>()
   for (const pattern of ['**/*', '**/.*']) {

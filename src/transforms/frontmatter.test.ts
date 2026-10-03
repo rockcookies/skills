@@ -1,10 +1,8 @@
-import assert from 'node:assert/strict'
-import { test } from 'node:test'
+import { expect, test } from 'vitest'
 
-import { applyFrontmatter, splitFrontmatter } from './frontmatter'
-import { replaceInMarkdown } from './replace-in-markdown'
+import { setFrontmatterName, splitFrontmatter } from './frontmatter'
 
-test('applyFrontmatter sets name last and preserves other keys', () => {
+test('setFrontmatterName sets name last and preserves other keys', () => {
   const input = `---
 name: old
 description: keep me
@@ -12,29 +10,17 @@ license: MIT
 ---
 # Body
 `
-  const out = applyFrontmatter(input, { name: 'golang-how-to', delete: ['license'], set: { description: 'new' } })
+  const out = setFrontmatterName(input, 'golang-how-to')
   const { data, body } = splitFrontmatter(out)
-  assert.equal(data.name, 'golang-how-to')
-  assert.equal(data.description, 'new')
-  assert.equal(data.license, undefined)
-  assert.match(body, /# Body/)
+  expect(data.name).toBe('golang-how-to')
+  expect(data.description).toBe('keep me')
+  expect(data.license).toBe('MIT')
+  expect(body).toMatch(/# Body/)
 })
 
-test('applyFrontmatter creates frontmatter when missing', () => {
-  const out = applyFrontmatter('# Body\n', { name: 'x' })
+test('setFrontmatterName creates frontmatter when missing', () => {
+  const out = setFrontmatterName('# Body\n', 'x')
   const { data, body } = splitFrontmatter(out)
-  assert.equal(data.name, 'x')
-  assert.equal(body, '# Body\n')
-})
-
-test('body replace does not touch YAML frontmatter', () => {
-  const file = `---
-description: replace-me
----
-replace-me in body
-`
-  const { body } = splitFrontmatter(file)
-  const next = replaceInMarkdown(body, [{ find: 'replace-me', replace: 'gone' }])
-  assert.equal(next.includes('gone'), true)
-  assert.equal(splitFrontmatter(file).data.description, 'replace-me')
+  expect(data.name).toBe('x')
+  expect(body).toBe('# Body\n')
 })

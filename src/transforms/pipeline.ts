@@ -1,60 +1,33 @@
-import { dump } from 'js-yaml'
+import type { AgentMapping, RepositoryConfig, SkillMapping } from '../types'
+import type { AgentContext, SkillContext } from './context'
 
-import type { ComposedTransforms } from './compose'
+import { setFrontmatterName } from './frontmatter'
+import { getAgentTransform, getSkillTransform } from './registry'
 
-import { sha256, stableStringify } from '../utils/digest'
-import { applyFrontmatter, rewireRecordStrings, splitFrontmatter } from './frontmatter'
-import { applyNamedTransforms } from './registry'
-import { replaceInMarkdown } from './replace-in-markdown'
-
-/** 源内容 digest 之外，配置+变换源码变了也要重跑 */
-export function transformId(
-  composed: ComposedTransforms,
-  includes: string[] | undefined,
-  moduleHashes: Record<string, string>,
-): string {
-  return sha256(
-    stableStringify({
-      excludes: composed.excludes,
-      frontmatter: composed.frontmatter,
-      includes: includes ?? [],
-      modules: composed.transforms.map((name) => moduleHashes[name] ?? ''),
-      replace: composed.replace,
-      transforms: composed.transforms,
-    }),
-  )
+/** repo 策略先于 mapping 策略。 */
+export function resolveTransformNames(
+  repo: RepositoryConfig,
+  kind: 'skill' | 'agent',
+  mapping: SkillMapping | AgentMapping,
+): string[] {
+  const repoNames = kind === 'skill' ? (repo.transforms?.skills ?? []) : (repo.transforms?.agents ?? [])
+  return [...repoNames, ...(mapping.transforms ?? [])]
 }
 
-/**
- * 对单个 markdown 文件跑变换。SKILL.md / agent 先拆 YAML：
- * 字符串字段和正文都走具名变换 + replace，最后强制 name = target。
- */
-export function applyMarkdownTransforms(
-  content: string,
-  options: {
-    isFrontmatterFile: boolean
-    name?: string
-    composed: ComposedTransforms
-  },
-): string {
-  const applyBody = (body: string) => {
-    const named = applyNamedTransforms(body, options.composed.transforms)
-    return replaceInMarkdown(named, options.composed.replace)
+export function runSkillPipeline(ctx: SkillContext, names: string[]): void {
+  for (const name of names) {
+    getSkillTransform(name)(ctx)
   }
-
-  if (!options.isFrontmatterFile) {
-    return applyBody(content)
+  const entry = ctx.files.get(ctx.entryPath)
+  if (entry === undefined) {
+    throw new Error(`Skill entry missing after transforms: ${ctx.entryPath}`)
   }
+  ctx.files.set(ctx.entryPath, Buffer.from(setFrontmatterName(entry.toString('utf8'), ctx.name), 'utf8'))
+}
 
-  const split = splitFrontmatter(content)
-  const named = (text: string) => applyNamedTransforms(text, options.composed.transforms)
-  const data = options.composed.transforms.length ? rewireRecordStrings(split.data, named) : split.data
-  const body = applyBody(split.hasFrontmatter ? split.body : content)
-  const rebuilt = split.hasFrontmatter ? `---\n${dump(data)}---\n${body}` : body
-  if (!options.name) return rebuilt
-  return applyFrontmatter(rebuilt, {
-    delete: options.composed.frontmatter.delete,
-    set: options.composed.frontmatter.set,
-    name: options.name,
-  })
+export function runAgentPipeline(ctx: AgentContext, names: string[]): void {
+  for (const name of names) {
+    getAgentTransform(name)(ctx)
+  }
+  ctx.content = setFrontmatterName(ctx.content, ctx.name)
 }

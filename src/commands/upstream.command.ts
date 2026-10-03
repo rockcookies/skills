@@ -2,7 +2,6 @@ import * as p from '@clack/prompts'
 
 import type { RepositoryConfig } from '../types'
 
-import { GitService } from '../services/git.service'
 import { UpstreamService } from '../services/upstream.service'
 import { formatError } from '../utils/error'
 
@@ -16,8 +15,7 @@ export async function ensureUpstreamRepositories(
   repositories: Record<string, RepositoryConfig>,
   options: UpstreamOptions = {},
 ) {
-  const gitService = new GitService(root)
-  const upstreamService = new UpstreamService(root, gitService)
+  const upstreamService = new UpstreamService(root)
   const spinner = p.spinner()
 
   spinner.start('Ensuring upstream repositories...')

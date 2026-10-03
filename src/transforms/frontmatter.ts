@@ -1,7 +1,5 @@
 import { dump, load } from 'js-yaml'
 
-import type { FrontmatterOps } from '../types'
-
 export interface SplitMarkdown {
   data: Record<string, unknown>
   body: string
@@ -18,15 +16,10 @@ export function splitFrontmatter(content: string): SplitMarkdown {
   return { data, body: match[2], hasFrontmatter: true }
 }
 
-/** delete → set，最后强制 name = dest target（覆盖上游 name）。 */
-export function applyFrontmatter(content: string, ops: FrontmatterOps & { name: string }): string {
+/** 强制 YAML name = dest 名；没有 frontmatter 就补一组。 */
+export function setFrontmatterName(content: string, name: string): string {
   const split = splitFrontmatter(content)
-  const data: Record<string, unknown> = { ...split.data }
-  for (const key of ops.delete ?? []) {
-    delete data[key]
-  }
-  Object.assign(data, ops.set ?? {})
-  data.name = ops.name
+  const data: Record<string, unknown> = { ...split.data, name }
   const body = split.hasFrontmatter ? split.body : content
   return `---\n${dump(data)}---\n${body}`
 }
