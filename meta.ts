@@ -139,7 +139,6 @@ export const repositories: Record<string, RepositoryConfig> = {
     tag: 'v1.2.3',
     skills: [
       // engineering
-      { name: 'ask-matt', source: './skills/engineering/ask-matt/SKILL.md' },
       { name: 'code-review', source: './skills/engineering/code-review/SKILL.md' },
       { name: 'codebase-design', source: './skills/engineering/codebase-design/SKILL.md' },
       { name: 'diagnosing-bugs', source: './skills/engineering/diagnosing-bugs/SKILL.md' },
@@ -150,7 +149,6 @@ export const repositories: Record<string, RepositoryConfig> = {
       { name: 'prototype', source: './skills/engineering/prototype/SKILL.md' },
       { name: 'research', source: './skills/engineering/research/SKILL.md' },
       { name: 'resolving-merge-conflicts', source: './skills/engineering/resolving-merge-conflicts/SKILL.md' },
-      { name: 'setup-matt-pocock-skills', source: './skills/engineering/setup-matt-pocock-skills/SKILL.md' },
       { name: 'tdd', source: './skills/engineering/tdd/SKILL.md' },
       { name: 'to-spec', source: './skills/engineering/to-spec/SKILL.md' },
       { name: 'to-tickets', source: './skills/engineering/to-tickets/SKILL.md' },
@@ -212,14 +210,6 @@ export const repositories: Record<string, RepositoryConfig> = {
       { name: 'why', source: './pstack/skills/why/SKILL.md' },
       { name: 'technical-writing', source: './pstack/skills/technical-writing/SKILL.md' },
       { name: 'pstack-tdd', source: './pstack/skills/tdd/SKILL.md' },
-      { name: 'create-verification-skill', source: './pstack/skills/create-verification-skill/SKILL.md' },
-      { name: 'maintain-verification-skill', source: './pstack/skills/maintain-verification-skill/SKILL.md' },
-      { name: 'show-me-your-work', source: './pstack/skills/show-me-your-work/SKILL.md' },
-      { name: 'interrogate', source: './pstack/skills/interrogate/SKILL.md' },
-      { name: 'arena', source: './pstack/skills/arena/SKILL.md' },
-      { name: 'swarm', source: './pstack/skills/swarm/SKILL.md' },
-      { name: 'blast-radius', source: './pstack/skills/blast-radius/SKILL.md' },
-      { name: 'architect', source: './pstack/skills/architect/SKILL.md' },
     ],
     agents: [
       { name: 'thermo-nuclear-review-subagent', source: './thermos/agents/thermo-nuclear-review-subagent.md' },
