@@ -1,8 +1,8 @@
 {
-  "upstream_committed_sha": "7022c81efb48d8b5eb15498ce6043a3bd74b694c",
-  "upstream_committed_at": "2026-10-02T11:53:26-04:00",
-  "items_digest": "sha256:2c77868c7d1a975dff3f09ac5226fd20068a4f717de630c135771bd55719c628",
-  "items_changed_at": "2026-10-03T02:06:53.282Z",
+  "upstream_committed_sha": "e43c7ee26e0038c6c1fa8380dd34ce86ff94cb2a",
+  "upstream_committed_at": "2026-10-03T17:06:48-07:00",
+  "items_digest": "sha256:8ce8651da8e46d44377b2c2967e200b840ff138120c2f11d8985368d163e3f6e",
+  "items_changed_at": "2026-10-05T00:24:11.957Z",
   "items": [
     {
       "name": "boundary-discipline",
@@ -66,7 +66,7 @@
     },
     {
       "name": "technical-writing",
-      "digest": "sha256:1246a6cbfa47e3a247c1cfcd1317b3ffde2e8a7c47ba753d263774cb97ea3092"
+      "digest": "sha256:76139beb9f02dddda1f7b64d0c3b989ba129f8df6e609efb64880e1bba0a279e"
     },
     {
       "name": "thermo-nuclear-code-quality-review",
@@ -86,7 +86,7 @@
     },
     {
       "name": "typescript-best-practices",
-      "digest": "sha256:b746f3b04f2f630fb3de08b719a3cf5e4df766605abd262d8b11a2734c5fd01c"
+      "digest": "sha256:6b582538aeccb2e023bf60f13ab454d0fb9e7c21660b04462386ddcdee83f56e"
     },
     {
       "name": "unslop",
