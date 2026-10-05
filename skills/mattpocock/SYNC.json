@@ -1,100 +1,116 @@
 {
-  "upstream_committed_sha": "6acc160e4e0cd062dbbbd7a1b26ae92855edf07e",
-  "upstream_committed_at": "2026-08-06T15:05:05+01:00",
-  "items_digest": "sha256:6d1868049f4d638b36cbab927a9f297544d18e6ef2c778b183c9b3badafd1abc",
-  "items_changed_at": "2026-10-03T02:06:52.064Z",
+  "upstream_committed_sha": "24fe0ef7737efae15c87225755e9f6f5965e4888",
+  "upstream_committed_at": "2026-10-04T13:48:05+01:00",
+  "items_digest": "sha256:77f791537c2d45c639b8f8d172d353926dcceaf7250f68a378bc6f6914276561",
+  "items_changed_at": "2026-10-05T00:24:10.423Z",
   "items": [
     {
+      "name": "ask-matt",
+      "digest": "sha256:4bb0158d35f04ebf5c53e44c295275625d3ce79428781069fc694c6017a31eb7"
+    },
+    {
       "name": "code-review",
-      "digest": "sha256:c507bfd9d7962a628a26ab7c37e3b51d105f1b65e60e43227df82e8983a496e9"
+      "digest": "sha256:6751d44f46f541a69301c79820acec0fc0cc943ef30bcf58f7be9ea8b8e50c32"
     },
     {
       "name": "codebase-design",
-      "digest": "sha256:83c00c312b93f941f69cab540ab5c7de966dc58a04c0d53595a9e95602c452e3"
+      "digest": "sha256:6f0dc44e6e20a70c642c1d2534b224f270c5f9fb254e3155a68ef822c3d1b459"
     },
     {
       "name": "diagnosing-bugs",
-      "digest": "sha256:5548bef0923fe569b44470c71fa7ada9b9183b24d4761113f267c4b6ec981a0e"
+      "digest": "sha256:e8e9771470b42db331eb9cc72eca8dae8896e4355d33077e8e35202db4bdfc59"
     },
     {
       "name": "domain-modeling",
-      "digest": "sha256:060e35261ce9dbd10d0f04b61a700119db82c435b49002317802bdd18528a377"
+      "digest": "sha256:e1e76150d9b0e401451756e7311584e7a676e4adbff764a10e85edd30d76ae65"
     },
     {
       "name": "grill-me",
-      "digest": "sha256:3d923fd174557e6575ede77106811ae29ef8bddb60e9156962679b02721e9e80"
+      "digest": "sha256:94903904e3fd87d27fc9aeff5c79c3d09343944411a5edb3e6e7276760c6fa15"
     },
     {
       "name": "grill-with-docs",
-      "digest": "sha256:7acbe1b2cce086dab0a54249e5862b5110dbb357ca96eda19f7b73019a80e641"
+      "digest": "sha256:2ef04f20305a4da68e69e99d77b47c304e5049b776f431b0793974e02ca2791b"
     },
     {
       "name": "grilling",
-      "digest": "sha256:e904421df323f6e909b9a80d22b1c3d96bf185fe29927a7c15dccfc3b9da6c4e"
+      "digest": "sha256:478f9830e2a0911550d965426f95c4a6b17a152aee838fd48b2dbe2b33534fbb"
     },
     {
       "name": "handoff",
-      "digest": "sha256:11fecf7492185a080635e3c268b1726495d6b1d06bf1250b44ee27a6dad2f28c"
+      "digest": "sha256:9d1a0718a732f049f5ab5a713eaaa39534ea54abd2c437ca14cdebf3cc68b3f7"
     },
     {
       "name": "implement",
       "digest": "sha256:f34feaf6ce711aa7c7c7d2d812a7bd6cc6bc31953d656a88b5247765063d8fa9"
     },
     {
+      "name": "implement-spec",
+      "digest": "sha256:bb0f8d80c15164415b67573f04b47e3d725b91612f4c6485ad85a4c06c950c7a"
+    },
+    {
       "name": "improve-codebase-architecture",
-      "digest": "sha256:797e16db9421838cb0fa394874a9b43583c74934e89dab36d1b30b02c0b1ef27"
+      "digest": "sha256:d93a62358f53c1fdfa230a706cbffe11843629080d423836eaa96740eee45a5f"
+    },
+    {
+      "name": "pr",
+      "digest": "sha256:25edbeca91407f93bdd989ba3767e3554cb5e4ac73e1b2d28c6cbeb1ce613aa8"
     },
     {
       "name": "prototype",
-      "digest": "sha256:b0a42981de8813d4438c1ca2b0a0cadba472502c22e7c3a6659498c1fb4aec45"
+      "digest": "sha256:477f3c04ba75c9aeaf0a2a224304a5c138c90cef6e24e1a1979826635dc9e749"
     },
     {
       "name": "research",
-      "digest": "sha256:60bb9acfaaddfa41129e6b263cb47491ea4d4eb50bc29ec0d2d950162a54c555"
+      "digest": "sha256:176bf3f554a637fa72a2f66451501d0a1c25f0889833fa400a874154e858d287"
     },
     {
-      "name": "resolving-merge-conflicts",
-      "digest": "sha256:d72abb45d743b98fd645c6498b2c92ab4953305cb549c5897d63832b8d6a7baa"
+      "name": "retro",
+      "digest": "sha256:77d9194a79a82006e266248f249fee1bb44dd3dd9d1d632a079d41056219f49e"
+    },
+    {
+      "name": "setup-matt-pocock-skills",
+      "digest": "sha256:6f6d57fcb76d000abe6980e294a75fd30a2bb8183b7659cb513b134cc5ee4d03"
     },
     {
       "name": "tdd",
-      "digest": "sha256:c3fb3b9979ab6696e05027af5e491a39a74367dd7484d6e12d8a0443c37b98d5"
+      "digest": "sha256:bb27c7e2cbd5f06e0243e90ac415ffa2c55a479b2fbf7f3f93b28816b332f1bd"
     },
     {
       "name": "teach",
-      "digest": "sha256:e7fdc2a83cca469e830c3e25dc7bd0e72883c8fec954b87c444461d000d296ce"
+      "digest": "sha256:dae33ee886815c77e70665ced51caf34c7f2361fc6d9f51f70b6fc0f88d56805"
     },
     {
       "name": "to-questionnaire",
-      "digest": "sha256:8e6aa411148a1f7727fc0709a182ad7ba0b7c38cb476746dc28e8e92347231b5"
+      "digest": "sha256:1376f9ccd6fb6fa0484e2d3eb920c06761eed432267767a0b9cbd9a84c7295dc"
     },
     {
       "name": "to-spec",
-      "digest": "sha256:9c80dbf2f54aef56247b28658872eb98f5d4118ed29762abe75d77e59fe1df3a"
+      "digest": "sha256:d1819892ab17b6e4b00a89e1878ba68052cfec8b221116ce2b9986e5bf13eb8d"
     },
     {
       "name": "to-tickets",
-      "digest": "sha256:3350a1d1e0dd421b43553394c04f4aae5ae222f3e1c7664a34c6f6579eb0963f"
+      "digest": "sha256:6114d02c880e869b5a9ace5945a117fc69134384d5959be6b6e05c55c7775290"
     },
     {
       "name": "triage",
-      "digest": "sha256:926b28c98fc1f9b49c3d0cdf2e003f358a961e8518affc5a2a7fd5e9e1e928d7"
+      "digest": "sha256:d4d8f72b1ef41a8ba4d8404d9a2bfb6a2728b29b9e6c88ab0ed03237429669b3"
     },
     {
       "name": "wait-what",
-      "digest": "sha256:a5aa1f148096c4a98d23f5d5204cea169d250622274b438153465b9c8f34508d"
+      "digest": "sha256:32b3237bf904a355f36000c93340b0bf656cd1c4b6d84e018264d5895293e611"
     },
     {
       "name": "wayfinder",
-      "digest": "sha256:812056dc622b710cc2b1942fb5861c200cbad4040232510f76714008de3232af"
+      "digest": "sha256:ed12e5df208339a64a02fde454f14a58a678dc9a0df3bdab1f50dd463fbf7c0a"
     },
     {
       "name": "wizard",
-      "digest": "sha256:b042b7d1424f13a87688eea3b6b37847b9ae742978bc099be87499d310e45c28"
+      "digest": "sha256:8c214005a1b817bada2c578573bcda6f4576782332c5aec29792e9292b6f4242"
     },
     {
       "name": "writing-for-agents",
-      "digest": "sha256:2e070f73aed0b630fb4ad5495cdc5ee305b64f191661709f00426701d0e0f3f0"
+      "digest": "sha256:6c420718b4de4d200d65cb9ee9d55a56a92871d78701711d4d43ffd8a167e9b7"
     }
   ]
 }

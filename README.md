@@ -458,7 +458,7 @@ Synced from external repositories into `skills/{repoKey}/{target}/`.
 | [figma-to-react](skills/majiayu-spellbook/figma-to-react) | Extract Figma designs into production-ready React/Next.js components         |
 | [ip-check](skills/majiayu-spellbook/ip-check)             | IP / socks5 proxy quality — registry, geo consensus, reputation, AI unlocks  |
 
-#### [mattpocock/skills](https://github.com/mattpocock/skills) (tag `v1.2.3`)
+#### [mattpocock/skills](https://github.com/mattpocock/skills) (tag `v1.3.1`)
 
 | Skill                                                                            | Description                                                             |
 | -------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
@@ -472,10 +472,12 @@ Synced from external repositories into `skills/{repoKey}/{target}/`.
 | [grilling](skills/mattpocock/grilling)                                           | Grill a plan, decision, or idea to stress-test your thinking            |
 | [handoff](skills/mattpocock/handoff)                                             | Compact the conversation into a handoff document for another agent      |
 | [implement](skills/mattpocock/implement)                                         | Implement work from a spec or set of tickets                            |
+| [implement-spec](skills/mattpocock/implement-spec)                               | Implement a whole spec in one run — parallel implementers per ticket    |
 | [improve-codebase-architecture](skills/mattpocock/improve-codebase-architecture) | Scan for deepening opportunities, report in HTML, then grill            |
+| [pr](skills/mattpocock/pr)                                                       | Write a fast-to-review PR body — summary visual, evidence, merge danger |
 | [prototype](skills/mattpocock/prototype)                                         | Throwaway prototype to answer a design question                         |
 | [research](skills/mattpocock/research)                                           | Investigate against high-trust sources; capture findings as Markdown    |
-| [resolving-merge-conflicts](skills/mattpocock/resolving-merge-conflicts)         | Resolve an in-progress git merge/rebase conflict                        |
+| [retro](skills/mattpocock/retro)                                                 | Retrospective on a session — improve the environment, not the code      |
 | [setup-matt-pocock-skills](skills/mattpocock/setup-matt-pocock-skills)           | One-time setup — issue tracker, triage labels, domain doc layout        |
 | [tdd](skills/mattpocock/tdd)                                                     | Test-driven development — red-green-refactor and integration tests      |
 | [teach](skills/mattpocock/teach)                                                 | Teach a new skill or concept within the workspace                       |
