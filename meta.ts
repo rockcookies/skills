@@ -210,6 +210,7 @@ export const repositories: Record<string, RepositoryConfig> = {
       { name: 'thermo-nuclear-review', source: './thermos/skills/thermo-nuclear-review/SKILL.md' },
       { name: 'thermo-nuclear-code-quality-review', source: './thermos/skills/thermo-nuclear-code-quality-review/SKILL.md' },
       { name: 'unslop', source: './pstack/skills/unslop/SKILL.md' },
+      { name: 'show-me-your-work', source: './pstack/skills/show-me-your-work/SKILL.md' },
       { name: 'how', source: './pstack/skills/how/SKILL.md' },
       { name: 'why', source: './pstack/skills/why/SKILL.md' },
       { name: 'technical-writing', source: './pstack/skills/technical-writing/SKILL.md' },

@@ -1,8 +1,8 @@
 {
-  "upstream_committed_sha": "e43c7ee26e0038c6c1fa8380dd34ce86ff94cb2a",
-  "upstream_committed_at": "2026-10-03T17:06:48-07:00",
-  "items_digest": "sha256:8ce8651da8e46d44377b2c2967e200b840ff138120c2f11d8985368d163e3f6e",
-  "items_changed_at": "2026-10-05T00:24:11.957Z",
+  "upstream_committed_sha": "ccb5507cec1546dc88135c1139c811e6c59115ba",
+  "upstream_committed_at": "2026-10-07T17:45:14-07:00",
+  "items_digest": "sha256:c53bcbcc64311776d873a235f1b1750e99583f40a6d5bcadf88d973ba642a06e",
+  "items_changed_at": "2026-10-08T01:35:59.631Z",
   "items": [
     {
       "name": "boundary-discipline",
@@ -30,7 +30,7 @@
     },
     {
       "name": "how",
-      "digest": "sha256:0a9ba5f9d4ad051fd40b65e106b1879d4f787111ea076b6a7b2d340fa3c5f8c4"
+      "digest": "sha256:2f52e097969af722ea0f32f69c31232ea4bd6b9fea833f10cf0a00d4c7b3dcb5"
     },
     {
       "name": "laziness-protocol",
@@ -59,6 +59,10 @@
     {
       "name": "separate-before-serializing-shared-state",
       "digest": "sha256:987b226ab9788071a7103f241428c29fea1237554f21f8590b47d5161e1a38ea"
+    },
+    {
+      "name": "show-me-your-work",
+      "digest": "sha256:45d3181c71aa60259e5dfab064623b4692c89b26a82ae846a432f2ad4cb3596a"
     },
     {
       "name": "subtract-before-you-add",
@@ -94,7 +98,7 @@
     },
     {
       "name": "why",
-      "digest": "sha256:6e9f5092b42d3ab650657e46e10fb6c0ca905d26cd45379055d80791b23b6192"
+      "digest": "sha256:307b34dc7f532c7bd8e098c00fbbb31529d2cf38fe8c584e51711b53b5810c27"
     }
   ]
 }
