@@ -222,7 +222,7 @@ export const repositories: Record<string, RepositoryConfig> = {
   },
   'tw93-waza': {
     url: 'https://github.com/tw93/Waza',
-    tag: 'v3.38.0',
+    tag: 'v3.39.0',
     skills: [
       { name: 'check', source: './skills/check/SKILL.md' },
       { name: 'ui', source: './skills/ui/SKILL.md' },
