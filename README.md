@@ -268,21 +268,15 @@ npx skills add rockcookies/skills --full-depth \
 
 #### pstack set (cursor/plugins)
 
-Eleven more engineering principles plus the workflow skills built on them: `pstack-tdd` (aliased — `tdd` is taken), the `create-verification-skill` / `maintain-verification-skill` pair, `show-me-your-work`, and the subagent fan-outs `interrogate` / `arena` / `swarm` / `blast-radius` / `architect`. The fan-outs read an optional `~/.cursor/rules/pstack-models.mdc` model rule and fall back to sensible defaults without it.
+Eleven more engineering principles plus the workflow skills built on them: `pstack-tdd` (aliased — `tdd` is taken) and `show-me-your-work`.
 
 ```bash
 npx skills add rockcookies/skills --full-depth \
-  --skill architect \
-  --skill arena \
-  --skill blast-radius \
   --skill build-the-lever \
-  --skill create-verification-skill \
   --skill exhaust-the-design-space \
   --skill fix-root-causes \
   --skill foundational-thinking \
-  --skill interrogate \
   --skill laziness-protocol \
-  --skill maintain-verification-skill \
   --skill migrate-callers-then-delete-legacy-apis \
   --skill outcome-oriented-execution \
   --skill prove-it-works \
@@ -291,7 +285,6 @@ npx skills add rockcookies/skills --full-depth \
   --skill separate-before-serializing-shared-state \
   --skill show-me-your-work \
   --skill subtract-before-you-add \
-  --skill swarm \
   -g
 ```
 
@@ -388,20 +381,14 @@ Synced from external repositories into `skills/{repoKey}/{target}/`.
 
 | Skill                                                                                                      | Description                                                                  |
 | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| [architect](skills/cursor-plugins/architect)                                                               | Sketch types, signatures, and module structure before code; loop to done     |
-| [arena](skills/cursor-plugins/arena)                                                                       | N parallel candidates on one task, judged; graft strongest parts into base   |
-| [blast-radius](skills/cursor-plugins/blast-radius)                                                         | Find what a change could break beyond the diff; prove safety by running code |
 | [boundary-discipline](skills/cursor-plugins/boundary-discipline)                                           | Validation and error handling at system boundaries; trust internal types     |
 | [build-the-lever](skills/cursor-plugins/build-the-lever)                                                   | Build the tool that does or proves the work instead of hand-running it       |
-| [create-verification-skill](skills/cursor-plugins/create-verification-skill)                               | Generate a project-local verification skill that drives the app like a user  |
 | [encode-lessons-in-structure](skills/cursor-plugins/encode-lessons-in-structure)                           | Encode recurring fixes as lint rules, flags, checks, or scripts              |
 | [exhaust-the-design-space](skills/cursor-plugins/exhaust-the-design-space)                                 | Build 2-3 competing prototypes and compare side by side before committing    |
 | [fix-root-causes](skills/cursor-plugins/fix-root-causes)                                                   | Trace each symptom to its root cause; reproduce first, no symptom guards     |
 | [foundational-thinking](skills/cursor-plugins/foundational-thinking)                                       | Pick core types and data structures before logic; get structures right       |
 | [how](skills/cursor-plugins/how)                                                                           | Subsystem walkthroughs - "how does X work", placement, ownership             |
-| [interrogate](skills/cursor-plugins/interrogate)                                                           | Adversarial multi-reviewer interrogation - stress test, find blind spots     |
 | [laziness-protocol](skills/cursor-plugins/laziness-protocol)                                               | Bias toward deletion and the smallest change that solves the problem         |
-| [maintain-verification-skill](skills/cursor-plugins/maintain-verification-skill)                           | Periodic upkeep keeping the verification skill and feature map honest        |
 | [migrate-callers-then-delete-legacy-apis](skills/cursor-plugins/migrate-callers-then-delete-legacy-apis)   | Migrate callers and delete the old API in one wave; no shim layers           |
 | [outcome-oriented-execution](skills/cursor-plugins/outcome-oriented-execution)                             | Converge on the target architecture; no throwaway compatibility states       |
 | [prove-it-works](skills/cursor-plugins/prove-it-works)                                                     | Verify against the real artifact - run, read values, inspect diff            |
@@ -410,7 +397,6 @@ Synced from external repositories into `skills/{repoKey}/{target}/`.
 | [separate-before-serializing-shared-state](skills/cursor-plugins/separate-before-serializing-shared-state) | Eliminate sharing first; serialize structurally only with one real writer    |
 | [show-me-your-work](skills/cursor-plugins/show-me-your-work)                                               | TSV decision log (what, why, evidence, result) for unattended work           |
 | [subtract-before-you-add](skills/cursor-plugins/subtract-before-you-add)                                   | Remove dead weight, redundant guards, stub refs; build on simpler base       |
-| [swarm](skills/cursor-plugins/swarm)                                                                       | Fan out N parallel workers, drain them, return one report                    |
 | [technical-writing](skills/cursor-plugins/technical-writing)                                               | Layered writing standard - Diataxis, Google style, STE, Global English       |
 | [thermo-nuclear-code-quality-review](skills/cursor-plugins/thermo-nuclear-code-quality-review)             | Strict maintainability audit (structure, file-size growth, spaghetti)        |
 | [thermo-nuclear-review](skills/cursor-plugins/thermo-nuclear-review)                                       | Deep branch audit (bugs, breakages, security, devex, feature-flag leaks)     |
@@ -565,7 +551,7 @@ Synced from external repositories into `skills/{repoKey}/{target}/`.
 | ----------------------------- | ---------------------------------------------------------------------------------------------- |
 | [kami](skills/tw93-kami/kami) | Typeset resumes, one-pagers, white papers, letters, portfolios, slide decks, and landing pages |
 
-#### [tw93/Waza](https://github.com/tw93/Waza) (tag `v3.38.0`)
+#### [tw93/Waza](https://github.com/tw93/Waza) (tag `v3.39.0`)
 
 | Skill                             | Description                                                                   |
 | --------------------------------- | ----------------------------------------------------------------------------- |
@@ -661,7 +647,7 @@ Repository sources and mappings live in [meta.ts](meta.ts). Pins:
 | `samber-golang` | samber/cc-skills-golang | tag `v2.0.0`  |
 | `mattpocock`    | mattpocock/skills       | tag `v1.2.3`  |
 | `tw93-kami`     | tw93/Kami               | tag `V1.17.0` |
-| `tw93-waza`     | tw93/Waza               | tag `v3.38.0` |
+| `tw93-waza`     | tw93/Waza               | tag `v3.39.0` |
 
 Unpinned repos track the default branch. Upstreams listed in `meta.ts` with empty `skills` and empty `agents` are reserved for future use and are skipped by Sync.
 
