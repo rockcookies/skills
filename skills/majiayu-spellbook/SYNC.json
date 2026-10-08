@@ -1,8 +1,8 @@
 {
-  "upstream_committed_sha": "414b597ec113b9c8d37c8de912ef80f92d9ad2f3",
-  "upstream_committed_at": "2026-10-02T20:45:00+08:00",
-  "items_digest": "sha256:811206721aa75745657914f0c1c7671889a4cc898e081bd4d449a080f364f26c",
-  "items_changed_at": "2026-10-03T02:06:54.706Z",
+  "upstream_committed_sha": "6310f81e91914319e2a3545eb8fa806b0c3e8bb3",
+  "upstream_committed_at": "2026-10-08T08:21:43+08:00",
+  "items_digest": "sha256:b42a061441eba88023c8d1e565187eae7e33ba7c5043c4cea64d3d02e0d9a1ce",
+  "items_changed_at": "2026-10-08T01:00:43.897Z",
   "items": [
     {
       "name": "clash-doctor",
@@ -14,7 +14,7 @@
     },
     {
       "name": "codebase-audit",
-      "digest": "sha256:ae72a26c8524509d6023daa3fe9372bf4b151a5a8c72245317d585e880f4ff00"
+      "digest": "sha256:d3f42b15fd3340f6ae47df4aaf5b7e8bc7df417c7fd53229d21f8fb91ccbe12c"
     },
     {
       "name": "figma-to-react",
