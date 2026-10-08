@@ -8,7 +8,7 @@ React 没有官方 style guide。以下与前端非组件模块形成**双轨文
 |----------|--------|--------|
 | React 组件 | `PascalCase.tsx` | 同名 `PascalCase` |
 | React Hook | `use` + `camelCase.ts` | 同名 |
-| 非组件逻辑（api/store/formatter） | `kebab-case.ts` | `camelCase` / `PascalCase` |
+| 非组件逻辑（api/store/formatter） | `<concept>[.<role>].ts` | `camelCase` / `PascalCase` |
 
 JSX 靠**标识符**首字母区分组件与 HTML 标签（`<UserProfile />` vs `<div />`），文件名不是运行时要求。
 
@@ -46,7 +46,7 @@ JSX 靠**标识符**首字母区分组件与 HTML 标签（`<UserProfile />` vs 
 
 ## 非组件模块
 
-Service、store、formatter 等不含 JSX 的文件用 `kebab-case`：`user-api.ts`、`auth-store.ts`、`format-date.ts`。Zustand 的 `*.store.ts` 等后缀由 `web-zustand/references/slice-organization.md` 规定，涉及 store 文件命名时先读它，以其为准。
+Service、API、repository、validator、formatter 等不含 JSX 的文件用 `<concept>[.<role>].ts`：`user.api.ts`、`auth.store.ts`、`format-date.ts`。`-` 与 `.` 的分工见 `naming-files.md`。Zustand 的 store 文件后缀由 `web-zustand/references/slice-organization.md` 规定，涉及 store 文件命名时先读它，以其为准。
 
 ## 目录布局
 
@@ -55,7 +55,7 @@ Service、store、formatter 等不含 JSX 的文件用 `kebab-case`：`user-api.
 ```
 features/user-profile/UserProfile.tsx
 features/user-profile/useUserProfile.ts
-features/user-profile/user-profile-api.ts
+features/user-profile/user.api.ts
 ```
 
 仓已采用“每个组件一个目录”（`components/UserProfile/UserProfile.tsx` 加 `index.ts` barrel）的，跟仓，但主实现文件仍要有具名文件名。

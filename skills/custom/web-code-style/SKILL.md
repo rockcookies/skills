@@ -7,13 +7,13 @@ description: >-
   Not for 渲染性能与 hooks 规则（→ react-best-practices）、类型建模（→ typescript-best-practices）、
   Vue SFC（→ vue-* skills）、formatter/linter 已覆盖的机械规则。
 when_to_use: >-
-  web-code-style, 起名, 命名审查, 变量名, 文件名, 组件命名, Hook, props 命名, userID, HTTPClient,
+  web-code-style, 起名, 命名审查, 变量名, 文件名, 语义后缀, 组件命名, Hook, props 命名, userID, HTTPClient,
   数字枚举, utils 抽屉, 双轨, 可读性, 风格审查, 控制流, 嵌套太深, 墙式条件, 参数过多, 函数太长,
   JSX 堆逻辑
 user-invocable: true
 metadata:
   author: rockcookies
-  version: 3.0.0
+  version: 3.1.0
 ---
 
 **范围：** Web 全栈的 TypeScript：React（TSX）前端与 Node 服务端。命名与代码风格的通用规则适用任何层；React 专属规则（组件/Hook 文件名、props、JSX）只用于前端。类型建模与渲染性能归仓内对应技能（见「依赖」），本 skill 只规定它们怎么命名、怎么写得易读。
@@ -28,7 +28,7 @@ metadata:
 | 写/审组件、JSX、文件内组织 | `references/style-ui.md` |
 | 需要长示例 | `references/examples.md` |
 
-只读与当前任务相关的文件，不要一次全读。monorepo 里按**目标文件所在包**选路由：前端包用 React 双轨文件命名，服务端包一律走 `references/naming-files.md` 的 kebab-case 默认轨。Vue SFC 见仓内 `vue-*` skills。
+只读与当前任务相关的文件，不要一次全读。monorepo 里按**目标文件所在包**选路由：前端包用 React 双轨文件命名，服务端包一律走 `references/naming-files.md` 的默认轨。Vue SFC 见仓内 `vue-*` skills。
 
 ## 优先级与工具边界
 
@@ -58,7 +58,8 @@ metadata:
 | 判别联合的判别字段 | `kind`，值为小写短词 | `{ kind: 'saving' }` | `{ type: 'SAVING' }` |
 | 离散状态 | string union 或 `as const` 对象 | `'pending' \| 'paid'` | 数字 `enum` |
 | 事件处理器 | 按**动作**命名 | `saveUserData` | `handleClick` |
-| 非组件模块文件 | `kebab-case`，名字反映主导出 | `user-api.ts` | `UserApi.ts`、`utils.ts` |
+| 文件名结构 | `concept[.role].ext`；`-` 分隔概念单词，`.` 分隔语义角色 | `create-user.command.ts` | `create-user-command.ts` |
+| 非组件模块文件 | `kebab-case` + 可选角色点后缀 | `user.api.ts`、`format-date.ts` | `user-api.ts`、`utils.ts` |
 | 业务概念 | 全库一个词 | `user` | `user`/`account`/`person` 混用 |
 
 React 专属的文件名、props、测试后缀等见对应 references，这里不重复。

@@ -73,7 +73,7 @@ const tone = toneByStatus[status]
 ## 组件只管展示：外提校验
 
 ```ts
-// order-validator.ts
+// order.validator.ts
 export function validateOrder(order: Order): string[] {
   const errors: string[] = []
   if (order.items.length === 0) {
