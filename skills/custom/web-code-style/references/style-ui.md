@@ -15,7 +15,7 @@ useEffect(() => {
 }, [])
 ```
 
-## JSX：不在 JSX 里求值
+## JSX：只放轻量表达式，复杂推导上提
 
 标准：读 JSX 时是否还要在脑子里求值。
 
@@ -37,4 +37,4 @@ React 把派生值放在组件体里，不在 JSX 里写多步表达式。示例
 
 ## Props 不当可变草稿
 
-不要改传入的 props 对象（`props.userId = next`）。要改的是本地 state，或回传的事件载荷。
+不要改传入的 props 对象（`props.userID = next`）。要改的是本地 state，或回传的事件载荷。

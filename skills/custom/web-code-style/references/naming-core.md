@@ -1,29 +1,42 @@
 # 通用命名：需要判断的规则
 
-速查表在 `SKILL.md`。这里只放表里写不下、需要判断的部分。
+本文件定义通用命名规则；`SKILL.md` 的速查表只是摘要。修改规则先改这里，再同步速查表。
 
 ## 布尔
 
 布尔变量、参数、字段、prop 必须加前缀，读起来像是非题：`isLoggedIn`、`hasAdminRole`、`canWrite`、`shouldRetry`。
 
-类型守卫按它检验的是“是不是”还是“有没有”选 `isX` / `hasX`。不要用裸动词（`checkX`、`validateX`）当类型守卫名，名字要让调用者一眼看出用完后类型会被收窄：
+类型守卫按它检验的是“是不是”还是“有没有”选 `isX` / `hasX`。不要用裸动词（`checkX`、`validateX`）当类型守卫名，名字要让调用者一眼看出用完后类型会被收窄。只有检查确实能证明目标类型时才写 `value is T`；只查询真假的函数返回 `boolean`，不承诺收窄：
 
 ```ts
 function isUser(value: unknown): value is User {}
-function hasPermission(user: User): user is AdminUser {}
+function isAdminUser(user: User): user is AdminUser {}
+
+// 查询，不是类型守卫：不收窄
+function hasPermission(user: User, permission: Permission): boolean {}
 ```
 
 ## 名称描述含义，不描述类型
 
 `users` 而非 `userArray`，`count` 而非 `countNumber`。
 
-## 概念名全库一致
+## 概念名在领域边界内一致
 
-同一业务概念只用一个词：`createUser`、`updateUser`、`deleteUser`，不要一个叫 `updateAccount`、一个叫 `removePerson`。仓内有术语表时以它为准。
+同一业务概念在同一领域边界内只用一个词：`createUser`、`updateUser`、`deleteUser`，不要一个叫 `updateAccount`、一个叫 `removePerson`。跨领域存在有意区别时（如两个上下文各自定义了 `user` 与 `account`），在边界处显式说明，不强行合并。仓内有术语表时以它为准。
 
-## 缩写当普通词
+## 缩写与 initialism：保留规范大小写
 
-HTTP、URL、ID 等缩写在 PascalCase 里只大写首字母，在 camelCase 里不大写整段：`HttpClient`、`parseUrl`、`loadHttpUrl`、`userId`。平台强制名（`XMLHttpRequest`）除外。
+常见缩写按团队维护的规范拼写书写。不要因为转成 PascalCase 或 camelCase，就把 `URL`、`TTL`、`HTTP`、`ID` 拆成普通词形式的 `Url`、`Ttl`、`Http`、`Id`。
+
+**PascalCase**：首段或后续段中的约定缩写保留完整大写：`URLParser`、`TTLCache`、`HTTPClient`、`UserID`。
+
+**camelCase**：标识符首段按 camelCase 要求小写，后续的约定缩写保留完整大写：`urlParser`、`ttlCache`、`httpClient`、`parseURL`、`defaultTTL`、`userID`、`loadHTTPURL`。
+
+**顶层常量**：仍遵守 `SCREAMING_SNAKE_CASE`，按角色命名：`DEFAULT_TTL_MS`、`MAX_URL_LENGTH`。
+
+**文件名**：继续遵守既定文件命名规则，不因标识符保留大写缩写而改为大写文件名：`url.parser.ts`、`ttl-cache.ts`；React 组件文件遵守组件命名规则，如 `URLParser.tsx`。
+
+**词典**：项目认可的缩写按规范拼写维护，例如 `API`、`CSS`、`DNS`、`HTTP`、`HTTPS`、`HTML`、`ID`、`IP`、`JSON`、`JWT`、`SDK`、`SQL`、`SSE`、`TCP`、`TTL`、`UDP`、`URI`、`URL`、`UUID`、`XML`。新增缩写先确认它在项目语境中的标准拼写，再更新词典。官方平台名称、框架名称及第三方 API 的拼写按其契约保留（`XMLHttpRequest`、`URLSearchParams`）。不要把任意短词自动视为缩写；词典外的词优先遵守普通命名规则，确有必要时再补入词典。
 
 ## 事件处理器按动作命名
 
@@ -36,13 +49,13 @@ HTTP、URL、ID 等缩写在 PascalCase 里只大写首字母，在 camelCase �
 
 键盘等复杂场景可以先用 `handleKeydown` 接事件，再内部分发到 `activateBold()` 之类的具体函数。
 
-## 函数：副作用用动词，纯结果用名词，禁空动词
+## 函数：描述动作或意图，禁空动词
 
-执行副作用的函数用动词（`persistDraft`、`sendNotification`）；返回值的纯函数名描述结果（`formatDate`、`defaultConfig`）。不用 `handleIt`、`doThing` 这类无信息动词，改为 `processPayment`、`validateSchema`。
+有副作用的函数用动词描述动作（`persistDraft`、`sendNotification`）；纯转换、计算或查询函数描述其意图（`formatDate`、`calculateTotal`、`parseURL`），不必强行命名成名词。布尔结果用 `is`、`has`、`can`、`should` 前缀（`isValidURL`、`hasPermission`）。不用 `handleIt`、`doThing` 这类无信息名称，改为 `processPayment`、`validateSchema`。
 
 ## 命名导出保持自描述
 
-命名导入会丢掉模块名，调用点只剩函数名。所以 `import { parseUrl } from './url'` 优于 `import { parse } from './url'`：前者在调用点仍能读出对象，也便于 grep。只有命名空间导入时才去掉重复：`import * as url from './url'` 后调用 `url.parse(raw)`。
+命名导入会丢掉模块名，调用点只剩函数名。所以 `import { parseURL } from './url'` 优于 `import { parse } from './url'`：前者在调用点仍能读出对象，也便于 grep。只有命名空间导入时才去掉重复：`import * as url from './url'` 后调用 `url.parse(raw)`。
 
 ## 常量按角色命名
 
@@ -81,16 +94,16 @@ type SaveState =
   | { kind: 'saved', at: Date }
 ```
 
-Branded type：类型名与领域概念同名（`UserId`，不是 `UserIdType`）。brand 字段统一叫 `__brand`，`readonly`，不对外导出。转换只发生在一个**会校验**的 `parse` + 类型名函数里，不在调用点 `as` 强转：
+Branded type：类型名与领域概念同名（`UserID`，不是 `UserIDType`）。brand 字段统一叫 `__brand`，`readonly`，不对外导出。转换只发生在一个**会校验**的 `parse` + 类型名函数里，不在调用点 `as` 强转：
 
 ```ts
-type UserId = string & { readonly __brand: 'UserId' }
+type UserID = string & { readonly __brand: 'UserID' }
 
-function parseUserId(raw: string): UserId {
+function parseUserID(raw: string): UserID {
   if (raw.length === 0) {
     throw new Error('empty user id')
   }
-  return raw as UserId // 仅在校验之后转换，且只此一处
+  return raw as UserID // 仅在校验之后转换，且只此一处
 }
 ```
 

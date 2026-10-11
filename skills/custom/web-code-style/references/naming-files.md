@@ -26,13 +26,15 @@ user.util.ts            // ✗ util 不传达职责
 
 概念段仍与主导出围绕同一概念，但不要求存在同名标识符：`order.validator.ts` 导出 `validateOrder`，不是 `OrderValidator`。不用 `UserApi.ts`（PascalCase 留给 React 组件文件）或 `user_api.ts`。
 
+框架保留的入口与路由文件名（如 Next.js 的 `page.tsx`、`layout.tsx`、`route.ts`，Vite 的 `main.tsx`）遵守框架契约，不套 `concept[.role].ext`。
+
 ## 禁止 `utils` / `helpers` / `common` / `misc`
 
 这些名字不传达职责，裸用或做角色后缀（`utils.ts`、`order.utils.ts`）都一样，会随时间膨胀成抽屉。按职责拆：
 
 ```
 date.ts      // formatDate
-url.ts       // parseUrl
+url.ts       // parseURL
 ```
 
 ## 一概念一文件

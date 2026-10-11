@@ -8,7 +8,7 @@
 
 ```ts
 function canEditPost(user: User, post: Post, flags: FeatureFlags): boolean {
-  if (!flags.editingEnabled) {
+  if (!flags.isEditingEnabled) {
     return false
   }
 

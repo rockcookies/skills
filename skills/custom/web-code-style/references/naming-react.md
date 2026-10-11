@@ -16,7 +16,7 @@ JSX 靠**标识符**首字母区分组件与 HTML 标签（`<UserProfile />` vs 
 
 ## 组件
 
-- 文件名与组件函数名一致，都是 `PascalCase`。用组件引用名命名，不用 `displayName` 替代。
+- 文件名与组件函数名一致，都是 `PascalCase`。用组件引用名命名，不用 `displayName` 替代。含约定缩写的组件按 `naming-core.md` 保留规范大小写：`URLParser.tsx` → `function URLParser()`。
 - 一个文件一个主组件；小组件可共文件，前提是同一概念且体量小（见 `style-ui.md`）。
 
 ## Props
@@ -24,6 +24,7 @@ JSX 靠**标识符**首字母区分组件与 HTML 标签（`<UserProfile />` vs 
 - 普通 prop：`camelCase`（`userName`、`phoneNumber`）。
 - 值为 React 组件的 prop：`PascalCase`（`HeaderComponent={DialogHeader}`）。
 - 布尔 prop：`is`/`has`/`can` 前缀（`isDisabled`、`hasError`、`canSubmit`）。
+- 平台契约 prop（转发的 HTML/DOM 属性，如 `disabled`、`className`）保留原名；布尔前缀只约束自有 API。
 - Props 类型：`ComponentNameProps`（`PaymentFormProps`）。
 
 ```tsx
@@ -37,7 +38,7 @@ JSX 靠**标识符**首字母区分组件与 HTML 标签（`<UserProfile />` vs 
 
 ## 事件 prop 与处理器
 
-- 回调 prop：`on` + 动作（`onSave`、`onUserSelect`、`onClose`）。
+- 自定义回调 prop：`on` + 动作（`onSave`、`onUserSelect`、`onClose`）。传给 DOM 元素的原生事件属性（`onClick` 等）保持 React 契约名。
 - 组件内处理器优先用动作名（`saveUserData`），复杂键盘场景才用 `handleKeydown` 再分发。见 `naming-core.md`。
 
 ## Hook

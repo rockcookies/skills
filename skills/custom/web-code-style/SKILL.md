@@ -7,13 +7,13 @@ description: >-
   Not for 渲染性能与 hooks 规则（→ react-best-practices）、类型建模（→ typescript-best-practices）、
   Vue SFC（→ vue-* skills）、formatter/linter 已覆盖的机械规则。
 when_to_use: >-
-  web-code-style, 起名, 命名审查, 变量名, 文件名, 语义后缀, 组件命名, Hook, props 命名, userID, HTTPClient,
-  数字枚举, utils 抽屉, 双轨, 可读性, 风格审查, 控制流, 嵌套太深, 墙式条件, 参数过多, 函数太长,
+  web-code-style, 起名, 命名审查, 变量名, 文件名, 语义后缀, 组件命名, Hook, props 命名, userID, HTTPClient, URLParser,
+  parseURL, TTL, 数字枚举, utils 抽屉, 双轨, 可读性, 风格审查, 控制流, 嵌套太深, 墙式条件, 参数过多, 函数太长,
   JSX 堆逻辑
 user-invocable: true
 metadata:
   author: rockcookies
-  version: 3.1.0
+  version: 3.2.0
 ---
 
 **范围：** Web 全栈的 TypeScript：React（TSX）前端与 Node 服务端。命名与代码风格的通用规则适用任何层；React 专属规则（组件/Hook 文件名、props、JSX）只用于前端。类型建模与渲染性能归仓内对应技能（见「依赖」），本 skill 只规定它们怎么命名、怎么写得易读。
@@ -34,15 +34,19 @@ metadata:
 
 仓内 `AGENTS.md`、本地约定、相邻文件的现状，优先于本 skill。拿不准时保持文件内、仓内一致，不要为了套规则而重命名整个模块。
 
-仓内 formatter / linter（Biome、`@antfu/eslint-config`、oxlint 等，以仓内实际配置为准）已强制的规则，以工具为准，审查时不重复提，本 skill 也不写死规则名。行宽、引号、分号、缩进、`else` after `return` 这类机械规则归工具。某类问题反复出现而工具没管，先在仓内工具里补规则，不要往本 skill 里加文字。若仓的工具强制全大写缩写（`HTTPClient`），跟仓。示例代码的格式不代表规定。
+仓内 formatter / linter（Biome、`@antfu/eslint-config`、oxlint 等，以仓内实际配置为准）已强制的规则，以工具为准，审查时不重复提，本 skill 也不写死规则名。行宽、引号、分号、缩进、`else` after `return` 这类机械规则归工具。某类问题反复出现而工具没管，先在仓内工具里补规则，不要往本 skill 里加文字。本 skill 默认保留缩写规范大小写（`HTTPClient`、`parseURL`）；仓的工具或现有约定强制词形拼写（`HttpClient`）时，跟仓。示例代码的格式不代表规定。
+
+框架、平台与第三方库的固定 API 名称（React 的 `onClick`、`disabled`，`URLSearchParams` 等）与框架保留的文件名不受本 skill 的重命名约束；第三方对象的字段在边界处转换成内部命名。
 
 ## 模式
 
 - **Coding**：写新代码时按速查表与对应 references 组织。
-- **Review**：只找工具抓不到的问题：布尔裸名、`handleClick`、`utils`、数字枚举当真实零值、概念名不一致、文件命名与仓约定不符，以及过深嵌套、墙式条件、单调用者包装、JSX 里求值、复述型注释。按「审查输出」汇报。
+- **Review**：只找工具抓不到的问题：布尔裸名、`handleClick`、`utils`、数字枚举当真实零值、概念名不一致、文件命名与仓约定不符，以及过深嵌套、墙式条件、单调用者包装、JSX 里的复杂表达式、复述型注释。按「审查输出」汇报。
 - **Audit**：全库审查按关注点分组（命名、控制流与函数、UI 与 JSX、文件组织、注释），可并行扫描后合并去重。
 
-## 速查表（命名的唯一规则来源）
+## 速查表（命名摘要）
+
+速查表是摘要，不是独立的规则源。通用命名由 `references/naming-core.md` 定义，文件命名由 `references/naming-files.md` 定义，React 专属命名由 `references/naming-react.md` 定义。速查表与各 reference 保持一致，不得产生额外或相反的规则；修改规则先改 reference，再同步本表。
 
 | 元素 | 约定 | ✓ | ✗ |
 |------|------|---|---|
@@ -52,7 +56,7 @@ metadata:
 | 类内私有字段 | `#camelCase`；仓已用 `private` 关键字则跟仓 | `#token` | `_token` |
 | 布尔变量/参数/字段/prop | `is`/`has`/`can`/`should` 前缀 | `isReady` | `active` |
 | 类型守卫（`x is T`） | `isX` / `hasX` | `isUser` | `checkUser` |
-| 缩写 | 当普通词 | `HttpClient`、`parseUrl`、`userId` | `HTTPClient`、`parseURL`、`userID` |
+| 缩写 | 保留规范大小写，词典见 `naming-core.md` | `URLParser`、`parseURL`、`userID` | `UrlParser`、`parseUrl`、`userId` |
 | 工厂函数 | `create*` | `createLogger` | `newLogger` |
 | 泛型参数 | 简单用 `T`，复杂用 `TPascalCase` | `T`、`TKey` | |
 | 判别联合的判别字段 | `kind`，值为小写短词 | `{ kind: 'saving' }` | `{ type: 'SAVING' }` |
@@ -60,7 +64,7 @@ metadata:
 | 事件处理器 | 按**动作**命名 | `saveUserData` | `handleClick` |
 | 文件名结构 | `concept[.role].ext`；`-` 分隔概念单词，`.` 分隔语义角色 | `create-user.command.ts` | `create-user-command.ts` |
 | 非组件模块文件 | `kebab-case` + 可选角色点后缀 | `user.api.ts`、`format-date.ts` | `user-api.ts`、`utils.ts` |
-| 业务概念 | 全库一个词 | `user` | `user`/`account`/`person` 混用 |
+| 业务概念 | 同一领域边界内一个词 | `user` 全库统一 | 同一上下文 `user`/`account`/`person` 混用 |
 
 React 专属的文件名、props、测试后缀等见对应 references，这里不重复。
 
