@@ -1,16 +1,21 @@
-import type { AgentMapping, RepositoryConfig, SkillMapping } from '../types'
-import type { AgentContext, SkillContext } from './context'
+import type { AgentMapping, RepositoryConfig, RuleMapping, SkillMapping } from '../types'
+import type { AgentContext, RuleContext, SkillContext } from './context'
 
 import { setFrontmatterName } from './frontmatter'
-import { getAgentTransform, getSkillTransform } from './registry'
+import { getAgentTransform, getRuleTransform, getSkillTransform } from './registry'
 
 /** repo 策略先于 mapping 策略。 */
 export function resolveTransformNames(
   repo: RepositoryConfig,
-  kind: 'skill' | 'agent',
-  mapping: SkillMapping | AgentMapping,
+  kind: 'skill' | 'agent' | 'rule',
+  mapping: SkillMapping | AgentMapping | RuleMapping,
 ): string[] {
-  const repoNames = kind === 'skill' ? (repo.transforms?.skills ?? []) : (repo.transforms?.agents ?? [])
+  const repoNames =
+    kind === 'skill'
+      ? (repo.transforms?.skills ?? [])
+      : kind === 'agent'
+        ? (repo.transforms?.agents ?? [])
+        : (repo.transforms?.rules ?? [])
   return [...repoNames, ...(mapping.transforms ?? [])]
 }
 
@@ -30,4 +35,11 @@ export function runAgentPipeline(ctx: AgentContext, names: string[]): void {
     getAgentTransform(name)(ctx)
   }
   ctx.content = setFrontmatterName(ctx.content, ctx.name)
+}
+
+/** rule 只跑具名变换；正文必须原样，不注入 frontmatter。 */
+export function runRulePipeline(ctx: RuleContext, names: string[]): void {
+  for (const name of names) {
+    getRuleTransform(name)(ctx)
+  }
 }

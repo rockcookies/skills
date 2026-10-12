@@ -11,5 +11,12 @@ export interface AgentContext {
   content: string
 }
 
+/** rule：单文件 markdown，与 agent 同形，但不注入 frontmatter。 */
+export interface RuleContext {
+  name: string
+  content: string
+}
+
 export type SkillTransform = (ctx: SkillContext) => void
 export type AgentTransform = (ctx: AgentContext) => void
+export type RuleTransform = (ctx: RuleContext) => void

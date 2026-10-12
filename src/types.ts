@@ -1,4 +1,4 @@
-export type SourceKind = 'skill' | 'agent' // 以后可加 command，不必重写流水线
+export type SourceKind = 'skill' | 'agent' | 'rule' // 以后可加 command，不必重写流水线
 
 /**
  * 单个技能映射配置
@@ -42,9 +42,31 @@ export interface AgentMapping {
   transforms?: string[]
 }
 
+/**
+ * 单个 rule 映射配置（rule 单文件 .md，正文原样拷贝，不注入 frontmatter）
+ */
+export interface RuleMapping {
+  /**
+   * 源 rule .md 路径，相对于仓库根目录
+   * - './rules/anti-patterns.md'
+   */
+  source: string
+
+  /**
+   * 目标 rule 名称，输出到 rules/{repoKey}/{name}.md
+   */
+  name: string
+
+  /**
+   * 只叠在 rule mapping 上的具名变换
+   */
+  transforms?: string[]
+}
+
 export interface RepositoryTransforms {
   skills?: string[]
   agents?: string[]
+  rules?: string[]
 }
 
 export interface RepositoryConfig {
@@ -55,6 +77,7 @@ export interface RepositoryConfig {
   transforms?: RepositoryTransforms
   skills?: SkillMapping[]
   agents?: AgentMapping[]
+  rules?: RuleMapping[]
 }
 
 export interface SyncManifestItem {

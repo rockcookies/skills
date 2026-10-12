@@ -4,10 +4,17 @@ import { mkdir, readdir, readFile, rm, writeFile } from 'node:fs/promises'
 import { basename, dirname, join } from 'node:path'
 import { simpleGit } from 'simple-git'
 
-import type { AgentContext, SkillContext } from '../transforms/context'
-import type { AgentMapping, RepositoryConfig, SkillMapping, SyncManifest, SyncManifestItem } from '../types'
+import type { AgentContext, RuleContext, SkillContext } from '../transforms/context'
+import type {
+  AgentMapping,
+  RepositoryConfig,
+  RuleMapping,
+  SkillMapping,
+  SyncManifest,
+  SyncManifestItem,
+} from '../types'
 
-import { resolveTransformNames, runAgentPipeline, runSkillPipeline } from '../transforms/pipeline'
+import { resolveTransformNames, runAgentPipeline, runRulePipeline, runSkillPipeline } from '../transforms/pipeline'
 import { digestFile, digestTree, sha256 } from '../utils/digest'
 import { emptyDir, ensureDir, pathExists } from '../utils/fs'
 import { listFilesRecursive } from '../utils/list-files'
@@ -79,14 +86,15 @@ export class UpstreamService {
 
   /**
    * 重写当前 mapping 的 dest。
-   * force：额外删除该 repo 下已不在 mapping 里的 orphan skill 目录 / agent .md。
+   * force：额外删除该 repo 下已不在 mapping 里的 orphan skill 目录 / agent .md / rule .md。
    */
   async syncUpstream(upstreamName: string, config: RepositoryConfig, force: boolean = false): Promise<void> {
     const skills = config.skills ?? []
     const agents = config.agents ?? []
+    const rules = config.rules ?? []
 
-    if (!skills.length && !agents.length) {
-      p.log.warn(`No skills or agents configured for ${upstreamName}, skipping sync`)
+    if (!skills.length && !agents.length && !rules.length) {
+      p.log.warn(`No skills, agents or rules configured for ${upstreamName}, skipping sync`)
       return
     }
 
@@ -95,7 +103,7 @@ export class UpstreamService {
       throw new Error(`Upstream repository not found: ${upstreamName}`)
     }
 
-    await this.preflight(upstreamName, repoRoot, skills, agents)
+    await this.preflight(upstreamName, repoRoot, skills, agents, rules)
 
     const { sha, committedAt } = await this.getUpstreamCommit(upstreamName)
 
@@ -105,6 +113,10 @@ export class UpstreamService {
 
     if (agents.length) {
       await this.syncAgentsKind(upstreamName, repoRoot, config, agents, sha, committedAt, force)
+    }
+
+    if (rules.length) {
+      await this.syncRulesKind(upstreamName, repoRoot, config, rules, sha, committedAt, force)
     }
   }
 
@@ -193,6 +205,49 @@ export class UpstreamService {
     }
   }
 
+  private async syncRulesKind(
+    upstreamName: string,
+    repoRoot: string,
+    config: RepositoryConfig,
+    rules: RuleMapping[],
+    sha: string,
+    committedAt: string,
+    force: boolean,
+  ): Promise<void> {
+    const rulesRoot = join(this.root, 'rules', upstreamName)
+    await ensureDir(rulesRoot)
+    const items: SyncManifestItem[] = []
+
+    for (const mapping of rules) {
+      const ctx = await this.loadRuleContext(repoRoot, mapping)
+      const names = resolveTransformNames(config, 'rule', mapping)
+      runRulePipeline(ctx, names)
+      const destPath = join(rulesRoot, `${mapping.name}.md`)
+      await writeFile(destPath, ctx.content)
+      items.push({ name: mapping.name, digest: await digestFile(destPath) })
+      p.log.success(`✓ Synced rule '${mapping.name}' from ${upstreamName}`)
+    }
+
+    if (force) {
+      await this.removeOrphanRules(rulesRoot, new Set(rules.map((mapping) => mapping.name)), upstreamName)
+    }
+    await this.writeSyncJSON(rulesRoot, sha, committedAt, items)
+    p.log.success(`✓ Wrote rules SYNC.json for ${upstreamName} (SHA: ${sha.substring(0, 7)})`)
+  }
+
+  private async removeOrphanRules(
+    rulesRoot: string,
+    mapped: ReadonlySet<string>,
+    upstreamName: string,
+  ): Promise<void> {
+    const entries = await readdir(rulesRoot, { withFileTypes: true })
+    const fileNames = entries.filter((entry) => entry.isFile()).map((entry) => entry.name)
+    for (const name of orphanAgentNames(fileNames, mapped)) {
+      await rm(join(rulesRoot, `${name}.md`), { force: true })
+      p.log.warn(`✗ Removed orphan rule '${name}' from ${upstreamName}`)
+    }
+  }
+
   private async removeOrphanAgents(
     agentsRoot: string,
     mapped: ReadonlySet<string>,
@@ -225,6 +280,11 @@ export class UpstreamService {
     return { name: mapping.name, content }
   }
 
+  private async loadRuleContext(repoRoot: string, mapping: RuleMapping): Promise<RuleContext> {
+    const content = await readFile(join(repoRoot, mapping.source), 'utf-8')
+    return { name: mapping.name, content }
+  }
+
   private async writeSkillFiles(destDir: string, files: Map<string, Buffer>): Promise<void> {
     for (const [rel, content] of files) {
       const destPath = join(destDir, rel)
@@ -238,6 +298,7 @@ export class UpstreamService {
     repoRoot: string,
     skills: SkillMapping[],
     agents: AgentMapping[],
+    rules: RuleMapping[],
   ): Promise<void> {
     const missing: string[] = []
     for (const mapping of skills) {
@@ -250,6 +311,12 @@ export class UpstreamService {
       const sourcePath = join(repoRoot, mapping.source)
       if (!(await pathExists(sourcePath))) {
         missing.push(`agent ${mapping.name}: ${sourcePath}`)
+      }
+    }
+    for (const mapping of rules) {
+      const sourcePath = join(repoRoot, mapping.source)
+      if (!(await pathExists(sourcePath))) {
+        missing.push(`rule ${mapping.name}: ${sourcePath}`)
       }
     }
     if (missing.length > 0) {

@@ -1,4 +1,4 @@
-import type { AgentTransform, SkillTransform } from './context'
+import type { AgentTransform, RuleTransform, SkillTransform } from './context'
 
 import { excludeGenerationMd } from './skill/exclude-generation-md'
 import { excludeLicenseTxt } from './skill/exclude-license-txt'
@@ -16,6 +16,9 @@ export const skillTransforms: Record<string, SkillTransform> = {
 /** agent 表今天为空；挂 skill 名到 agent 会抛错。 */
 export const agentTransforms: Record<string, AgentTransform> = {}
 
+/** rule 表今天为空；rule 正文原样拷贝，不为其发明变换。 */
+export const ruleTransforms: Record<string, RuleTransform> = {}
+
 export function getSkillTransform(name: string): SkillTransform {
   const transform = skillTransforms[name]
   if (!transform) {
@@ -28,6 +31,14 @@ export function getAgentTransform(name: string): AgentTransform {
   const transform = agentTransforms[name]
   if (!transform) {
     throw new Error(`Unknown agent transform: ${name}`)
+  }
+  return transform
+}
+
+export function getRuleTransform(name: string): RuleTransform {
+  const transform = ruleTransforms[name]
+  if (!transform) {
+    throw new Error(`Unknown rule transform: ${name}`)
   }
   return transform
 }
