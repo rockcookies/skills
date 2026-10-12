@@ -234,6 +234,13 @@ export const repositories: Record<string, RepositoryConfig> = {
       { name: 'think', source: './skills/think/SKILL.md' },
       { name: 'write', source: './skills/write/SKILL.md' },
     ],
+    rules: [
+      { name: 'anti-patterns', source: './rules/anti-patterns.md' },
+      { name: 'chinese', source: './rules/chinese.md' },
+      { name: 'durable-context', source: './rules/durable-context.md' },
+      { name: 'english', source: './rules/english.md' },
+      { name: 'waza-routing', source: './rules/waza-routing.md' },
+    ],
   },
   'tw93-kami': {
     url: 'https://github.com/tw93/Kami',
