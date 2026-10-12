@@ -2,7 +2,7 @@
 
 A curated collection of [Agent Skills](https://agentskills.io/home) and Cursor plugin agents for full-stack development, synced from upstream repositories via a CLI tool.
 
-Synced skills live at `skills/{repoKey}/{name}/`. Hand-maintained skills live under `skills/custom/`. Synced agents live at `agents/{repoKey}/{name}.md`. Repository sources and mappings are configured in [meta.ts](meta.ts). After sync, each repo writes `SYNC.json` with upstream commit identity and per-item content digests.
+Synced skills live at `skills/{repoKey}/{name}/`. Hand-maintained skills live under `skills/custom/`. Synced agents live at `agents/{repoKey}/{name}.md`. Synced rules live at `rules/{repoKey}/{name}.md` — sync products copied verbatim from upstream; `npx skills add` does not install them. Repository sources and mappings are configured in [meta.ts](meta.ts). After sync, each repo writes `SYNC.json` with upstream commit identity and per-item content digests.
 
 ## Installation
 
@@ -637,7 +637,7 @@ Paired with the `impeccable` skill. The skill's build flow spawns these by `name
 This project uses an interactive CLI (`pnpm cli`) to manage upstream skill repositories:
 
 1. **Manage upstream repositories** — Clone or update external git repositories into `upstream/`
-2. **Sync skills** — Update upstream repos, then copy mapped skills into `skills/{repoKey}/{target}/` and mapped agents into `agents/{repoKey}/{target}.md`
+2. **Sync skills** — Update upstream repos, then copy mapped skills into `skills/{repoKey}/{target}/`, mapped agents into `agents/{repoKey}/{target}.md`, and mapped rules into `rules/{repoKey}/{target}.md`
 3. **Cleanup** — Remove orphaned upstream repositories
 
 Repository sources and mappings live in [meta.ts](meta.ts). Pins:
