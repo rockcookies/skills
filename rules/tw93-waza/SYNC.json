@@ -1,0 +1,28 @@
+{
+  "upstream_committed_sha": "d2afa1a1edeba1ca94366ccf9b26bd272ec997fc",
+  "upstream_committed_at": "2026-10-06T17:44:38+08:00",
+  "items_digest": "sha256:7faa390a9526cdb7d8d854feed1bffb99292a673338bd7db8f8bc2f8b2e59984",
+  "items_changed_at": "2026-10-12T01:40:13.875Z",
+  "items": [
+    {
+      "name": "anti-patterns",
+      "digest": "sha256:3c79ac761f158eda6b36abd44b204c943639ef4bf2fbc77d354c20553a8b3267"
+    },
+    {
+      "name": "chinese",
+      "digest": "sha256:9ee0053371ab483787b02ced18eeffb69e1509939fbfb2e0183df968f1462323"
+    },
+    {
+      "name": "durable-context",
+      "digest": "sha256:c2308bdca7cd0d3f587d70c91cbc24b0574f235ea714b5098ccd31d450115bfc"
+    },
+    {
+      "name": "english",
+      "digest": "sha256:1284e6fa15ecb7bf61ef5768fa3f2d642880f52e61fbc7c4d89c332761cd1cdb"
+    },
+    {
+      "name": "waza-routing",
+      "digest": "sha256:2db3c369d2129bb2a7194eee75851dcd71a5e876788ed024c951e131611dd9e4"
+    }
+  ]
+}
