@@ -1,8 +1,8 @@
 {
-  "upstream_committed_sha": "ccb5507cec1546dc88135c1139c811e6c59115ba",
-  "upstream_committed_at": "2026-10-07T17:45:14-07:00",
-  "items_digest": "sha256:c53bcbcc64311776d873a235f1b1750e99583f40a6d5bcadf88d973ba642a06e",
-  "items_changed_at": "2026-10-08T01:35:59.631Z",
+  "upstream_committed_sha": "11713c683fe4add4fd403ea880580abbc9e0875f",
+  "upstream_committed_at": "2026-10-11T10:14:38+02:00",
+  "items_digest": "sha256:127ab0497df54acf4118fdea22bca60edd1f6d4a93b332c22b15d5c6726ed880",
+  "items_changed_at": "2026-10-12T02:00:53.261Z",
   "items": [
     {
       "name": "boundary-discipline",
@@ -10,11 +10,11 @@
     },
     {
       "name": "build-the-lever",
-      "digest": "sha256:d1cd0656bc9182d573d18b785fc73441189463d961db4b5cc93bf671c5d6152b"
+      "digest": "sha256:a2bd2b41ef05633312a4a9d63cce7c1873818b327625d13b9724d6229bb67c11"
     },
     {
       "name": "encode-lessons-in-structure",
-      "digest": "sha256:236bc3d1e03e04af8043fe81c6ab656af5375a5b2fcea9f74feb1e2de3b6878a"
+      "digest": "sha256:89ffec781d49161f04fb123a616559a3d59cf0798a24cb64d26dc9555421bc69"
     },
     {
       "name": "exhaust-the-design-space",
@@ -30,7 +30,7 @@
     },
     {
       "name": "how",
-      "digest": "sha256:2f52e097969af722ea0f32f69c31232ea4bd6b9fea833f10cf0a00d4c7b3dcb5"
+      "digest": "sha256:eed445943e972cffe795ea521d2f59b26e20a3aa0a89ea9c2c04ba559f53a1da"
     },
     {
       "name": "laziness-protocol",
@@ -54,7 +54,7 @@
     },
     {
       "name": "redesign-from-first-principles",
-      "digest": "sha256:02f7804b255111855af81572e3cdf2bdead3077dc3d60e561c4a3b2b152f6c4d"
+      "digest": "sha256:364a481e1fda992ec3eb7a823e56864f8e44af4c3756b66464801a392dc6e906"
     },
     {
       "name": "separate-before-serializing-shared-state",
@@ -66,11 +66,11 @@
     },
     {
       "name": "subtract-before-you-add",
-      "digest": "sha256:e5ef2bd15adf79d154e2b3e4e953205d98878a47880377ed197f9b9c638bb49b"
+      "digest": "sha256:90559c9315bf37ab8ab6dcf2561e1e4a6663e623b52eb5a5409ca6e289d7ecf2"
     },
     {
       "name": "technical-writing",
-      "digest": "sha256:76139beb9f02dddda1f7b64d0c3b989ba129f8df6e609efb64880e1bba0a279e"
+      "digest": "sha256:bf08e9ed388e562841a10ca9ab3fb2830178d54760fd52e31ab65a7de32e1ebe"
     },
     {
       "name": "thermo-nuclear-code-quality-review",
@@ -86,7 +86,7 @@
     },
     {
       "name": "type-system-discipline",
-      "digest": "sha256:6aa78bba87bfa94bdbdc21aca9f981e7d016da42eeb861d30b2fddf1b84bcec0"
+      "digest": "sha256:21f598a1ff6a2b697fa8200e620f79b463dfc07ee03caafac20c98384f2de950"
     },
     {
       "name": "typescript-best-practices",
@@ -94,11 +94,11 @@
     },
     {
       "name": "unslop",
-      "digest": "sha256:1f0556b68df9c971db7390c91b1d9103c0103eef4fa495c5a135e297ec90bf00"
+      "digest": "sha256:b9800c95bd5484db9100bf86dc666b97f7a57eff074948acf1bf63693481a8c1"
     },
     {
       "name": "why",
-      "digest": "sha256:307b34dc7f532c7bd8e098c00fbbb31529d2cf38fe8c584e51711b53b5810c27"
+      "digest": "sha256:ffe6b55a8a07bd60ae70b9ced83d53d2224e60193088ff5f82c7bb01ba9f7070"
     }
   ]
 }
