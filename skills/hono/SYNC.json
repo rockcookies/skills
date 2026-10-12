@@ -1,16 +1,16 @@
 {
-  "upstream_committed_sha": "8b1938be37331c68a02c3b75896b2ea3839d7d09",
-  "upstream_committed_at": "2026-09-20T18:25:41+09:00",
-  "items_digest": "sha256:9a1bddd68c71ff8404646bcd396425c21fd0fe14f305cd867a55decba90bbd71",
-  "items_changed_at": "2026-10-03T02:06:50.913Z",
+  "upstream_committed_sha": "f8ecd013542968e4e00d5615594ddf6455bd857a",
+  "upstream_committed_at": "2026-10-10T22:47:19+09:00",
+  "items_digest": "sha256:f6a92033b9a48f34f5ae579aaed9b8ff206cb7a7d9a97df70d51e7f1c1af9ad9",
+  "items_changed_at": "2026-10-12T02:00:50.199Z",
   "items": [
     {
       "name": "hono",
-      "digest": "sha256:937d527c0be84a4be489d97675cdf98ca91637bd5ff4c460eae3bedf11f017e1"
+      "digest": "sha256:1b8879d02be00af89a0063d5588fd7d12bb0530b8a9469c2fa0af04ee944d598"
     },
     {
       "name": "hono-jsx",
-      "digest": "sha256:43dd6172ec6f771a7a16c751c29074fbcb2946d50afcb2dfb020da5bd9e9f26c"
+      "digest": "sha256:9bf952512790c2ee541ea45a718b32408d0190ae56083c1a9be7100a6cc3b669"
     }
   ]
 }
