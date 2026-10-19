@@ -1,72 +1,120 @@
 {
-  "upstream_committed_sha": "11713c683fe4add4fd403ea880580abbc9e0875f",
-  "upstream_committed_at": "2026-10-11T10:14:38+02:00",
-  "items_digest": "sha256:127ab0497df54acf4118fdea22bca60edd1f6d4a93b332c22b15d5c6726ed880",
-  "items_changed_at": "2026-10-12T02:00:53.261Z",
+  "upstream_committed_sha": "8838150c6b4829ea3c01782631213776d86df14a",
+  "upstream_committed_at": "2026-10-18T17:02:08-07:00",
+  "items_digest": "sha256:e35ac85f3dbcd1b08f6e01ea64223674fc48173f3d27b020c9b96cc6084afd90",
+  "items_changed_at": "2026-10-19T02:33:02.274Z",
   "items": [
     {
-      "name": "boundary-discipline",
-      "digest": "sha256:89da97ec23f5627f58b142da9de177291058e194d2f978ce9e91dcf31278bbd7"
-    },
-    {
-      "name": "build-the-lever",
-      "digest": "sha256:a2bd2b41ef05633312a4a9d63cce7c1873818b327625d13b9724d6229bb67c11"
-    },
-    {
-      "name": "encode-lessons-in-structure",
-      "digest": "sha256:89ffec781d49161f04fb123a616559a3d59cf0798a24cb64d26dc9555421bc69"
-    },
-    {
-      "name": "exhaust-the-design-space",
-      "digest": "sha256:15684dbe25acc74b7baf9167a8012a2881a9b471b3fc1a2c26b365bfa26fda84"
-    },
-    {
-      "name": "fix-root-causes",
-      "digest": "sha256:6cde559c9a1802760f404c6f90061a97e6ca174321f7ce82a5529268642feecc"
-    },
-    {
-      "name": "foundational-thinking",
-      "digest": "sha256:eb6aae0aa625be28180007a201d6d4986e53890ad6326ef71bfad5e3d29fec53"
+      "name": "benchmark-checklist",
+      "digest": "sha256:abeefb4b42e29d5e2b420dc3d0740da401c40baab32a3a9b7dd2a6962848ef57"
     },
     {
       "name": "how",
-      "digest": "sha256:eed445943e972cffe795ea521d2f59b26e20a3aa0a89ea9c2c04ba559f53a1da"
+      "digest": "sha256:7338e5a8ea65a952615ef05fad2a3fe2b9b90047ede8cfaa6d30b4f30ab2933c"
     },
     {
-      "name": "laziness-protocol",
-      "digest": "sha256:c24536fce00aab685820b3e2dd4230a78830be32061ae71dd88511528b00edb0"
+      "name": "principle-attack-the-premise",
+      "digest": "sha256:e32564b333cb99b2c7e960b857063389c14d411d865cf8aea0df9d1d2277edf6"
     },
     {
-      "name": "migrate-callers-then-delete-legacy-apis",
-      "digest": "sha256:c1319cd81c0536287e22e7e24f416fa6033b05aca239a83c252d614d0017e11a"
+      "name": "principle-boundary-discipline",
+      "digest": "sha256:6a672fa162f0831bde9d18d566261efd384f275f2ead838726205fdb7633dd5b"
     },
     {
-      "name": "outcome-oriented-execution",
-      "digest": "sha256:1b1486d78691c0439a8960b5dd1902651da4c9fa821f452409f4d217b2677cba"
+      "name": "principle-build-the-lever",
+      "digest": "sha256:c1eb940c262facfff94da7b7adef5e45fc65b11f4930bdb4408b3c524f8bf846"
     },
     {
-      "name": "prove-it-works",
-      "digest": "sha256:691283bf24406dacfa37057b91858031bf26f58622d00ad9020f71f8151d88b1"
+      "name": "principle-encode-lessons-in-structure",
+      "digest": "sha256:a101a28ca4b8dcb103c96c0e12abcf67ba17532544890dc30e0025cc3cefd8b1"
+    },
+    {
+      "name": "principle-exhaust-the-design-space",
+      "digest": "sha256:eba7b9e008f6f4b4556fd8d15e6909b191b0ad25e98551843c36bdaaa2c68fbc"
+    },
+    {
+      "name": "principle-experience-first",
+      "digest": "sha256:6d516dfe59276a4ecde24a3e6c1c6bbf112f43b5136a67b4229fc55fdd544897"
+    },
+    {
+      "name": "principle-explain-the-number",
+      "digest": "sha256:263c288b72d38b60da860a1a667b06e7862204f865d95fb49910e8f592ca70b6"
+    },
+    {
+      "name": "principle-fix-root-causes",
+      "digest": "sha256:de29d84d51051fbf9e802702fa270249050379a3f6c69bef91766e3726cd0655"
+    },
+    {
+      "name": "principle-foundational-thinking",
+      "digest": "sha256:0fb2b6ce26d6eeb05baf81a308e60f7950b1f51b201d7b82976186781d43ae15"
+    },
+    {
+      "name": "principle-guard-the-context-window",
+      "digest": "sha256:4b6f2cdfe7e294159f793891ebb158d8bfb93ae458e97ae9458e0d7722bfe3dd"
+    },
+    {
+      "name": "principle-laziness-protocol",
+      "digest": "sha256:acec2e7720dcdcddcf947b191c695b2e501f9436a61de6e2102654a4838e95d8"
+    },
+    {
+      "name": "principle-make-operations-idempotent",
+      "digest": "sha256:b11cc96fb7cf94135673893f62a15559972b92e0651cdf47607656b6789846a9"
+    },
+    {
+      "name": "principle-migrate-callers-then-delete-legacy-apis",
+      "digest": "sha256:232e698e4f37be35d8509866f80c2ac21323ef484008f599dd6b1d4916b81ce2"
+    },
+    {
+      "name": "principle-minimize-reader-load",
+      "digest": "sha256:6b7f031b315793d6db5f240726889ec10e262882e25c146dfaff28bc137f956e"
+    },
+    {
+      "name": "principle-model-the-domain",
+      "digest": "sha256:d7018ed85c7334307eb13c01578e370e0fa9a82462875b526b80cb32fe475b84"
+    },
+    {
+      "name": "principle-never-block-on-the-human",
+      "digest": "sha256:e388c09448467fe7aa5d392bb89fb22e955e98e9581e97b91adc24b77af0f133"
+    },
+    {
+      "name": "principle-outcome-oriented-execution",
+      "digest": "sha256:f4d2acfb2eddb338aa0859d5a18636209a78cba57ddf73cbe7b6a6ef38641eaf"
+    },
+    {
+      "name": "principle-prove-it-works",
+      "digest": "sha256:ec4f37f75fa893ae325e66dd7f447e854f805cdfaa6635840303cbef73334eb5"
+    },
+    {
+      "name": "principle-redesign-from-first-principles",
+      "digest": "sha256:e4f13d6bf5a21528b7c3aa056325e9c58a785146abdd92499294458924cd1bba"
+    },
+    {
+      "name": "principle-separate-before-serializing-shared-state",
+      "digest": "sha256:34ae5ac1c1fa91a3630168fae112262a9dbd6e0c696680d2ef5f0fdcbc41101a"
+    },
+    {
+      "name": "principle-sequence-verifiable-units",
+      "digest": "sha256:6a4c79ab4ec6c50a685cd045a1a2e1e13a6fa24066f7092870acc7335c7b4b41"
+    },
+    {
+      "name": "principle-subtract-before-you-add",
+      "digest": "sha256:15f4c6f8da52c7069d5fe8d700824bc5f0a235c3763996057b31999f557c9635"
+    },
+    {
+      "name": "principle-test-behavior-not-implementation",
+      "digest": "sha256:359b499af5e1c0121915d6f213811e7186c3fe0538806acb4e575eadf2266759"
+    },
+    {
+      "name": "principle-type-system-discipline",
+      "digest": "sha256:3157a1175bd7ee80d2f47d67c4c606b92ae398f6eee8ba5dffe5ef73ec3dc7e9"
     },
     {
       "name": "pstack-tdd",
       "digest": "sha256:4097bc9875fb4474bd755bd30a58020cb8537877ffbe06efb0a1b18cfacb17cd"
     },
     {
-      "name": "redesign-from-first-principles",
-      "digest": "sha256:364a481e1fda992ec3eb7a823e56864f8e44af4c3756b66464801a392dc6e906"
-    },
-    {
-      "name": "separate-before-serializing-shared-state",
-      "digest": "sha256:987b226ab9788071a7103f241428c29fea1237554f21f8590b47d5161e1a38ea"
-    },
-    {
       "name": "show-me-your-work",
-      "digest": "sha256:45d3181c71aa60259e5dfab064623b4692c89b26a82ae846a432f2ad4cb3596a"
-    },
-    {
-      "name": "subtract-before-you-add",
-      "digest": "sha256:90559c9315bf37ab8ab6dcf2561e1e4a6663e623b52eb5a5409ca6e289d7ecf2"
+      "digest": "sha256:86439037ccd5b919a3713b567584ba3ca2202d2d1788a191d4c496a59c2d9ca2"
     },
     {
       "name": "technical-writing",
@@ -85,20 +133,16 @@
       "digest": "sha256:825696eaa95b5c66b8f5b45d03547bbbe89add91957ca430b57d5df4ec6c41a1"
     },
     {
-      "name": "type-system-discipline",
-      "digest": "sha256:21f598a1ff6a2b697fa8200e620f79b463dfc07ee03caafac20c98384f2de950"
-    },
-    {
       "name": "typescript-best-practices",
-      "digest": "sha256:6b582538aeccb2e023bf60f13ab454d0fb9e7c21660b04462386ddcdee83f56e"
+      "digest": "sha256:c5cc65fa6de199dbcb333a000d98e7af940847355f6f9886ed822ec3b7ee38c9"
     },
     {
       "name": "unslop",
-      "digest": "sha256:b9800c95bd5484db9100bf86dc666b97f7a57eff074948acf1bf63693481a8c1"
+      "digest": "sha256:342ca2c99287f9e58e9ee3070d15c43e746d4e8487203df03e0060462a15de69"
     },
     {
       "name": "why",
-      "digest": "sha256:ffe6b55a8a07bd60ae70b9ced83d53d2224e60193088ff5f82c7bb01ba9f7070"
+      "digest": "sha256:deea5b19fe6995580ec5fa36e995c97a734a0c93bd3a2834e7041fa8a93fb54c"
     }
   ]
 }

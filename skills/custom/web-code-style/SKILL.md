@@ -84,5 +84,5 @@ React 专属的文件名、props、测试后缀等见对应 references，这里�
 
 - `web-zustand/references/slice-organization.md` — Zustand 的 `*.store.ts` 等 store 文件后缀与目录布局。涉及 Zustand store/slice 文件命名时先读。
 - `typescript-best-practices/references/patterns.md` — 判别联合/branded type 是否该用、`as` 与类型守卫的正确性。涉及类型建模判断时先读。
-- `type-system-discipline/SKILL.md` — 类型建模原则，上一条的依据。涉及「怎么建模」而非「怎么命名」时先读。
+- `principle-type-system-discipline/SKILL.md` — 类型建模原则，上一条的依据。涉及「怎么建模」而非「怎么命名」时先读。
 - `react-best-practices/SKILL.md` — 渲染性能、hooks 依赖与订阅。涉及 React 渲染行为时先读。

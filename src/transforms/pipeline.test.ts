@@ -14,12 +14,12 @@ test('resolveTransformNames puts repo names before mapping names', () => {
   const mapping: SkillMapping = {
     name: 'x',
     source: './skills/x/SKILL.md',
-    transforms: ['strip-principle-prefix'],
+    transforms: ['exclude-generation-md'],
   }
   expect(resolveTransformNames(repo, 'skill', mapping)).toEqual([
     'strip-samber',
     'exclude-license-txt',
-    'strip-principle-prefix',
+    'exclude-generation-md',
   ])
 })
 
