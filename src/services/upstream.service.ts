@@ -235,11 +235,7 @@ export class UpstreamService {
     p.log.success(`✓ Wrote rules SYNC.json for ${upstreamName} (SHA: ${sha.substring(0, 7)})`)
   }
 
-  private async removeOrphanRules(
-    rulesRoot: string,
-    mapped: ReadonlySet<string>,
-    upstreamName: string,
-  ): Promise<void> {
+  private async removeOrphanRules(rulesRoot: string, mapped: ReadonlySet<string>, upstreamName: string): Promise<void> {
     const entries = await readdir(rulesRoot, { withFileTypes: true })
     const fileNames = entries.filter((entry) => entry.isFile()).map((entry) => entry.name)
     for (const name of orphanAgentNames(fileNames, mapped)) {
