@@ -259,7 +259,7 @@ export const repositories: Record<string, RepositoryConfig> = {
   },
   'tw93-kami': {
     url: 'https://github.com/tw93/Kami',
-    tag: 'V1.17.0',
+    tag: 'V1.18.0',
     skills: [
       { name: 'kami', source: './skills/kami/SKILL.md' }
     ],
