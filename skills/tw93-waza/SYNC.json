@@ -1,16 +1,16 @@
 {
-  "upstream_committed_sha": "d2afa1a1edeba1ca94366ccf9b26bd272ec997fc",
-  "upstream_committed_at": "2026-10-06T17:44:38+08:00",
-  "items_digest": "sha256:01e78bf7ebc0c5c61ebf1b69d573afee979b2b3a4923d1c84237a7bb8a507f4f",
-  "items_changed_at": "2026-10-08T01:00:42.901Z",
+  "upstream_committed_sha": "2585ee0f46bcefd9adb1b8f5d4ce19184a4d2929",
+  "upstream_committed_at": "2026-10-15T20:52:45+08:00",
+  "items_digest": "sha256:e9204b207950b3104a87518ccaff1efb57b3b2e0932969950993ac57174a40c6",
+  "items_changed_at": "2026-10-16T08:09:29.606Z",
   "items": [
     {
       "name": "check",
-      "digest": "sha256:0f308eaa629a0dfdd601bd814e58316e5b1f7f3eecb12917eac995f62d284d52"
+      "digest": "sha256:5ad27e7d5d0870a90edd967c17e36b990d3b00a4cfa990153e3a7121eb552c35"
     },
     {
       "name": "health",
-      "digest": "sha256:7d265a5f27b181082883f3e218050d5da1395083c7bccd6a7fd4ebfac9fc05f2"
+      "digest": "sha256:6fb1cb17a285ebed8afbdec1c4680dc9392224cc5b295eb2513a2384d56dec23"
     },
     {
       "name": "hunt",
@@ -18,7 +18,7 @@
     },
     {
       "name": "learn",
-      "digest": "sha256:80ddc4b81c71dd70f3e48b80126b7e1d91ae216c46144d55d726b04c676411c5"
+      "digest": "sha256:f03bf98ddb3805306c78125e2c2e69065ad2da5ff49f7be95da8db5aabacfdbd"
     },
     {
       "name": "read",
@@ -26,7 +26,7 @@
     },
     {
       "name": "think",
-      "digest": "sha256:00aecd4ccab220b8e30651e380713c298f16b0712fdcfd8bc35a985bb2696538"
+      "digest": "sha256:e3514fdc7c45eda5641b8679ea85422bba02c0e21db18bb1b6b1a5a1b454ec23"
     },
     {
       "name": "ui",
@@ -34,7 +34,7 @@
     },
     {
       "name": "write",
-      "digest": "sha256:6ba32da7a128ea86642873a403c5c12a8a40adc0f0854f6d6fc8dadea479d157"
+      "digest": "sha256:c197d179dd1007a290d5df62d7ef0eef58a695aaf09ec2b2c23893da2cf292f2"
     }
   ]
 }

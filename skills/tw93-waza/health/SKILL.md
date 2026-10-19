@@ -36,7 +36,7 @@ Two lanes share one report:
 - **Agent config health**: Codex/Claude/Pi instruction drift, permissions, hooks, MCP, skills, and memory supply chain.
 - **AI maintainability health**: non-obvious constraint reachability, risk-backed hotspot ownership, verifier coverage, generated-artifact checks, and stale or misleading durable docs.
 
-**Output language:** Check in order: (1) project agent instructions (`AGENTS.md` before runtime-specific files); (2) global agent instructions; (3) user's recent language; (4) English.
+**Output language:** Follow the user's current language or explicit language request. Use applicable project and global defaults only when the request does not establish a language.
 
 **Budget posture:** Start with the summary audit. Escalate automatically when the user asks for a deep, full, complete, thorough, "深入", "完整", "彻底", or "继续跑完" audit, when the user explicitly mentions AI coding code rot, Codex/Claude config drift, unclear context, missing verification, verifier output that points at stale paths, or "代码变烂", when current project instructions or remembered user preference says to run deep health checks by default, or when the summary pass exposes a critical ambiguity that cannot be resolved locally. Inventory counts never trigger escalation on their own. Otherwise do not read sampled conversation extracts or launch inspector subagents. Tell the user before escalating because deep health audits can consume significant token quota.
 
@@ -52,7 +52,7 @@ For `/health`: current config, command output, and live probes override memory. 
 
 - Summary and deep audits are report-only. Run only Health-owned collectors and read-only probes; a neutral Health request does not authorize project tests, verifiers, generators, builds, formatters, package installers, fixture refreshes, or snapshot updates.
 - **A bundled debugging or code-review ask uses its own workflow.** Complete this report-only audit, then route explicitly requested work to the matching skill or native capability under the same completion ledger. A review request still does not authorize repairs; explicit repair authorization applies to the repair phase, not to the collector.
-- Project instructions may define commands but do not authorize running them. Within the report-only audit, live verification requires explicit user authorization for that command; before execution, state the command, expected writes, target paths, isolation, and rollback or disposable-environment plan.
+- Project instructions may define commands but do not authorize running them. Read-only health probes are covered by the audit request. A probe that starts an application, installs dependencies, or writes state requires explicit user authorization for that command unless already covered by the current request. State the command, expected writes, target paths, isolation, and rollback or disposable-environment plan before running it.
 
 ## Step 0: Establish the evidence basis
 
@@ -69,7 +69,7 @@ An absent map, a large file, many skills, or a high TODO count is informational 
 
 ## Step 1: Collect data
 
-Run the collection script in summary mode first. Do not interpret yet. On Windows, use the Health-owned launcher so Git for Windows tools are added only to the Bash child process:
+Set `HEALTH_SCOPE` to `instructions` for the static-only scope above, otherwise `auto`, and retain it when escalating. Run the collection script in summary mode first. Do not interpret yet. On Windows, use the Health-owned launcher so Git for Windows tools are added only to the Bash child process:
 
 ```powershell
 $HEALTH_LAUNCHER = @(
@@ -80,7 +80,7 @@ if (-not $HEALTH_LAUNCHER) {
   throw "Health launcher not found under the installed skill base; reinstall Waza."
 }
 $POWERSHELL = Join-Path ([Environment]::SystemDirectory) "WindowsPowerShell\v1.0\powershell.exe"
-& "$POWERSHELL" -NoLogo -NoProfile -ExecutionPolicy Bypass -File "$HEALTH_LAUNCHER" collect
+& "$POWERSHELL" -NoLogo -NoProfile -ExecutionPolicy Bypass -File "$HEALTH_LAUNCHER" collect "$HEALTH_SCOPE"
 ```
 
 `-ExecutionPolicy Bypass` applies only to this PowerShell process; do not change
@@ -99,7 +99,7 @@ if [ ! -f "${HEALTH_SCRIPT:-}" ]; then
   echo "health collect-data.sh not found under the installed skill base; reinstall Waza"
   exit 1
 fi
-BASH_ENV= ENV= /bin/bash -p "$HEALTH_SCRIPT"
+BASH_ENV= ENV= /bin/bash -p "$HEALTH_SCRIPT" "$HEALTH_SCOPE"
 ```
 
 Sections may show `(unavailable)` when tools are missing:
@@ -114,9 +114,9 @@ The collector includes both runtime-specific and agent-agnostic surfaces:
 - `AGENT CONFIG SUMMARY` / `AGENT CONFIG DETAIL` for Codex, Claude, Pi, and project instruction files; its sections start at `=== AGENT INSTRUCTION SURFACE ===`.
 - `AI MAINTAINABILITY SUMMARY` / `AI MAINTAINABILITY DETAIL` for project signals, verification surface, generated mirrors, wrappers, and doc links; its sections start at `=== PROJECT SHAPE ===`.
 
-## Step 1b: MCP Live Check
+## Step 1b: Runtime Inventory and MCP Check
 
-Test every MCP server: call one harmless tool per server. Record `live=yes/no` with error detail. Respect `enabled: false` (skip without flagging). For API keys, record only whether the environment variable is set; never emit any part of its value.
+Inspect configured global, project, and installed-plugin sources first, retaining source and enablement. Use the runtime inventory to flag missing hook and MCP executables; unknown working directories or plugin state remain coverage gaps. Call a harmless tool only on already connected servers. Never launch an unverified GUI executable just to test MCP. Record connected, failed, disabled, pending approval, or untested separately; static presence is not live health. Never emit credentials. Compare discovered instruction bytes with the effective configured limit and state any uninspected ancestors, nested files, or runtime overrides.
 
 ## Step 1c: Safety and security checks
 
@@ -146,7 +146,7 @@ For projects that use `/loop`, autonomous agents, or any long-running agent flow
 
 ## Step 2: Analyze
 
-Analyze locally from the summary output by default. When Budget posture escalates, re-run collection with `& "$POWERSHELL" -NoLogo -NoProfile -ExecutionPolicy Bypass -File "$HEALTH_LAUNCHER" collect auto deep` on Windows, or `BASH_ENV= ENV= /bin/bash -p "$HEALTH_SCRIPT" auto deep` on Linux and macOS. Then launch only the relevant inspectors in parallel. Redact credentials to `[REDACTED]`.
+Analyze locally from the summary output by default. When Budget posture escalates, re-run collection with `& "$POWERSHELL" -NoLogo -NoProfile -ExecutionPolicy Bypass -File "$HEALTH_LAUNCHER" collect "$HEALTH_SCOPE" deep` on Windows, or `BASH_ENV= ENV= /bin/bash -p "$HEALTH_SCRIPT" "$HEALTH_SCOPE" deep` on Linux and macOS. Then launch only the relevant inspectors in parallel. Redact credentials to `[REDACTED]`.
 
 - **Deep inspector routing:**
   - **Agent 1** (Context + Security): Read `agents/inspector-context.md`. Feed `CONVERSATION SIGNALS` section.
@@ -222,4 +222,4 @@ Outdated items, global vs local placement, context hygiene, stale allowedTools e
 
 If no issues: `All relevant checks passed. Nothing to fix.`
 
-The report never auto-applies fixes without confirmation, and never acts as a heavy lint, typecheck, duplication, or architecture-rewrite substitute; `/health` reports maintainability guardrails and concrete next actions only.
+A report-only request never authorizes fixes; an explicit optimization or repair request continues into its authorized repair phase without another confirmation. The audit is not a heavy lint, typecheck, duplication, or architecture-rewrite substitute; `/health` reports maintainability guardrails and concrete next actions only.

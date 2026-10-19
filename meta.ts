@@ -237,7 +237,7 @@ export const repositories: Record<string, RepositoryConfig> = {
   },
   'tw93-waza': {
     url: 'https://github.com/tw93/Waza',
-    tag: 'v3.39.0',
+    tag: 'v3.40.0',
     skills: [
       { name: 'check', source: './skills/check/SKILL.md' },
       { name: 'ui', source: './skills/ui/SKILL.md' },
@@ -251,6 +251,7 @@ export const repositories: Record<string, RepositoryConfig> = {
     rules: [
       { name: 'anti-patterns', source: './rules/anti-patterns.md' },
       { name: 'chinese', source: './rules/chinese.md' },
+      { name: 'clarity', source: './rules/clarity.md' },
       { name: 'durable-context', source: './rules/durable-context.md' },
       { name: 'english', source: './rules/english.md' },
       { name: 'waza-routing', source: './rules/waza-routing.md' },
