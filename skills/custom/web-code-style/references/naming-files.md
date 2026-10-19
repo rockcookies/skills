@@ -13,7 +13,7 @@ create-user.command.ts  // 创建用户的命令处理器
 date.ts                 // formatDate，概念已自描述，不需要角色
 ```
 
-角色表达调用者需要知道的模块职责，常见如 `.api`、`.repository`、`.service`、`.validator`、`.mapper`、`.parser`、`.factory`、`.command`、`.query`、`.schema`、`.types`、`.constants`、`.config`。示例清单不是白名单。`.store` 由 `web-zustand/references/slice-organization.md` 规定，以其为准。
+角色表达调用者需要知道的模块职责，常见如 `.api`、`.repository`、`.service`、`.validator`、`.mapper`、`.parser`、`.factory`、`.command`、`.query`、`.schema`、`.types`、`.constants`、`.config`。示例清单不是白名单。
 
 不要把角色编码成 kebab 词段，也不给自描述的文件强加角色：
 

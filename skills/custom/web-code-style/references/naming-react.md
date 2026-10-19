@@ -47,7 +47,7 @@ JSX 靠**标识符**首字母区分组件与 HTML 标签（`<UserProfile />` vs 
 
 ## 非组件模块
 
-Service、API、repository、validator、formatter 等不含 JSX 的文件用 `<concept>[.<role>].ts`：`user.api.ts`、`auth.store.ts`、`format-date.ts`。`-` 与 `.` 的分工见 `naming-files.md`。Zustand 的 store 文件后缀由 `web-zustand/references/slice-organization.md` 规定，涉及 store 文件命名时先读它，以其为准。
+Service、API、repository、validator、formatter 等不含 JSX 的文件用 `<concept>[.<role>].ts`：`user.api.ts`、`auth.repository.ts`、`format-date.ts`。`-` 与 `.` 的分工见 `naming-files.md`。
 
 ## 目录布局
 
