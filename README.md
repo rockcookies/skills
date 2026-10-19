@@ -196,7 +196,7 @@ The following Go skills MUST always load for Go-related work on this project:
 
 ### JS / TypeScript skills
 
-Hand-maintained web style skills live under `skills/custom/` (`web-code-style`, `web-zustand`). Install by stack:
+Hand-maintained web style skills live under `skills/custom/` (`web-code-style`, `web-css-guidelines`). Install by stack:
 
 #### Tooling (antfu)
 
@@ -249,9 +249,9 @@ npx skills add rockcookies/skills --full-depth \
 ```bash
 npx skills add rockcookies/skills --full-depth \
   --skill typescript-best-practices \
-  --skill type-system-discipline \
-  --skill boundary-discipline \
-  --skill encode-lessons-in-structure \
+  --skill principle-type-system-discipline \
+  --skill principle-boundary-discipline \
+  --skill principle-encode-lessons-in-structure \
   -g
 ```
 
@@ -268,23 +268,37 @@ npx skills add rockcookies/skills --full-depth \
 
 #### pstack set (cursor/plugins)
 
-Eleven more engineering principles plus the workflow skills built on them: `pstack-tdd` (aliased — `tdd` is taken) and `show-me-your-work`.
+All twenty-four engineering principles plus the workflow skills built on them: `benchmark-checklist`, `pstack-tdd` (aliased — `tdd` is taken) and `show-me-your-work`.
 
 ```bash
 npx skills add rockcookies/skills --full-depth \
-  --skill build-the-lever \
-  --skill exhaust-the-design-space \
-  --skill fix-root-causes \
-  --skill foundational-thinking \
-  --skill laziness-protocol \
-  --skill migrate-callers-then-delete-legacy-apis \
-  --skill outcome-oriented-execution \
-  --skill prove-it-works \
+  --skill benchmark-checklist \
+  --skill principle-attack-the-premise \
+  --skill principle-boundary-discipline \
+  --skill principle-build-the-lever \
+  --skill principle-encode-lessons-in-structure \
+  --skill principle-exhaust-the-design-space \
+  --skill principle-experience-first \
+  --skill principle-explain-the-number \
+  --skill principle-fix-root-causes \
+  --skill principle-foundational-thinking \
+  --skill principle-guard-the-context-window \
+  --skill principle-laziness-protocol \
+  --skill principle-make-operations-idempotent \
+  --skill principle-migrate-callers-then-delete-legacy-apis \
+  --skill principle-minimize-reader-load \
+  --skill principle-model-the-domain \
+  --skill principle-never-block-on-the-human \
+  --skill principle-outcome-oriented-execution \
+  --skill principle-prove-it-works \
+  --skill principle-redesign-from-first-principles \
+  --skill principle-sequence-verifiable-units \
+  --skill principle-separate-before-serializing-shared-state \
+  --skill principle-subtract-before-you-add \
+  --skill principle-test-behavior-not-implementation \
+  --skill principle-type-system-discipline \
   --skill pstack-tdd \
-  --skill redesign-from-first-principles \
-  --skill separate-before-serializing-shared-state \
   --skill show-me-your-work \
-  --skill subtract-before-you-add \
   -g
 ```
 
@@ -308,7 +322,7 @@ npx skills add rockcookies/skills --full-depth \
   --skill hono-jsx \
   --skill playwright-cli \
   --skill web-code-style \
-  --skill web-zustand \
+  --skill web-css-guidelines \
   -g
 ```
 
@@ -352,7 +366,7 @@ npx skills add rockcookies/skills --full-depth \
 | [grill-and-think](skills/custom/grill-and-think)           | 跨运行时设计流水线（拷问 → 深思 → 实现 → 审查）                                     |
 | [steelman](skills/custom/steelman)                         | 双向钢人论证 — 重述真问题，强化正反双方，锁定关键变量，硬裁决                       |
 | [web-code-style](skills/custom/web-code-style)             | Web fullstack naming + clarity — identifiers, files, Hooks/props, control flow, JSX |
-| [web-zustand](skills/custom/web-zustand)                   | Web/React Zustand — StoreImpl, nested slices, action tiers                          |
+| [web-css-guidelines](skills/custom/web-css-guidelines)     | CSS 机理速查 — 流布局/BFC、内联对齐、flex/grid、定位层叠、渐变滤镜遮罩、响应式      |
 | [week-retro](skills/custom/week-retro)                     | 周回顾 workflow learning loop                                                       |
 
 ### Upstream Skills
@@ -377,34 +391,43 @@ Synced from external repositories into `skills/{repoKey}/{target}/`.
 
 #### [cursor/plugins](https://github.com/cursor/plugins)
 
-`thermos` launches the two review subagents in parallel. Copy `agents/cursor-plugins/*.md` into `~/.cursor/agents/` as well — see [Installation](#installation). The TypeScript and principle skills cross-reference each other; install them as a set.
-
-| Skill                                                                                                      | Description                                                                  |
-| ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| [boundary-discipline](skills/cursor-plugins/boundary-discipline)                                           | Validation and error handling at system boundaries; trust internal types     |
-| [build-the-lever](skills/cursor-plugins/build-the-lever)                                                   | Build the tool that does or proves the work instead of hand-running it       |
-| [encode-lessons-in-structure](skills/cursor-plugins/encode-lessons-in-structure)                           | Encode recurring fixes as lint rules, flags, checks, or scripts              |
-| [exhaust-the-design-space](skills/cursor-plugins/exhaust-the-design-space)                                 | Build 2-3 competing prototypes and compare side by side before committing    |
-| [fix-root-causes](skills/cursor-plugins/fix-root-causes)                                                   | Trace each symptom to its root cause; reproduce first, no symptom guards     |
-| [foundational-thinking](skills/cursor-plugins/foundational-thinking)                                       | Pick core types and data structures before logic; get structures right       |
-| [how](skills/cursor-plugins/how)                                                                           | Subsystem walkthroughs - "how does X work", placement, ownership             |
-| [laziness-protocol](skills/cursor-plugins/laziness-protocol)                                               | Bias toward deletion and the smallest change that solves the problem         |
-| [migrate-callers-then-delete-legacy-apis](skills/cursor-plugins/migrate-callers-then-delete-legacy-apis)   | Migrate callers and delete the old API in one wave; no shim layers           |
-| [outcome-oriented-execution](skills/cursor-plugins/outcome-oriented-execution)                             | Converge on the target architecture; no throwaway compatibility states       |
-| [prove-it-works](skills/cursor-plugins/prove-it-works)                                                     | Verify against the real artifact - run, read values, inspect diff            |
-| [pstack-tdd](skills/cursor-plugins/pstack-tdd)                                                             | Red-green-refactor TDD; on explicit TDD requests or obvious regression tests |
-| [redesign-from-first-principles](skills/cursor-plugins/redesign-from-first-principles)                     | Redesign as if the new requirement had been foundational from day one        |
-| [separate-before-serializing-shared-state](skills/cursor-plugins/separate-before-serializing-shared-state) | Eliminate sharing first; serialize structurally only with one real writer    |
-| [show-me-your-work](skills/cursor-plugins/show-me-your-work)                                               | TSV decision log (what, why, evidence, result) for unattended work           |
-| [subtract-before-you-add](skills/cursor-plugins/subtract-before-you-add)                                   | Remove dead weight, redundant guards, stub refs; build on simpler base       |
-| [technical-writing](skills/cursor-plugins/technical-writing)                                               | Layered writing standard - Diataxis, Google style, STE, Global English       |
-| [thermo-nuclear-code-quality-review](skills/cursor-plugins/thermo-nuclear-code-quality-review)             | Strict maintainability audit (structure, file-size growth, spaghetti)        |
-| [thermo-nuclear-review](skills/cursor-plugins/thermo-nuclear-review)                                       | Deep branch audit (bugs, breakages, security, devex, feature-flag leaks)     |
-| [thermos](skills/cursor-plugins/thermos)                                                                   | Run both review subagents in parallel and synthesize findings                |
-| [typescript-best-practices](skills/cursor-plugins/typescript-best-practices)                               | TypeScript rules grounding the type-system principles in .ts/.tsx            |
-| [type-system-discipline](skills/cursor-plugins/type-system-discipline)                                     | Make illegal states unrepresentable - sum types, brands, boundary parse      |
-| [unslop](skills/cursor-plugins/unslop)                                                                     | Cut AI tells from writing - puffery, chatbot phrases, hedging, jargon        |
-| [why](skills/cursor-plugins/why)                                                                           | Design rationale - parallel MCP evidence investigators, cited synthesis      |
+| Skill                                                                                                                          | Description                                                                         |
+| ------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------- |
+| [benchmark-checklist](skills/cursor-plugins/benchmark-checklist)                                                               | Vet a perf measurement before reporting it - limiter, tuning, errors, repeatability |
+| [how](skills/cursor-plugins/how)                                                                                               | Subsystem walkthroughs - "how does X work", placement, ownership                    |
+| [principle-attack-the-premise](skills/cursor-plugins/principle-attack-the-premise)                                             | Test the premise two failed fixes shared before writing a third fix                 |
+| [principle-boundary-discipline](skills/cursor-plugins/principle-boundary-discipline)                                           | Validation and error handling at system boundaries; trust internal types            |
+| [principle-build-the-lever](skills/cursor-plugins/principle-build-the-lever)                                                   | Build the tool that does or proves the work instead of hand-running it              |
+| [principle-encode-lessons-in-structure](skills/cursor-plugins/principle-encode-lessons-in-structure)                           | Encode recurring fixes as lint rules, flags, checks, or scripts                     |
+| [principle-exhaust-the-design-space](skills/cursor-plugins/principle-exhaust-the-design-space)                                 | Build 2-3 competing prototypes and compare side by side before committing           |
+| [principle-experience-first](skills/cursor-plugins/principle-experience-first)                                                 | Choose user delight over implementation convenience on scope tradeoffs              |
+| [principle-explain-the-number](skills/cursor-plugins/principle-explain-the-number)                                             | Name what limits a measured number; rule out that it measured something else        |
+| [principle-fix-root-causes](skills/cursor-plugins/principle-fix-root-causes)                                                   | Trace each symptom to its root cause; reproduce first, no symptom guards            |
+| [principle-foundational-thinking](skills/cursor-plugins/principle-foundational-thinking)                                       | Pick core types and data structures before logic; get structures right              |
+| [principle-guard-the-context-window](skills/cursor-plugins/principle-guard-the-context-window)                                 | Route bulk reading to subagents; keep summaries in the main thread                  |
+| [principle-laziness-protocol](skills/cursor-plugins/principle-laziness-protocol)                                               | Bias toward deletion and the smallest change that solves the problem                |
+| [principle-make-operations-idempotent](skills/cursor-plugins/principle-make-operations-idempotent)                             | Converge retries on the same end state after crashes and restarts                   |
+| [principle-migrate-callers-then-delete-legacy-apis](skills/cursor-plugins/principle-migrate-callers-then-delete-legacy-apis)   | Migrate callers and delete the old API in one wave; no shim layers                  |
+| [principle-minimize-reader-load](skills/cursor-plugins/principle-minimize-reader-load)                                         | Collapse one-caller layers and shrink the state a reader must hold                  |
+| [principle-model-the-domain](skills/cursor-plugins/principle-model-the-domain)                                                 | Encode repeated rules in one structure, not scattered conditionals                  |
+| [principle-never-block-on-the-human](skills/cursor-plugins/principle-never-block-on-the-human)                                 | Proceed on reversible work and present the result                                   |
+| [principle-outcome-oriented-execution](skills/cursor-plugins/principle-outcome-oriented-execution)                             | Converge on the target architecture; no throwaway compatibility states              |
+| [principle-prove-it-works](skills/cursor-plugins/principle-prove-it-works)                                                     | Verify against the real artifact - run, read values, inspect diff                   |
+| [principle-redesign-from-first-principles](skills/cursor-plugins/principle-redesign-from-first-principles)                     | Redesign as if the new requirement had been foundational from day one               |
+| [principle-separate-before-serializing-shared-state](skills/cursor-plugins/principle-separate-before-serializing-shared-state) | Eliminate sharing first; serialize structurally only with one real writer           |
+| [principle-sequence-verifiable-units](skills/cursor-plugins/principle-sequence-verifiable-units)                               | End each small unit in a check before starting the next                             |
+| [principle-subtract-before-you-add](skills/cursor-plugins/principle-subtract-before-you-add)                                   | Remove dead weight, redundant guards, stub refs; build on simpler base              |
+| [principle-test-behavior-not-implementation](skills/cursor-plugins/principle-test-behavior-not-implementation)                 | Assert what users observe; keep passing through internal refactors                  |
+| [principle-type-system-discipline](skills/cursor-plugins/principle-type-system-discipline)                                     | Make illegal states unrepresentable - sum types, brands, boundary parse             |
+| [pstack-tdd](skills/cursor-plugins/pstack-tdd)                                                                                 | Red-green-refactor TDD; on explicit TDD requests or obvious regression tests        |
+| [show-me-your-work](skills/cursor-plugins/show-me-your-work)                                                                   | TSV decision log (what, why, evidence, result) for unattended work                  |
+| [technical-writing](skills/cursor-plugins/technical-writing)                                                                   | Layered writing standard - Diataxis, Google style, STE, Global English              |
+| [thermo-nuclear-code-quality-review](skills/cursor-plugins/thermo-nuclear-code-quality-review)                                 | Strict maintainability audit (structure, file-size growth, spaghetti)               |
+| [thermo-nuclear-review](skills/cursor-plugins/thermo-nuclear-review)                                                           | Deep branch audit (bugs, breakages, security, devex, feature-flag leaks)            |
+| [thermos](skills/cursor-plugins/thermos)                                                                                       | Run both review subagents in parallel and synthesize findings                       |
+| [typescript-best-practices](skills/cursor-plugins/typescript-best-practices)                                                   | TypeScript rules grounding the type-system principles in .ts/.tsx                   |
+| [unslop](skills/cursor-plugins/unslop)                                                                                         | Cut AI tells from writing - puffery, chatbot phrases, hedging, jargon               |
+| [why](skills/cursor-plugins/why)                                                                                               | Design rationale - parallel MCP evidence investigators, cited synthesis             |
 
 #### [deckardger/tanstack-agent-skills](https://github.com/deckardger/tanstack-agent-skills)
 
