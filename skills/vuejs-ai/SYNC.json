@@ -1,12 +1,12 @@
 {
-  "upstream_committed_sha": "c9d355ff23f654309dd02006be671859df0a134c",
-  "upstream_committed_at": "2026-03-26T06:50:25+01:00",
-  "items_digest": "sha256:c0c6c58f76e426c72ac9debe54f29d658b6328ab88a05bbf930433f6fcb894c7",
-  "items_changed_at": "2026-10-03T02:06:50.038Z",
+  "upstream_committed_sha": "b3c62deb258b62791e57917b0960420151523d39",
+  "upstream_committed_at": "2026-10-18T09:26:19+08:00",
+  "items_digest": "sha256:3effdd452252fde07082e3a366a715dff3fef6313e478986b9e5449690c4f770",
+  "items_changed_at": "2026-10-19T02:32:58.593Z",
   "items": [
     {
       "name": "vue-best-practices",
-      "digest": "sha256:701e9c1bc7bee28a6b1ea2d0e1686eef34ce96182b49d61feff113058b0bc696"
+      "digest": "sha256:a795f8dccb69b0641a43d423b7ba2995ee8eab7e6b5eee469882fea72c7b2ccf"
     },
     {
       "name": "vue-debug-guides",
