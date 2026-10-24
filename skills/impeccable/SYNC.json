@@ -1,12 +1,12 @@
 {
-  "upstream_committed_sha": "0665bd812ae0908fcab17b96fd4f840defb882d9",
-  "upstream_committed_at": "2026-10-19T09:59:14+09:00",
-  "items_digest": "sha256:e9b7a49bc7c91ea02335d8d10368eb900db207d3a77d9d5ad66c0e42d44793e4",
-  "items_changed_at": "2026-10-19T02:33:01.735Z",
+  "upstream_committed_sha": "2bb6563e570ffc266d1fccec24a778745c143e52",
+  "upstream_committed_at": "2026-10-23T15:33:25-07:00",
+  "items_digest": "sha256:4a86ab6b57c8a4244dfbf1da15f396e290d8137692f506c9d780163eca9a3b2a",
+  "items_changed_at": "2026-10-23T23:47:53.452Z",
   "items": [
     {
       "name": "impeccable",
-      "digest": "sha256:aa0f60f7027e3798bee99349b9d339b39c1e5d10c58e9f180f141be4786c7326"
+      "digest": "sha256:1de6aeb521e22b4472d51f332ded433a4aa72361a47dd46e6ed29098671865e3"
     }
   ]
 }

@@ -1,12 +1,12 @@
 {
-  "upstream_committed_sha": "feb0f3aba6566426f12230e7fc7a10d97c1293bb",
-  "upstream_committed_at": "2026-10-09T15:36:34+09:00",
-  "items_digest": "sha256:0d9c3a4baf8c8a6a59a5e15e27e3a92c8a1ccceb9bc1aa56c8da80c1fb1a9adb",
-  "items_changed_at": "2026-10-03T02:06:50.592Z",
+  "upstream_committed_sha": "8886fe2d385d3644cbb47e46ae9cb1cf09307d3b",
+  "upstream_committed_at": "2026-10-23T11:36:45+09:00",
+  "items_digest": "sha256:99e731fa92193fc260926ac941b8a752f130382290b04d3f41fbd1acea074c27",
+  "items_changed_at": "2026-10-23T23:47:52.095Z",
   "items": [
     {
       "name": "antfu",
-      "digest": "sha256:d0ebc5196f216bb652ece0aa4735cac119f7782ea0c20829c1158d44b7b8ba13"
+      "digest": "sha256:29f46cdb002e9445caf321584f04a997f5eedfb2460ecad8e2a1d676cadc3212"
     },
     {
       "name": "unocss",
@@ -18,7 +18,7 @@
     },
     {
       "name": "vitest",
-      "digest": "sha256:ce638e105e6cc9c3d0caaea591ad8cab191b9b061efb5cf4eb2d5875560706ad"
+      "digest": "sha256:7d8268a96d9d6065f040e7c311c89e5c4903d95d0d570c9f8764e7f4198dca28"
     }
   ]
 }
