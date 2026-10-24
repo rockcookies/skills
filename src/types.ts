@@ -1,4 +1,17 @@
-export type SourceKind = 'skill' | 'agent' | 'rule' // 以后可加 command，不必重写流水线
+// command 类同步流水线未实现；依赖解析先支持，该类落地后引用自动生效
+export type SourceKind = 'skill' | 'agent' | 'rule' | 'command'
+
+/**
+ * 单条依赖声明的引用：键为 SourceKind 的复数形式（skills/agents/rules/commands），
+ * 数组元素是目标 dest 名
+ */
+export type Dependency = { [K in SourceKind as `${K}s`]?: string[] }
+
+/**
+ * 依赖声明总表：顶层按 SourceKind 分区（复数键 skills/agents/rules/commands），
+ * 类内按 dest 名索引（名字唯一性只需类内成立；dependencies.ts 是数据源）
+ */
+export type Dependencies = { [K in SourceKind as `${K}s`]: Record<string, Dependency> }
 
 /**
  * 单个技能映射配置

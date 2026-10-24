@@ -21,6 +21,7 @@ User-facing install catalog and bundles live in [README.md](README.md). Reposito
 ├── agents/                 # published agents: agents/{repoKey}/{name}.md
 ├── rules/                  # published rules: rules/{repoKey}/{name}.md
 ├── upstream/               # git checkouts (not version-controlled)
+├── dependencies.ts         # dependency declarations (skills/agents/rules/commands partitions)
 └── meta.ts                 # repo keys, pins, mappings, transforms
 ```
 
@@ -32,11 +33,12 @@ Dest trees under `skills/{repoKey}/`, `agents/{repoKey}/`, and `rules/{repoKey}/
 
 `pnpm cli` → interactive menu:
 
-| Action          | Handler               | Behaviour                                                                     |
-| --------------- | --------------------- | ----------------------------------------------------------------------------- |
-| Manage upstream | `upstream.command.ts` | Clone or update repos under `upstream/` (clone then pin)                      |
-| Sync skills     | `sync.command.ts`     | Update upstream, rewrite mapped dests, write SYNC.json；`--force` 再清 orphan |
-| Cleanup         | `cleanup.command.ts`  | Remove orphaned upstream checkouts                                            |
+| Action             | Handler               | Behaviour                                                                       |
+| ------------------ | --------------------- | ------------------------------------------------------------------------------- |
+| Manage upstream    | `upstream.command.ts` | Clone or update repos under `upstream/` (clone then pin)                        |
+| Sync skills        | `sync.command.ts`     | Update upstream, rewrite mapped dests, write SYNC.json；`--force` 再清 orphan   |
+| Cleanup            | `cleanup.command.ts`  | Remove orphaned upstream checkouts                                              |
+| Print dependencies | `deps.command.ts`     | Dependency closure for a skill/agent, copy-ready；`pnpm cli deps <name>` 免菜单 |
 
 Every sync run deletes and rewrites each mapped dest. Mapping 里拿掉的 dest **默认不删**；`pnpm cli --force`（或交互确认 Force sync）会额外删除该 repo 下未再映射的 skill 目录 / agent `.md` / rule `.md`。`skills/{repoKey}/SYNC.json`、`agents/{repoKey}/SYNC.json` 和 `rules/{repoKey}/SYNC.json` 存 `{ upstream_committed_sha, upstream_committed_at, items_digest, items_changed_at, items: [{ name, digest }] }`（items 按 name 升序）。
 
@@ -44,12 +46,17 @@ Transforms are kebab-case names. Repo-level `transforms.skills` / `transforms.ag
 
 `UpstreamService` holds clone/pin/sync logic; commands receive it as a dependency. Git ops use `simple-git` with the user's git config (including proxy).
 
+## Dependency declarations
+
+[dependencies.ts](dependencies.ts) sits next to `meta.ts` and declares what each entry reads or invokes at runtime. Top level partitions by kind — `skills` / `agents` / `rules` / `commands` (commands reserved; the kind has no sync pipeline yet) — each a `Record<destName, Dependency>` whose `Dependency` holds per-kind ref arrays (`{ skills: [...], agents: [...] }`). Keys and refs must resolve to mapped skills/agents/rules or hand-maintained custom skills (`skills/custom/`); names only need to be unique within their own kind. Routing-only cross-references (e.g. `grill-and-think` → `hunt`) are not dependencies. `pnpm cli deps <name>` prints the direct/transitive closure plus copy-ready install commands and reports dangling keys/refs; the `collection-connectivity` skill audits the whole record as a repo-level check.
+
 ## Working on this repo
 
 1. **Change what syncs** → edit `meta.ts` (`skills` / `agents` mappings, `tag` / `branch` / `commit` pins, `transforms`), then run Sync.
 2. **Add a hand-maintained skill** → put it under `skills/custom/{name}/` with a `SKILL.md`; do not invent a fake upstream entry for it.
-3. **Upstream with empty `skills`, `agents`, and `rules`** → repo may be listed for future use; Sync skips that repo until a mapping exists. A repo with only one kind still syncs.
-4. **Verify** → `pnpm test`（vitest）/ `pnpm lint` / `pnpm fmt` after TypeScript changes.
+3. **Declare runtime dependencies** → add an entry to `dependencies.ts`, then inspect with `pnpm cli deps <name>`.
+4. **Upstream with empty `skills`, `agents`, and `rules`** → repo may be listed for future use; Sync skips that repo until a mapping exists. A repo with only one kind still syncs.
+5. **Verify** → `pnpm test`（vitest）/ `pnpm lint` / `pnpm fmt` after TypeScript changes.
 
 ## Pins (see `meta.ts`)
 
