@@ -51,7 +51,7 @@ function groupByKind(nodes: ClosureNode[]): Array<[SourceKind, string[]]> {
 function printNames(label: string, nodes: ClosureNode[]): void {
   console.info(`\n${label} (${nodes.length}):`)
   if (nodes.length === 0) {
-    console.info('  （无）')
+    console.info('  (none)')
     return
   }
   for (const [kind, names] of groupByKind(nodes)) {
@@ -65,12 +65,12 @@ function describeLocation(location: ItemLocation): string {
 
 function printGraphWarnings(graph: ResolvedDependencyGraph): void {
   if (graph.unknownKeys.length === 0 && graph.dangling.length === 0) return
-  console.info('\n悬空引用（全图）:')
+  console.info('\nDangling references (whole graph):')
   for (const unknown of graph.unknownKeys) {
     console.info(`  ${unknown.kind}.${unknown.key}: ${unknown.reason}`)
   }
   for (const dangling of graph.dangling) {
-    console.info(`  ${dangling.kind}.${dangling.key} → ${dangling.refKind}.${dangling.ref}: ${dangling.reason}`)
+    console.info(`  ${dangling.kind}.${dangling.key} -> ${dangling.refKind}.${dangling.ref}: ${dangling.reason}`)
   }
 }
 
@@ -81,18 +81,18 @@ function printInstallCommands(closure: DependencyClosure, index: ItemIndex): voi
   const rules = all.filter((node) => node.kind === 'rule')
 
   if (skills.length > 0) {
-    console.info('\n复制安装依赖 skills:')
+    console.info('\nInstall dependency skills:')
     console.info(`npx skills add ${REPO_SLUG} --full-depth ${skills.map((n) => `--skill ${n}`).join(' ')} -g`)
   }
   if (agents.length > 0) {
-    console.info('\n复制安装 agents:')
+    console.info('\nInstall agents:')
     for (const agent of agents) {
       const repoKey = index.agent.get(agent.name)?.repoKey ?? '<repoKey>'
       console.info(`cp agents/${repoKey}/${agent.name}.md ${CURSOR_AGENTS_DIR}`)
     }
   }
   if (rules.length > 0) {
-    console.info('\n复制 rules（npx 不安装规则，手动复制）:')
+    console.info('\nCopy rules (npx does not install rules, copy manually):')
     for (const rule of rules) {
       const repoKey = index.rule.get(rule.name)?.repoKey ?? '<repoKey>'
       console.info(`rules/${repoKey}/${rule.name}.md`)
@@ -129,14 +129,16 @@ export async function printDependencies(
 
   const dupKinds = SOURCE_KINDS.filter((kind) => duplicates[kind].includes(name))
   if (dupKinds.length > 0) {
-    console.info(`\n"${name}" 在 ${dupKinds.join(', ')} 类内重名，解析歧义，先改名再声明依赖。`)
+    console.info(
+      `\n"${name}" is a duplicate dest name in ${dupKinds.join(', ')}; resolve the ambiguity before declaring dependencies.`,
+    )
     process.exitCode = 1
     return
   }
 
   const kinds = SOURCE_KINDS.filter((kind) => index[kind].has(name))
   if (kinds.length === 0) {
-    console.info(`\n"${name}" 不是映射产物或 custom 技能。可用名字：`)
+    console.info(`\n"${name}" is not a mapped item or custom skill. Available names:`)
     printAvailableNames(index)
     process.exitCode = 1
     return
@@ -149,10 +151,10 @@ export async function printDependencies(
 
   console.info(`\n${name} (${describeLocation(location)})`)
   if (!declaration) {
-    console.info('存在但未在 dependencies.ts 声明依赖。')
+    console.info('exists but has no dependency declaration in dependencies.ts.')
   }
-  printNames('直接依赖', closure.direct)
-  printNames('传递依赖', closure.transitive)
+  printNames('Direct dependencies', closure.direct)
+  printNames('Transitive dependencies', closure.transitive)
   printGraphWarnings(graph)
   printInstallCommands(closure, index)
 }

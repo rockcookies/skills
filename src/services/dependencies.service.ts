@@ -133,7 +133,7 @@ export function resolveDependencyGraph(
               key,
               refKind,
               ref,
-              reason: refKind === 'command' ? 'command dest 尚未同步' : `${refKind} dest not found`,
+              reason: refKind === 'command' ? 'command dest not synced yet' : `${refKind} dest not found`,
             })
             continue
           }

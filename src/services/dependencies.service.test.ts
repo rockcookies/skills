@@ -97,7 +97,7 @@ describe('resolveDependencyGraph', () => {
         key: 'rule-one',
         refKind: 'command',
         ref: 'some-cmd',
-        reason: 'command dest 尚未同步',
+        reason: 'command dest not synced yet',
       }),
     )
     // shared 声明的 refs 不检查（key 本身悬空）
