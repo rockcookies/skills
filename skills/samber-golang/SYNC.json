@@ -1,8 +1,8 @@
 {
   "upstream_committed_sha": "053894c088317d7ba2038cffcbf5fd57b5494fa6",
   "upstream_committed_at": "2026-08-20T15:04:24+02:00",
-  "items_digest": "sha256:14c13b478439c02aaa5d627e9583b2e901d830e8c261f6f99f52cab1add61e96",
-  "items_changed_at": "2026-10-23T23:47:49.617Z",
+  "items_digest": "sha256:a0fb23e2493536385928c7bfaccb6c3405654d9a211ecf08307752eb76dfe260",
+  "items_changed_at": "2026-10-27T01:36:39.026Z",
   "items": [
     {
       "name": "golang-benchmark",
@@ -62,7 +62,7 @@
     },
     {
       "name": "golang-gopls",
-      "digest": "sha256:51139227cc4e2380003abb03d66cd402a4d6506b9e5923a25a9c9a17bc3399ae"
+      "digest": "sha256:fef194787250d7cfb43d007a6677ceb556eb7ccc8841ba94ef1ed5cb3484b47e"
     },
     {
       "name": "golang-graphql",
@@ -74,7 +74,7 @@
     },
     {
       "name": "golang-how-to",
-      "digest": "sha256:807d8c2a7e5dddd9a0c5b24ee4dbd4e8a5091eb50b678f777b350651ba465631"
+      "digest": "sha256:5014151400cccbc1e7bd559d4675cb44729b6755a591a8bdfee7f46095c6300b"
     },
     {
       "name": "golang-lint",
@@ -94,11 +94,11 @@
     },
     {
       "name": "golang-performance",
-      "digest": "sha256:8ea6cffa26e50440c1496c6d17cf0059c7146494a236cde33061bba6e5d656ee"
+      "digest": "sha256:a1407b6d82b9df7c9a6df756588d0d2e3f7c051d2b07eb1e56d9b4c9934ac94a"
     },
     {
       "name": "golang-pkg-go-dev",
-      "digest": "sha256:0da3023d85da3273e643de995fdd20dac63aea6121e1af22378fd59cfecdfa09"
+      "digest": "sha256:57046d4690f1fb06f1bd8602b8272577cf532f8e79638f164d12167295851e84"
     },
     {
       "name": "golang-popular-libraries",
@@ -110,7 +110,7 @@
     },
     {
       "name": "golang-refactoring",
-      "digest": "sha256:7d4d6c587d900daf340454c5279ce587a5c1f509646c78f26a3298ec5f4053f9"
+      "digest": "sha256:dabb2f662f9434b9fa1f822331935a3ec298f74b8efb54ab5ef891896ff7ea7d"
     },
     {
       "name": "golang-safety",
@@ -126,7 +126,7 @@
     },
     {
       "name": "golang-samber-lo",
-      "digest": "sha256:bd96efd5b4c8c5284504fea08286b9ef354d805ddb37ad820451e3b49f175099"
+      "digest": "sha256:df19f9768dee452928274e828aa22b93c5a7bebec21bfc5c60f5ec6f9806fd97"
     },
     {
       "name": "golang-samber-mo",

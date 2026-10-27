@@ -1,12 +1,12 @@
 {
-  "upstream_committed_sha": "a80e4c9d12d607631249d4d7d059f835d4b2f13a",
-  "upstream_committed_at": "2026-10-19T20:34:19Z",
-  "items_digest": "sha256:4b5b6ee0deb4c13269b2f82f217acbec80dace779cc5234eb9cd7990542bcf6c",
-  "items_changed_at": "2026-10-23T23:47:49.810Z",
+  "upstream_committed_sha": "65d20cb6e3d951434bf408215309bb8aa094135a",
+  "upstream_committed_at": "2026-10-26T12:42:29-07:00",
+  "items_digest": "sha256:a9eb4b21e059efbd7de18bd0fcf452a551e434616c6741a799b843e617b79ce0",
+  "items_changed_at": "2026-10-27T01:36:39.548Z",
   "items": [
     {
       "name": "find-skills",
-      "digest": "sha256:30018f8f6130d7597e6f9a647cdb94d8e1529f9fedbc3bf515426ed2f37c8002"
+      "digest": "sha256:605ec0b4eab729b0cfd808e998fa18be4473f12f2ff07c95344b3bed23f6f30c"
     }
   ]
 }

@@ -1,24 +1,24 @@
 {
   "upstream_committed_sha": "b2fc14c974b2ca09b38de09c28237f240175205b",
   "upstream_committed_at": "2026-09-09T23:09:46+08:00",
-  "items_digest": "sha256:7d9de81858406ddfec57b0c9f08bff7a8d83220310489c55614312294646312e",
-  "items_changed_at": "2026-10-23T23:47:52.642Z",
+  "items_digest": "sha256:6a2affdfa686a304fd479dccd5a794d0addff0289aacf3c6b1dcd13214009558",
+  "items_changed_at": "2026-10-27T01:36:44.670Z",
   "items": [
     {
       "name": "tanstack-integration",
-      "digest": "sha256:8c5857fdf32bae4e5139839b35740d667decc36b8e0f2c458ab3d9db98601408"
+      "digest": "sha256:27a8d1121e5e645bc6b7c475a25c71f3e602eecfbb8d587440214e2be7db11e4"
     },
     {
       "name": "tanstack-query",
-      "digest": "sha256:5a43aff630e14cea1454013aae04577d39c67d72bc67bd2bc34252914c03f136"
+      "digest": "sha256:17e7ca0fcc523a22bfa2d59d61fb2f98847336dff1e8522baf07d3d44f534afc"
     },
     {
       "name": "tanstack-router",
-      "digest": "sha256:9ef11a3adff30bdfd4ff8b4eaf7c51be568dee1a5880834d4918e2b631f8a07b"
+      "digest": "sha256:18b495877af7295a5733ae40d26da3992346f542d2fbd3c59fedbd2f6110edc4"
     },
     {
       "name": "tanstack-start",
-      "digest": "sha256:928b74282d7bc374a24214b0b0e029ce15e74aeb78b7a82b7ef5a1c034136044"
+      "digest": "sha256:3e5d354a0b1ac6366c6fb890469eb35977f828597c69597c306399d0aad5fbc8"
     }
   ]
 }

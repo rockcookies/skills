@@ -9,7 +9,7 @@ description: >-
   responsive behavior, edge cases, and capturing or documenting design systems
   (DESIGN.md, tokens). Also for making bland UI bolder, loud UI quieter, or
   ambitious visual effects. Not for backend-only or non-UI tasks.
-version: 4.7.0
+version: 4.8.0
 user-invocable: true
 argument-hint: >-
   [shape · audit|critique ·

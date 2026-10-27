@@ -364,6 +364,7 @@ npx skills add rockcookies/skills --full-depth \
 | [git-rebase-surgeon](skills/custom/git-rebase-surgeon)     | Safe rebase 3.0 — SEQUENCE_EDITOR, backup, explicit lease                           |
 | [git-semantic-search](skills/custom/git-semantic-search)   | Git archaeology 3.0 — Pickaxe/Blame/Bisect with clean-worktree                      |
 | [grill-and-think](skills/custom/grill-and-think)           | 跨运行时设计流水线（拷问 → 深思 → 实现 → 审查）                                     |
+| [project-context-docs](skills/custom/project-context-docs) | 项目上下文文档 — AGENTS.md 分层、OKF docs 与 ADR，ctx.mjs 发现/审计/同步            |
 | [steelman](skills/custom/steelman)                         | 双向钢人论证 — 重述真问题，强化正反双方，锁定关键变量，硬裁决                       |
 | [web-code-style](skills/custom/web-code-style)             | Web fullstack naming + clarity — identifiers, files, Hooks/props, control flow, JSX |
 | [web-css-guidelines](skills/custom/web-css-guidelines)     | CSS 机理速查 — 流布局/BFC、内联对齐、flex/grid、定位层叠、渐变滤镜遮罩、响应式      |

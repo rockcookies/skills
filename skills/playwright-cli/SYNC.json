@@ -1,12 +1,12 @@
 {
   "upstream_committed_sha": "b1a5903c5b633b8c9f843ad7b629c2a78437040c",
   "upstream_committed_at": "2026-10-19T14:35:05-07:00",
-  "items_digest": "sha256:3e6d0f54bbf8872c186de5b3601165ce098802a9c2dd50e01792fcf4410a07d7",
-  "items_changed_at": "2026-10-23T23:47:50.724Z",
+  "items_digest": "sha256:79e2fb24b1710f7cda1367f6921e7cd29a17baf660edb8cafd87ea12141f78bf",
+  "items_changed_at": "2026-10-27T01:36:41.258Z",
   "items": [
     {
       "name": "playwright-cli",
-      "digest": "sha256:3390443c0f15f87fcdbad60dadf8706f7474b271ae6d313a3d242283011c7645"
+      "digest": "sha256:09ee9820436352ef4dc0581ba7430849ce9c96847ffc85ed79f7e684471af42e"
     }
   ]
 }
