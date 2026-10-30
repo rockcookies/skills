@@ -468,7 +468,7 @@ Synced from external repositories into `skills/{repoKey}/{target}/`.
 | [figma-to-react](skills/majiayu-spellbook/figma-to-react) | Extract Figma designs into production-ready React/Next.js components         |
 | [ip-check](skills/majiayu-spellbook/ip-check)             | IP / socks5 proxy quality — registry, geo consensus, reputation, AI unlocks  |
 
-#### [mattpocock/skills](https://github.com/mattpocock/skills) (tag `v1.3.1`)
+#### [mattpocock/skills](https://github.com/mattpocock/skills) (tag `v1.3.2`)
 
 | Skill                                                                            | Description                                                             |
 | -------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
@@ -482,7 +482,7 @@ Synced from external repositories into `skills/{repoKey}/{target}/`.
 | [grilling](skills/mattpocock/grilling)                                           | Grill a plan, decision, or idea to stress-test your thinking            |
 | [handoff](skills/mattpocock/handoff)                                             | Compact the conversation into a handoff document for another agent      |
 | [implement](skills/mattpocock/implement)                                         | Implement work from a spec or set of tickets                            |
-| [implement-spec](skills/mattpocock/implement-spec)                               | Implement a whole spec in one run — parallel implementers per ticket    |
+| [implement-spec](skills/mattpocock/implement-spec)                               | Implement /to-spec and /to-tickets results — parallel implementers     |
 | [improve-codebase-architecture](skills/mattpocock/improve-codebase-architecture) | Scan for deepening opportunities, report in HTML, then grill            |
 | [pr](skills/mattpocock/pr)                                                       | Write a fast-to-review PR body — summary visual, evidence, merge danger |
 | [prototype](skills/mattpocock/prototype)                                         | Throwaway prototype to answer a design question                         |
@@ -569,7 +569,7 @@ Synced from external repositories into `skills/{repoKey}/{target}/`.
 | ---------------------------------------- | -------------------------------------------------------------------- |
 | [improve](skills/shadcn-improve/improve) | Read-only senior-advisor survey — prioritized plans for other agents |
 
-#### [tw93/Kami](https://github.com/tw93/Kami) (tag `V1.17.0`)
+#### [tw93/Kami](https://github.com/tw93/Kami) (tag `V1.20.0`)
 
 | Skill                         | Description                                                                                    |
 | ----------------------------- | ---------------------------------------------------------------------------------------------- |
@@ -669,8 +669,8 @@ Repository sources and mappings live in [meta.ts](meta.ts). Pins:
 | Key             | Upstream                | Pin           |
 | --------------- | ----------------------- | ------------- |
 | `samber-golang` | samber/cc-skills-golang | tag `v2.0.0`  |
-| `mattpocock`    | mattpocock/skills       | tag `v1.2.3`  |
-| `tw93-kami`     | tw93/Kami               | tag `V1.17.0` |
+| `mattpocock`    | mattpocock/skills       | tag `v1.3.2`  |
+| `tw93-kami`     | tw93/Kami               | tag `V1.20.0` |
 | `tw93-waza`     | tw93/Waza               | tag `v3.40.0` |
 
 Unpinned repos track the default branch. Upstreams listed in `meta.ts` with empty `skills` and empty `agents` are reserved for future use and are skipped by Sync.
