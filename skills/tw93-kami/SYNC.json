@@ -1,12 +1,12 @@
 {
-  "upstream_committed_sha": "d9352d1321b24f37b53a6216ecae2543f8dc3a02",
-  "upstream_committed_at": "2026-10-15T21:02:20+08:00",
-  "items_digest": "sha256:55810e0cca21d6b29d8f6ab08655e48eeab542212229fee8a6fbd192ddd6b1bc",
-  "items_changed_at": "2026-10-16T08:09:30.171Z",
+  "upstream_committed_sha": "8016681d0e4c6274a06f5ee6bb67b9b516b2934f",
+  "upstream_committed_at": "2026-10-30T07:35:39+08:00",
+  "items_digest": "sha256:91826165e2045b9544ad4f8c037e5432e5657d0541367f74a8b09aee6a312c49",
+  "items_changed_at": "2026-10-30T00:04:22.528Z",
   "items": [
     {
       "name": "kami",
-      "digest": "sha256:acf724f27beb6f42cf67bcea6458a477f649e46747340a2b2aa93dac329cd393"
+      "digest": "sha256:dff6402703bfee8520e443d840930275e16245e60008f2fa6767a30ddb20d8a1"
     }
   ]
 }

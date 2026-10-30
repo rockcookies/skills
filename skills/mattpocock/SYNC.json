@@ -1,24 +1,24 @@
 {
-  "upstream_committed_sha": "24fe0ef7737efae15c87225755e9f6f5965e4888",
-  "upstream_committed_at": "2026-10-04T13:48:05+01:00",
-  "items_digest": "sha256:77f791537c2d45c639b8f8d172d353926dcceaf7250f68a378bc6f6914276561",
-  "items_changed_at": "2026-10-05T00:24:10.423Z",
+  "upstream_committed_sha": "d1478fcb140db0b93c0c8df17bcfd311844749d0",
+  "upstream_committed_at": "2026-10-29T10:27:29Z",
+  "items_digest": "sha256:3b61ab0de19bd60a88b9c0a96924136af14caf1477d1296a3abc533e98034659",
+  "items_changed_at": "2026-10-29T23:59:16.288Z",
   "items": [
     {
       "name": "ask-matt",
-      "digest": "sha256:4bb0158d35f04ebf5c53e44c295275625d3ce79428781069fc694c6017a31eb7"
+      "digest": "sha256:9fa9d8acfff4deeca330d98f099dbbf29c53079474b48f965e950c66739caf1f"
     },
     {
       "name": "code-review",
-      "digest": "sha256:6751d44f46f541a69301c79820acec0fc0cc943ef30bcf58f7be9ea8b8e50c32"
+      "digest": "sha256:2db8686275ce04fa14aee34acbedf3da81228cbc5939cbbadd21634a6ed6f7a0"
     },
     {
       "name": "codebase-design",
-      "digest": "sha256:6f0dc44e6e20a70c642c1d2534b224f270c5f9fb254e3155a68ef822c3d1b459"
+      "digest": "sha256:13945619bc0c64aaefba0a650fd9698cf1093ba0ce9dd4397f3bf0fd3a2f72b2"
     },
     {
       "name": "diagnosing-bugs",
-      "digest": "sha256:e8e9771470b42db331eb9cc72eca8dae8896e4355d33077e8e35202db4bdfc59"
+      "digest": "sha256:8446c68bd613106145c3f96c97a33c8efcd992f05c53847d984269b159be8751"
     },
     {
       "name": "domain-modeling",
@@ -34,23 +34,23 @@
     },
     {
       "name": "grilling",
-      "digest": "sha256:478f9830e2a0911550d965426f95c4a6b17a152aee838fd48b2dbe2b33534fbb"
+      "digest": "sha256:5d4c99d4602f9b5b09617ff4bfa53cbea41409ef329b49aef79ecdfc79e0dd4a"
     },
     {
       "name": "handoff",
-      "digest": "sha256:9d1a0718a732f049f5ab5a713eaaa39534ea54abd2c437ca14cdebf3cc68b3f7"
+      "digest": "sha256:c0f60bcd8da336301258749f40ddac20fd18ed35181a21437a8a1c5cbeea0960"
     },
     {
       "name": "implement",
-      "digest": "sha256:f34feaf6ce711aa7c7c7d2d812a7bd6cc6bc31953d656a88b5247765063d8fa9"
+      "digest": "sha256:a25d44b358357297c95df341a948bf5eba5ce35cb18de2fb70cb78cf2f74b9d7"
     },
     {
       "name": "implement-spec",
-      "digest": "sha256:bb0f8d80c15164415b67573f04b47e3d725b91612f4c6485ad85a4c06c950c7a"
+      "digest": "sha256:0dbdbd5d12e60eb730716c1e6fb473dfff4e623fcad0df9e322a1f3ba559d904"
     },
     {
       "name": "improve-codebase-architecture",
-      "digest": "sha256:d93a62358f53c1fdfa230a706cbffe11843629080d423836eaa96740eee45a5f"
+      "digest": "sha256:199dbb6d9ae29b51bb86e0090e1c7f2538c165754af027600c90e1614fe310df"
     },
     {
       "name": "pr",
@@ -62,7 +62,7 @@
     },
     {
       "name": "research",
-      "digest": "sha256:176bf3f554a637fa72a2f66451501d0a1c25f0889833fa400a874154e858d287"
+      "digest": "sha256:6edd6a6165ba88efd53144122c50f85607403f346567bf1f14e685ceb81e6165"
     },
     {
       "name": "retro",
@@ -70,15 +70,15 @@
     },
     {
       "name": "setup-matt-pocock-skills",
-      "digest": "sha256:6f6d57fcb76d000abe6980e294a75fd30a2bb8183b7659cb513b134cc5ee4d03"
+      "digest": "sha256:73dbe7c6e8fb06879496df870751bf100ec40adc07ea209c5fe30e5bef27799d"
     },
     {
       "name": "tdd",
-      "digest": "sha256:bb27c7e2cbd5f06e0243e90ac415ffa2c55a479b2fbf7f3f93b28816b332f1bd"
+      "digest": "sha256:e51e7a43abca32da233727fa06b333837beda0f8966e1b1debe742ab165c5032"
     },
     {
       "name": "teach",
-      "digest": "sha256:dae33ee886815c77e70665ced51caf34c7f2361fc6d9f51f70b6fc0f88d56805"
+      "digest": "sha256:afd512b3ccf0b0bb26c20dad078c398365ab12a5a0d5e85b1f3fe37509b05c0f"
     },
     {
       "name": "to-questionnaire",
@@ -90,7 +90,7 @@
     },
     {
       "name": "to-tickets",
-      "digest": "sha256:6114d02c880e869b5a9ace5945a117fc69134384d5959be6b6e05c55c7775290"
+      "digest": "sha256:753c40c368360ce5b9987fae81b01fa645757dcc2d12d57c29bd55cebe3dcf12"
     },
     {
       "name": "triage",
@@ -102,11 +102,11 @@
     },
     {
       "name": "wayfinder",
-      "digest": "sha256:ed12e5df208339a64a02fde454f14a58a678dc9a0df3bdab1f50dd463fbf7c0a"
+      "digest": "sha256:397475e9be72b50c49d013911ca20b8f068785af405c1e7a8e3820d2468362f9"
     },
     {
       "name": "wizard",
-      "digest": "sha256:8c214005a1b817bada2c578573bcda6f4576782332c5aec29792e9292b6f4242"
+      "digest": "sha256:761fd228ad5f5946386269f1b35138f2271ba6f88c3cd72d3390e80c8797af09"
     },
     {
       "name": "writing-for-agents",

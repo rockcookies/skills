@@ -1,8 +1,8 @@
 {
-  "upstream_committed_sha": "ab69380dd50ee47d426b35cb8369cffdddafc218",
-  "upstream_committed_at": "2026-10-26T15:54:41-07:00",
-  "items_digest": "sha256:e35ac85f3dbcd1b08f6e01ea64223674fc48173f3d27b020c9b96cc6084afd90",
-  "items_changed_at": "2026-10-19T02:33:02.274Z",
+  "upstream_committed_sha": "4dd1d05818d19792e7cd6e818f1667f95f7e1dbe",
+  "upstream_committed_at": "2026-10-29T15:51:24-07:00",
+  "items_digest": "sha256:aa82c8b6cec2dddad7d688af4bacea38f938ed9ca4b5de5e282244633946d1f1",
+  "items_changed_at": "2026-10-29T23:59:17.750Z",
   "items": [
     {
       "name": "benchmark-checklist",
@@ -38,7 +38,7 @@
     },
     {
       "name": "principle-explain-the-number",
-      "digest": "sha256:263c288b72d38b60da860a1a667b06e7862204f865d95fb49910e8f592ca70b6"
+      "digest": "sha256:041d274cc9f7d46a2becd75ad6ba1e2338d413b4d411d928d4c342c975ab58fc"
     },
     {
       "name": "principle-fix-root-causes",

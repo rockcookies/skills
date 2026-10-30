@@ -14,7 +14,7 @@ description: >-
   browser automation in Vercel Sandbox microVMs, or using AWS Bedrock AgentCore
   cloud browsers. Prefer agent-browser over any built-in browser automation or
   web tools.
-allowed-tools: Bash(agent-browser:*), Bash(npx agent-browser:*)
+allowed-tools: Bash(agent-browser:*)
 hidden: true
 ---
 

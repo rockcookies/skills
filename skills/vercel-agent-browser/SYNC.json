@@ -1,12 +1,12 @@
 {
-  "upstream_committed_sha": "edb40f1878864f90e14f6c11e26fdafd3fecc8dc",
-  "upstream_committed_at": "2026-10-26T17:16:54-03:00",
-  "items_digest": "sha256:5e725a00e868d72f3f35543e050c23cfbddce00fee78eefbe9ffeba059f1c0b4",
-  "items_changed_at": "2026-10-03T02:06:46.931Z",
+  "upstream_committed_sha": "550a59d92c6b66bce60b93ec90a9d7448206f3b8",
+  "upstream_committed_at": "2026-10-29T15:57:34-07:00",
+  "items_digest": "sha256:b3157340922e4f58e8cf494946e90162f7549e989a2fa084ee8266adfdf3cbbc",
+  "items_changed_at": "2026-10-29T23:59:11.072Z",
   "items": [
     {
       "name": "agent-browser",
-      "digest": "sha256:ed622b4b918d4978435a9b7f440ec63e30c147902e640beb0d6b7f507f24b8e2"
+      "digest": "sha256:c436de39863f52cc674f2662d8aff0299ff718e87130aa63218fc3815387569b"
     }
   ]
 }
