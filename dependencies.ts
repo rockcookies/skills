@@ -59,6 +59,12 @@ export const dependencies: Dependencies = {
 
     'baoyu-infographic': { skills: ['baoyu-image-gen'] },
 
+    // vuejs-ai / hono / baoyu-design：SKILL.md 正文的指名条件交接与运行时委托
+    'vue-best-practices': { skills: ['vue-options-api-best-practices', 'vue-jsx-best-practices'] },
+    'vue-debug-guides': { skills: ['vue-best-practices'] },
+    hono: { skills: ['hono-jsx'] },
+    'baoyu-design': { skills: ['baoyu-image-gen'] },
+
     // samber-golang 家族：统一习语是 frontmatter 边界（Not for → 路由，不收）+
     // 正文/结尾的「→ See golang-X skill」委托（运行时读取，收）。
     'golang-benchmark': {
@@ -427,9 +433,35 @@ export const dependencies: Dependencies = {
         'golang-safety',
       ],
     },
+    'golang-uber-dig': {
+      skills: [
+        'golang-gopls',
+        'golang-pkg-go-dev',
+        'golang-uber-fx',
+        'golang-dependency-injection',
+        'golang-samber-do',
+        'golang-google-wire',
+        'golang-structs-interfaces',
+        'golang-testing',
+      ],
+    },
+    'golang-uber-fx': {
+      skills: [
+        'golang-gopls',
+        'golang-pkg-go-dev',
+        'golang-uber-dig',
+        'golang-dependency-injection',
+        'golang-samber-do',
+        'golang-google-wire',
+        'golang-structs-interfaces',
+        'golang-context',
+        'golang-testing',
+      ],
+    },
   },
   agents: {
     'impeccable-asset-producer': { skills: ['impeccable'] },
+    'impeccable-documenter': { skills: ['impeccable'] },
     'impeccable-finish-reviewer': { skills: ['impeccable'] },
     'impeccable-manual-edit-applier': { skills: ['impeccable'] },
     'thermo-nuclear-review-subagent': { skills: ['thermo-nuclear-review'] },
