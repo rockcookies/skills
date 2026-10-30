@@ -1,4 +1,4 @@
-# 配置 `.project-context-docs.json`
+# 配置 `.agent-context.json`
 
 > 何时读：改作用域清单、调整识别结果、改变审计严格度。文件放在仓库根，可选；它是纯数据，改它不需要改技能。允许整行 `//` 注释。
 > 用显式 `scopes` 时，`exclude` / `include` / `requireAgents` 基本用不上；它们只服务自动模式。
@@ -28,7 +28,7 @@
 
 | 键 | 默认 | 含义 |
 |---|---|---|
-| `scopes` | 无（自动模式） | **AGENTS.md 所在目录清单**；给出即进入显式模式，详见 `scopes.md`。项可为路径字符串，或 `{path, desc, docs, maxLines}` |
+| `scopes` | 无（自动模式） | **AGENTS.md 所在目录清单**；给出即进入显式模式，详见 `scopes.md`。项可为路径字符串，或 `{path, desc, docs, maxLines}`。**同一目录重复列出、`desc`/`docs` 不是字符串、`maxLines` 不是正整数，加载时直接报错**，不再静默取最后一项 |
 | `reportUnlisted` | true | 显式模式下，提示有清单文件却没列入 scopes 的目录（info） |
 | `docFrontmatter` | `type` | `type`：docs 下概念文档须有 frontmatter `type`（OKF）；`off`：不检查 |
 | `ignore` | `[]` | 追加到内置忽略（`node_modules dist build target .turbo vendor …`）的**目录名** |
@@ -42,5 +42,5 @@
 | `agentsMaxLines` / `rootAgentsMaxLines` | 120 / 160 | 超出报 `AGENTS_TOO_LONG` |
 | `routeCollapse` | `decisions adr adrs` | 这些目录在路由表里折叠成一行 |
 | `claudeEntry` | true | 要求有 AGENTS.md 的作用域同时有导入它的 CLAUDE.md |
-| `staleCheck` | true | 用 git 提交时间判断文档是否落后于 `covers` |
+| `staleCheck` | true | 用 git 提交时间和未提交改动判断文档是否落后于 `covers`。关掉、没有 git 或读不了时，`audit` 用 `STALE_CHECK_SKIPPED` 明说"没检查" |
 | `standards` | 自动探测 | 仓库自己的文档规范；空则在 `rootDocs` 下找 `documentation*.md` 等 |

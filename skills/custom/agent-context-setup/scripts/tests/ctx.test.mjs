@@ -9,6 +9,7 @@ import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { discover } from '../discover.mjs';
 import { audit, CODES } from '../audit.mjs';
+import { loadConfig } from '../lib.mjs';
 import { applySync, planSync, suggestScopes, writeScopes } from '../sync.mjs';
 
 const triggered = new Set();
@@ -80,7 +81,7 @@ test('根目录与前端同级：go.mod 在根，frontend/ 是独立单元；根
 
 test('配置：ignore 目录名、exclude 路径、include 强制单元', () => {
   const root = mk({
-    '.project-context-docs.json': JSON.stringify({ ignore: ['unused'], exclude: ['examples/**'], include: ['tools/x'] }),
+    '.agent-context.json': JSON.stringify({ ignore: ['unused'], exclude: ['examples/**'], include: ['tools/x'] }),
     'unused/package.json': '{"name":"old"}',
     'examples/demo/package.json': '{"name":"demo"}',
     'tools/x/run.sh': 'echo',
@@ -284,7 +285,7 @@ test('STANDARDS：自动识别仓库自己的文档规范', () => {
 // ---------- 显式 scopes（在配置里列出 AGENTS.md 所在目录）----------
 test('显式 scopes：只维护列出的目录，没列的不被要求、也不用 exclude', () => {
   const root = mk({
-    '.project-context-docs.json': JSON.stringify({ scopes: ['.', 'apps/web', 'backend'] }),
+    '.agent-context.json': JSON.stringify({ scopes: ['.', 'apps/web', 'backend'] }),
     'package.json': '{"name":"r"}',
     'apps/web/package.json': '{"name":"web"}',
     'apps/admin/package.json': '{"name":"admin"}',
@@ -302,12 +303,12 @@ test('显式 scopes：只维护列出的目录，没列的不被要求、也不�
   assert.deepEqual(missing.sort(), ['apps/web/AGENTS.md', 'backend/AGENTS.md']);
   assert.ok(r.findings.some((f) => f.code === 'SCOPE_UNLISTED' && f.message.includes('apps/admin')));
   // 把 admin 加进清单 → 提示消失，变成要求它有 AGENTS.md
-  write(root, '.project-context-docs.json', JSON.stringify({ scopes: ['.', 'apps/web', 'apps/admin', 'backend'] }));
+  write(root, '.agent-context.json', JSON.stringify({ scopes: ['.', 'apps/web', 'apps/admin', 'backend'] }));
   assert.ok(!codes(root).includes('SCOPE_UNLISTED'));
 });
 
 test('SCOPE_PATH_MISSING：清单里的目录不存在 → error；建出来就消失', () => {
-  const root = mk({ '.project-context-docs.json': JSON.stringify({ scopes: ['.', 'nope'] }), 'AGENTS.md': '# r\n', 'CLAUDE.md': '@AGENTS.md\n' });
+  const root = mk({ '.agent-context.json': JSON.stringify({ scopes: ['.', 'nope'] }), 'AGENTS.md': '# r\n', 'CLAUDE.md': '@AGENTS.md\n' });
   assert.ok(codes(root).includes('SCOPE_PATH_MISSING'));
   write(root, 'nope/x.txt', 'x');
   assert.ok(!codes(root).includes('SCOPE_PATH_MISSING'));
@@ -315,7 +316,7 @@ test('SCOPE_PATH_MISSING：清单里的目录不存在 → error；建出来就�
 
 test('显式 scopes：无清单目录也能当作用域；有下级时是分组；忽略目录里的也能列', () => {
   const root = mk({
-    '.project-context-docs.json': JSON.stringify({ ignore: ['unused'], scopes: ['.', 'tools', 'svc', 'svc/a', 'unused/legacy'] }),
+    '.agent-context.json': JSON.stringify({ ignore: ['unused'], scopes: ['.', 'tools', 'svc', 'svc/a', 'unused/legacy'] }),
     'tools/run.sh': 'echo',
     'svc/a/go.mod': 'module example.com/a\n',
     'unused/legacy/package.json': '{"name":"legacy"}',
@@ -332,7 +333,7 @@ test('显式 scopes：无清单目录也能当作用域；有下级时是分组�
 
 test('scopes 的 desc / docs / maxLines 覆盖项生效，配置支持整行 // 注释', () => {
   const root = mk({
-    '.project-context-docs.json': '// 作用域清单\n' + JSON.stringify({ scopes: ['.', { path: 'a', desc: '接入层', docs: 'documentation', maxLines: 3 }] }),
+    '.agent-context.json': '// 作用域清单\n' + JSON.stringify({ scopes: ['.', { path: 'a', desc: '接入层', docs: 'documentation', maxLines: 3 }] }),
     'a/package.json': '{"name":"a"}',
     'a/documentation/x.md': '---\ntype: 模块文档\n---\n# x\n',
     'a/AGENTS.md': '1\n2\n3\n4\n5\n',
@@ -354,9 +355,9 @@ test('init：只建议根+单元；写入后进入显式模式；重复写入需
   assert.ok(writeScopes(root, suggestScopes(root)).written);
   assert.equal(discover(root).mode, 'explicit');
   assert.equal(writeScopes(root, suggestScopes(root)).written, false);
-  write(root, '.project-context-docs.json', JSON.stringify({ scopes: ['.', { path: 'packages/a', desc: '保留我' }] }));
+  write(root, '.agent-context.json', JSON.stringify({ scopes: ['.', { path: 'packages/a', desc: '保留我' }] }));
   assert.ok(writeScopes(root, ['.', 'packages/a', 'packages/b'], { force: true }).written);
-  const cfg = JSON.parse(read(root, '.project-context-docs.json'));
+  const cfg = JSON.parse(read(root, '.agent-context.json'));
   assert.deepEqual(cfg.scopes, ['.', { path: 'packages/a', desc: '保留我' }, 'packages/b']);
 });
 
@@ -375,7 +376,7 @@ test('DOC_FRONTMATTER：缺 type 报；README 与 index.md 豁免；补上即消
   write(root, 'docs/a.md', '---\ntype: 参考\n---\n# a\n');
   assert.ok(!codes(root).includes('DOC_FRONTMATTER'));
   write(root, 'docs/a.md', '# a\n');
-  write(root, '.project-context-docs.json', JSON.stringify({ docFrontmatter: 'off' }));
+  write(root, '.agent-context.json', JSON.stringify({ docFrontmatter: 'off' }));
   assert.ok(!codes(root).includes('DOC_FRONTMATTER'));
 });
 
@@ -416,6 +417,69 @@ test('OKF 的 bundle 相对链接 /x.md：先按 docs 根解析，再按仓库�
   assert.ok(!codes(root).includes('DEAD_LINK'));
   write(root, 'docs/a.md', '---\ntype: 参考\n---\n[x](/sub/nope.md)\n');
   assert.ok(codes(root).includes('DEAD_LINK'));
+});
+
+const coveredDoc = {
+  'AGENTS.md': '# r\n',
+  'CLAUDE.md': '@AGENTS.md\n',
+  'docs/x.md': '---\ntype: 参考\ncovers: [src/**]\n---\n# x\n',
+  'src/x.ts': 'v1',
+};
+
+test('STALE_CHECK_SKIPPED：不是 git 仓库必报，且不报 DOC_STALE', () => {
+  const root = mk(coveredDoc);
+  assert.ok(codes(root).includes('STALE_CHECK_SKIPPED'));
+  assert.ok(!codes(root).includes('DOC_STALE'));
+});
+
+test('STALE_CHECK_SKIPPED：还没有提交必报，第一次提交后消失；关掉 staleCheck 再报，打开后消失', { skip: !gitOk && '无 git' }, () => {
+  const root = mk(coveredDoc);
+  git(root, ['init', '-q']);
+  git(root, ['config', 'user.email', 't@t']);
+  git(root, ['config', 'user.name', 't']);
+  assert.ok(codes(root).includes('STALE_CHECK_SKIPPED'));
+  git(root, ['add', '-A']);
+  git(root, ['commit', '-qm', 'c1'], '2026-01-01T00:00:00+00:00');
+  assert.ok(!codes(root).includes('STALE_CHECK_SKIPPED'));
+  write(root, '.agent-context.json', JSON.stringify({ staleCheck: false }));
+  assert.ok(codes(root).includes('STALE_CHECK_SKIPPED'));
+  write(root, '.agent-context.json', JSON.stringify({ staleCheck: true }));
+  assert.ok(!codes(root).includes('STALE_CHECK_SKIPPED'));
+});
+
+test('SCAN_INCOMPLETE：损坏的 package.json 必报，修好消失', () => {
+  const root = mk({ 'AGENTS.md': '# r\n', 'CLAUDE.md': '@AGENTS.md\n', 'package.json': '{' });
+  assert.ok(codes(root).includes('SCAN_INCOMPLETE'));
+  write(root, 'package.json', '{"name":"ok"}');
+  assert.ok(!codes(root).includes('SCAN_INCOMPLETE'));
+});
+
+test('DOC_STALE：未提交的代码改动必报；文档也改或 verified 晚于代码 mtime 则消失', { skip: !gitOk && '无 git' }, () => {
+  const root = mk(coveredDoc);
+  git(root, ['init', '-q']);
+  git(root, ['config', 'user.email', 't@t']);
+  git(root, ['config', 'user.name', 't']);
+  git(root, ['add', '-A']);
+  git(root, ['commit', '-qm', 'c1'], '2026-01-01T00:00:00+00:00');
+  assert.ok(!codes(root).includes('DOC_STALE'));
+  write(root, 'src/x.ts', 'v2');
+  assert.ok(codes(root).includes('DOC_STALE'));
+  const later = new Date(Date.now() + 60_000).toISOString();
+  write(root, 'docs/x.md', `---\ntype: 参考\ncovers: [src/**]\nverified: { by: human:a, at: ${later} }\n---\n# x\n`);
+  assert.ok(!codes(root).includes('DOC_STALE'));
+  write(root, 'docs/x.md', '---\ntype: 参考\ncovers: [src/**]\n---\n# x\n改了\n');
+  assert.ok(!codes(root).includes('DOC_STALE'));
+});
+
+test('normalizeScopes：重复路径或非法覆盖项直接抛错', () => {
+  const dup = mk({ '.agent-context.json': JSON.stringify({ scopes: ['.', '.'] }) });
+  assert.throws(() => loadConfig(dup), /duplicate scopes entry/);
+  const badDesc = mk({ '.agent-context.json': JSON.stringify({ scopes: [{ path: '.', desc: 1 }] }) });
+  assert.throws(() => loadConfig(badDesc), /desc must be a string/);
+  const badDocs = mk({ '.agent-context.json': JSON.stringify({ scopes: [{ path: '.', docs: 1 }] }) });
+  assert.throws(() => loadConfig(badDocs), /docs must be a string/);
+  const badLines = mk({ '.agent-context.json': JSON.stringify({ scopes: [{ path: '.', maxLines: 0 }] }) });
+  assert.throws(() => loadConfig(badLines), /maxLines must be a positive integer/);
 });
 
 // ---------- 门禁自检：最后运行 ----------

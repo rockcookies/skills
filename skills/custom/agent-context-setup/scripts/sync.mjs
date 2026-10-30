@@ -1,4 +1,4 @@
-// 同步生成区块、按需脚手架；并生成/维护 .project-context-docs.json 里的 scopes（init 子命令的后端）。
+// 同步生成区块、按需脚手架；并生成/维护 .agent-context.json 里的 scopes（init 子命令的后端）。
 // 默认 dry-run，加 --write 才落盘。
 // 用法：node ctx.mjs sync [--root <dir>] [--write] [--scaffold] [--add-blocks] [--json]
 //   --scaffold    为缺失的 AGENTS.md / CLAUDE.md 按模板新建（永不覆盖已有文件）

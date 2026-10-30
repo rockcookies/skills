@@ -167,6 +167,7 @@ function detectPm(pkg, nodeFiles, rootFiles) {
 }
 
 function commandsFor(root, tree, s) {
+  const issues = tree.__issues ?? [];
   const abs = s.path === '.' ? root : path.join(root, s.path);
   const files = tree.get(s.path)?.files ?? [];
   const out = {};
@@ -175,8 +176,9 @@ function commandsFor(root, tree, s) {
       const pkg = readJson(path.join(abs, 'package.json'));
       const scripts = Object.fromEntries(Object.entries(pkg.scripts ?? {}).sort(([a], [b]) => cmp(a, b)));
       if (Object.keys(scripts).length) out.node = { pm: detectPm(pkg, files, tree.get('.')?.files ?? []), scripts };
-    } catch {
-      /* 忽略 */
+    } catch (e) {
+      // package.json 读不了：命令区块会缺这一段，必须让人知道，而不是悄悄变空
+      issues.push({ path: s.path === '.' ? 'package.json' : `${s.path}/package.json`, error: `unreadable: ${e.message}` });
     }
   }
   if (files.includes('Makefile')) {
@@ -284,6 +286,7 @@ export function discover(rootArg = '.', opts = {}) {
     scopes: ordered,
     missingScopes,
     unlisted,
+    scanIssues: tree.__issues, // 读不了的目录/文件；非空时发现结果可能不完整
   };
   Object.defineProperty(result, 'tree', { value: tree, enumerable: false });
   return result;

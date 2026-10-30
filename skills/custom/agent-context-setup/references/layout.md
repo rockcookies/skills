@@ -19,9 +19,9 @@
 | 模块清单、脚本命令、文档目录 | 生成区块（`units` / `commands` / `doc-routes`） |
 | 全仓库通用的命名、提交、测试约定 | 根 `AGENTS.md` 的 "Global conventions" 一节，或 `docs/governance/*` 后在路由里指向 |
 | 只对某个单元成立的约定 | 该单元的 `AGENTS.md` |
-| 某个子模块的接口与坑 | `<单元>/docs/<模块>.md`，frontmatter 写 `type`、`description`、`covers` |
-| 为什么选 A 不选 B | `docs/architecture/decisions/NNNN-*.md`（ADR，追加不改） |
 | 架构总览 | `docs/architecture/overview.md` |
+
+术语、模块文档、ADR 的落点见 `format.md`「知识载体分工」。
 
 ## 继承
 
@@ -39,3 +39,7 @@ docs 下的文档遵循 OKF v0.2：最小只要 `type`，`description` 进路由
 1. 先读仓库已有的 AGENTS.md/CLAUDE.md/docs 规范，**保留**原有内容与风格。
 2. 用 `sync --add-blocks` 在末尾追加生成区块，原文一字不动。
 3. 原 CLAUDE.md 有独立内容时：让用户决定是并入 AGENTS.md 后改成 `@AGENTS.md`，还是保持分叉；不要自行合并。
+
+## 日常维护
+
+接入完成后，改完代码顺手更新文档的工作由 `agent-context-update` 负责；本技能只在需要整仓重整、体检或迁移时再用。

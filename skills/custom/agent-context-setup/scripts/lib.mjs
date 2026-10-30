@@ -5,7 +5,7 @@ import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 
 export const SKILL_DIR = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-export const CONFIG_FILE = '.project-context-docs.json';
+export const CONFIG_FILE = '.agent-context.json';
 
 export const BUILTIN_IGNORE = [
   '.git', 'node_modules', 'dist', 'build', 'out', 'target', '.turbo', '.next', '.nuxt',
@@ -72,6 +72,10 @@ export function normalizeScopes(list) {
     let p = o.path.replace(/\\/g, '/').replace(/^\.\//, '').replace(/\/+$/, '');
     if (p === '') p = '.';
     if (p.startsWith('/') || p.split('/').includes('..')) throw new Error(`scopes paths must be relative to the repo root: ${o.path}`);
+    if (seen.has(p)) throw new Error(`duplicate scopes entry: "${p}" (each directory may be listed once; merge the overrides)`);
+    if (o.desc !== undefined && typeof o.desc !== 'string') throw new Error(`scopes["${p}"].desc must be a string`);
+    if (o.docs !== undefined && typeof o.docs !== 'string') throw new Error(`scopes["${p}"].docs must be a string`);
+    if (o.maxLines !== undefined && !(Number.isInteger(o.maxLines) && o.maxLines > 0)) throw new Error(`scopes["${p}"].maxLines must be a positive integer`);
     seen.set(p, { ...o, path: p });
   }
   return [...seen.values()];
@@ -121,6 +125,8 @@ export function globToRegex(glob) {
 
 // ---------- 目录扫描 ----------
 // 返回 Map<相对路径('.' 为根), {files:[], subdirs:[]}>；不跟随符号链接。
+// 读不了的目录（权限等）不会让扫描中断，但会记入 tree.__issues（[{path, error}]），由 discover/audit 上报，
+// 避免"没扫到"被误读成"没有"。
 export function scanTree(root, config, extraRoots = []) {
   const ignore = new Set(config.ignore);
   const excl = config.exclude.map(globToRegex);
@@ -133,12 +139,15 @@ export function scanTree(root, config, extraRoots = []) {
     return false;
   };
   const tree = new Map();
+  const issues = [];
+  tree.__issues = issues; // 非 Map 条目，遍历不到
   const visit = (rel, depth) => {
     const abs = rel === '.' ? root : path.join(root, rel);
     let entries;
     try {
       entries = fs.readdirSync(abs, { withFileTypes: true });
-    } catch {
+    } catch (e) {
+      issues.push({ path: rel, error: e.code ?? e.message });
       return;
     }
     const node = { files: [], subdirs: [] };
@@ -163,7 +172,8 @@ export function scanTree(root, config, extraRoots = []) {
     if (rel === '.' || tree.has(rel)) continue;
     try {
       if (!fs.statSync(path.join(root, rel)).isDirectory()) continue;
-    } catch {
+    } catch (e) {
+      if (e.code !== 'ENOENT') issues.push({ path: rel, error: e.code ?? e.message }); // 不存在由 SCOPE_PATH_MISSING 报告
       continue;
     }
     visit(rel, 0);
@@ -247,9 +257,13 @@ export function gitAvailable(root) {
   }
 }
 
-// 这批路径里最近一次提交的 unix 秒；没有提交记录返回 null。
-export function lastCommitTime(root, relPaths) {
-  let max = null;
+// 这批路径里最近一次提交的 unix 秒。
+// 返回 { time, failed, error }：time 为 null 表示这些路径没有提交记录；
+// failed > 0 表示 git 本身报错（如仓库还没有任何提交），此时 time 不可信，调用方应报"未检查"而不是"没问题"。
+export function gitLastCommit(root, relPaths) {
+  let time = null;
+  let failed = 0;
+  let error = '';
   for (let i = 0; i < relPaths.length; i += 200) {
     const chunk = relPaths.slice(i, i + 200);
     try {
@@ -258,12 +272,42 @@ export function lastCommitTime(root, relPaths) {
         ['--literal-pathspecs', 'log', '-1', '--format=%ct', '--', ...chunk],
         { cwd: root, stdio: 'pipe', encoding: 'utf8' },
       ).trim();
-      if (out) max = Math.max(max ?? 0, Number(out));
-    } catch {
-      /* 忽略：无提交或 git 异常 */
+      if (out) time = Math.max(time ?? 0, Number(out));
+    } catch (e) {
+      failed++;
+      error = String(e.stderr || e.message).trim().split('\n')[0];
     }
   }
-  return max;
+  return { time, failed, error };
+}
+
+// 兼容旧调用：只要时间。
+export function lastCommitTime(root, relPaths) {
+  return gitLastCommit(root, relPaths).time;
+}
+
+// 工作区里有未提交改动（含未跟踪文件）的路径集合，路径相对 root、posix 风格。git 出错返回 null。
+export function gitDirtyPaths(root) {
+  try {
+    const prefix = execFileSync('git', ['rev-parse', '--show-prefix'], { cwd: root, stdio: 'pipe', encoding: 'utf8' }).trim();
+    const out = execFileSync('git', ['status', '--porcelain', '-z', '--untracked-files=all'], {
+      cwd: root, stdio: 'pipe', encoding: 'utf8', maxBuffer: 64 * 1024 * 1024,
+    });
+    const parts = out.split('\0');
+    const set = new Set();
+    for (let i = 0; i < parts.length; i++) {
+      const e = parts[i];
+      if (e.length < 4) continue;
+      const code = e.slice(0, 2);
+      const p = e.slice(3);
+      if (/[RC]/.test(code)) i++; // 重命名/复制：下一段是原路径，跳过
+      if (prefix && !p.startsWith(prefix)) continue; // root 是仓库子目录时，只看 root 以内
+      set.add(prefix ? p.slice(prefix.length) : p);
+    }
+    return set;
+  } catch {
+    return null;
+  }
 }
 
 // ---------- CLI ----------

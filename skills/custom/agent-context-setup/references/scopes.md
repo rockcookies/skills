@@ -4,7 +4,7 @@
 
 ## 显式清单（推荐）
 
-在 `.project-context-docs.json` 里列出 AGENTS.md 所在的目录，工具只维护这些：
+在 `.agent-context.json` 里列出 AGENTS.md 所在的目录，工具只维护这些：
 
 ```json
 {

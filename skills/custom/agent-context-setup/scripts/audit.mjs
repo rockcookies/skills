@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { discover } from './discover.mjs';
 import {
-  extractImports, extractLinks, filesUnder, gitAvailable, globToRegex, lastCommitTime,
+  extractImports, extractLinks, filesUnder, gitAvailable, gitDirtyPaths, gitLastCommit, globToRegex,
   readText, stripCode,
 } from './lib.mjs';
 import { BLOCK_IDS, EMPTY_BODY, expectedBlocks, findBlocks, requiresAgents, routeEntries } from './render.mjs';
@@ -14,10 +14,19 @@ export const CODES = [
   'BLOCK_UNBALANCED', 'BLOCK_STALE', 'TODO_LEFT', 'DEAD_LINK', 'COVERS_EMPTY',
   'DOC_STALE', 'ROUTE_MISSING', 'STANDARDS',
   'SCOPE_PATH_MISSING', 'SCOPE_UNLISTED', 'DOC_FRONTMATTER', 'DOC_EXPIRED',
+  'STALE_CHECK_SKIPPED', 'SCAN_INCOMPLETE',
 ];
 
 const isoDay = (t) => new Date(t * 1000).toISOString().slice(0, 10);
 const join = (p, n) => (p === '.' ? n : `${p}/${n}`);
+const shownList = (arr, n = 5) => arr.slice(0, n).join(', ') + (arr.length > n ? `, and ${arr.length - n} more` : '');
+const mtimeSec = (abs) => {
+  try {
+    return Math.floor(fs.statSync(abs).mtimeMs / 1000);
+  } catch {
+    return 0;
+  }
+};
 
 export function audit(rootArg = '.', opts = {}) {
   const d = discover(rootArg, opts);
@@ -27,11 +36,15 @@ export function audit(rootArg = '.', opts = {}) {
   const label = (s) => (s.kind === 'group' ? 'group' : 'unit');
   const now = (opts.now ?? new Date()).getTime();
 
-  // 0) 显式作用域清单的自洽性
-  for (const p of d.missingScopes) add('SCOPE_PATH_MISSING', 'error', '.project-context-docs.json', `scopes entry "${p}" does not exist on disk (renamed or deleted?)`);
+  // 0) 扫描是否完整、显式作用域清单的自洽性
+  const unreadable = new Set(d.scanIssues.map((i) => i.path));
+  if (d.scanIssues.length) {
+    add('SCAN_INCOMPLETE', 'warn', '', `could not read: ${shownList(d.scanIssues.map((i) => `${i.path} (${i.error})`))}; discovery may be incomplete, so a clean result here is not an all-clear`);
+  }
+  for (const p of d.missingScopes) add('SCOPE_PATH_MISSING', 'error', '.agent-context.json', `scopes entry "${p}" does not exist on disk (renamed or deleted?)${unreadable.has(p) ? '; it could not be read, see SCAN_INCOMPLETE' : ''}`);
   if (d.mode === 'explicit' && cfg.reportUnlisted && d.unlisted.length) {
     const shown = d.unlisted.slice(0, 8).join(', ') + (d.unlisted.length > 8 ? `, and ${d.unlisted.length - 8} more` : '');
-    add('SCOPE_UNLISTED', 'info', '.project-context-docs.json', `these directories have a manifest but are not listed in scopes: ${shown}. add them to scopes to maintain them, or ignore (reportUnlisted: false silences this)`);
+    add('SCOPE_UNLISTED', 'info', '.agent-context.json', `these directories have a manifest but are not listed in scopes: ${shown}. add them to scopes to maintain them, or ignore (reportUnlisted: false silences this)`);
   }
 
   // 1) AGENTS.md 存在性 / 长度 / 区块 / TODO / CLAUDE 入口
@@ -102,7 +115,12 @@ export function audit(rootArg = '.', opts = {}) {
   }
 
   // 3) covers 有效性 + 文档是否落后于代码
+  //    DOC_STALE 只是"该看一眼了"的机械线索（提交时间 + 未提交改动），不证明文档对或错；语义核对见 references/audit.md。
+  //    任何没能执行的检查都要明说（STALE_CHECK_SKIPPED），避免把"没检查"读成"没问题"。
   const gitOk = cfg.staleCheck && gitAvailable(d.root);
+  const dirty = gitOk ? gitDirtyPaths(d.root) : null; // 未提交改动（含未跟踪）；git 出错为 null
+  const skipReasons = new Set();
+  let staleCandidates = 0; // 有 covers、非 deprecated 且匹配到文件的文档数：只有它们才需要过期检查
   for (const s of d.scopes) {
     if (!s.docs) continue;
     const underScope = filesUnder(d.tree, s.path).filter((f) => !f.startsWith(s.docs.dir + '/'));
@@ -116,15 +134,42 @@ export function audit(rootArg = '.', opts = {}) {
         if (!hit.length) add('COVERS_EMPTY', 'error', doc.path, `covers "${pat}" matches no files (path renamed or deleted?)`);
         hit.forEach((h) => covered.add(h));
       }
-      if (gitOk && covered.size && doc.status !== 'deprecated') {
-        const docT = lastCommitTime(d.root, [doc.path]);
-        const codeT = lastCommitTime(d.root, [...covered]);
-        // verified（OKF §5.2）：有人在代码最后一次改动之后复核过，就不算过期
-        if (docT && codeT && codeT > docT && !(doc.verifiedAt && doc.verifiedAt >= codeT)) {
-          add('DOC_STALE', 'warn', doc.path, `covered code last changed ${isoDay(codeT)}, doc last changed ${isoDay(docT)}; verify whether the doc is stale`);
+      if (covered.size && doc.status !== 'deprecated') {
+        staleCandidates++;
+        if (!cfg.staleCheck) skipReasons.add('staleCheck is false in the config');
+        else if (!gitOk) skipReasons.add('git is unavailable or this is not a git work tree');
+        else {
+          const docC = gitLastCommit(d.root, [doc.path]);
+          const codeC = gitLastCommit(d.root, [...covered]);
+          const docT = docC.time;
+          const codeT = codeC.time;
+          let staleMsg = null;
+          if (docC.failed || codeC.failed) {
+            skipReasons.add(`git log failed (${docC.error || codeC.error})`);
+          } else if (docT && codeT && codeT > docT && !(doc.verifiedAt && doc.verifiedAt >= codeT)) {
+            // verified（OKF §5.2）：有人在代码最后一次改动之后复核过，就不算过期
+            staleMsg = `covered code last changed ${isoDay(codeT)}, doc last changed ${isoDay(docT)}; verify whether the doc is stale`;
+          }
+          // 未提交的代码改动：提交时间看不到它。文档本身也有未提交改动时，认为作者正在同步改，不报。
+          if (!staleMsg && dirty) {
+            const dirtyCode = [...covered].filter((f) => dirty.has(f));
+            if (dirtyCode.length && !dirty.has(doc.path)) {
+              const codeM = Math.max(...dirtyCode.map((f) => mtimeSec(path.join(d.root, f))));
+              if (!(doc.verifiedAt && doc.verifiedAt >= codeM)) {
+                staleMsg = `${dirtyCode.length} covered file(s) have uncommitted changes (e.g. ${dirtyCode[0]}) and the doc has none; verify whether the doc is stale`;
+              }
+            }
+          } else if (!staleMsg && !dirty) {
+            skipReasons.add('could not read the working-tree status, so uncommitted code changes were not checked');
+          }
+          if (staleMsg) add('DOC_STALE', 'warn', doc.path, staleMsg);
         }
       }
     }
+  }
+
+  if (staleCandidates && skipReasons.size) {
+    add('STALE_CHECK_SKIPPED', 'info', '', `doc staleness was not (fully) checked: ${[...skipReasons].join('; ')}. no DOC_STALE here does not mean the docs are current`);
   }
 
   // 3b) OKF：frontmatter type、stale_after

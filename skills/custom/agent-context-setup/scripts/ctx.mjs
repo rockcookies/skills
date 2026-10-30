@@ -1,11 +1,12 @@
 #!/usr/bin/env node
 // 唯一 CLI 入口：init / discover / audit / sync。零依赖，Node >= 18。
 // 用法：node ctx.mjs <init|discover|audit|sync> [--root <dir>] [选项]
-//   init     探测并预览建议的 scopes；--write 写入 .project-context-docs.json（已有 scopes 需 --force，同路径覆盖项保留）；--groups 把分组也列上
+//   init     探测并预览建议的 scopes；--write 写入 .agent-context.json（已有 scopes 需 --force，同路径覆盖项保留）；--groups 把分组也列上
 //   discover 输出作用域清单 JSON（技术栈、继承链、docs、命令、AGENTS/CLAUDE 状态、未列入的目录）
 //   audit    健康检查；有 error 退出码 1；--strict 时有 warn 也 → 1；--json 输出 JSON
+//            （没执行的检查会以 STALE_CHECK_SKIPPED / SCAN_INCOMPLETE 明说，"没有告警"不等于"已检查通过"）
 //   sync     dry-run 列出将要做的事；--write 落盘；--scaffold 新建缺失的 AGENTS.md/CLAUDE.md；--add-blocks 给已有 AGENTS.md 追加缺失区块；--json 输出 JSON
-// 之后维护清单就直接编辑 .project-context-docs.json：加一行 = 纳入，删一行 = 不再维护，无需 exclude。
+// 之后维护清单就直接编辑 .agent-context.json：加一行 = 纳入，删一行 = 不再维护，无需 exclude。
 import path from 'node:path';
 import { audit } from './audit.mjs';
 import { discover } from './discover.mjs';
@@ -24,7 +25,7 @@ if (cmd === 'init') {
     console.log(r.written ? `\nwritten: ${r.file}` : `\nnot written: ${r.reason}`);
     process.exit(r.written ? 0 : 1);
   }
-  console.log('\ndry-run: nothing written. add --write to confirm; afterwards edit scopes in .project-context-docs.json directly.');
+  console.log('\ndry-run: nothing written. add --write to confirm; afterwards edit scopes in .agent-context.json directly.');
 } else if (cmd === 'discover') {
   process.stdout.write(JSON.stringify(discover(args.root ?? '.'), null, 2) + '\n');
 } else if (cmd === 'audit') {
@@ -40,6 +41,9 @@ if (cmd === 'init') {
   process.exit(r.summary.error > 0 || (args.strict && r.summary.warn > 0) ? 1 : 0);
 } else if (cmd === 'sync') {
   const d = discover(args.root ?? '.');
+  if (d.scanIssues.length) {
+    console.error(`warning: scan incomplete, could not read: ${d.scanIssues.map((i) => `${i.path} (${i.error})`).join(', ')}; generated blocks may be missing entries`);
+  }
   const actions = planSync(d, { scaffold: !!args.scaffold, addBlocks: !!args['add-blocks'] });
   applySync(actions, { write: !!args.write });
 
