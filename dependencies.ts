@@ -62,11 +62,10 @@ export const dependencies: Dependencies = {
 
     'baoyu-infographic': { skills: ['baoyu-image-gen'] },
 
-    // vuejs-ai / hono / baoyu-design：SKILL.md 正文的指名条件交接与运行时委托
+    // vuejs-ai / hono：SKILL.md 正文的指名条件交接与运行时委托
     'vue-best-practices': { skills: ['vue-options-api-best-practices', 'vue-jsx-best-practices'] },
     'vue-debug-guides': { skills: ['vue-best-practices'] },
     hono: { skills: ['hono-jsx'] },
-    'baoyu-design': { skills: ['baoyu-image-gen'] },
 
     // samber-golang 家族：统一习语是 frontmatter 边界（Not for → 路由，不收）+
     // 正文/结尾的「→ See golang-X skill」委托（运行时读取，收）。

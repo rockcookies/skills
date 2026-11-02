@@ -1,16 +1,16 @@
 {
-  "upstream_committed_sha": "1567581c26ec29f4216c6e6835415bf30343b0e3",
-  "upstream_committed_at": "2026-09-10T10:13:43-05:00",
-  "items_digest": "sha256:d153dbbfc60c1e338991ea8f3b8557cc5e726cf62f0b71c62586141ae9938758",
-  "items_changed_at": "2026-10-03T02:06:56.876Z",
+  "upstream_committed_sha": "0a27d7d40e79cfe42334e2e9130a1e41a499ca54",
+  "upstream_committed_at": "2026-11-01T17:35:35-06:00",
+  "items_digest": "sha256:977c7aff92437f204cee12119982793269df2166764e4f02a93d40ab1195c73d",
+  "items_changed_at": "2026-11-02T01:57:20.499Z",
   "items": [
     {
       "name": "baoyu-image-gen",
-      "digest": "sha256:9ec511a08a8b6ce463d5e4251d1dd631eb94e12a59ad482051f4bb2d5d1179f9"
+      "digest": "sha256:86e2932f3d5c2ec4c3cc2932fd793c10f8e2ac384174fcc39fc46dd62dbf29c5"
     },
     {
       "name": "baoyu-infographic",
-      "digest": "sha256:8ce8299637ec0a635d1f1cbd95cde95e2fe932f1ef1597ea6c977c0df7ce019e"
+      "digest": "sha256:f1cffb15ec7b357431b46fe6097eb5bfbcd7327ce43367d5731b37ac14dd3a33"
     }
   ]
 }

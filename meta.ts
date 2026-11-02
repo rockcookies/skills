@@ -237,7 +237,7 @@ export const repositories: Record<string, RepositoryConfig> = {
   },
   'tw93-waza': {
     url: 'https://github.com/tw93/Waza',
-    tag: 'v3.40.0',
+    tag: 'v3.41.0',
     skills: [
       { name: 'check', source: './skills/check/SKILL.md' },
       { name: 'ui', source: './skills/ui/SKILL.md' },
@@ -286,7 +286,11 @@ export const repositories: Record<string, RepositoryConfig> = {
   "baoyu-design": {
     url: "https://github.com/jimliu/baoyu-design",
     skills: [
-      { name: "baoyu-design", source: "./skills/baoyu-design/SKILL.md" },
+      { name: "claude-dashboard", source: "./skills/claude-dashboard/SKILL.md" },
+      { name: "claude-design-system", source: "./skills/claude-design-system/SKILL.md" },
+      { name: "claude-design", source: "./skills/claude-design/SKILL.md" },
+      { name: "claude-slides", source: "./skills/claude-slides/SKILL.md" },
+      { name: "dataviz", source: "./skills/dataviz/SKILL.md" },
     ],
   },
   'baoyu': {

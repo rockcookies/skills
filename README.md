@@ -28,6 +28,8 @@ cp agents/cursor-plugins/*.md ~/.cursor/agents/
 
 Thermos skills launch those subagents by `name`. Install the skills **and** copy the matching agent files, or the orchestrator has nothing to delegate to.
 
+Rules are skipped too — they are copied verbatim from upstream and live at `rules/{repoKey}/{name}.md`; copy them into your runtime's rules directory (e.g. `~/.cursor/rules/`). This repo currently ships the six Waza rules under `rules/tw93-waza/`.
+
 ### Go skills ([samber/cc-skills-golang](https://github.com/samber/cc-skills-golang), tag `v2.0.0`)
 
 Atomic and cross-referencing — prefer the ⭐ set (or all), then add category / library skills as needed. Installing a skill does **not** pull linked skills automatically.
@@ -332,7 +334,11 @@ npx skills add rockcookies/skills --full-depth \
 npx skills add rockcookies/skills --full-depth \
   --skill frontend-design \
   --skill ui \
-  --skill baoyu-design \
+  --skill claude-dashboard \
+  --skill claude-design \
+  --skill claude-design-system \
+  --skill claude-slides \
+  --skill dataviz \
   --skill baoyu-image-gen \
   --skill impeccable \
   -g
@@ -455,9 +461,13 @@ Synced from external repositories into `skills/{repoKey}/{target}/`.
 
 #### [jimliu/baoyu-design](https://github.com/jimliu/baoyu-design)
 
-| Skill                                            | Description                                                                               |
-| ------------------------------------------------ | ----------------------------------------------------------------------------------------- |
-| [baoyu-design](skills/baoyu-design/baoyu-design) | Polished design artifacts as self-contained HTML — mockups, prototypes, wireframes, decks |
+| Skill                                                            | Description                                                                                                    |
+| ---------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| [claude-dashboard](skills/baoyu-design/claude-dashboard)         | Local data dashboards — charts, KPIs and tables over CSV/TSV/JSON datasets, in the bundled live editor         |
+| [claude-design](skills/baoyu-design/claude-design)               | Design canvas artifacts (canvas.json + one .dc.html per artboard) with a local canvas editor for retyping copy |
+| [claude-design-system](skills/baoyu-design/claude-design-system) | Design systems — tokens.json, README brand book, component previews and fonts, editable in the bundled page    |
+| [claude-slides](skills/baoyu-design/claude-slides)               | Slide decks in the Slides artifact format, editable in the local slide editor; export PDF / HTML / PowerPoint  |
+| [dataviz](skills/baoyu-design/dataviz)                           | Chart guide — form, color, marks, legends and accessibility, with palette validators                           |
 
 #### [majiayu000/spellbook](https://github.com/majiayu000/spellbook)
 

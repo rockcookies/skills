@@ -22,6 +22,7 @@ User-facing install catalog and bundles live in [README.md](README.md). Reposito
 ├── rules/                  # published rules: rules/{repoKey}/{name}.md
 ├── upstream/               # git checkouts (not version-controlled)
 ├── dependencies.ts         # dependency declarations (skills/agents/rules/commands partitions)
+├── UPSTREAM-GAPS.md        # upstream references that don't resolve on disk (not repo defects)
 └── meta.ts                 # repo keys, pins, mappings, transforms
 ```
 
@@ -57,6 +58,7 @@ Transforms are kebab-case names. Repo-level `transforms.skills` / `transforms.ag
 3. **Declare runtime dependencies** → add an entry to `dependencies.ts`, then inspect with `pnpm cli deps <name>`.
 4. **Upstream with empty `skills`, `agents`, and `rules`** → repo may be listed for future use; Sync skips that repo until a mapping exists. A repo with only one kind still syncs.
 5. **Verify** → `pnpm test`（vitest）/ `pnpm lint` / `pnpm fmt` after TypeScript changes.
+6. **Broken reference in upstream text** → record it in [UPSTREAM-GAPS.md](UPSTREAM-GAPS.md) instead of editing the generated dest; fix it upstream or with a named transform in `meta.ts`.
 
 ## Pins (see `meta.ts`)
 

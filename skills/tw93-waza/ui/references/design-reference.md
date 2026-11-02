@@ -44,6 +44,7 @@ Placeholder copy that looks real but is not real breaks the illusion the moment 
 - Multiple avatar instances must not share the same image. Multiple blog post or event cards must not share the same date.
 
 **UI copy:**
+- **Meaning lost in a copy cut:** Judge what the remaining text implies, not just whether words repeat a heading. Keep guarantees, scope and limits when removing them changes that implication; clearer wording can be the right edit without shortening. Before rendering a candidate, run existing copy checks across affected locales and reconcile corresponding surfaces on other platforms with their accepted wording. Compare the whole surface before and after: a settings list with uneven descriptions or a card left holding only an icon needs a layout decision, not another isolated text deletion.
 - Sentence case on all headings. Title Case On Every Heading is the most common AI tell in body copy.
 - Remove exclamation marks from success states ("Saved!" becomes "Saved", "Done!" becomes "Done"). Reserve `!` for genuine urgency.
 - Never open an error message with "Oops!". It reads as condescending.
@@ -83,9 +84,9 @@ Once motion is earned, duration follows the element: press feedback 100-160ms, t
 - Staggered enter: split content into semantic chunks with ~100ms delay; titles into words at ~80ms; typical enter uses `opacity: 0 → 1`, `translateY(12px) → 0`, and `blur(4px) → 0`
 - Subtle exit: use a small fixed `translateY(-12px)` instead of full height; keep duration ~150ms `ease-in`, shorter and softer than enter. That short exit is the only place `ease-in` belongs; on an enter, hover, press, or anything the user is watching for a response, it delays the first frame and reads as lag
 - Contextual icon swaps: animate with `scale: 0.25 → 1`, `opacity: 0 → 1`, and `blur: 4px → 0px`. With a spring library: `{ type: "spring", duration: 0.3, bounce: 0 }`. Without: keep both icons in DOM (one absolute) and cross-fade with CSS using `cubic-bezier(0.2, 0, 0, 1)`. No rotation unless rotation is semantically meaningful (e.g. a chevron indicating direction change)
-- Scale on press: buttons use `scale(0.96)` on active/press via CSS transitions so the press can be interrupted; add a `static` prop to disable when motion would be distracting
+- Press feedback: an immediate selected, open, or loading state already acknowledges activation. When that signal is delayed, a restrained active-state change can bridge the gap; if scale fits the product, `scale(0.96)` is one interruptible option. Frequent and reduced-motion interactions keep still feedback
 - Page-load guard: use `initial={false}` on animated presence wrappers for toggles, tabs, and icon swaps to prevent enter animations on first render; do not use it for intentional page-load entrance sequences
-- When a crossfade between two states still reads as two overlapping objects after trying other curves and durations, add `filter: blur(2px)` during the transition to blend them into one; keep blur under 20px, it is expensive in Safari
+- Overlapping states: if a crossfade reads as two objects, inspect identity, stacking, and container geometry before retuning duration. Distinct objects may need an asymmetric exit/entry or an immediate swap; blur belongs only to an intentional morph, not to hiding duplicated content or a layout jump
 
 ### Performance
 - GPU compositing: only use `will-change` for `transform`, `opacity`, or `filter`. Never `will-change: all`. Add only when you notice first-frame stutter; do not apply preemptively to every element
@@ -261,7 +262,7 @@ These are product-readiness questions. A visual-polish request may surface them,
 When building a sidebar + main workspace layout (Slack, Linear, Notion class):
 - Decorative backgrounds default to off
 - Surface hierarchy uses background-color steps and shadow only
-- All interactive elements get the standard press scale from Animation (`scale(0.96)` on active/press)
+- Activation feedback follows Animation: immediate state changes count; app-shell controls do not all need press scale
 - Button radius is consistent within each component type (pick one: pill, square, or one fixed value, do not mix)
 - Commit to a named radius scale before the first component (see Border radius system above)
 
