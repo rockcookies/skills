@@ -1,24 +1,24 @@
 {
-  "upstream_committed_sha": "0c257e5e9def6723fdc69a95ec59fc8c414a8282",
-  "upstream_committed_at": "2026-11-01T03:15:26-06:00",
-  "items_digest": "sha256:16a57993c07b22aa6df5fa900b53389f73b266b33494b16d66108b8a322aa5f7",
-  "items_changed_at": "2026-11-02T03:03:38.381Z",
+  "upstream_committed_sha": "9c5253c002820d8dd4c9c31e9c8ca04b529a3e34",
+  "upstream_committed_at": "2026-11-05T14:34:29-06:00",
+  "items_digest": "sha256:be153fa0c565f28125a8205cb6dab9d396d5fbf051bae84d0a9f1b1d60e7123d",
+  "items_changed_at": "2026-11-06T07:32:16.158Z",
   "items": [
     {
       "name": "claude-dashboard",
-      "digest": "sha256:e4d70d04b60c1cb2f70bcdc01a66fdf265cd725bf971d7d64355b1d4fee864cb"
+      "digest": "sha256:1403f2229a757879117be99d6535ce94abd488d26eedfae754d62328d73032c3"
     },
     {
       "name": "claude-design",
-      "digest": "sha256:a8a38ba57334560e7a0b1b154bb11ced168582f083645345d93e743baea8f8cf"
+      "digest": "sha256:f6414083f18525bd77b5ce626b644ac2328ab0f9699115d3c2a4222dc7e3efaf"
     },
     {
       "name": "claude-design-system",
-      "digest": "sha256:cc0bc354905351ceacaa9a36ee4bce0824b38c9046fa5b5fb279eea3ce0d8fc8"
+      "digest": "sha256:3f65296f97464309ec8984171bd0de4905eceb1156fd51ab95a54f43be5ed0c4"
     },
     {
       "name": "claude-slides",
-      "digest": "sha256:25aef305ca5efb993ec390cdd9da611d4b8ae8aefb4f0325d4add7a8238cca70"
+      "digest": "sha256:7c69fac29696bf30ddae8919da616614349e908dfe80b33a913608c7329f1836"
     },
     {
       "name": "dataviz",

@@ -6,7 +6,7 @@ description: >-
   libraries/SSR apps with Vite.
 metadata:
   author: Anthony Fu
-  version: 2026.9.25
+  version: 2026.11.5
   source: >-
     Generated from https://github.com/vitejs/vite, scripts at
     https://github.com/antfu/skills
@@ -14,7 +14,7 @@ metadata:
 
 # Vite
 
-> Based on Vite v8.3.1 (Rolldown-powered), generated at 2026-09-25. Vite 8 uses the Rolldown bundler and the Oxc transformer instead of esbuild + Rollup.
+> Based on Vite v8.3.5 (Rolldown-powered), generated at 2026-11-05. Vite 8 uses the Rolldown bundler and the Oxc transformer instead of esbuild + Rollup.
 
 Vite is a next-generation frontend build tool with fast dev server (native ESM + HMR) and optimized production builds.
 

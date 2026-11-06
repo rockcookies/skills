@@ -1,8 +1,8 @@
 {
-  "upstream_committed_sha": "7de210b51c8d48cc405a4eac3e17cbb1396c653b",
-  "upstream_committed_at": "2026-10-31T06:17:52+09:00",
-  "items_digest": "sha256:1976ac15c7a770fc57a0409b32154ce16d9fc8d613e52c061668e20f5608c999",
-  "items_changed_at": "2026-10-27T01:36:43.726Z",
+  "upstream_committed_sha": "f63e9ec7bc85f67364b6596c2d29da87e83ce445",
+  "upstream_committed_at": "2026-11-05T13:52:15+09:00",
+  "items_digest": "sha256:c993920181895875dfa6749b5321de2d33e9a29a04314a1fa21c31ce93c06d54",
+  "items_changed_at": "2026-11-05T10:46:51.668Z",
   "items": [
     {
       "name": "antfu",
@@ -14,7 +14,7 @@
     },
     {
       "name": "vite",
-      "digest": "sha256:a182a40fa8b033ed25e43210a44832eda84cb826d915a920efa8b11c4a11deb8"
+      "digest": "sha256:e444d8786aeb5cf468f9e25c48f26945a285708d72c320afeb2e114b3ede295e"
     },
     {
       "name": "vitest",

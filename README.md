@@ -370,11 +370,10 @@ npx skills add rockcookies/skills --full-depth \
 | [git-rebase-surgeon](skills/custom/git-rebase-surgeon)     | Safe rebase 3.0 — SEQUENCE_EDITOR, backup, explicit lease                           |
 | [git-semantic-search](skills/custom/git-semantic-search)   | Git archaeology 3.0 — Pickaxe/Blame/Bisect with clean-worktree                      |
 | [grill-and-think](skills/custom/grill-and-think)           | 跨运行时设计流水线（拷问 → 深思 → 实现 → 审查）                                     |
-| [agent-context-setup](skills/custom/agent-context-setup)   | 整仓整理 Agent 上下文 — init / audit / migrate / rescope；与 update 成对安装        |
-| [agent-context-update](skills/custom/agent-context-update) | 编码后增量维护 AGENTS.md / docs / 术语表 / ADR；调用 setup 的 ctx.mjs               |
+| [hierarchical-agents-md](skills/custom/hierarchical-agents-md) | 层级 AGENTS.md / README.md — init / update / audit / reorganize；只读 Python 脚本 |
 | [steelman](skills/custom/steelman)                         | 双向钢人论证 — 重述真问题，强化正反双方，锁定关键变量，硬裁决                       |
 | [web-code-style](skills/custom/web-code-style)             | Web fullstack naming + clarity — identifiers, files, Hooks/props, control flow, JSX |
-| [web-css-guidelines](skills/custom/web-css-guidelines)     | CSS 机理速查 — 流布局/BFC、内联对齐、flex/grid、定位层叠、渐变滤镜遮罩、响应式      |
+| [web-css-guidelines](skills/custom/web-css-guidelines)     | CSS / Tailwind v4 规则手册 — 去 IE、布局层叠显隐、变量主题、响应式性能、现代化替换  |
 | [week-retro](skills/custom/week-retro)                     | 周回顾 workflow learning loop                                                       |
 
 ### Upstream Skills

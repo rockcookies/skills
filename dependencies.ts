@@ -19,9 +19,6 @@ export const dependencies: Dependencies = {
     'cursor-plan-pipeline': {
       skills: ['grilling', 'domain-modeling', 'think', 'check', 'git-atomic-commit'],
     },
-    'agent-context-update': {
-      skills: ['agent-context-setup'],
-    },
     thermos: {
       agents: ['thermo-nuclear-review-subagent', 'thermo-nuclear-code-quality-review-subagent'],
     },
@@ -58,7 +55,6 @@ export const dependencies: Dependencies = {
     'web-code-style': {
       skills: ['typescript-best-practices', 'principle-type-system-discipline', 'react-best-practices'],
     },
-    'web-css-guidelines': { skills: ['web-code-style', 'unocss'] },
 
     'baoyu-infographic': { skills: ['baoyu-image-gen'] },
 

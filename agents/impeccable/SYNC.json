@@ -1,8 +1,8 @@
 {
-  "upstream_committed_sha": "e89e3ada3e875a89ac2c5d33d11e65ebef6fe285",
-  "upstream_committed_at": "2026-11-01T14:26:36Z",
-  "items_digest": "sha256:5c9883860c8cc4bc22018f9a6a0e995cd6c3b8d1cbb8c5f9a7e7d4c3f51afae4",
-  "items_changed_at": "2026-11-02T01:15:55.598Z",
+  "upstream_committed_sha": "c3bb418ee38ee49a6b999b7752c1368f3123a2bd",
+  "upstream_committed_at": "2026-11-05T22:20:28Z",
+  "items_digest": "sha256:69b897c2ef22da8fc794b68a99864338997de82b03e4b39d79c5aaf78cc491e4",
+  "items_changed_at": "2026-11-05T10:46:53.881Z",
   "items": [
     {
       "name": "impeccable-asset-producer",
@@ -14,7 +14,7 @@
     },
     {
       "name": "impeccable-finish-reviewer",
-      "digest": "sha256:3fd73e16a94757222334038bdabc43c47244ee9007dd741761ba8b2e96f3f5c7"
+      "digest": "sha256:e18e475d63b63d462cd6b67d0cde8b7acaf587c8c1502e6cf3f5b79de4813d46"
     },
     {
       "name": "impeccable-manual-edit-applier",
