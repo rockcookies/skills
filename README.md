@@ -306,13 +306,15 @@ npx skills add rockcookies/skills --full-depth \
 
 #### Writing (unslop & technical-writing)
 
-`technical-writing` applies `unslop` on every doc it touches; `technical-writing-zh` (custom) orchestrates both for Chinese output. Install all three together.
+`technical-writing` applies `unslop` on every doc it touches; `technical-writing-zh` (custom) orchestrates both for Chinese output. Install those three together. `skill-evolution` hard-depends on `writing-for-agents` (runtime stop if missing); install both when you want Skill audit / feedback-loop maintenance.
 
 ```bash
 npx skills add rockcookies/skills --full-depth \
   --skill unslop \
   --skill technical-writing \
   --skill technical-writing-zh \
+  --skill writing-for-agents \
+  --skill skill-evolution \
   -g
 ```
 
@@ -362,19 +364,20 @@ npx skills add rockcookies/skills --full-depth \
 
 > Opinionated workflows and conventions maintained by RockCookies under `skills/custom/`.
 
-| Skill                                                      | Description                                                                         |
-| ---------------------------------------------------------- | ----------------------------------------------------------------------------------- |
-| [technical-writing-zh](skills/custom/technical-writing-zh) | 中文写作补充（编排 unslop + technical-writing）                                     |
-| [cursor-plan-pipeline](skills/custom/cursor-plan-pipeline) | Cursor Plan Mode 流水线（拷问 → 计划闸口 → 实现 → 审查）                            |
-| [git-atomic-commit](skills/custom/git-atomic-commit)       | Atomic commits 3.0 — one revertable commit; index isolation                         |
-| [git-rebase-surgeon](skills/custom/git-rebase-surgeon)     | Safe rebase 3.0 — SEQUENCE_EDITOR, backup, explicit lease                           |
-| [git-semantic-search](skills/custom/git-semantic-search)   | Git archaeology 3.0 — Pickaxe/Blame/Bisect with clean-worktree                      |
-| [grill-and-think](skills/custom/grill-and-think)           | 跨运行时设计流水线（拷问 → 深思 → 实现 → 审查）                                     |
-| [hierarchical-agents-md](skills/custom/hierarchical-agents-md) | 层级 AGENTS.md / README.md — init / update / audit / reorganize；只读 Python 脚本 |
-| [steelman](skills/custom/steelman)                         | 双向钢人论证 — 重述真问题，强化正反双方，锁定关键变量，硬裁决                       |
-| [web-code-style](skills/custom/web-code-style)             | Web fullstack naming + clarity — identifiers, files, Hooks/props, control flow, JSX |
-| [web-css-guidelines](skills/custom/web-css-guidelines)     | CSS / Tailwind v4 规则手册 — 去 IE、布局层叠显隐、变量主题、响应式性能、现代化替换  |
-| [week-retro](skills/custom/week-retro)                     | 周回顾 workflow learning loop                                                       |
+| Skill                                                          | Description                                                                         |
+| -------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| [technical-writing-zh](skills/custom/technical-writing-zh)     | 中文写作补充（编排 unslop + technical-writing）                                     |
+| [cursor-plan-pipeline](skills/custom/cursor-plan-pipeline)     | Cursor Plan Mode 流水线（拷问 → 计划闸口 → 实现 → 审查）                            |
+| [git-atomic-commit](skills/custom/git-atomic-commit)           | Atomic commits 3.0 — one revertable commit; index isolation                         |
+| [git-rebase-surgeon](skills/custom/git-rebase-surgeon)         | Safe rebase 3.0 — SEQUENCE_EDITOR, backup, explicit lease                           |
+| [git-semantic-search](skills/custom/git-semantic-search)       | Git archaeology 3.0 — Pickaxe/Blame/Bisect with clean-worktree                      |
+| [grill-and-think](skills/custom/grill-and-think)               | 跨运行时设计流水线（拷问 → 深思 → 实现 → 审查）                                     |
+| [hierarchical-agents-md](skills/custom/hierarchical-agents-md) | 层级 AGENTS.md / README.md — init / update / audit / reorganize；只读 Python 脚本   |
+| [skill-evolution](skills/custom/skill-evolution)               | 审计/改造现有 Skill — 工作地图、验收契约、工具化、有证据验证、反馈闭环              |
+| [steelman](skills/custom/steelman)                             | 双向钢人论证 — 重述真问题，强化正反双方，锁定关键变量，硬裁决                       |
+| [web-code-style](skills/custom/web-code-style)                 | Web fullstack naming + clarity — identifiers, files, Hooks/props, control flow, JSX |
+| [web-css-guidelines](skills/custom/web-css-guidelines)         | CSS / Tailwind v4 规则手册 — 去 IE、布局层叠显隐、变量主题、响应式性能、现代化替换  |
+| [week-retro](skills/custom/week-retro)                         | 周回顾 workflow learning loop                                                       |
 
 ### Upstream Skills
 
@@ -467,6 +470,12 @@ Synced from external repositories into `skills/{repoKey}/{target}/`.
 | [claude-design-system](skills/baoyu-design/claude-design-system) | Design systems — tokens.json, README brand book, component previews and fonts, editable in the bundled page    |
 | [claude-slides](skills/baoyu-design/claude-slides)               | Slide decks in the Slides artifact format, editable in the local slide editor; export PDF / HTML / PowerPoint  |
 | [dataviz](skills/baoyu-design/dataviz)                           | Chart guide — form, color, marks, legends and accessibility, with palette validators                           |
+
+#### [larashero3-dotcom/lieflat-less-ai-tone](https://github.com/larashero3-dotcom/lieflat-less-ai-tone)
+
+| Skill                                                                    | Description                                                                                                                |
+| ------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------- |
+| [lieflat-less-ai-tone](skills/lieflat-less-ai-tone/lieflat-less-ai-tone) | De-AI-ify finished prose — scripted metrics + semantic judgment, report findings first, rewrite on approval, re-test after |
 
 #### [majiayu000/spellbook](https://github.com/majiayu000/spellbook)
 
@@ -585,7 +594,7 @@ Synced from external repositories into `skills/{repoKey}/{target}/`.
 | ----------------------------- | ---------------------------------------------------------------------------------------------- |
 | [kami](skills/tw93-kami/kami) | Typeset resumes, one-pagers, white papers, letters, portfolios, slide decks, and landing pages |
 
-#### [tw93/Waza](https://github.com/tw93/Waza) (tag `v3.40.0`)
+#### [tw93/Waza](https://github.com/tw93/Waza) (tag `v3.41.0`)
 
 | Skill                             | Description                                                                   |
 | --------------------------------- | ----------------------------------------------------------------------------- |
@@ -681,7 +690,7 @@ Repository sources and mappings live in [meta.ts](meta.ts). Pins:
 | `samber-golang` | samber/cc-skills-golang | tag `v2.0.0`  |
 | `mattpocock`    | mattpocock/skills       | tag `v1.3.2`  |
 | `tw93-kami`     | tw93/Kami               | tag `V1.20.0` |
-| `tw93-waza`     | tw93/Waza               | tag `v3.40.0` |
+| `tw93-waza`     | tw93/Waza               | tag `v3.41.0` |
 
 Unpinned repos track the default branch. Upstreams listed in `meta.ts` with empty `skills` and empty `agents` are reserved for future use and are skipped by Sync.
 

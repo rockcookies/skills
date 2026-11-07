@@ -52,6 +52,7 @@ export const dependencies: Dependencies = {
     'principle-explain-the-number': { skills: ['benchmark-checklist'] },
 
     'technical-writing-zh': { skills: ['unslop', 'technical-writing'] },
+    'skill-evolution': { skills: ['writing-for-agents'] },
     'web-code-style': {
       skills: ['typescript-best-practices', 'principle-type-system-discipline', 'react-best-practices'],
     },

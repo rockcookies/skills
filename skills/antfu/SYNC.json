@@ -1,12 +1,12 @@
 {
   "upstream_committed_sha": "f63e9ec7bc85f67364b6596c2d29da87e83ce445",
   "upstream_committed_at": "2026-11-05T13:52:15+09:00",
-  "items_digest": "sha256:c993920181895875dfa6749b5321de2d33e9a29a04314a1fa21c31ce93c06d54",
-  "items_changed_at": "2026-11-05T10:46:51.668Z",
+  "items_digest": "sha256:fd278f3ab50987a360ce0a3ab5f26fe42d57a1f3ec06a1e15764882d212b13d0",
+  "items_changed_at": "2026-11-07T09:54:44.093Z",
   "items": [
     {
       "name": "antfu",
-      "digest": "sha256:d0ebc5196f216bb652ece0aa4735cac119f7782ea0c20829c1158d44b7b8ba13"
+      "digest": "sha256:29f46cdb002e9445caf321584f04a997f5eedfb2460ecad8e2a1d676cadc3212"
     },
     {
       "name": "unocss",
@@ -18,7 +18,7 @@
     },
     {
       "name": "vitest",
-      "digest": "sha256:8e94a51e2f0e24b9364176d18c68d749c30e502122ca6f3730cd522e710d3588"
+      "digest": "sha256:7d8268a96d9d6065f040e7c311c89e5c4903d95d0d570c9f8764e7f4198dca28"
     }
   ]
 }
