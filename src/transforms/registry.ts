@@ -2,12 +2,14 @@ import type { AgentTransform, RuleTransform, SkillTransform } from './context'
 
 import { excludeGenerationMd } from './skill/exclude-generation-md'
 import { excludeLicenseTxt } from './skill/exclude-license-txt'
+import { excludeLieflatChrome } from './skill/exclude-lieflat-chrome'
 import { stripSamber } from './skill/strip-samber'
 
 /** kebab-case 具名策略：meta.ts 的 transforms 数组按名字引用这里的函数。 */
 export const skillTransforms: Record<string, SkillTransform> = {
   'strip-samber': stripSamber,
   'exclude-license-txt': excludeLicenseTxt,
+  'exclude-lieflat-chrome': excludeLieflatChrome,
   'exclude-generation-md': excludeGenerationMd,
 }
 

@@ -283,6 +283,13 @@ export const repositories: Record<string, RepositoryConfig> = {
   'zhaoxuya520-reverse': {
     url: 'https://github.com/zhaoxuya520/reverse-skill',
   },
+  'lieflat-less-ai-tone': {
+    url: 'https://github.com/larashero3-dotcom/lieflat-less-ai-tone',
+    transforms: { skills: ['exclude-lieflat-chrome'] },
+    skills: [
+      { name: 'lieflat-less-ai-tone', source: './SKILL.md' },
+    ],
+  },
   "baoyu-design": {
     url: "https://github.com/jimliu/baoyu-design",
     skills: [
