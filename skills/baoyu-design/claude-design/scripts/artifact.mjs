@@ -1050,6 +1050,37 @@ function checkDesignSystems(value, tree, add) {
     if (!recorded.has(folder)) add(`${DESIGN_SYSTEMS_DIR}/${folder}/ has no record in designSystems; the editor offers a design system only when both are there`);
   }
 }
+var NOTE_SIZES = { s: 14, m: 24, l: 40, xl: 72, xxl: 120 };
+var TITLE_SIZE = 72;
+var TITLE_CLEARANCE = 223;
+function titleSize(size) {
+  if (typeof size === "string" && Object.hasOwn(NOTE_SIZES, size)) return NOTE_SIZES[size];
+  return isFiniteNumber(size) ? Math.round(Math.min(Math.max(size, 8), 400)) : TITLE_SIZE;
+}
+function checkTitleClearance(id, note, boards, firstPage, add) {
+  const size = titleSize(note.size);
+  if (size < TITLE_SIZE) return;
+  const page = note.page ?? firstPage;
+  const right = note.x + (isFiniteNumber(note.maxW) && note.maxW > 0 ? note.maxW : Math.max(1, note.text.length) * size);
+  const below = [];
+  const over = [];
+  for (const [key, board] of Object.entries(boards)) {
+    if (!isRecord2(board) || !isFiniteNumber(board.x) || !isFiniteNumber(board.y) || !isFiniteNumber(board.w) || !isFiniteNumber(board.h)) continue;
+    if ((board.page ?? firstPage) !== page || board.x >= right || board.x + board.w <= note.x) continue;
+    if (board.y >= note.y) {
+      if (board.y - note.y < TITLE_CLEARANCE) below.push({ key, y: board.y });
+    } else if (note.y < board.y + board.h) over.push(key);
+  }
+  const others = (n, what) => n > 0 ? ` (and ${n} more ${what}${n > 1 ? "s" : ""})` : "";
+  if (below.length) {
+    below.sort((a, b) => a.y - b.y);
+    const [row] = below;
+    add(`notes["${id}"] (title1) is ${Math.round(row.y - note.y)} px above ${row.key}${others(below.length - 1, "artboard")}; put it at least ${TITLE_CLEARANCE} px above its row (y \u2264 ${row.y - TITLE_CLEARANCE}; move the rows apart if that runs into the row above), or zoomed out it runs into the artboard's name strip`);
+  }
+  if (over.length) {
+    add(`notes["${id}"] (title1) sits over ${over[0]}${others(over.length - 1, "artboard")}; a title goes in clear canvas, at least ${TITLE_CLEARANCE} px above its row`);
+  }
+}
 function checkIndex(canvas, tree, issues) {
   const add = (message) => issues.push({ file: CANVAS_FILE, message });
   if (canvas.title !== void 0 && typeof canvas.title !== "string") add("title must be a string");
@@ -1124,6 +1155,8 @@ function checkIndex(canvas, tree, issues) {
   if (canvas.notes !== void 0) {
     if (!isRecord2(canvas.notes)) add('notes must be an object {"<id>": {"x","y","text",\u2026}}');
     else {
+      const first = Array.isArray(canvas.pages) ? canvas.pages[0] : void 0;
+      const firstPage = isRecord2(first) && typeof first.id === "string" ? first.id : void 0;
       const entries = Object.entries(canvas.notes);
       if (entries.length > MAX_NOTES) add(`notes has ${entries.length} entries; it must stay under ${MAX_NOTES + 1}`);
       for (const [id, note] of entries) {
@@ -1136,6 +1169,7 @@ function checkIndex(canvas, tree, issues) {
           add(`notes["${id}"].kind must be "title1" (a title over several artboards), left out (a sticky), or one of the user's rect, oval, pen, line, arrow, image`);
         }
         if (note.page !== void 0 && (typeof note.page !== "string" || !pageIds.has(note.page))) add(`notes["${id}"].page must be the id of an entry in pages`);
+        if (note.kind === "title1") checkTitleClearance(id, { x: note.x, y: note.y, text: note.text, size: note.size, maxW: note.maxW, page: note.page }, canvas.boards, firstPage, add);
       }
     }
   }
@@ -2524,6 +2558,10 @@ function loopbackBlocked(port) {
     socket.once("error", (error) => done(error.code === "EPERM" || error.code === "EACCES"));
   });
 }
+function isTailnet(address) {
+  const m = /^100\.(\d{1,3})\./.exec(address);
+  return !!m && Number(m[1]) >= 64 && Number(m[1]) <= 127;
+}
 function serverOrigin(host, port) {
   const shown = host === "0.0.0.0" || host === "::" ? "127.0.0.1" : host.includes(":") ? `[${host}]` : host;
   return `http://${shown}:${port}`;
@@ -3125,9 +3163,12 @@ async function shareCommand(o) {
   const links = view.links;
   const shown = (list) => Object.fromEntries(Object.entries(list).map(([role, link]) => [role, link.on ? link.url : "off"]));
   const tailnet = view.lan ? view.tailnet : void 0;
+  const addresses = view.lan ? lanUrls(view) : [];
+  const local = view.lan && Array.isArray(view.addresses) ? view.addresses.filter((a) => !isTailnet(String(a))) : [];
+  const others = local.length > 1 ? " This computer is on more than one network (addresses): if a link does not open for someone on the same Wi-Fi or LAN, give them the same link with another of those addresses." : "";
   return {
     lan: view.lan,
-    ...view.lan ? { addresses: lanUrls(view) } : {},
+    ...view.lan ? { addresses } : {},
     links: shown(links),
     ...tailnet ? {
       tailscale: shown(tailnet.links),
@@ -3135,7 +3176,7 @@ async function shareCommand(o) {
     } : {},
     guests: view.guests,
     ...view.lan ? {
-      note: "Send the link for the role you want to give: editor edits, commenter comments, viewer reads. Anyone on this network with a link joins under a name they type. The owner (this computer) shares from the Share button too.",
+      note: `Send the link for the role you want to give: editor edits, commenter comments, viewer reads. Anyone on this network with a link joins under a name they type. The owner (this computer) shares from the Share button too.${others}`,
       security: "It is plain http: others on the network can read what passes. A link is the permission: whoever has it gets its role, so send it only to the people meant to have it, and reset a role's link if it went further.",
       stop: o.offCommand
     } : { note: `Not shared on the network: the links work on this computer only. ${NOT_SHARED_HINT}` }

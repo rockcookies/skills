@@ -67,7 +67,7 @@ Transforms are kebab-case names. Repo-level `transforms.skills` / `transforms.ag
 | `samber-golang` | samber/cc-skills-golang | tag `v2.0.0`  |
 | `mattpocock`    | mattpocock/skills       | tag `v1.3.2`  |
 | `tw93-kami`     | tw93/Kami               | tag `V1.20.0` |
-| `tw93-waza`     | tw93/Waza               | tag `v3.41.0` |
+| `tw93-waza`     | tw93/Waza               | tag `v3.42.0` |
 
 Unpinned repos track the default branch.
 

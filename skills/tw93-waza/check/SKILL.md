@@ -18,7 +18,7 @@ dispatch_intent: >-
 
 Prefix your first line with 🥷 inline, not as its own paragraph.
 
-> Note: `/review` is a built-in Anthropic plugin command for PR review. Waza uses `/check` (or the alias `code-review`) instead. Do not re-trigger `/review` from within this skill.
+> Note: on Claude Code `/review` and `/code-review` are the built-in reviewer. Do not call them from inside this skill.
 
 Read the diff and find the problems. Review, audit, triage, and readiness requests are report-only; apply fixes only under explicit repair authorization still in force for the same task. Done means the requested review surface is covered and every verification claim comes from this session.
 
@@ -61,7 +61,7 @@ Pick the mode that matches the user's intent, then read it in full before acting
 |---|---|
 | "implement this plan", `/think` output handed off | [Plan Execution](#plan-execution-mode) |
 | Diff or PR ready, "review", "看看代码", "合并前" | Default review (start at [Get the Diff](#get-the-diff)) |
-| "look at issues", "review PRs", "triage", "批量处理" | load `references/mode-triage.md` |
+| "look at issues", "review PRs", "triage", "批量处理", "all repos' issues", "其他仓库也扫一遍" | load `references/mode-triage.md` |
 | "is this worth a release", "值不值得发版" | load `references/mode-ship.md` (Release Worthiness Analysis) |
 | "commit", "push", "publish", "release", "close issue", "发布表情" | load `references/mode-ship.md` (Ship / Release Follow-through) |
 | "audit", "项目体检", "项目评分", "给项目打分", "深入分析项目代码", "scorecard", "linus review" | load `references/mode-audit.md` |
@@ -195,7 +195,7 @@ Any fix made during review invalidates the pre-fix verdict. Re-freeze the baseli
 
 ## Adversarial Pass (Deep only)
 
-Run the four attack angles in `references/persona-catalog.md`. Convergence from independent angles raises confidence; singleton findings face the same per-finding skeptic verification as specialist claims. Suppress findings below 0.60 confidence.
+Run the four attack angles in `references/persona-catalog.md`. Convergence from independent angles raises confidence; singleton findings face the same per-finding skeptic verification as specialist claims. Findings that fail the Finding Quality Gate are dropped.
 
 ## Platform Operations
 

@@ -1,12 +1,12 @@
 {
-  "upstream_committed_sha": "df1ef2390e89d70dee07f928ac09aa7ba4b90299",
-  "upstream_committed_at": "2026-10-31T07:45:25+08:00",
-  "items_digest": "sha256:26fc42a810a6480341b7ea0857f1993cf5a96f61a4f1208e3b1b8f5f1a634156",
-  "items_changed_at": "2026-10-16T08:09:29.625Z",
+  "upstream_committed_sha": "355b9dc7e16a6cec2df519d26702a9400de988da",
+  "upstream_committed_at": "2026-11-11T15:02:01+08:00",
+  "items_digest": "sha256:75c7a9c8e09fe783598ea9e0dd01c2dc1ead2f1483cfe54ef3c9c72e33a924c9",
+  "items_changed_at": "2026-11-11T14:05:01.025Z",
   "items": [
     {
       "name": "anti-patterns",
-      "digest": "sha256:3c79ac761f158eda6b36abd44b204c943639ef4bf2fbc77d354c20553a8b3267"
+      "digest": "sha256:b6ce15f8df68552f8063e9cdd4e0febca6a342757aef458bacc02e79d0f87759"
     },
     {
       "name": "chinese",

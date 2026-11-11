@@ -1,6 +1,6 @@
 {
-  "upstream_committed_sha": "f63e9ec7bc85f67364b6596c2d29da87e83ce445",
-  "upstream_committed_at": "2026-11-05T13:52:15+09:00",
+  "upstream_committed_sha": "d524ed287eef22757297827ce42e3cad88abd20c",
+  "upstream_committed_at": "2026-11-11T17:13:27+09:00",
   "items_digest": "sha256:fd278f3ab50987a360ce0a3ab5f26fe42d57a1f3ec06a1e15764882d212b13d0",
   "items_changed_at": "2026-11-07T09:54:44.093Z",
   "items": [

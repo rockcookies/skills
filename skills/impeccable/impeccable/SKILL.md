@@ -4,7 +4,7 @@ description: >-
   Use to design, redesign, critique, audit, polish or animate a frontend:
   websites, landing pages, dashboards, app UI, components, native iOS/Android
   screens, or a design system (DESIGN.md).
-version: 4.8.0
+version: 4.8.2
 user-invocable: true
 argument-hint: >-
   [shape · audit|critique ·
