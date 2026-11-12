@@ -67,4 +67,4 @@ repo/
 
 ## 客户端专用指令文件
 
-只维护 `AGENTS.md` 作为 Agent 指令入口；Claude Code 直接读它。不要新建 `CLAUDE.md`。仓库里已有的 `CLAUDE.md`、`GEMINI.md` 或其他客户端专用文件，不当作第二份正文维护，也不主动与 `AGENTS.md` 同步；除非用户明确要求，否则不删。
+只维护 `AGENTS.md` 作为 Agent 指令入口；Claude Code 直接读它。不要新建 `CLAUDE.md`：根目录有它会让 Claude Code 不再读 `AGENTS.md`。仓库里已有的 `CLAUDE.md`、`GEMINI.md` 或其他客户端专用文件，不当作第二份正文维护，也不主动与 `AGENTS.md` 同步；除非用户明确要求，否则不删。

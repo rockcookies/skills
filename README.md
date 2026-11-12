@@ -372,7 +372,7 @@ npx skills add rockcookies/skills --full-depth \
 | [git-rebase-surgeon](skills/custom/git-rebase-surgeon)         | Safe rebase 3.0 — SEQUENCE_EDITOR, backup, explicit lease                           |
 | [git-semantic-search](skills/custom/git-semantic-search)       | Git archaeology 3.0 — Pickaxe/Blame/Bisect with clean-worktree                      |
 | [grill-and-think](skills/custom/grill-and-think)               | 跨运行时设计流水线（拷问 → 深思 → 实现 → 审查）                                     |
-| [hierarchical-agents-md](skills/custom/hierarchical-agents-md) | 层级 AGENTS.md / README.md — init / update / audit / reorganize；只读 Python 脚本   |
+| [hierarchical-agents-md](skills/custom/hierarchical-agents-md) | 层级 AGENTS.md / README.md — init / update / audit / reorganize / trim；只读 Python 脚本 |
 | [skill-evolution](skills/custom/skill-evolution)               | 审计/改造现有 Skill — 工作地图、验收契约、工具化、有证据验证、反馈闭环              |
 | [steelman](skills/custom/steelman)                             | 双向钢人论证 — 重述真问题，强化正反双方，锁定关键变量，硬裁决                       |
 | [web-code-style](skills/custom/web-code-style)                 | Web fullstack naming + clarity — identifiers, files, Hooks/props, control flow, JSX |

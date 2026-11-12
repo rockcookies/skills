@@ -10,6 +10,8 @@ from pathlib import Path
 from typing import Any
 from urllib.parse import unquote, urlsplit
 
+import ctx_common as ctx
+
 IGNORED_DIRS = {
     ".git", ".hg", ".svn", ".idea", ".vscode", ".venv", "venv", "env",
     "node_modules", "vendor", "dist", "build", "coverage", "target", "bin",
@@ -164,6 +166,21 @@ def audit_repository(root: Path, max_agents_lines: int = 120, max_readme_lines: 
             finding = inspect_link(root, path, line_number, target)
             if finding:
                 findings.append(finding)
+
+    all_files = ctx.list_files(root)
+    for rel in all_files:
+        if not ctx.is_rule_file(rel):
+            continue
+        try:
+            meta, _ = ctx.split_frontmatter((root / rel).read_text(encoding="utf-8"))
+        except (UnicodeDecodeError, OSError):
+            continue
+        for glob in ctx.rule_globs(meta):
+            if not ctx.glob_matches(glob, all_files):
+                findings.append({
+                    "severity": "warning", "code": "paths-no-match", "file": rel, "line": 1,
+                    "message": f"paths glob matches no repository file: {glob}",
+                })
 
     root_agents = root / "AGENTS.md"
     if agents_files and any(path.parent != root for path in agents_files) and not root_agents.is_file():

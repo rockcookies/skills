@@ -9,6 +9,8 @@ from collections import Counter, defaultdict
 from pathlib import Path
 from typing import Any
 
+import ctx_common as ctx
+
 IGNORED_DIRS = {
     ".git", ".hg", ".svn", ".idea", ".vscode", ".venv", "venv", "env",
     "node_modules", "vendor", "dist", "build", "coverage", "target", "bin",
@@ -44,6 +46,61 @@ def walk_files(root: Path, max_depth: int):
             if path.is_symlink() or not path.is_file():
                 continue
             yield path
+
+
+def scan_context(root: Path) -> list[dict[str, Any]]:
+    """Classify agent-context files by how often they are likely loaded.
+
+    load: every-turn | conditional | on-subtree | on-demand. This is a risk
+    classification, not a guarantee: clients differ in what they really load.
+    Sizes are characters, not tokens.
+    """
+    files = ctx.list_files(root)
+    skill_dirs = {Path(f).parent.as_posix() for f in files if Path(f).name == "SKILL.md"}
+    items: list[dict[str, Any]] = []
+
+    def read(rel: str) -> str | None:
+        try:
+            return (root / rel).read_text(encoding="utf-8")
+        except (UnicodeDecodeError, OSError):
+            return None
+
+    for rel in files:
+        path, low = Path(rel), Path(rel).name.lower()
+        parts = rel.split("/")
+        parent_posix = path.parent.as_posix()
+        entry: dict[str, Any] | None = None
+        if low in {"agents.md", "claude.md", "gemini.md"}:
+            text = read(rel)
+            if text is not None:
+                entry = {"kind": "instruction", "load": "every-turn" if len(parts) == 1 else "on-subtree"}
+        elif ctx.is_rule_file(rel):
+            text = read(rel)
+            if text is not None:
+                meta, _ = ctx.split_frontmatter(text)
+                globs = ctx.rule_globs(meta)
+                always = str(meta.get("alwaysApply", "")).lower() == "true"
+                entry = {"kind": "rule", "load": "conditional" if globs and not always else "every-turn",
+                         "paths": globs}
+        elif low == "skill.md":
+            text = read(rel)
+            if text is not None:
+                meta, body = ctx.split_frontmatter(text)
+                desc = len(str(meta.get("description", ""))) + len(str(meta.get("when_to_use", "")))
+                items.append({"path": rel, "kind": "skill-description", "load": "every-turn",
+                              "chars": desc, "lines": 1})
+                entry = {"kind": "skill-body", "load": "on-demand"}
+                text = body
+        elif path.suffix.lower() in {".md", ".mdc"} and any(
+                parent_posix == d or parent_posix.startswith(d + "/") for d in skill_dirs):
+            text = read(rel)
+            if text is not None:
+                entry = {"kind": "skill-reference", "load": "on-demand"}
+        if entry is not None:
+            entry.update({"path": rel, "chars": len(text), "lines": len(text.splitlines())})
+            items.append(entry)
+    items.sort(key=lambda i: (i["load"], i["path"].lower()))
+    return items
 
 
 def build_inventory(root: Path, max_depth: int, max_files_per_dir: int) -> dict[str, Any]:
@@ -95,6 +152,7 @@ def build_inventory(root: Path, max_depth: int, max_files_per_dir: int) -> dict[
             "source_files": sum(item["total"] for item in source_dirs),
             "source_directories": len(source_dirs),
         },
+        "agent_context": scan_context(root),
         "limits": {"max_depth": max_depth, "max_files_per_dir": max_files_per_dir},
     }
 
@@ -125,6 +183,19 @@ def render_markdown(data: dict[str, Any]) -> str:
         lines.append(f"- `{item['directory']}/` — {item['total']} files ({ext_summary})")
         for example in item["examples"]:
             lines.append(f"  - `{example}`")
+    lines += ["", "## Agent context (chars, not tokens)"]
+    context = data["agent_context"]
+    per_turn = sum(i["chars"] for i in context if i["load"] == "every-turn")
+    lines.append(f"- Every-turn total: {per_turn} chars")
+    for load in ("every-turn", "conditional", "on-subtree", "on-demand"):
+        group = [i for i in context if i["load"] == load]
+        if not group:
+            continue
+        lines.append(f"- **{load}**")
+        for i in group:
+            extra = f" paths: {', '.join(i['paths'])}" if i.get("paths") else ""
+            lines.append(f"  - `{i['path']}` — {i['kind']}, {i['chars']} chars, {i['lines']} lines{extra}")
+    lines += ["", "> Skill usage cannot be read from files: without call logs, mark usage unknown."]
     lines += ["", "> Inventory is approximate and excludes ignored/generated/dependency directories by default."]
     return "\n".join(lines)
 

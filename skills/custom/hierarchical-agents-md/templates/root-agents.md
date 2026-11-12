@@ -8,9 +8,6 @@
 ## Working agreements
 
 - Read the nearest scoped `AGENTS.md` before changing files in that subtree.
-- Prefer incremental, focused changes; add abstractions only when a concrete need is demonstrated.
-- Preserve existing project conventions unless the task explicitly changes them.
-- Treat source code, tests, manifests, and CI as the source of truth.
 
 ## Verified commands
 
