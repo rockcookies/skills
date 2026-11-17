@@ -185,6 +185,7 @@ export const repositories: Record<string, RepositoryConfig> = {
       { name: 'impeccable-documenter', source: './.claude/agents/impeccable-documenter.md' },
       { name: 'impeccable-finish-reviewer', source: './.claude/agents/impeccable-finish-reviewer.md' },
       { name: 'impeccable-manual-edit-applier', source: './.claude/agents/impeccable-manual-edit-applier.md' },
+      { name: 'impeccable-motion-reviewer', source: './.claude/agents/impeccable-motion-reviewer.md' },
     ],
   },
   'cursor-plugins': {

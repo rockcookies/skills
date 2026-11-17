@@ -653,7 +653,7 @@ Paired with the thermos skills above. The skill `thermos` invokes these by `name
 
 #### [pbakaus/impeccable](https://github.com/pbakaus/impeccable)
 
-Paired with the `impeccable` skill. The skill's build flow spawns these by `name` for finish review, design-system documentation, asset production, and live manual edits.
+Paired with the `impeccable` skill. The skill's build flow spawns these by `name` for finish review, design-system documentation, asset production, live manual edits, and motion review.
 
 | Agent                                                                                 | Description                                                                                |
 | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
@@ -661,6 +661,7 @@ Paired with the `impeccable` skill. The skill's build flow spawns these by `name
 | [impeccable-documenter](agents/impeccable/impeccable-documenter.md)                   | Records DESIGN.md and its sidecar from the shipped build artifact                          |
 | [impeccable-finish-reviewer](agents/impeccable/impeccable-finish-reviewer.md)         | Reviews a finished build against its direction contract and returns ordered material fixes |
 | [impeccable-manual-edit-applier](agents/impeccable/impeccable-manual-edit-applier.md) | Applies leased live manual copy-edit batches to source files                               |
+| [impeccable-motion-reviewer](agents/impeccable/impeccable-motion-reviewer.md)         | Reviews captured motion filmstrips for continuity, timing, craft, and reduced-motion behavior |
 
 ## How It Works
 

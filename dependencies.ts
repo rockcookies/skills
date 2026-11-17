@@ -28,6 +28,7 @@ export const dependencies: Dependencies = {
         'impeccable-documenter',
         'impeccable-finish-reviewer',
         'impeccable-manual-edit-applier',
+        'impeccable-motion-reviewer',
       ],
     },
 
@@ -463,6 +464,7 @@ export const dependencies: Dependencies = {
     'impeccable-documenter': { skills: ['impeccable'] },
     'impeccable-finish-reviewer': { skills: ['impeccable'] },
     'impeccable-manual-edit-applier': { skills: ['impeccable'] },
+    'impeccable-motion-reviewer': { skills: ['impeccable'] },
     'thermo-nuclear-review-subagent': { skills: ['thermo-nuclear-review'] },
     'thermo-nuclear-code-quality-review-subagent': { skills: ['thermo-nuclear-code-quality-review'] },
   },
