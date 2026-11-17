@@ -1,28 +1,28 @@
 {
-  "upstream_committed_sha": "5866df557357d005b3c0c9d3da0d9e739b4bdde3",
-  "upstream_committed_at": "2026-11-11T00:09:36-08:00",
-  "items_digest": "sha256:aa82c8b6cec2dddad7d688af4bacea38f938ed9ca4b5de5e282244633946d1f1",
-  "items_changed_at": "2026-10-29T23:59:17.750Z",
+  "upstream_committed_sha": "e1cc03121a0e71129a4fb730d7c5528a0a3e43c8",
+  "upstream_committed_at": "2026-11-16T22:18:33-08:00",
+  "items_digest": "sha256:d7e45f2f6448424609c193f47af95683e34c5a75b39fcc750a229ac38bf3eb50",
+  "items_changed_at": "2026-11-17T09:05:31.189Z",
   "items": [
     {
       "name": "benchmark-checklist",
-      "digest": "sha256:abeefb4b42e29d5e2b420dc3d0740da401c40baab32a3a9b7dd2a6962848ef57"
+      "digest": "sha256:910461b4a2ac4b8cb1bbc07b1fb55c65914997b0103653dcccc59aa2eed8b476"
     },
     {
       "name": "how",
-      "digest": "sha256:7338e5a8ea65a952615ef05fad2a3fe2b9b90047ede8cfaa6d30b4f30ab2933c"
+      "digest": "sha256:d966711e6b95d394806eed2bdcfc862214685804b70a8d611a478f1e01806578"
     },
     {
       "name": "principle-attack-the-premise",
-      "digest": "sha256:e32564b333cb99b2c7e960b857063389c14d411d865cf8aea0df9d1d2277edf6"
+      "digest": "sha256:1ae42920095bed9200a0a2e876b65e374f6c0c6e413a618ec6858db58ef4509b"
     },
     {
       "name": "principle-boundary-discipline",
-      "digest": "sha256:6a672fa162f0831bde9d18d566261efd384f275f2ead838726205fdb7633dd5b"
+      "digest": "sha256:741da3d4953d66ac49d0ab8eff243ccd5cbfd8982c2f9acf81a98b99dcaac0ff"
     },
     {
       "name": "principle-build-the-lever",
-      "digest": "sha256:c1eb940c262facfff94da7b7adef5e45fc65b11f4930bdb4408b3c524f8bf846"
+      "digest": "sha256:d0a98ba9ef6d4232c68670c263ab9d784c3efaf42ea0a820f04c0a9057e589b7"
     },
     {
       "name": "principle-encode-lessons-in-structure",
@@ -38,15 +38,15 @@
     },
     {
       "name": "principle-explain-the-number",
-      "digest": "sha256:041d274cc9f7d46a2becd75ad6ba1e2338d413b4d411d928d4c342c975ab58fc"
+      "digest": "sha256:cbd74af036df4ca71bc0cc0d228f72e979d3762681d54210c13769c65f222490"
     },
     {
       "name": "principle-fix-root-causes",
-      "digest": "sha256:de29d84d51051fbf9e802702fa270249050379a3f6c69bef91766e3726cd0655"
+      "digest": "sha256:ce44d72d8260d799952379b87a8df69e900253623e0ce3ae403eac3467f83a37"
     },
     {
       "name": "principle-foundational-thinking",
-      "digest": "sha256:0fb2b6ce26d6eeb05baf81a308e60f7950b1f51b201d7b82976186781d43ae15"
+      "digest": "sha256:fee7ab6884ba53bc961e6d8cbebfa4bae011f426f465e47dc0a3c6dc6e2227be"
     },
     {
       "name": "principle-guard-the-context-window",
@@ -58,7 +58,7 @@
     },
     {
       "name": "principle-make-operations-idempotent",
-      "digest": "sha256:b11cc96fb7cf94135673893f62a15559972b92e0651cdf47607656b6789846a9"
+      "digest": "sha256:8c29a487ab050b0531fee0abebf87b4c7d73fcd8e1a3abcdc0fd99cd47d3b5cb"
     },
     {
       "name": "principle-migrate-callers-then-delete-legacy-apis",
@@ -66,11 +66,11 @@
     },
     {
       "name": "principle-minimize-reader-load",
-      "digest": "sha256:6b7f031b315793d6db5f240726889ec10e262882e25c146dfaff28bc137f956e"
+      "digest": "sha256:08da30e927690b7c9b5b512b4c28add33119d7dc969189edb6dbfa53aff32b76"
     },
     {
       "name": "principle-model-the-domain",
-      "digest": "sha256:d7018ed85c7334307eb13c01578e370e0fa9a82462875b526b80cb32fe475b84"
+      "digest": "sha256:97894500d228a332ac5e108b233f38be56978e25616eaa148914bf2986815b30"
     },
     {
       "name": "principle-never-block-on-the-human",
@@ -82,7 +82,7 @@
     },
     {
       "name": "principle-prove-it-works",
-      "digest": "sha256:ec4f37f75fa893ae325e66dd7f447e854f805cdfaa6635840303cbef73334eb5"
+      "digest": "sha256:4efc0ea7bc7c631c9df3f2dcd3804d4cad07b978745e5bf65200446e9b93a534"
     },
     {
       "name": "principle-redesign-from-first-principles",
@@ -90,11 +90,11 @@
     },
     {
       "name": "principle-separate-before-serializing-shared-state",
-      "digest": "sha256:34ae5ac1c1fa91a3630168fae112262a9dbd6e0c696680d2ef5f0fdcbc41101a"
+      "digest": "sha256:ab6332ba218329b3f35abe87dd5c3b2f41990631a247b62e1e0d40c3f5a9250a"
     },
     {
       "name": "principle-sequence-verifiable-units",
-      "digest": "sha256:6a4c79ab4ec6c50a685cd045a1a2e1e13a6fa24066f7092870acc7335c7b4b41"
+      "digest": "sha256:144908e929ee46863f74c50594f0c0633b48ffeb5a320fe643e614aa0d788229"
     },
     {
       "name": "principle-subtract-before-you-add",
@@ -102,11 +102,11 @@
     },
     {
       "name": "principle-test-behavior-not-implementation",
-      "digest": "sha256:359b499af5e1c0121915d6f213811e7186c3fe0538806acb4e575eadf2266759"
+      "digest": "sha256:e59193ac115fae9726273597c25a9e9d9dda31b471ab900234f22a792cf6536f"
     },
     {
       "name": "principle-type-system-discipline",
-      "digest": "sha256:3157a1175bd7ee80d2f47d67c4c606b92ae398f6eee8ba5dffe5ef73ec3dc7e9"
+      "digest": "sha256:1382e8b683587f1a8bff1b84a06fdbcc922e23ac34a19e030ca4f1b1cbc2cd38"
     },
     {
       "name": "pstack-tdd",
@@ -114,11 +114,11 @@
     },
     {
       "name": "show-me-your-work",
-      "digest": "sha256:86439037ccd5b919a3713b567584ba3ca2202d2d1788a191d4c496a59c2d9ca2"
+      "digest": "sha256:f53582b4ba74296f59ec95ab1d8a8c470cff8cedc62fcf654a56c8c68b6ec494"
     },
     {
       "name": "technical-writing",
-      "digest": "sha256:bf08e9ed388e562841a10ca9ab3fb2830178d54760fd52e31ab65a7de32e1ebe"
+      "digest": "sha256:e5d05cc96b67e9b989df665308e6910133935675d50a9031d831276e879ffe8b"
     },
     {
       "name": "thermo-nuclear-code-quality-review",
@@ -138,11 +138,11 @@
     },
     {
       "name": "unslop",
-      "digest": "sha256:342ca2c99287f9e58e9ee3070d15c43e746d4e8487203df03e0060462a15de69"
+      "digest": "sha256:196f4cd36109c35ca1ab51b38bd177d7980865e945aa0f5f00dfd3ac46e0a080"
     },
     {
       "name": "why",
-      "digest": "sha256:deea5b19fe6995580ec5fa36e995c97a734a0c93bd3a2834e7041fa8a93fb54c"
+      "digest": "sha256:4a2844a1c9ac280343c779febf5dca2ed435e808ef01a8d8427ee944212914c3"
     }
   ]
 }
