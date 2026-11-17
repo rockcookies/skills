@@ -7,6 +7,7 @@ import { dependencies } from '../../dependencies'
 import { packs } from '../../packs'
 import { buildItemIndex } from '../services/dependencies.service'
 import {
+  combinePackSkills,
   formatInstallCommand,
   listCustomSkillNames,
   resolvePackGaps,
@@ -29,15 +30,15 @@ export async function generateInstallCommand(
     return
   }
 
-  const packName = await p.select({
-    message: 'Which pack?',
+  const selectedPacks = await p.multiselect({
+    message: 'Which packs? (space to toggle, enter to confirm)',
     options: Object.entries(packs).map(([name, pack]) => ({
       value: name,
       label: name,
       hint: `${pack.skills.length} skills — ${pack.description}`,
     })),
   })
-  if (p.isCancel(packName)) {
+  if (p.isCancel(selectedPacks)) {
     p.cancel('Cancelled')
     process.exit(0)
   }
@@ -56,15 +57,15 @@ export async function generateInstallCommand(
     process.exit(0)
   }
 
-  const pack = packs[packName]!
+  const members = combinePackSkills(selectedPacks, packs)
   const shells: InstallShell[] = shell === 'all' ? ['bash', 'powershell', 'cmd'] : [shell]
 
   for (const target of shells) {
-    console.info(`\n# ${packName} (${target}):`)
-    console.info(formatInstallCommand(pack.skills, target))
+    console.info(`\n# ${selectedPacks.join(' + ')} (${target}):`)
+    console.info(formatInstallCommand(members, target))
   }
-  const gaps = resolvePackGaps(pack.skills, dependencies)
+  const gaps = resolvePackGaps(members, dependencies)
   if (gaps.length > 0) {
-    console.info(`\nReferenced but not in pack: ${gaps.join(', ')}`)
+    console.info(`\nReferenced but not in packs: ${gaps.join(', ')}`)
   }
 }

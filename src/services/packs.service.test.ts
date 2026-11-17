@@ -7,6 +7,7 @@ import type { Dependencies, RepositoryConfig } from '../types'
 
 import { buildItemIndex } from './dependencies.service'
 import {
+  combinePackSkills,
   formatInstallCommand,
   listCustomSkillNames,
   resolvePackGaps,
@@ -143,5 +144,20 @@ describe('validatePackMembers', () => {
 
   it('returns [] when all members resolve', () => {
     expect(validatePackMembers({ good: { description: '', skills: ['mapped-b'] } }, index, duplicates)).toEqual([])
+  })
+})
+
+describe('combinePackSkills', () => {
+  const packs = {
+    first: { description: '', skills: ['one', 'shared'] },
+    second: { description: '', skills: ['shared', 'two'] },
+  }
+
+  it('merges members in pack order, deduped across packs', () => {
+    expect(combinePackSkills(['first', 'second'], packs)).toEqual(['one', 'shared', 'two'])
+  })
+
+  it('keeps first occurrence order when selection order flips', () => {
+    expect(combinePackSkills(['second', 'first'], packs)).toEqual(['shared', 'two', 'one'])
   })
 })

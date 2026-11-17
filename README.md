@@ -20,7 +20,7 @@ npx skills add rockcookies/skills --full-depth --skill vue-best-practices -g
 
 Learn more about the CLI at [skills](https://github.com/vercel-labs/skills).
 
-Curated bundles ("packs") live in [packs.ts](packs.ts). Run `pnpm cli` and pick **Generate install command** to select a pack and a shell (bash, PowerShell, or cmd); it prints the matching multi-line command and flags skills that the pack's members reference but don't include.
+Curated bundles ("packs") live in [packs.ts](packs.ts). Run `pnpm cli` and pick **Generate install command** to multi-select packs and a shell (bash, PowerShell, or cmd); it prints the combined multi-line command and flags skills that the packs' members reference but don't include.
 
 `npx skills add` installs skills only. Copy agent `.md` files (not `SYNC.json`) into Cursor's user agents directory:
 

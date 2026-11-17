@@ -81,3 +81,18 @@ export function validatePackMembers(packs: Packs, index: ItemIndex, duplicates: 
   }
   return errors
 }
+
+/** 按包声明顺序合并所选 pack 的成员，跨包去重（保留首次出现顺序） */
+export function combinePackSkills(packNames: string[], packs: Packs): string[] {
+  const seen = new Set<string>()
+  const combined: string[] = []
+  for (const name of packNames) {
+    for (const skill of packs[name]!.skills) {
+      if (!seen.has(skill)) {
+        seen.add(skill)
+        combined.push(skill)
+      }
+    }
+  }
+  return combined
+}

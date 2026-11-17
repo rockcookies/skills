@@ -35,12 +35,12 @@ Dest trees under `skills/{repoKey}/`, `agents/{repoKey}/`, and `rules/{repoKey}/
 
 `pnpm cli` → interactive menu:
 
-| Action                   | Handler               | Behaviour                                                                            |
-| ------------------------ | --------------------- | ------------------------------------------------------------------------------------ |
-| Manage upstream          | `upstream.command.ts` | Clone or update repos under `upstream/` (clone then pin)                             |
-| Sync skills              | `sync.command.ts`     | Update upstream, rewrite mapped dests, write SYNC.json；`--force` 再清 orphan        |
-| Cleanup                  | `cleanup.command.ts`  | Remove orphaned upstream checkouts                                                   |
-| Generate install command | `pack.command.ts`     | Pick a pack from `packs.ts` and a shell, print a multi-line `npx skills add` command |
+| Action                   | Handler               | Behaviour                                                                                                |
+| ------------------------ | --------------------- | -------------------------------------------------------------------------------------------------------- |
+| Manage upstream          | `upstream.command.ts` | Clone or update repos under `upstream/` (clone then pin)                                                 |
+| Sync skills              | `sync.command.ts`     | Update upstream, rewrite mapped dests, write SYNC.json；`--force` 再清 orphan                            |
+| Cleanup                  | `cleanup.command.ts`  | Remove orphaned upstream checkouts                                                                       |
+| Generate install command | `pack.command.ts`     | Multi-select packs from `packs.ts`, pick a shell, print the combined multi-line `npx skills add` command |
 
 Every sync run deletes and rewrites each mapped dest. Mapping 里拿掉的 dest **默认不删**；`pnpm cli --force`（或交互确认 Force sync）会额外删除该 repo 下未再映射的 skill 目录 / agent `.md` / rule `.md`。`skills/{repoKey}/SYNC.json`、`agents/{repoKey}/SYNC.json` 和 `rules/{repoKey}/SYNC.json` 存 `{ upstream_committed_sha, upstream_committed_at, items_digest, items_changed_at, items: [{ name, digest }] }`（items 按 name 升序）。
 
