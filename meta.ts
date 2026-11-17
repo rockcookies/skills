@@ -290,16 +290,6 @@ export const repositories: Record<string, RepositoryConfig> = {
       { name: 'lieflat-less-ai-tone', source: './SKILL.md' },
     ],
   },
-  "baoyu-design": {
-    url: "https://github.com/jimliu/baoyu-design",
-    skills: [
-      { name: "claude-dashboard", source: "./skills/claude-dashboard/SKILL.md" },
-      { name: "claude-design-system", source: "./skills/claude-design-system/SKILL.md" },
-      { name: "claude-design", source: "./skills/claude-design/SKILL.md" },
-      { name: "claude-slides", source: "./skills/claude-slides/SKILL.md" },
-      { name: "dataviz", source: "./skills/dataviz/SKILL.md" },
-    ],
-  },
   'baoyu': {
     url: 'https://github.com/JimLiu/baoyu-skills',
     skills: [

@@ -338,11 +338,6 @@ npx skills add rockcookies/skills --full-depth \
 npx skills add rockcookies/skills --full-depth \
   --skill frontend-design \
   --skill ui \
-  --skill claude-dashboard \
-  --skill claude-design \
-  --skill claude-design-system \
-  --skill claude-slides \
-  --skill dataviz \
   --skill baoyu-image-gen \
   --skill impeccable \
   -g
@@ -462,16 +457,6 @@ Synced from external repositories into `skills/{repoKey}/{target}/`.
 | --------------------------------------------------- | ------------------------------------------------------------------------------- |
 | [baoyu-image-gen](skills/baoyu/baoyu-image-gen)     | AI image generation across OpenAI, Google, DashScope, Z.AI, Replicate, and more |
 | [baoyu-infographic](skills/baoyu/baoyu-infographic) | Publication-ready infographics — 21 layout types × 22 visual styles             |
-
-#### [jimliu/baoyu-design](https://github.com/jimliu/baoyu-design)
-
-| Skill                                                            | Description                                                                                                    |
-| ---------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| [claude-dashboard](skills/baoyu-design/claude-dashboard)         | Local data dashboards — charts, KPIs and tables over CSV/TSV/JSON datasets, in the bundled live editor         |
-| [claude-design](skills/baoyu-design/claude-design)               | Design canvas artifacts (canvas.json + one .dc.html per artboard) with a local canvas editor for retyping copy |
-| [claude-design-system](skills/baoyu-design/claude-design-system) | Design systems — tokens.json, README brand book, component previews and fonts, editable in the bundled page    |
-| [claude-slides](skills/baoyu-design/claude-slides)               | Slide decks in the Slides artifact format, editable in the local slide editor; export PDF / HTML / PowerPoint  |
-| [dataviz](skills/baoyu-design/dataviz)                           | Chart guide — form, color, marks, legends and accessibility, with palette validators                           |
 
 #### [larashero3-dotcom/lieflat-less-ai-tone](https://github.com/larashero3-dotcom/lieflat-less-ai-tone)
 
