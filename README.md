@@ -20,6 +20,8 @@ npx skills add rockcookies/skills --full-depth --skill vue-best-practices -g
 
 Learn more about the CLI at [skills](https://github.com/vercel-labs/skills).
 
+Curated bundles ("packs") live in [packs.ts](packs.ts). Run `pnpm cli` and pick **Generate install command** to select a pack and a shell (bash, PowerShell, or cmd); it prints the matching multi-line command and flags skills that the pack's members reference but don't include.
+
 `npx skills add` installs skills only. Copy agent `.md` files (not `SYNC.json`) into Cursor's user agents directory:
 
 ```bash
@@ -364,20 +366,20 @@ npx skills add rockcookies/skills --full-depth \
 
 > Opinionated workflows and conventions maintained by RockCookies under `skills/custom/`.
 
-| Skill                                                          | Description                                                                         |
-| -------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
-| [technical-writing-zh](skills/custom/technical-writing-zh)     | 中文写作补充（编排 unslop + technical-writing）                                     |
-| [cursor-plan-pipeline](skills/custom/cursor-plan-pipeline)     | Cursor Plan Mode 流水线（拷问 → 计划闸口 → 实现 → 审查）                            |
-| [git-atomic-commit](skills/custom/git-atomic-commit)           | Atomic commits 3.0 — one revertable commit; index isolation                         |
-| [git-rebase-surgeon](skills/custom/git-rebase-surgeon)         | Safe rebase 3.0 — SEQUENCE_EDITOR, backup, explicit lease                           |
-| [git-semantic-search](skills/custom/git-semantic-search)       | Git archaeology 3.0 — Pickaxe/Blame/Bisect with clean-worktree                      |
-| [grill-and-think](skills/custom/grill-and-think)               | 跨运行时设计流水线（拷问 → 深思 → 实现 → 审查）                                     |
+| Skill                                                          | Description                                                                              |
+| -------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| [technical-writing-zh](skills/custom/technical-writing-zh)     | 中文写作补充（编排 unslop + technical-writing）                                          |
+| [cursor-plan-pipeline](skills/custom/cursor-plan-pipeline)     | Cursor Plan Mode 流水线（拷问 → 计划闸口 → 实现 → 审查）                                 |
+| [git-atomic-commit](skills/custom/git-atomic-commit)           | Atomic commits 3.0 — one revertable commit; index isolation                              |
+| [git-rebase-surgeon](skills/custom/git-rebase-surgeon)         | Safe rebase 3.0 — SEQUENCE_EDITOR, backup, explicit lease                                |
+| [git-semantic-search](skills/custom/git-semantic-search)       | Git archaeology 3.0 — Pickaxe/Blame/Bisect with clean-worktree                           |
+| [grill-and-think](skills/custom/grill-and-think)               | 跨运行时设计流水线（拷问 → 深思 → 实现 → 审查）                                          |
 | [hierarchical-agents-md](skills/custom/hierarchical-agents-md) | 层级 AGENTS.md / README.md — init / update / audit / reorganize / trim；只读 Python 脚本 |
-| [skill-evolution](skills/custom/skill-evolution)               | 审计/改造现有 Skill — 工作地图、验收契约、工具化、有证据验证、反馈闭环              |
-| [steelman](skills/custom/steelman)                             | 双向钢人论证 — 重述真问题，强化正反双方，锁定关键变量，硬裁决                       |
-| [web-code-style](skills/custom/web-code-style)                 | Web fullstack naming + clarity — identifiers, files, Hooks/props, control flow, JSX |
-| [web-css-guidelines](skills/custom/web-css-guidelines)         | CSS / Tailwind v4 规则手册 — 去 IE、布局层叠显隐、变量主题、响应式性能、现代化替换  |
-| [week-retro](skills/custom/week-retro)                         | 周回顾 workflow learning loop                                                       |
+| [skill-evolution](skills/custom/skill-evolution)               | 审计/改造现有 Skill — 工作地图、验收契约、工具化、有证据验证、反馈闭环                   |
+| [steelman](skills/custom/steelman)                             | 双向钢人论证 — 重述真问题，强化正反双方，锁定关键变量，硬裁决                            |
+| [web-code-style](skills/custom/web-code-style)                 | Web fullstack naming + clarity — identifiers, files, Hooks/props, control flow, JSX      |
+| [web-css-guidelines](skills/custom/web-css-guidelines)         | CSS / Tailwind v4 规则手册 — 去 IE、布局层叠显隐、变量主题、响应式性能、现代化替换       |
+| [week-retro](skills/custom/week-retro)                         | 周回顾 workflow learning loop                                                            |
 
 ### Upstream Skills
 
