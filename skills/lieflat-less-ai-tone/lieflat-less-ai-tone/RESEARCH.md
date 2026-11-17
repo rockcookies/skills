@@ -345,4 +345,4 @@ detect.py `HUMAN_REF` 与 report.py 人类参考列的每个硬编码值，出�
 
 ---
 
-**English** [RESEARCH.en.md](./RESEARCH.en.md) · **规则集** [SKILL.md](./SKILL.md) · **概览** [README.md](./README.md)
+**English** [RESEARCH.en.md](./RESEARCH.en.md) · **规则集** [SKILL.md](./SKILL.md)

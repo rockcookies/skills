@@ -285,7 +285,7 @@ export const repositories: Record<string, RepositoryConfig> = {
   },
   'lieflat-less-ai-tone': {
     url: 'https://github.com/larashero3-dotcom/lieflat-less-ai-tone',
-    transforms: { skills: ['exclude-lieflat-chrome'] },
+    transforms: { skills: ['exclude-lieflat-chrome', 'strip-lieflat-license-note'] },
     skills: [
       { name: 'lieflat-less-ai-tone', source: './SKILL.md' },
     ],

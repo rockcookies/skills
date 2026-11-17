@@ -1,12 +1,12 @@
 {
   "upstream_committed_sha": "fe77df00a27cf94428632ad449a4aecdcb83db41",
   "upstream_committed_at": "2026-11-11T18:55:23+08:00",
-  "items_digest": "sha256:e639b9649e7a1e18f3a48a0db4b0fa9df89ead9a0af482c13440774210619aec",
-  "items_changed_at": "2026-11-11T14:05:02.167Z",
+  "items_digest": "sha256:f0e294e190221c61cb7612ffe5b3aa1e755b19449986d712bf7a3bec6d9d4d87",
+  "items_changed_at": "2026-11-17T09:36:22.348Z",
   "items": [
     {
       "name": "lieflat-less-ai-tone",
-      "digest": "sha256:d71c82845b1799f5449ffb5b630debb27c987240fe17befc44019a687d220e2d"
+      "digest": "sha256:8e9582f89cc377145f392e216c6247e56f05c03293f95e8360da91f281a47167"
     }
   ]
 }

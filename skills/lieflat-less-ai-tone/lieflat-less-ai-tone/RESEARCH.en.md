@@ -307,4 +307,4 @@ When changing a rule, look at what the regular expression actually matches befor
 
 ---
 
-**中文版** [RESEARCH.md](./RESEARCH.md) · **Rule set** [SKILL.md](./SKILL.md) · **Overview** [README.en.md](./README.en.md)
+**中文版** [RESEARCH.md](./RESEARCH.md) · **Rule set** [SKILL.md](./SKILL.md)
