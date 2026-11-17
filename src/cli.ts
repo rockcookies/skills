@@ -5,7 +5,7 @@ import { fileURLToPath } from 'node:url'
 
 import { repositories } from '../meta'
 import { cleanupUpstreamRepositories } from './commands/cleanup.command'
-import { printDependencies } from './commands/deps.command'
+import { generateInstallCommand } from './commands/pack.command'
 import { syncSubmodules } from './commands/sync.command'
 import { ensureUpstreamRepositories } from './commands/upstream.command'
 
@@ -17,14 +17,6 @@ function hasFlag(flag: string): boolean {
 }
 
 async function main() {
-  const positionalArgs = process.argv.slice(2).filter((arg) => !arg.startsWith('--'))
-
-  // pnpm cli deps <name> — non-interactive, prints the dependency closure
-  if (positionalArgs[0] === 'deps') {
-    await printDependencies(root, repositories, positionalArgs[1])
-    return
-  }
-
   p.intro('Skills Manager')
 
   const argvForce = hasFlag('--force')
@@ -44,9 +36,9 @@ async function main() {
         hint: 'Remove unused upstream/ checkouts (not dest skills)',
       },
       {
-        value: 'deps',
-        label: 'Print dependencies',
-        hint: 'Dependency closure for a skill/agent, copy-ready',
+        value: 'pack',
+        label: 'Generate install command',
+        hint: 'Multi-line npx skills add command for a curated pack, per shell',
       },
     ],
   })
@@ -92,15 +84,9 @@ async function main() {
     case 'cleanup':
       await cleanupUpstreamRepositories(root, repositories)
       break
-    case 'deps': {
-      const name = await p.text({ message: 'Skill or agent name (e.g. grill-and-think):' })
-      if (p.isCancel(name)) {
-        p.cancel('Cancelled')
-        process.exit(0)
-      }
-      await printDependencies(root, repositories, name)
+    case 'pack':
+      await generateInstallCommand(root, repositories)
       break
-    }
   }
 
   p.outro('Done')

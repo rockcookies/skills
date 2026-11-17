@@ -1,0 +1,83 @@
+import { readdir, stat } from 'node:fs/promises'
+import { join } from 'node:path'
+
+import type { Dependencies, Packs } from '../types'
+import type { DuplicateNames, ItemIndex } from './dependencies.service'
+
+export const REPO_SLUG = 'rockcookies/skills'
+
+export type InstallShell = 'bash' | 'powershell' | 'cmd'
+
+const SHELL_CONTINUATION: Record<InstallShell, string> = {
+  bash: '\\',
+  powershell: '`',
+  cmd: '^',
+}
+
+/** 扫描 skills/custom/ 下含 SKILL.md 的手维护技能名（升序）；目录不存在返回 [] */
+export async function listCustomSkillNames(root: string): Promise<string[]> {
+  const customDir = join(root, 'skills', 'custom')
+  try {
+    const entries = await readdir(customDir, { withFileTypes: true })
+    const checks = await Promise.all(
+      entries
+        .filter((entry) => entry.isDirectory())
+        .map(async (entry) => ({
+          name: entry.name,
+          hasSkillMd: await stat(join(customDir, entry.name, 'SKILL.md')).then(
+            () => true,
+            () => false,
+          ),
+        })),
+    )
+    return checks
+      .filter((check) => check.hasSkillMd)
+      .map((check) => check.name)
+      .toSorted()
+  } catch {
+    return []
+  }
+}
+
+/**
+ * 生成多行安装命令：`npx skills add <slug> --full-depth` 起头，每个 --skill 一行
+ * （2 空格缩进），`-g` 收尾；续行符按 shell 取，行尾不留尾随空格
+ * （PowerShell 反引号续行对行尾空格敏感）
+ */
+export function formatInstallCommand(skillNames: string[], shell: InstallShell): string {
+  const cont = SHELL_CONTINUATION[shell]
+  const lines = [`npx skills add ${REPO_SLUG} --full-depth ${cont}`]
+  for (const name of skillNames) lines.push(`  --skill ${name} ${cont}`)
+  lines.push('  -g')
+  return lines.join('\n')
+}
+
+/**
+ * 包缺口：成员在 dependencies.ts skills 分区声明了 direct 技能引用、
+ * 但引用不在包内的名字（排序去重）。只看 skills 引用
+ */
+export function resolvePackGaps(packSkills: string[], dependencies: Dependencies): string[] {
+  const members = new Set(packSkills)
+  const gaps = new Set<string>()
+  for (const name of packSkills) {
+    for (const ref of dependencies.skills[name]?.skills ?? []) {
+      if (!members.has(ref)) gaps.add(ref)
+    }
+  }
+  return [...gaps].toSorted()
+}
+
+/** 校验所有 pack 成员都能解析到映射产物或 custom 技能且不在重名歧义里；返回 `<pack>: <reason>` 错误列表 */
+export function validatePackMembers(packs: Packs, index: ItemIndex, duplicates: DuplicateNames): string[] {
+  const errors: string[] = []
+  for (const [packName, pack] of Object.entries(packs)) {
+    for (const skill of pack.skills) {
+      if (duplicates.skill.includes(skill)) {
+        errors.push(`${packName}: "${skill}" is a duplicate dest name; resolve the ambiguity first`)
+      } else if (!index.skill.has(skill)) {
+        errors.push(`${packName}: "${skill}" is not a mapped skill or custom skill`)
+      }
+    }
+  }
+  return errors
+}

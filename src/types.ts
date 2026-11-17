@@ -93,6 +93,18 @@ export interface RepositoryConfig {
   rules?: RuleMapping[]
 }
 
+/**
+ * 技能包（pack）：面向安装命令生成的策划分组，仅 skills。
+ * 成员是显式清单（允许包间重叠），不展开依赖闭包；
+ * 成员名必须能解析到映射产物或 skills/custom/ 技能（packs.ts 是数据源）
+ */
+export interface SkillPack {
+  description: string
+  skills: string[]
+}
+
+export type Packs = Record<string, SkillPack>
+
 export interface SyncManifestItem {
   name: string
   digest: string
