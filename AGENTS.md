@@ -23,7 +23,6 @@ User-facing install catalog and bundles live in [README.md](README.md). Reposito
 ├── upstream/               # git checkouts (not version-controlled)
 ├── dependencies.ts         # dependency declarations (skills/agents/rules/commands partitions)
 ├── packs.ts                # curated skill packs: named groups of skills for install commands
-├── UPSTREAM-GAPS.md        # upstream references that don't resolve on disk (not repo defects)
 └── meta.ts                 # repo keys, pins, mappings, transforms
 ```
 
@@ -62,7 +61,7 @@ Transforms are kebab-case names. Repo-level `transforms.skills` / `transforms.ag
 4. **Add or adjust a skill pack** → edit `packs.ts` (named groups, skills only); the pack CLI command validates members on next run.
 5. **Upstream with empty `skills`, `agents`, and `rules`** → repo may be listed for future use; Sync skips that repo until a mapping exists. A repo with only one kind still syncs.
 6. **Verify** → `pnpm test`（vitest）/ `pnpm lint` / `pnpm fmt` after TypeScript changes.
-7. **Broken reference in upstream text** → record it in [UPSTREAM-GAPS.md](UPSTREAM-GAPS.md) instead of editing the generated dest; fix it upstream or with a named transform in `meta.ts`.
+7. **Broken reference in upstream text** → do not edit the generated dest; fix it upstream or with a named transform in `meta.ts`.
 
 ## Pins (see `meta.ts`)
 
