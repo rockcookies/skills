@@ -13,9 +13,14 @@ User-facing install catalog and bundles live in [README.md](README.md). Reposito
 │   ├── commands/           # upstream / sync / cleanup handlers
 │   ├── services/           # UpstreamService (clone, pin, sync, SYNC.json)
 │   ├── transforms/         # skill/agent/rule ctx pipeline + kebab-case named strategies
+│   ├── lib/                # pure shared helpers (install command generation)
+│   ├── audit/              # deterministic audit behind pnpm audit:skills (exit code gates CI)
+│   ├── release/            # catalog + release artifact build (build:catalog, build:release)
 │   ├── utils/              # filesystem + digest helpers
 │   ├── errors/             # custom error classes
 │   └── types.ts            # RepositoryConfig, SkillMapping, AgentMapping, RuleMapping, SyncManifest
+├── scripts/                # release smoke test + dry-run entry points (tsx)
+├── release/                # release inputs: README.template.md
 ├── skills/                 # published skills: skills/{repoKey}/{name}/
 │   └── custom/             # hand-maintained local skills
 ├── agents/                 # published agents: agents/{repoKey}/{name}.md
@@ -23,6 +28,7 @@ User-facing install catalog and bundles live in [README.md](README.md). Reposito
 ├── upstream/               # git checkouts (not version-controlled)
 ├── dependencies.ts         # dependency declarations (skills/agents/rules/commands partitions)
 ├── packs.ts                # curated skill packs: named groups of skills for install commands
+├── release.config.ts       # what ships to the release branch: include dirs, root files, guards
 └── meta.ts                 # repo keys, pins, mappings, transforms
 ```
 
