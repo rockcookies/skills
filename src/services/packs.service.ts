@@ -1,18 +1,15 @@
 import { readdir, stat } from 'node:fs/promises'
 import { join } from 'node:path'
 
+import type { Shell } from '../lib/install-commands'
 import type { Dependencies, Packs } from '../types'
 import type { DuplicateNames, ItemIndex } from './dependencies.service'
 
+import { skillsAddCommand } from '../lib/install-commands'
+
 export const REPO_SLUG = 'rockcookies/skills'
 
-export type InstallShell = 'bash' | 'powershell' | 'cmd'
-
-const SHELL_CONTINUATION: Record<InstallShell, string> = {
-  bash: '\\',
-  powershell: '`',
-  cmd: '^',
-}
+export type InstallShell = Shell
 
 /** 扫描 skills/custom/ 下含 SKILL.md 的手维护技能名（升序）；目录不存在返回 [] */
 export async function listCustomSkillNames(root: string): Promise<string[]> {
@@ -40,16 +37,12 @@ export async function listCustomSkillNames(root: string): Promise<string[]> {
 }
 
 /**
- * 生成多行安装命令：`npx skills add <slug> --full-depth` 起头，每个 --skill 一行
- * （2 空格缩进），`-g` 收尾；续行符按 shell 取，行尾不留尾随空格
- * （PowerShell 反引号续行对行尾空格敏感）
+ * 生成多行安装命令：`npx skills add <slug>` 起头，每个 --skill 一行（2 空格缩进），
+ * `-g` 收尾。委托 src/lib/install-commands.ts 统一拼装（短写法，实测发布布局
+ * 无需 --full-depth，带上反而会把本地 upstream/ checkout 扫进发现集合）
  */
 export function formatInstallCommand(skillNames: string[], shell: InstallShell): string {
-  const cont = SHELL_CONTINUATION[shell]
-  const lines = [`npx skills add ${REPO_SLUG} --full-depth ${cont}`]
-  for (const name of skillNames) lines.push(`  --skill ${name} ${cont}`)
-  lines.push('  -g')
-  return lines.join('\n')
+  return skillsAddCommand({ skills: skillNames, scope: 'global', shell })
 }
 
 /**

@@ -72,33 +72,21 @@ describe('listCustomSkillNames', () => {
 describe('formatInstallCommand', () => {
   it('builds a bash command with backslash continuations', () => {
     expect(formatInstallCommand(['skill-one', 'skill-two'], 'bash')).toBe(
-      [`npx skills add ${REPO_SLUG} --full-depth \\`, '  --skill skill-one \\', '  --skill skill-two \\', '  -g'].join(
-        '\n',
-      ),
+      [`npx skills add ${REPO_SLUG} \\`, '  --skill skill-one \\', '  --skill skill-two \\', '  -g'].join('\n'),
     )
   })
 
   it('builds a PowerShell command with backtick continuations and no trailing spaces', () => {
     const powershell = formatInstallCommand(['skill-one', 'skill-two'], 'powershell')
     expect(powershell).toBe(
-      [
-        'npx skills add rockcookies/skills --full-depth `',
-        '  --skill skill-one `',
-        '  --skill skill-two `',
-        '  -g',
-      ].join('\n'),
+      ['npx skills add rockcookies/skills `', '  --skill skill-one `', '  --skill skill-two `', '  -g'].join('\n'),
     )
     for (const line of powershell.split('\n')) expect(line.endsWith(' ')).toBe(false)
   })
 
   it('builds a cmd command with caret continuations', () => {
     expect(formatInstallCommand(['skill-one', 'skill-two'], 'cmd')).toBe(
-      [
-        'npx skills add rockcookies/skills --full-depth ^',
-        '  --skill skill-one ^',
-        '  --skill skill-two ^',
-        '  -g',
-      ].join('\n'),
+      ['npx skills add rockcookies/skills ^', '  --skill skill-one ^', '  --skill skill-two ^', '  -g'].join('\n'),
     )
   })
 })
