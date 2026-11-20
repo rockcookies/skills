@@ -2,24 +2,38 @@ import * as p from '@clack/prompts'
 import { dirname, join } from 'node:path'
 import process from 'node:process'
 import { fileURLToPath } from 'node:url'
+import { parseArgs } from 'node:util'
 
 import { repositories } from '../meta'
 import { cleanupUpstreamRepositories } from './commands/cleanup.command'
 import { generateInstallCommand } from './commands/pack.command'
 import { syncSubmodules } from './commands/sync.command'
+import { runSyncCi } from './commands/sync-ci.command'
 import { ensureUpstreamRepositories } from './commands/upstream.command'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const root = join(__dirname, '..')
 
-function hasFlag(flag: string): boolean {
-  return process.argv.includes(flag)
-}
+// strict:false：未知参数静默忽略，与既有 hasFlag 行为一致
+const { values, positionals } = parseArgs({
+  allowPositionals: true,
+  strict: false,
+  options: {
+    ci: { type: 'boolean' },
+    force: { type: 'boolean' },
+    repo: { type: 'string' },
+    report: { type: 'string' },
+  },
+})
 
 async function main() {
+  if (positionals[0] === 'sync' && values.ci) {
+    process.exit(await runSyncCi({ root, repositories, repo: values.repo, report: values.report }))
+  }
+
   p.intro('Skills Manager')
 
-  const argvForce = hasFlag('--force')
+  const argvForce = values.force === true
 
   const action = await p.select({
     message: 'What would you like to do?',

@@ -68,6 +68,11 @@ export function resolveUpstreamDir(root: string): string {
   return fromEnv ? resolve(fromEnv) : join(root, 'upstream')
 }
 
+/** 三类映射全空：sync 跳过该 repo（meta.ts 里的预留位）。 */
+export function isEmptyMapping(config: RepositoryConfig): boolean {
+  return !(config.skills?.length || config.agents?.length || config.rules?.length)
+}
+
 export class UpstreamService {
   constructor(private root: string) {}
 
@@ -103,7 +108,7 @@ export class UpstreamService {
     const agents = config.agents ?? []
     const rules = config.rules ?? []
 
-    if (!skills.length && !agents.length && !rules.length) {
+    if (isEmptyMapping(config)) {
       p.log.warn(`No skills, agents or rules configured for ${upstreamName}, skipping sync`)
       return
     }
