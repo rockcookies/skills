@@ -69,6 +69,10 @@ Transforms are kebab-case names. Repo-level `transforms.skills` / `transforms.ag
 6. **Verify** → `pnpm test`（vitest）/ `pnpm lint` / `pnpm fmt` after TypeScript changes.
 7. **Broken reference in upstream text** → do not edit the generated dest; fix it upstream or with a named transform in `meta.ts`.
 
+## Upstream checkouts
+
+Upstream clones live under `upstream/` by default. Set `SKILLS_UPSTREAM_DIR` to point at a shared directory and all worktrees reuse one copy of the checkouts (sync, upstream management, and cleanup all honor it), e.g. `export SKILLS_UPSTREAM_DIR=~/.cache/rockcookies-skills/upstream`.
+
 ## Pins (see `meta.ts`)
 
 | Key             | Upstream                | Pin           |

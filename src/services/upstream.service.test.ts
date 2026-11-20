@@ -1,6 +1,15 @@
+import { join } from 'node:path'
+
 import { expect, test } from 'vitest'
 
-import { compareNames, itemsDigest, nextItemsChangedAt, orphanAgentNames, orphanSkillNames } from './upstream.service'
+import {
+  compareNames,
+  itemsDigest,
+  nextItemsChangedAt,
+  orphanAgentNames,
+  orphanSkillNames,
+  resolveUpstreamDir,
+} from './upstream.service'
 
 test('compareNames is UTF-16 code-unit ascending', () => {
   expect(compareNames('A', 'a')).toBeLessThan(0)
@@ -44,4 +53,18 @@ test('orphanSkillNames drops unmapped dirs and sorts', () => {
 test('orphanAgentNames only considers .md basenames', () => {
   const mapped = new Set(['keep'])
   expect(orphanAgentNames(['keep.md', 'gone.md', 'SYNC.json', 'notes.txt'], mapped)).toEqual(['gone'])
+})
+
+test('resolveUpstreamDir honors SKILLS_UPSTREAM_DIR over repo default', () => {
+  const previous = process.env.SKILLS_UPSTREAM_DIR
+  try {
+    process.env.SKILLS_UPSTREAM_DIR = 'D:/tmp/shared-upstream'
+    expect(resolveUpstreamDir('D:/repo')).toBe('D:\\tmp\\shared-upstream')
+
+    delete process.env.SKILLS_UPSTREAM_DIR
+    expect(resolveUpstreamDir('D:/repo')).toBe(join('D:/repo', 'upstream'))
+  } finally {
+    if (previous === undefined) delete process.env.SKILLS_UPSTREAM_DIR
+    else process.env.SKILLS_UPSTREAM_DIR = previous
+  }
 })

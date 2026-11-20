@@ -1,7 +1,8 @@
 import * as p from '@clack/prompts'
 import { existsSync, mkdirSync, rmSync } from 'node:fs'
 import { mkdir, readdir, readFile, rm, writeFile } from 'node:fs/promises'
-import { basename, dirname, join } from 'node:path'
+import { basename, dirname, join, resolve } from 'node:path'
+import process from 'node:process'
 import { simpleGit } from 'simple-git'
 
 import type { AgentContext, RuleContext, SkillContext } from '../transforms/context'
@@ -58,6 +59,15 @@ export function nextItemsChangedAt(
   return now
 }
 
+/**
+ * upstream checkouts 根目录：可用 SKILLS_UPSTREAM_DIR 指到仓库外共享目录，
+ * 多个 worktree 共用一份 clone（worktree 各自 clone 又慢又占盘）。
+ */
+export function resolveUpstreamDir(root: string): string {
+  const fromEnv = process.env.SKILLS_UPSTREAM_DIR
+  return fromEnv ? resolve(fromEnv) : join(root, 'upstream')
+}
+
 export class UpstreamService {
   constructor(private root: string) {}
 
@@ -70,7 +80,7 @@ export class UpstreamService {
   /** 删掉 checkout 再 clone，与 dest 技能目录无关 */
   async forceUpdateAll(repos: Record<string, RepositoryConfig>): Promise<void> {
     for (const [name, config] of Object.entries(repos)) {
-      const upstreamPath = join(this.root, 'upstream', name)
+      const upstreamPath = join(resolveUpstreamDir(this.root), name)
       if (existsSync(upstreamPath)) {
         rmSync(upstreamPath, { recursive: true, force: true })
       }
@@ -98,7 +108,7 @@ export class UpstreamService {
       return
     }
 
-    const repoRoot = join(this.root, 'upstream', upstreamName)
+    const repoRoot = join(resolveUpstreamDir(this.root), upstreamName)
     if (!(await pathExists(repoRoot))) {
       throw new Error(`Upstream repository not found: ${upstreamName}`)
     }
@@ -122,7 +132,7 @@ export class UpstreamService {
 
   /** 没有 checkout 就 clone，然后一律 reset 到 pin。 */
   async ensureRepo(name: string, config: RepositoryConfig): Promise<void> {
-    const upstreamPath = join(this.root, 'upstream', name)
+    const upstreamPath = join(resolveUpstreamDir(this.root), name)
 
     if (!existsSync(upstreamPath)) {
       await this.cloneRepo(config, upstreamPath)
@@ -323,7 +333,7 @@ export class UpstreamService {
   }
 
   private async getUpstreamCommit(repoName: string): Promise<{ sha: string; committedAt: string }> {
-    const repoPath = join(this.root, 'upstream', repoName)
+    const repoPath = join(resolveUpstreamDir(this.root), repoName)
     const git = simpleGit(repoPath)
     const sha = (await git.revparse(['HEAD'])).trim()
     const committedAt = (await git.raw(['log', '-1', '--format=%cI'])).trim()
@@ -361,7 +371,7 @@ export class UpstreamService {
   }
 
   private async cloneRepo(config: RepositoryConfig, upstreamPath: string): Promise<void> {
-    const upstreamDir = join(this.root, 'upstream')
+    const upstreamDir = resolveUpstreamDir(this.root)
     if (!existsSync(upstreamDir)) {
       mkdirSync(upstreamDir, { recursive: true })
     }

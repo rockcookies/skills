@@ -696,6 +696,12 @@ pnpm lint
 pnpm fmt
 ```
 
+By default upstream checkouts live in `upstream/`. Set `SKILLS_UPSTREAM_DIR` to share one copy of the checkouts across git worktrees:
+
+```bash
+export SKILLS_UPSTREAM_DIR=~/.cache/rockcookies-skills/upstream
+```
+
 ## Credits
 
 Project structure and workflow inspired by [antfu/skills](https://github.com/antfu/skills).
