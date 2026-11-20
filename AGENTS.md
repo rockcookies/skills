@@ -19,8 +19,9 @@ User-facing install catalog and bundles live in [README.md](README.md). Reposito
 │   ├── utils/              # filesystem + digest helpers
 │   ├── errors/             # custom error classes
 │   └── types.ts            # RepositoryConfig, SkillMapping, AgentMapping, RuleMapping, SyncManifest
-├── scripts/                # release smoke test + dry-run entry points (tsx)
-├── release/                # release inputs: README.template.md
+├── scripts/                # release smoke test + dry-run + site prepare entry points (tsx)
+├── release/                # release inputs: README.template.md; main-github/ backs up main's manual .github/
+├── site/                   # GitHub Pages install-command generator (pnpm workspace package)
 ├── skills/                 # published skills: skills/{repoKey}/{name}/
 │   └── custom/             # hand-maintained local skills
 ├── agents/                 # published agents: agents/{repoKey}/{name}.md
@@ -47,6 +48,8 @@ Dest trees under `skills/{repoKey}/`, `agents/{repoKey}/`, and `rules/{repoKey}/
 | Cleanup                  | `cleanup.command.ts`  | Remove orphaned upstream checkouts                                                                       |
 | Generate install command | `pack.command.ts`     | Multi-select packs from `packs.ts`, pick a shell, print the combined multi-line `npx skills add` command |
 
+非交互入口：`pnpm cli sync --ci [--repo <repoKey>] [--report <file>]`（`sync-ci.command.ts`）直接调 `UpstreamService`，无 clack 提示、不做 git commit/push，退出码 2 = 同步失败或未知 repoKey；CI 的 sync workflow 用它。
+
 Every sync run deletes and rewrites each mapped dest. Mapping 里拿掉的 dest **默认不删**；`pnpm cli --force`（或交互确认 Force sync）会额外删除该 repo 下未再映射的 skill 目录 / agent `.md` / rule `.md`。`skills/{repoKey}/SYNC.json`、`agents/{repoKey}/SYNC.json` 和 `rules/{repoKey}/SYNC.json` 存 `{ upstream_committed_sha, upstream_committed_at, items_digest, items_changed_at, items: [{ name, digest }] }`（items 按 name 升序）。
 
 Transforms are kebab-case names. Repo-level `transforms.skills` / `transforms.agents` / `transforms.rules` run first, then mapping `transforms`, then a builtin step that sets entry YAML `name` to the dest name (skills and agents only; rules skip it so their body stays verbatim). Strategies receive a skill file-tree context or an agent/rule string context and are unit-tested in isolation.
@@ -72,6 +75,12 @@ Transforms are kebab-case names. Repo-level `transforms.skills` / `transforms.ag
 ## Upstream checkouts
 
 Upstream clones live under `upstream/` by default. Set `SKILLS_UPSTREAM_DIR` to point at a shared directory and all worktrees reuse one copy of the checkouts (sync, upstream management, and cleanup all honor it), e.g. `export SKILLS_UPSTREAM_DIR=~/.cache/rockcookies-skills/upstream`.
+
+## Branch model & release
+
+`dev` 是源分支（source of truth）：全部源码、技能、workflows 都在这里改。`main` 是发布分支，**只有 CI 写**——`release.yml` 在 dev push 时跑门禁（lint / test / audit:skills / build:release / smoke:release / build:site），把 `dist-release/` 追加成普通 commit 推到 main，并部署 GitHub Pages 站点。不要向 main 提 PR 或直推；绝不 force-push main（skills CLI lockfile 按安装时的 commit SHA 拉取）。`sync-cron`（main 上的存根，源备份在 `release/main-github/`）每天 UTC 21:17 调 dev 的 `sync.yml`，用 `pnpm cli sync --ci` 同步上游并开 bot PR 到 dev。
+
+发布管线命令：`pnpm audit:skills` → `pnpm build:release`（自落 `.build/catalog.json`）→ `pnpm smoke:release` → `pnpm release:dry`（同步到 `../skills-release` worktree 只看 diff）；站点：`pnpm build:site`。本地验证发布 diff 用 worktree，不要在 `skills-release` 里手改内容。
 
 ## Pins (see `meta.ts`)
 

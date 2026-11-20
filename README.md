@@ -702,6 +702,10 @@ By default upstream checkouts live in `upstream/`. Set `SKILLS_UPSTREAM_DIR` to 
 export SKILLS_UPSTREAM_DIR=~/.cache/rockcookies-skills/upstream
 ```
 
+### Branch model
+
+`dev` is the source branch — all code, skills, and workflows change here via PR. `main` is generated: only CI writes it (release workflow appends a commit built from `dist-release/` and deploys the [installer site](https://rockcookies.github.io/skills/) via GitHub Pages). Do not open PRs against `main` and never force-push it. A daily cron syncs upstreams via `pnpm cli sync --ci` and opens bot PRs against `dev`.
+
 ## Credits
 
 Project structure and workflow inspired by [antfu/skills](https://github.com/antfu/skills).
