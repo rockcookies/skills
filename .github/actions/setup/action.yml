@@ -1,0 +1,12 @@
+name: setup
+description: pnpm + Node + install
+runs:
+  using: composite
+  steps:
+    - uses: pnpm/action-setup@v6 # 版本取自 package.json 的 packageManager 字段
+    - uses: actions/setup-node@v6
+      with:
+        node-version: 22 # skills CLI 要求 Node.js 22.20+
+        cache: pnpm
+    - run: pnpm install --frozen-lockfile
+      shell: bash
