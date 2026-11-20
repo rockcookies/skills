@@ -12,7 +12,8 @@
     "build:catalog": "tsx src/release/catalog.cli.ts",
     "build:release": "tsx src/release/build.ts",
     "smoke:release": "tsx scripts/smoke-release.ts",
-    "release:dry": "pnpm build:release && tsx scripts/release-dry.ts"
+    "release:dry": "pnpm build:release && tsx scripts/release-dry.ts",
+    "build:site": "pnpm build:release && tsx scripts/prepare-site.ts && pnpm --filter ./site build"
   },
   "dependencies": {
     "js-yaml": "^5.2.1"
