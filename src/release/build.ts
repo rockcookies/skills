@@ -10,7 +10,7 @@ import { releaseConfig } from '../../release.config'
 import { skillsAddCommand } from '../lib/install-commands'
 import { treeDigest } from '../utils/digest'
 import { listFilesRecursive } from '../utils/list-files'
-import { buildCatalog, type Catalog } from './catalog'
+import { buildCatalog, serializeCatalog, type Catalog } from './catalog'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const root = join(__dirname, '..', '..')
@@ -68,6 +68,9 @@ async function main(): Promise<void> {
 
   const catalog = await buildCatalog({ root, repositories, dependencies, packs })
   await writeFile(join(OUT, 'README.md'), await renderReadme(catalog))
+  // smoke:release 读 .build/catalog.json 对期望集；build:release 自落一份，CI 无需先跑 build:catalog
+  await mkdir(join(root, '.build'), { recursive: true })
+  await writeFile(join(root, '.build', 'catalog.json'), serializeCatalog(catalog))
 
   // pins 只含 meta.ts 显式声明的 pin；不放时间戳与 dev SHA——发布 commit 内容必须确定性
   const pins: Record<string, string> = {}

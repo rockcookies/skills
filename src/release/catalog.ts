@@ -35,6 +35,11 @@ function sourceOf(config: RepositoryConfig): { repo: string; pin?: string } {
   return pin ? { repo: config.url, pin } : { repo: config.url }
 }
 
+/** catalog JSON 的唯一序列化出口：catalog.cli 与 build:release 共用，保证字节一致 */
+export function serializeCatalog(catalog: Catalog): string {
+  return JSON.stringify(catalog, null, 2) + '\n'
+}
+
 /** catalog 建立在零 error 的审计之上；有 error 直接抛（先跑 pnpm audit:skills 看报告） */
 export async function buildCatalog(input: AuditInput): Promise<Catalog> {
   const r = await audit(input)

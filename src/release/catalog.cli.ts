@@ -6,7 +6,7 @@ import { fileURLToPath } from 'node:url'
 import { dependencies } from '../../dependencies'
 import { repositories } from '../../meta'
 import { packs } from '../../packs'
-import { buildCatalog } from './catalog'
+import { buildCatalog, serializeCatalog } from './catalog'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const root = join(__dirname, '..', '..')
@@ -16,7 +16,7 @@ async function main(): Promise<void> {
   const outDir = join(root, '.build')
   await mkdir(outDir, { recursive: true })
   const target = join(outDir, 'catalog.json')
-  await writeFile(target, JSON.stringify(catalog, null, 2) + '\n')
+  await writeFile(target, serializeCatalog(catalog))
   console.info(
     `catalog: ${catalog.skills.length} skills · ${catalog.agents.length} agents · ${catalog.rules.length} rules -> ${target}`,
   )
