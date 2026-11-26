@@ -6,7 +6,7 @@ import { fileURLToPath } from 'node:url'
 import { dependencies } from '../dependencies'
 import { repositories } from '../meta'
 import { packs } from '../packs'
-import { buildCatalog, serializeCatalog } from '../src/release/catalog'
+import { buildCatalog, serializeCatalog } from '../src/catalog'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const root = join(__dirname, '..')

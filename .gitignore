@@ -43,11 +43,8 @@ storybook-static
 # Upstream directories - managed by meta.ts
 upstream/
 
-# Release pipeline outputs (generated, never committed)
+# Generated outputs (never committed)
 .build/
-dist-release/
-
-# Site build outputs (Phase 5)
 site/dist/
 site/public/catalog.json
 site/public/agents/

@@ -33,9 +33,9 @@ describe('skillsAddCommand', () => {
         agents: ['claude-code'],
         yes: true,
         shell: 'bash',
-        source: './dist-release',
+        source: './',
       }),
-    ).toBe(['npx skills add ./dist-release \\', '  --skill a \\', '  -a claude-code \\', '  -y'].join('\n'))
+    ).toBe(['npx skills add ./ \\', '  --skill a \\', '  -a claude-code \\', '  -y'].join('\n'))
   })
 
   it('rejects unsafe names', () => {

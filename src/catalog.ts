@@ -1,7 +1,7 @@
-import type { CheckInput } from '../check/check'
-import type { RepositoryConfig } from '../types'
+import type { CheckInput } from './check/check'
+import type { RepositoryConfig } from './types'
 
-import { check } from '../check/check'
+import { check } from './check/check'
 
 export interface CatalogSkill {
   name: string
@@ -35,7 +35,7 @@ function sourceOf(config: RepositoryConfig): { repo: string; pin?: string } {
   return pin ? { repo: config.url, pin } : { repo: config.url }
 }
 
-/** catalog JSON 的唯一序列化出口：catalog.cli 与 build:release 共用，保证字节一致 */
+/** catalog JSON 的唯一序列化出口：catalog 入口与 site:build 共用，保证字节一致 */
 export function serializeCatalog(catalog: Catalog): string {
   return JSON.stringify(catalog, null, 2) + '\n'
 }

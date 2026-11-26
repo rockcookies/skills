@@ -15,8 +15,9 @@ const root = join(__dirname, '..')
 
 async function main(): Promise<void> {
   const catalog = JSON.parse(await readFile(join(root, '.build', 'catalog.json'), 'utf8')) as CatalogFile
+  // 仓库根即用户安装面：skills.sh.json 把 content/skills 声明为发现容器。
   // 命令为硬编码常量（无外部输入拼进）；整串传给 shell 避免 Windows 下 pnpm.cmd 的 args+shell 弃用告警
-  const result = spawnSync('pnpm exec skills add ./dist-release --list', {
+  const result = spawnSync('pnpm exec skills add ./ --list', {
     cwd: root,
     encoding: 'utf8',
     shell: true,
@@ -37,7 +38,7 @@ async function main(): Promise<void> {
     process.exitCode = 1
     return
   }
-  console.info(`ok: ${expected.length} skills discoverable in dist-release`)
+  console.info(`ok: ${expected.length} skills discoverable from repo root`)
 }
 
 main().catch((error) => {

@@ -13,10 +13,9 @@
     "packs": "tsx scripts/packs.ts",
     "check": "tsx scripts/check.ts",
     "build:catalog": "tsx scripts/catalog.ts",
-    "build:release": "tsx src/release/build.ts",
-    "smoke:release": "tsx scripts/smoke-release.ts",
-    "release:dry": "pnpm build:release && tsx scripts/release-dry.ts",
-    "build:site": "pnpm build:release && tsx scripts/prepare-site.ts && pnpm --filter ./site build"
+    "smoke": "tsx scripts/smoke.ts",
+    "site:build": "pnpm build:catalog && tsx scripts/prepare-site.ts && pnpm --filter ./site build",
+    "site:preview": "pnpm site:build && pnpm --filter ./site preview"
   },
   "dependencies": {
     "js-yaml": "^5.2.1"

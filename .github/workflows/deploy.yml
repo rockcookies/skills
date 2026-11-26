@@ -17,9 +17,8 @@ jobs:
       - run: pnpm lint
       - run: pnpm test
       - run: pnpm check
-      - run: pnpm build:release
-      - run: pnpm smoke:release
-      - run: pnpm build:site
+      - run: pnpm site:build
+      - run: pnpm smoke
       - uses: actions/upload-pages-artifact@v4
         with:
           path: site/dist

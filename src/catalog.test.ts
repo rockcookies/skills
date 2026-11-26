@@ -9,7 +9,7 @@ import {
   fixtureRepositories,
   writeCleanFixture,
   writeSkill,
-} from '../check/test-fixtures'
+} from './check/test-fixtures'
 import { buildCatalog } from './catalog'
 
 const tempRoots: string[] = []

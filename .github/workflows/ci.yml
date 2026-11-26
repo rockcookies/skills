@@ -17,6 +17,5 @@ jobs:
       - run: pnpm lint
       - run: pnpm test
       - run: pnpm check
-      - run: pnpm build:release
-      - run: pnpm smoke:release
-      - run: pnpm build:site # PR 上就拦截站点 TS/vite 错误，不等 push 后才发现
+      - run: pnpm site:build # PR 上就拦截站点 TS/vite 错误，不等 push 后才发现
+      - run: pnpm smoke
