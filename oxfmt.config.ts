@@ -23,5 +23,15 @@ export default defineConfig({
     newlinesBetween: true,
   },
 
-  ignorePatterns: ['**/vendor/**', '**/sources/**', '**/skills/**', '**/upstream/**', '**/node_modules/**', 'meta.ts'],
+  // content/ 是同步生成物 + 上游原文（安装面逐字节交付），不参与格式化——
+  // 旧布局靠 **/skills/** 巧合覆盖，repoKey 优先后 agents/rules 会漏
+  ignorePatterns: [
+    'content/**',
+    '**/vendor/**',
+    '**/sources/**',
+    '**/skills/**',
+    '**/upstream/**',
+    '**/node_modules/**',
+    'meta.ts',
+  ],
 })
