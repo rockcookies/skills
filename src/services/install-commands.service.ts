@@ -8,7 +8,7 @@ export const SKILL_NAME_RE = /^[a-z0-9]+(?:-[a-z0-9]+)*$/
 export const DEFAULT_SOURCE = 'rockcookies/skills'
 
 const SAFE_NAME = /^[a-z0-9][a-z0-9._-]*$/
-const SAFE_FILE = /^(agents|rules)\/[\w.-]+\/[\w.-]+\.md$/
+const SAFE_FILE = /^(agents|rules)\/[\w.-]+\.md$/
 
 const SHELL_CONTINUATION: Record<Shell, string> = {
   bash: ' \\',
@@ -107,9 +107,10 @@ export interface CopyOptions {
   targetDir: string
 }
 
-/** catalog 记录仓库真实路径（content/agents|rules/…）；下载 URL 用发布面路径，剥掉 content/ 前缀 */
+/** catalog 记录仓库真实路径（content/{repoKey}/{kind}/{name}.md）；下载 URL 用扁平发布面路径 {kind}/{name}.md */
 function publishedPath(f: string): string {
-  return f.startsWith('content/') ? f.slice('content/'.length) : f
+  const m = /^content\/[^/]+\/((?:agents|rules)\/[\w.-]+\.md)$/.exec(f)
+  return m ? m[1]! : f
 }
 
 /**

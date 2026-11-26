@@ -14,7 +14,7 @@
     "check": "tsx src/commands/check.command.ts",
     "build:catalog": "tsx src/commands/catalog.command.ts",
     "smoke": "tsx src/commands/smoke.command.ts",
-    "site:build": "pnpm build:catalog && tsx scripts/prepare-site.ts && pnpm --filter ./site build",
+    "site:build": "pnpm build:catalog && tsx src/commands/prepare-site.command.ts && pnpm --filter ./site build",
     "site:preview": "pnpm site:build && pnpm --filter ./site preview"
   },
   "dependencies": {

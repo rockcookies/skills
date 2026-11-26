@@ -46,6 +46,4 @@ upstream/
 # Generated outputs (never committed)
 .build/
 site/dist/
-site/public/catalog.json
-site/public/agents/
-site/public/rules/
+site/public/

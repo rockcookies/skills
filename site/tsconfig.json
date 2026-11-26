@@ -12,7 +12,7 @@
     "verbatimModuleSyntax": true,
     "types": ["vite/client"],
     "paths": {
-      "@lib/*": ["../src/lib/*"]
+      "@services/*": ["../src/services/*"]
     }
   },
   "include": ["src"]

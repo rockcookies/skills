@@ -74,16 +74,15 @@ describe('resolveRequirements', () => {
 })
 
 describe('fileCopyCommands', () => {
-  // catalog 记录仓库真实路径（content/ 前缀），URL 用发布面路径（剥前缀）
-  const files = ['content/agents/tw93-waza/kimi.md']
+  // catalog 记录仓库真实路径（content/{repoKey}/{kind}/…），URL 用扁平发布面路径 {kind}/{name}.md
+  const files = ['content/tw93-waza/agents/kimi.md']
   const options = { baseUrl: 'https://x.test/skills', targetDir: '.cursor/agents' }
 
   it('builds bash commands with mkdir -p and curl', () => {
     expect(fileCopyCommands(files, { ...options, shell: 'bash' })).toBe(
-      [
-        'mkdir -p ~/.cursor/agents',
-        'curl -fsSL https://x.test/skills/agents/tw93-waza/kimi.md -o ~/.cursor/agents/kimi.md',
-      ].join('\n'),
+      ['mkdir -p ~/.cursor/agents', 'curl -fsSL https://x.test/skills/agents/kimi.md -o ~/.cursor/agents/kimi.md'].join(
+        '\n',
+      ),
     )
   })
 
@@ -91,18 +90,18 @@ describe('fileCopyCommands', () => {
     expect(fileCopyCommands(files, { ...options, shell: 'powershell' })).toBe(
       [
         'New-Item -ItemType Directory -Force "$HOME/.cursor/agents" | Out-Null',
-        'Invoke-WebRequest https://x.test/skills/agents/tw93-waza/kimi.md -OutFile "$HOME/.cursor/agents/kimi.md"',
+        'Invoke-WebRequest https://x.test/skills/agents/kimi.md -OutFile "$HOME/.cursor/agents/kimi.md"',
       ].join('\n'),
     )
   })
 
   it('builds cmd commands with %USERPROFILE% and backslashes', () => {
     expect(
-      fileCopyCommands(['content/rules/tw93-waza/tone.md'], { ...options, shell: 'cmd', targetDir: '.cursor/rules' }),
+      fileCopyCommands(['content/tw93-waza/rules/tone.md'], { ...options, shell: 'cmd', targetDir: '.cursor/rules' }),
     ).toBe(
       [
         'if not exist "%USERPROFILE%\\.cursor\\rules" mkdir "%USERPROFILE%\\.cursor\\rules"',
-        'curl -fsSL https://x.test/skills/rules/tw93-waza/tone.md -o "%USERPROFILE%\\.cursor\\rules\\tone.md"',
+        'curl -fsSL https://x.test/skills/rules/tone.md -o "%USERPROFILE%\\.cursor\\rules\\tone.md"',
       ].join('\n'),
     )
   })
