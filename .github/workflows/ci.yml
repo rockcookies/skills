@@ -1,7 +1,7 @@
 name: ci
 on:
   pull_request:
-    branches: [dev]
+    branches: [main]
 permissions:
   contents: read
 concurrency:
@@ -10,7 +10,7 @@ concurrency:
 jobs:
   verify:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v6
       - uses: ./.github/actions/setup
@@ -19,3 +19,4 @@ jobs:
       - run: pnpm audit:skills
       - run: pnpm build:release
       - run: pnpm smoke:release
+      - run: pnpm build:site # PR 上就拦截站点 TS/vite 错误，不等 push 后才发现
