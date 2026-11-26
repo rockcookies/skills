@@ -16,7 +16,7 @@ jobs:
       - uses: ./.github/actions/setup
       - run: pnpm lint
       - run: pnpm test
-      - run: pnpm audit:skills
+      - run: pnpm check
       - run: pnpm build:release
       - run: pnpm smoke:release
       - run: pnpm build:site

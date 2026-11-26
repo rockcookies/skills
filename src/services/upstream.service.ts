@@ -1,4 +1,3 @@
-import * as p from '@clack/prompts'
 import { existsSync, mkdirSync, rmSync } from 'node:fs'
 import { mkdir, readdir, readFile, rm, writeFile } from 'node:fs/promises'
 import { basename, dirname, join, resolve } from 'node:path'
@@ -109,7 +108,7 @@ export class UpstreamService {
     const rules = config.rules ?? []
 
     if (isEmptyMapping(config)) {
-      p.log.warn(`No skills, agents or rules configured for ${upstreamName}, skipping sync`)
+      console.warn(`No skills, agents or rules configured for ${upstreamName}, skipping sync`)
       return
     }
 
@@ -167,14 +166,14 @@ export class UpstreamService {
       await this.writeSkillFiles(destPath, ctx.files)
       const files = await listFilesRecursive(destPath)
       items.push({ name: mapping.name, digest: await digestTree(destPath, files) })
-      p.log.success(`✓ Synced skill '${mapping.name}' from ${upstreamName}`)
+      console.info(`✓ Synced skill '${mapping.name}' from ${upstreamName}`)
     }
 
     if (force) {
       await this.removeOrphanSkills(skillsRoot, new Set(skills.map((mapping) => mapping.name)), upstreamName)
     }
     await this.writeSyncJSON(skillsRoot, sha, committedAt, items)
-    p.log.success(`✓ Wrote skills SYNC.json for ${upstreamName} (SHA: ${sha.substring(0, 7)})`)
+    console.info(`✓ Wrote skills SYNC.json for ${upstreamName} (SHA: ${sha.substring(0, 7)})`)
   }
 
   private async syncAgentsKind(
@@ -197,14 +196,14 @@ export class UpstreamService {
       const destPath = join(agentsRoot, `${mapping.name}.md`)
       await writeFile(destPath, ctx.content)
       items.push({ name: mapping.name, digest: await digestFile(destPath) })
-      p.log.success(`✓ Synced agent '${mapping.name}' from ${upstreamName}`)
+      console.info(`✓ Synced agent '${mapping.name}' from ${upstreamName}`)
     }
 
     if (force) {
       await this.removeOrphanAgents(agentsRoot, new Set(agents.map((mapping) => mapping.name)), upstreamName)
     }
     await this.writeSyncJSON(agentsRoot, sha, committedAt, items)
-    p.log.success(`✓ Wrote agents SYNC.json for ${upstreamName} (SHA: ${sha.substring(0, 7)})`)
+    console.info(`✓ Wrote agents SYNC.json for ${upstreamName} (SHA: ${sha.substring(0, 7)})`)
   }
 
   private async removeOrphanSkills(
@@ -216,7 +215,7 @@ export class UpstreamService {
     const dirNames = entries.filter((entry) => entry.isDirectory()).map((entry) => entry.name)
     for (const name of orphanSkillNames(dirNames, mapped)) {
       await rm(join(skillsRoot, name), { recursive: true, force: true })
-      p.log.warn(`✗ Removed orphan skill '${name}' from ${upstreamName}`)
+      console.warn(`✗ Removed orphan skill '${name}' from ${upstreamName}`)
     }
   }
 
@@ -240,14 +239,14 @@ export class UpstreamService {
       const destPath = join(rulesRoot, `${mapping.name}.md`)
       await writeFile(destPath, ctx.content)
       items.push({ name: mapping.name, digest: await digestFile(destPath) })
-      p.log.success(`✓ Synced rule '${mapping.name}' from ${upstreamName}`)
+      console.info(`✓ Synced rule '${mapping.name}' from ${upstreamName}`)
     }
 
     if (force) {
       await this.removeOrphanRules(rulesRoot, new Set(rules.map((mapping) => mapping.name)), upstreamName)
     }
     await this.writeSyncJSON(rulesRoot, sha, committedAt, items)
-    p.log.success(`✓ Wrote rules SYNC.json for ${upstreamName} (SHA: ${sha.substring(0, 7)})`)
+    console.info(`✓ Wrote rules SYNC.json for ${upstreamName} (SHA: ${sha.substring(0, 7)})`)
   }
 
   private async removeOrphanRules(rulesRoot: string, mapped: ReadonlySet<string>, upstreamName: string): Promise<void> {
@@ -255,7 +254,7 @@ export class UpstreamService {
     const fileNames = entries.filter((entry) => entry.isFile()).map((entry) => entry.name)
     for (const name of orphanAgentNames(fileNames, mapped)) {
       await rm(join(rulesRoot, `${name}.md`), { force: true })
-      p.log.warn(`✗ Removed orphan rule '${name}' from ${upstreamName}`)
+      console.warn(`✗ Removed orphan rule '${name}' from ${upstreamName}`)
     }
   }
 
@@ -268,7 +267,7 @@ export class UpstreamService {
     const fileNames = entries.filter((entry) => entry.isFile()).map((entry) => entry.name)
     for (const name of orphanAgentNames(fileNames, mapped)) {
       await rm(join(agentsRoot, `${name}.md`), { force: true })
-      p.log.warn(`✗ Removed orphan agent '${name}' from ${upstreamName}`)
+      console.warn(`✗ Removed orphan agent '${name}' from ${upstreamName}`)
     }
   }
 

@@ -64,14 +64,14 @@ export interface FileInfo {
   file: string
 }
 
-export interface AuditInput {
+export interface CheckInput {
   root: string
   repositories: Record<string, RepositoryConfig>
   dependencies: Dependencies
   packs: Record<string, { description: string; skills: string[] }>
 }
 
-export interface AuditResult {
+export interface CheckResult {
   skills: SkillInfo[]
   agents: FileInfo[]
   rules: FileInfo[]
@@ -365,7 +365,7 @@ function checkOrphans(
   }
 }
 
-export async function audit(input: AuditInput): Promise<AuditResult> {
+export async function check(input: CheckInput): Promise<CheckResult> {
   const findings: Finding[] = []
   const skills = await loadSkills(input.root, findings)
   const agents = await listMarkdown(input.root, 'agents')
@@ -431,11 +431,11 @@ export async function audit(input: AuditInput): Promise<AuditResult> {
 
 const formatFinding = (f: Finding) => `- \`${f.rule}\` ${f.path ? `\`${f.path}\` ` : ''}${f.message}`
 
-export function formatReport(r: AuditResult): string {
+export function formatReport(r: CheckResult): string {
   const errors = r.findings.filter((f) => f.severity === 'error')
   const warns = r.findings.filter((f) => f.severity === 'warn')
   return [
-    '## Skill audit',
+    '## Check',
     '',
     `${r.skills.length} skills · ${r.agents.length} agents · ${r.rules.length} rules · ${errors.length} errors · ${warns.length} warnings`,
     ...(errors.length > 0 ? ['', '### Errors', ...errors.map(formatFinding)] : []),

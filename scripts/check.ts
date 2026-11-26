@@ -4,18 +4,18 @@ import process from 'node:process'
 import { fileURLToPath } from 'node:url'
 import { parseArgs } from 'node:util'
 
-import { dependencies } from '../../dependencies'
-import { repositories } from '../../meta'
-import { packs } from '../../packs'
-import { audit, formatReport } from './audit'
+import { dependencies } from '../dependencies'
+import { repositories } from '../meta'
+import { packs } from '../packs'
+import { check, formatReport } from '../src/check/check'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
-const root = join(__dirname, '..', '..')
+const root = join(__dirname, '..')
 
 const { values } = parseArgs({ options: { report: { type: 'string' } } })
 
 async function main(): Promise<void> {
-  const result = await audit({ root, repositories, dependencies, packs })
+  const result = await check({ root, repositories, dependencies, packs })
   const md = formatReport(result)
   console.info(md)
   if (values.report) await writeFile(values.report, md)

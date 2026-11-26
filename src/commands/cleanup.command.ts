@@ -1,22 +1,23 @@
-import * as p from '@clack/prompts'
 import { existsSync, readdirSync, rmSync } from 'node:fs'
 import { join } from 'node:path'
 
 import type { RepositoryConfig } from '../types'
 
 import { resolveUpstreamDir } from '../services/upstream.service'
-import { formatError } from '../utils/error'
 
-/** 只删 meta.ts 里已经没有的 upstream/ 目录，不动 skills/ 与 agents/ */
-export async function cleanupUpstreamRepositories(root: string, repositories: Record<string, RepositoryConfig>) {
+/** 只删 meta.ts 里已经没有的 upstream/ 目录（不动 content/ 产物）；默认只列清单，force 才删除 */
+export function cleanupUpstreamRepositories(
+  root: string,
+  repositories: Record<string, RepositoryConfig>,
+  force: boolean = false,
+): void {
   const upstreamDir = resolveUpstreamDir(root)
 
   if (!existsSync(upstreamDir)) {
-    p.log.info('No upstream directory found')
+    console.info('No upstream directory found')
     return
   }
 
-  const spinner = p.spinner()
   const configuredRepos = new Set(Object.keys(repositories))
   const existingDirs = readdirSync(upstreamDir, { withFileTypes: true })
     .filter((dirent) => dirent.isDirectory())
@@ -25,34 +26,18 @@ export async function cleanupUpstreamRepositories(root: string, repositories: Re
   const toRemove = existingDirs.filter((dir) => !configuredRepos.has(dir))
 
   if (toRemove.length === 0) {
-    p.log.info('No orphaned repositories found')
+    console.info('No orphaned repositories found')
     return
   }
 
-  p.log.info(`Found ${toRemove.length} orphaned repositories:`)
-  toRemove.forEach((dir) => p.log.step(`  - ${dir}`))
+  console.info(`Found ${toRemove.length} orphaned repositories:`)
+  for (const dir of toRemove) console.info(`  - ${dir}`)
 
-  const shouldRemove = await p.confirm({
-    message: `Remove ${toRemove.length} orphaned repositories?`,
-    initialValue: false,
-  })
-
-  if (p.isCancel(shouldRemove) || !shouldRemove) {
-    p.cancel('Cleanup cancelled')
+  if (!force) {
+    console.info('Dry run — re-run with --force to remove them')
     return
   }
 
-  spinner.start('Cleaning up orphaned upstream repositories...')
-  try {
-    for (const dir of toRemove) {
-      const dirPath = join(upstreamDir, dir)
-      rmSync(dirPath, { recursive: true, force: true })
-    }
-    spinner.stop('Cleanup complete')
-  } catch (error) {
-    spinner.stop(`Failed to cleanup: ${formatError(error)}`)
-    return
-  }
-
-  p.log.success(`Removed ${toRemove.length} orphaned repositories`)
+  for (const dir of toRemove) rmSync(join(upstreamDir, dir), { recursive: true, force: true })
+  console.info(`Removed ${toRemove.length} orphaned repositories`)
 }

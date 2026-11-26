@@ -7,7 +7,7 @@ import type { Dependencies } from '../types'
 
 import { treeDigest } from '../utils/digest'
 import { listFilesRecursive } from '../utils/list-files'
-import { audit, formatReport } from './audit'
+import { check, formatReport } from './check'
 import { fixtureDependencies, fixturePacks, fixtureRepositories, writeCleanFixture, writeSkill } from './test-fixtures'
 
 const tempRoots: string[] = []
@@ -34,12 +34,12 @@ afterAll(async () => {
   await Promise.all(tempRoots.map((root) => rm(root, { recursive: true, force: true })))
 })
 
-describe('audit', () => {
+describe('check', () => {
   it('reports zero errors on the clean self-consistent fixture', async () => {
     const root = await createRoot()
     await writeCleanFixture(root)
 
-    const result = await audit(inputFor(root))
+    const result = await check(inputFor(root))
 
     expect(result.findings.filter((f) => f.severity === 'error')).toEqual([])
     expect(result.skills.map((s) => s.name).toSorted()).toEqual(['one', 'two'])
@@ -52,7 +52,7 @@ describe('audit', () => {
     await writeCleanFixture(root)
     await writeSkill(root, join('beta', 'one'), 'one', 'Duplicate of one')
 
-    const result = await audit(inputFor(root))
+    const result = await check(inputFor(root))
 
     const a3 = result.findings.filter((f) => f.rule === 'A3')
     expect(a3).toHaveLength(1)
@@ -70,7 +70,7 @@ describe('audit', () => {
       commands: {},
     }
 
-    const result = await audit(inputFor(root, { dependencies }))
+    const result = await check(inputFor(root, { dependencies }))
 
     const d1 = result.findings.filter((f) => f.rule === 'D1')
     expect(d1).toHaveLength(1)
@@ -88,7 +88,7 @@ describe('audit', () => {
       commands: {},
     }
 
-    const result = await audit(inputFor(root, { dependencies }))
+    const result = await check(inputFor(root, { dependencies }))
 
     expect(result.findings.some((f) => f.rule === 'D1' && f.message.includes('"not-a-skill"'))).toBe(true)
   })
@@ -103,7 +103,7 @@ describe('audit', () => {
       commands: {},
     }
 
-    const result = await audit(inputFor(root, { dependencies }))
+    const result = await check(inputFor(root, { dependencies }))
 
     const d2 = result.findings.filter((f) => f.rule === 'D2')
     expect(d2).toHaveLength(1)
@@ -115,7 +115,7 @@ describe('audit', () => {
     const root = await createRoot()
     await writeCleanFixture(root)
 
-    const result = await audit({
+    const result = await check({
       root,
       repositories: fixtureRepositories,
       dependencies: fixtureDependencies,
@@ -153,7 +153,7 @@ describe('audit', () => {
     )
     await writeFile(manifestPath, JSON.stringify(manifest, null, 2) + '\n')
 
-    const result = await audit(inputFor(root))
+    const result = await check(inputFor(root))
 
     expect(result.findings.filter((f) => f.rule === 'I1')).toEqual([])
   })
@@ -163,7 +163,7 @@ describe('audit', () => {
     await writeCleanFixture(root)
     await writeFile(join(root, 'content', 'skills', 'alpha', 'one', 'extra.md'), 'unexpected file\n')
 
-    const result = await audit(inputFor(root))
+    const result = await check(inputFor(root))
 
     const i1 = result.findings.filter((f) => f.rule === 'I1')
     expect(i1).toHaveLength(1)
@@ -178,7 +178,7 @@ describe('audit', () => {
     manifest.items = []
     await writeFile(path, JSON.stringify(manifest, null, 2) + '\n')
 
-    const result = await audit(inputFor(root))
+    const result = await check(inputFor(root))
 
     const i1 = result.findings.filter((f) => f.rule === 'I1')
     expect(i1).toHaveLength(1)
@@ -190,7 +190,7 @@ describe('audit', () => {
     await writeCleanFixture(root)
     await writeSkill(root, join('ghost-vendor', 'orphan'), 'orphan', 'No mapping')
 
-    const result = await audit(inputFor(root))
+    const result = await check(inputFor(root))
 
     const o1 = result.findings.filter((f) => f.rule === 'O1')
     expect(o1).toHaveLength(1)
@@ -202,7 +202,7 @@ describe('audit', () => {
     await writeCleanFixture(root)
     await rm(join(root, 'content', 'agents', 'alpha', 'agent-one.md'), { force: true })
 
-    const result = await audit(inputFor(root))
+    const result = await check(inputFor(root))
 
     const o1 = result.findings.filter((f) => f.rule === 'O1')
     expect(o1).toHaveLength(1)
@@ -216,7 +216,7 @@ describe('audit', () => {
     await writeFile(join(root, 'content', 'skills', 'custom', 'no-fm', 'SKILL.md'), 'no frontmatter here\n')
     await writeSkill(root, join('custom', 'bad-name'), 'Bad_Name', 'Badly named')
 
-    const result = await audit(inputFor(root))
+    const result = await check(inputFor(root))
 
     expect(result.findings.some((f) => f.rule === 'A1' && f.message === 'missing frontmatter')).toBe(true)
     expect(result.findings.some((f) => f.rule === 'A2' && f.message.includes('"Bad_Name"'))).toBe(true)
@@ -229,9 +229,9 @@ describe('formatReport', () => {
     await writeCleanFixture(root)
     await writeSkill(root, join('beta', 'one'), 'one', 'Duplicate of one')
 
-    const report = formatReport(await audit(inputFor(root)))
+    const report = formatReport(await check(inputFor(root)))
 
-    expect(report).toContain('## Skill audit')
+    expect(report).toContain('## Check')
     expect(report).toContain('### Errors')
     expect(report).toContain('`A3`')
     expect(report).toContain('`O1`')

@@ -9,7 +9,7 @@ import {
   fixtureRepositories,
   writeCleanFixture,
   writeSkill,
-} from '../audit/test-fixtures'
+} from '../check/test-fixtures'
 import { buildCatalog } from './catalog'
 
 const tempRoots: string[] = []
@@ -61,6 +61,6 @@ describe('buildCatalog', () => {
 
     await expect(
       buildCatalog({ root, repositories, dependencies: fixtureDependencies, packs: fixturePacks }),
-    ).rejects.toThrow(/audit has 2 error/)
+    ).rejects.toThrow(/check has 2 error/)
   })
 })

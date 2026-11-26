@@ -1,7 +1,7 @@
-import type { AuditInput } from '../audit/audit'
+import type { CheckInput } from '../check/check'
 import type { RepositoryConfig } from '../types'
 
-import { audit } from '../audit/audit'
+import { check } from '../check/check'
 
 export interface CatalogSkill {
   name: string
@@ -41,11 +41,11 @@ export function serializeCatalog(catalog: Catalog): string {
 }
 
 /** catalog 建立在零 error 的审计之上；有 error 直接抛（先跑 pnpm audit:skills 看报告） */
-export async function buildCatalog(input: AuditInput): Promise<Catalog> {
-  const r = await audit(input)
+export async function buildCatalog(input: CheckInput): Promise<Catalog> {
+  const r = await check(input)
   const errors = r.findings.filter((f) => f.severity === 'error')
   if (errors.length > 0) {
-    throw new Error(`catalog: audit has ${errors.length} error(s); run pnpm audit:skills`)
+    throw new Error(`catalog: check has ${errors.length} error(s); run pnpm check`)
   }
   return {
     schema: 1,

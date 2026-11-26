@@ -1,8 +1,8 @@
 import { expect, test } from 'vitest'
 
-import { buildSyncReport, compareManifests, type RepoSyncSnapshot } from './sync-ci.command'
-
 import type { SyncManifest } from '../types'
+
+import { buildSyncReport, compareManifests, type RepoSyncSnapshot } from './sync.command'
 
 function manifest(sha: string, items: { name: string; digest: string }[]): SyncManifest {
   return {
@@ -15,7 +15,15 @@ function manifest(sha: string, items: { name: string; digest: string }[]): SyncM
 }
 
 test('compareManifests treats null before as all added', () => {
-  expect(compareManifests(null, manifest('sha-new', [{ name: 'b', digest: '1' }, { name: 'a', digest: '2' }]))).toEqual({
+  expect(
+    compareManifests(
+      null,
+      manifest('sha-new', [
+        { name: 'b', digest: '1' },
+        { name: 'a', digest: '2' },
+      ]),
+    ),
+  ).toEqual({
     added: ['a', 'b'],
     removed: [],
     changed: [],
@@ -52,7 +60,14 @@ test('buildSyncReport lists skipped repos without sha line', () => {
 
 test('buildSyncReport shows no-changes line with sha arrow', () => {
   const m = manifest('aaaaaaaaaa', [{ name: 'a', digest: '1' }])
-  const snapshots: RepoSyncSnapshot[] = [{ repo: 'tw93-kami', skipped: false, before: { skills: m }, after: { skills: manifest('bbbbbbbbbb', [{ name: 'a', digest: '1' }]) } }]
+  const snapshots: RepoSyncSnapshot[] = [
+    {
+      repo: 'tw93-kami',
+      skipped: false,
+      before: { skills: m },
+      after: { skills: manifest('bbbbbbbbbb', [{ name: 'a', digest: '1' }]) },
+    },
+  ]
   expect(buildSyncReport(snapshots)).toContain('- **tw93-kami**: no content changes (aaaaaaa -> bbbbbbb)')
 })
 

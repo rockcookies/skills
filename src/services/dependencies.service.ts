@@ -4,7 +4,7 @@ export const SOURCE_KINDS: readonly SourceKind[] = ['skill', 'agent', 'rule', 'c
 
 export interface ItemLocation {
   kind: SourceKind
-  /** null = hand-maintained custom skill (skills/custom/) */
+  /** null = hand-maintained custom skill (content/skills/custom/) */
   repoKey: string | null
 }
 

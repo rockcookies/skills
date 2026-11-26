@@ -2,4 +2,4 @@
 
 ## 验证
 
-<!-- 列出本地已通过的门禁：pnpm lint / pnpm test / pnpm audit:skills / pnpm build:release / pnpm smoke:release -->
+<!-- 列出本地已通过的门禁：pnpm lint / pnpm test / pnpm check / pnpm build:release / pnpm smoke:release -->

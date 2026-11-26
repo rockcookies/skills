@@ -7,9 +7,12 @@
     "fmt:check": "oxfmt --check",
     "test": "vitest run",
     "test:watch": "vitest",
-    "cli": "tsx src/cli.ts",
-    "audit:skills": "tsx src/audit/run.ts",
-    "build:catalog": "tsx src/release/catalog.cli.ts",
+    "sync": "tsx scripts/sync.ts",
+    "upstream": "tsx scripts/upstream.ts",
+    "cleanup": "tsx scripts/cleanup.ts",
+    "packs": "tsx scripts/packs.ts",
+    "check": "tsx scripts/check.ts",
+    "build:catalog": "tsx scripts/catalog.ts",
     "build:release": "tsx src/release/build.ts",
     "smoke:release": "tsx scripts/smoke-release.ts",
     "release:dry": "pnpm build:release && tsx scripts/release-dry.ts",
@@ -19,7 +22,6 @@
     "js-yaml": "^5.2.1"
   },
   "devDependencies": {
-    "@clack/prompts": "^1.7.0",
     "@types/node": "^26.1.1",
     "oxfmt": "^0.59.0",
     "oxlint": "^1.74.0",

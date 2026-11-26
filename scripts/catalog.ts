@@ -3,13 +3,13 @@ import { dirname, join } from 'node:path'
 import process from 'node:process'
 import { fileURLToPath } from 'node:url'
 
-import { dependencies } from '../../dependencies'
-import { repositories } from '../../meta'
-import { packs } from '../../packs'
-import { buildCatalog, serializeCatalog } from './catalog'
+import { dependencies } from '../dependencies'
+import { repositories } from '../meta'
+import { packs } from '../packs'
+import { buildCatalog, serializeCatalog } from '../src/release/catalog'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
-const root = join(__dirname, '..', '..')
+const root = join(__dirname, '..')
 
 async function main(): Promise<void> {
   const catalog = await buildCatalog({ root, repositories, dependencies, packs })
