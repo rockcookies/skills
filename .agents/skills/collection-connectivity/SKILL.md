@@ -1,6 +1,6 @@
 ---
 name: collection-connectivity
-description: 审查 <repoKey> 集合（content/ 下的 skills/agents/rules dest，commands 预留）的引用连通性（路径、import、评测链路、仓库目录、dependencies.ts 依赖声明），只出意见不改文件。
+description: 审查 <repoKey> 集合（content/<repoKey>/ 下的 skills/agents/rules dest，commands 预留）的引用连通性（路径、import、评测链路、仓库目录、dependencies.ts 依赖声明），只出意见不改文件。
 disable-model-invocation: true
 metadata:
   internal: true
@@ -8,7 +8,7 @@ metadata:
 
 # 集合连通性
 
-审查一个 `<repoKey>` 集合的文件引用**连通性**：`content/skills/<repoKey>/`、`content/agents/<repoKey>/`、`content/rules/<repoKey>/`（`content/commands/<repoKey>/` 出现时一并纳入）里抽出的每条引用都能在磁盘上解析，[dependencies.ts](../../../dependencies.ts) 的每条声明都能落地。输出中文审查意见。完整性看边是否解析完，不看是否通读每个文件。
+审查一个 `<repoKey>` 集合的文件引用**连通性**：`content/<repoKey>/skills/`、`content/<repoKey>/agents/`、`content/<repoKey>/rules/`（`content/<repoKey>/commands/` 出现时一并纳入）里抽出的每条引用都能在磁盘上解析，[dependencies.ts](../../../dependencies.ts) 的每条声明都能落地。输出中文审查意见。完整性看边是否解析完，不看是否通读每个文件。
 
 始终精读全部 `SKILL.md` 与 agent / rule 的 `.md`。其余文件深读引用边两端，以及入度为 0 的孤立节点。
 
@@ -16,9 +16,9 @@ metadata:
 
 从请求取出 `<repoKey>`。用户只点了技能名时，父目录仍是审查单元（跨技能边算进该集合）；只点 agent 或 rule 名同理。
 
-未点名：列出 `content/skills/` 一把手目录并停等。
+未点名：列出 `content/` 一把手目录（各 repoKey）并停等。
 
-三棵 dest 树（`content/` 下 `skills/`、`agents/`、`rules/` 的同名 `<repoKey>/`）全不存在：列出 `content/skills/` 后终止。部分存在：存在的纳入，缺的记下原因。
+该 `<repoKey>` 的 dest 树（`content/<repoKey>/` 下 `skills/`、`agents/`、`rules/`）全不存在：列出 `content/` 一把手目录后终止。部分存在：存在的纳入，缺的记下原因。
 
 **完成标准：** 至少一棵 `<repoKey>` dest 树存在，审查单元已定。
 
@@ -26,7 +26,7 @@ metadata:
 
 递归列出各棵 dest 树内文件，排除 `node_modules`、`.git`、`vendor`、`dist`、`build`、`__pycache__`。
 
-按类统计：每个含 `SKILL.md` 的目录是一个技能；`content/agents/<repoKey>/*.md` 是 agent；`content/rules/<repoKey>/*.md` 是 rule。给出 N 个技能、A agents、R rules、M 个文件。
+按类统计：每个含 `SKILL.md` 的目录是一个技能；`content/<repoKey>/agents/*.md` 是 agent；`content/<repoKey>/rules/*.md` 是 rule。给出 N 个技能、A agents、R rules、M 个文件。
 
 **完成标准：** 有完整清单，并能说出四类计数。
 
@@ -40,10 +40,10 @@ metadata:
 
 每条抽出的边标成 **命中** / **悬空** / **外部**：
 
-- 相对路径：先相对引用文件所在目录，再试所属 dest 树根，最后试仓库根（跨树边，如 agent 引用 `../../skills/<repoKey>/…` 或带 `content/` 前缀的仓库根路径）。
+- 相对路径：先相对引用文件所在目录，再试所属 dest 树根（`content/<repoKey>/`），最后试仓库根（跨树边，如 agent 引用 `../skills/…` 或带 `content/` 前缀的仓库根路径）。
 - 代码 import：集合内相对模块是边；该技能 `requirements.txt` / `package.json` / `go.mod` 或语言标准库是 **外部**。
 
-建图：条目内、集合内（跨条目）、跨树（content/ 下 skills ↔ agents ↔ rules）。清单中每个文件都是节点，含 0 度节点。
+建图：条目内、集合内（跨条目）、跨类（同 `<repoKey>` 下 skills ↔ agents ↔ rules）。清单中每个文件都是节点，含 0 度节点。
 
 **完成标准：** 每条抽出的边都有且仅有一个标记。
 
@@ -53,7 +53,7 @@ metadata:
 
 - **meta.ts**：该 key 的 `skills[]` / `agents[]` / `rules[]` mapping 的 `name` 与磁盘上对应产物 1:1（技能目录含 `SKILL.md`，agent / rule 的 `.md` 存在）。`custom` 无 meta 条目 → 只核 README 的 Hand-maintained Skills 表。
 - **dependencies.ts**：与 meta.ts 平级。`skills` / `agents` / `rules` / `commands` 四个分区里，每个声明 key 与各复数键数组引用都按类别解析到映射产物或 custom 技能；`commands` 引用记悬空（该类尚无同步产物）；悬空记仓库级缺口。
-- **SYNC.json**：各棵 dest 树有则核 `upstream_committed_sha` + `items_digest` 两键，格式对照其他集合。没有（如 `custom`）→ 跳过。
+- **SYNC.json**：`content/<repoKey>/SYNC.json` 有则核 `upstream_committed_sha` + `items_digest` 两键，items 跨类合并（`{kind, name, digest}`），格式对照其他集合。没有（如 `custom`）→ 跳过。
 - **README.md**：按 AGENTS.md，这是用户面向安装目录。Skills / Agents / Rules 表分别用集合 key 与各条目名搜索；零命中记为仓库级缺口。
 
 **完成标准：** 四项（或适用项）均有结论。
@@ -71,8 +71,8 @@ metadata:
 | 类 | 判定 |
 |---|---|
 | 集合内技能 | 本集合某技能目录名或 SKILL.md frontmatter `name` |
-| 集合内 agent / rule | `content/agents/<repoKey>/`、`content/rules/<repoKey>/` 下的条目名 |
-| 本仓库其他集合 | `content/skills/<otherKey>/…`、`content/agents/<otherKey>/…`、`content/rules/<otherKey>/…` 的条目名 |
+| 集合内 agent / rule | `content/<repoKey>/agents/`、`content/<repoKey>/rules/` 下的条目名 |
+| 本仓库其他集合 | `content/<otherKey>/skills/…`、`content/<otherKey>/agents/…`、`content/<otherKey>/rules/…` 的条目名 |
 | 运行时类型 | 本集合某 SKILL.md 已把它写成子代理 / 运行时类型 |
 | 未知 | 以上皆未命中 → 悬空标识符 |
 
