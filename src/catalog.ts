@@ -40,7 +40,7 @@ export function serializeCatalog(catalog: Catalog): string {
   return JSON.stringify(catalog, null, 2) + '\n'
 }
 
-/** catalog 建立在零 error 的审计之上；有 error 直接抛（先跑 pnpm audit:skills 看报告） */
+/** catalog 建立在零 error 的检查之上；有 error 直接抛（先跑 pnpm check 看报告） */
 export async function buildCatalog(input: CheckInput): Promise<Catalog> {
   const r = await check(input)
   const errors = r.findings.filter((f) => f.severity === 'error')
