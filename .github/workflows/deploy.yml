@@ -19,7 +19,7 @@ jobs:
       - run: pnpm check
       - run: pnpm site:build
       - run: pnpm smoke
-      - uses: actions/upload-pages-artifact@v4
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: site/dist
 
