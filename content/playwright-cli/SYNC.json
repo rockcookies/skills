@@ -1,0 +1,13 @@
+{
+  "upstream_committed_sha": "dc5f4d5616ab5a28ded12fd7101a4d49bd59a820",
+  "upstream_committed_at": "2026-11-24T20:31:21Z",
+  "items_digest": "sha256:41442c661aff7cac37f4275f768faa8fab381dc3b2d0ed40b10857ece75cfb6e",
+  "items_changed_at": "2026-11-26T09:19:40.958Z",
+  "items": [
+    {
+      "kind": "skill",
+      "name": "playwright-cli",
+      "digest": "sha256:26280c7beca4c1d88f2a4b8528511b2562e974fc22e4c8fa623b7d5f8b021e62"
+    }
+  ]
+}

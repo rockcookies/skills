@@ -1,0 +1,18 @@
+{
+  "upstream_committed_sha": "e54ce51f6effaeb574ebd2629e89e086e14a2db3",
+  "upstream_committed_at": "2026-10-16T02:29:34+09:00",
+  "items_digest": "sha256:a69b0ef2f41d45ddad616716509f36968d10bb48deb69ac53b4cb43fe3b3ebfa",
+  "items_changed_at": "2026-11-26T09:19:43.392Z",
+  "items": [
+    {
+      "kind": "skill",
+      "name": "hono",
+      "digest": "sha256:1b8879d02be00af89a0063d5588fd7d12bb0530b8a9469c2fa0af04ee944d598"
+    },
+    {
+      "kind": "skill",
+      "name": "hono-jsx",
+      "digest": "sha256:9bf952512790c2ee541ea45a718b32408d0190ae56083c1a9be7100a6cc3b669"
+    }
+  ]
+}

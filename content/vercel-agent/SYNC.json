@@ -1,0 +1,18 @@
+{
+  "upstream_committed_sha": "5a37a6329fbad3666c3207392a6a7c0110e92efb",
+  "upstream_committed_at": "2026-11-20T11:19:46-08:00",
+  "items_digest": "sha256:60347af75324bd9929a40c8fdc6ad94f92adc4acb34773a2d29a0186387c8c3f",
+  "items_changed_at": "2026-11-26T09:19:40.335Z",
+  "items": [
+    {
+      "kind": "skill",
+      "name": "react-best-practices",
+      "digest": "sha256:cc106316a01cd84e889e21081f8524513935f4762fb6f2a1c41195cc2b20ac53"
+    },
+    {
+      "kind": "skill",
+      "name": "web-design-guidelines",
+      "digest": "sha256:e7ef1565cd3d26be571e83382c2a969c87c6bb84b273701b3a7ea80667fa933f"
+    }
+  ]
+}

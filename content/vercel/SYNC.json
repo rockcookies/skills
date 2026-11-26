@@ -1,0 +1,13 @@
+{
+  "upstream_committed_sha": "57217cf86ba38148a57af9e90d14a4c049558330",
+  "upstream_committed_at": "2026-11-17T09:58:01+09:00",
+  "items_digest": "sha256:40a5bc7b90e5c95d4be6245cd1445b276f64e624b3b9fd1458440e6b9e72df37",
+  "items_changed_at": "2026-11-26T09:19:39.483Z",
+  "items": [
+    {
+      "kind": "skill",
+      "name": "find-skills",
+      "digest": "sha256:605ec0b4eab729b0cfd808e998fa18be4473f12f2ff07c95344b3bed23f6f30c"
+    }
+  ]
+}

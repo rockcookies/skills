@@ -1,0 +1,28 @@
+{
+  "upstream_committed_sha": "b2fc14c974b2ca09b38de09c28237f240175205b",
+  "upstream_committed_at": "2026-09-09T23:09:46+08:00",
+  "items_digest": "sha256:032e1a154d63466862b332b380adae087ded29818416f8d53a5e5673a16b88d4",
+  "items_changed_at": "2026-11-26T09:19:44.183Z",
+  "items": [
+    {
+      "kind": "skill",
+      "name": "tanstack-integration",
+      "digest": "sha256:27a8d1121e5e645bc6b7c475a25c71f3e602eecfbb8d587440214e2be7db11e4"
+    },
+    {
+      "kind": "skill",
+      "name": "tanstack-query",
+      "digest": "sha256:17e7ca0fcc523a22bfa2d59d61fb2f98847336dff1e8522baf07d3d44f534afc"
+    },
+    {
+      "kind": "skill",
+      "name": "tanstack-router",
+      "digest": "sha256:18b495877af7295a5733ae40d26da3992346f542d2fbd3c59fedbd2f6110edc4"
+    },
+    {
+      "kind": "skill",
+      "name": "tanstack-start",
+      "digest": "sha256:3e5d354a0b1ac6366c6fb890469eb35977f828597c69597c306399d0aad5fbc8"
+    }
+  ]
+}

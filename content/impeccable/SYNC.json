@@ -1,0 +1,38 @@
+{
+  "upstream_committed_sha": "2fc5e1459efbbf06d92c7306517c286bf12490cf",
+  "upstream_committed_at": "2026-11-26T02:23:55+01:00",
+  "items_digest": "sha256:a23bb24c3ab98af3a27ac097632e2413f45881c8805a573b725e4377d1d660e0",
+  "items_changed_at": "2026-11-26T09:19:45.559Z",
+  "items": [
+    {
+      "kind": "skill",
+      "name": "impeccable",
+      "digest": "sha256:9ba438848d41e7d3eed21986cc32b2786e881d4d0cab2c810c7f70d85bbe1620"
+    },
+    {
+      "kind": "agent",
+      "name": "impeccable-asset-producer",
+      "digest": "sha256:26dbf0557abb4556a79c7108b82bab38c55baacf43d970719464a810fd29c23d"
+    },
+    {
+      "kind": "agent",
+      "name": "impeccable-documenter",
+      "digest": "sha256:4e5196f0a22747f87e2448c992e894ebeba82f9bb139d4d7e4ad1c6b27aa2630"
+    },
+    {
+      "kind": "agent",
+      "name": "impeccable-finish-reviewer",
+      "digest": "sha256:8e6f4706dc020d0eea5c95ad51bee7a324514149531c95ab4f4eaabb0fc2a1d1"
+    },
+    {
+      "kind": "agent",
+      "name": "impeccable-manual-edit-applier",
+      "digest": "sha256:fca8272cf769d9733d3b31dc77650c6fd5f6984245fc98c58421446a1870e752"
+    },
+    {
+      "kind": "agent",
+      "name": "impeccable-motion-reviewer",
+      "digest": "sha256:6205fff667419739bc4055ed919085a50e60851a932932b082684094aa68d5b3"
+    }
+  ]
+}
