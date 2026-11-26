@@ -56,8 +56,8 @@ describe('audit', () => {
 
     const a3 = result.findings.filter((f) => f.rule === 'A3')
     expect(a3).toHaveLength(1)
-    expect(a3[0]!.message).toContain('skills/alpha/one')
-    expect(a3[0]!.message).toContain('skills/beta/one')
+    expect(a3[0]!.message).toContain('content/skills/alpha/one')
+    expect(a3[0]!.message).toContain('content/skills/beta/one')
   })
 
   it('flags dangling dependency refs but exempts command refs (D1)', async () => {
@@ -139,14 +139,14 @@ describe('audit', () => {
     const root = await createRoot()
     await writeCleanFixture(root)
     // 模拟 Windows sync 写 CRLF 摘要、git 提交归一成 LF 的已知幻影：存 CRLF 形态摘要
-    const skillDir = join(root, 'skills', 'alpha', 'one')
+    const skillDir = join(root, 'content', 'skills', 'alpha', 'one')
     const files = await Promise.all(
       (await listFilesRecursive(skillDir)).map(async (rel) => ({
         path: rel,
         content: (await readFile(join(skillDir, rel))).toString('utf8').replaceAll('\n', '\r\n'),
       })),
     )
-    const manifestPath = join(root, 'skills', 'alpha', 'SYNC.json')
+    const manifestPath = join(root, 'content', 'skills', 'alpha', 'SYNC.json')
     const manifest = JSON.parse(await readFile(manifestPath, 'utf8')) as { items: { name: string; digest: string }[] }
     manifest.items[0]!.digest = treeDigest(
       files.map((f) => ({ path: f.path, content: Buffer.from(f.content, 'utf8') })),
@@ -161,19 +161,19 @@ describe('audit', () => {
   it('detects SYNC.json digest drift (I1)', async () => {
     const root = await createRoot()
     await writeCleanFixture(root)
-    await writeFile(join(root, 'skills', 'alpha', 'one', 'extra.md'), 'unexpected file\n')
+    await writeFile(join(root, 'content', 'skills', 'alpha', 'one', 'extra.md'), 'unexpected file\n')
 
     const result = await audit(inputFor(root))
 
     const i1 = result.findings.filter((f) => f.rule === 'I1')
     expect(i1).toHaveLength(1)
-    expect(i1[0]!.path).toBe('skills/alpha/one')
+    expect(i1[0]!.path).toBe('content/skills/alpha/one')
   })
 
   it('detects SYNC.json items missing from the manifest (I1)', async () => {
     const root = await createRoot()
     await writeCleanFixture(root)
-    const path = join(root, 'rules', 'alpha', 'SYNC.json')
+    const path = join(root, 'content', 'rules', 'alpha', 'SYNC.json')
     const manifest = JSON.parse(await readFile(path, 'utf8')) as { items: { name: string; digest: string }[] }
     manifest.items = []
     await writeFile(path, JSON.stringify(manifest, null, 2) + '\n')
@@ -200,7 +200,7 @@ describe('audit', () => {
   it('flags mapped skills missing on disk (O1)', async () => {
     const root = await createRoot()
     await writeCleanFixture(root)
-    await rm(join(root, 'agents', 'alpha', 'agent-one.md'), { force: true })
+    await rm(join(root, 'content', 'agents', 'alpha', 'agent-one.md'), { force: true })
 
     const result = await audit(inputFor(root))
 
@@ -212,8 +212,8 @@ describe('audit', () => {
   it('flags invalid frontmatter (A1) and invalid names (A2)', async () => {
     const root = await createRoot()
     await writeCleanFixture(root)
-    await mkdir(join(root, 'skills', 'custom', 'no-fm'), { recursive: true })
-    await writeFile(join(root, 'skills', 'custom', 'no-fm', 'SKILL.md'), 'no frontmatter here\n')
+    await mkdir(join(root, 'content', 'skills', 'custom', 'no-fm'), { recursive: true })
+    await writeFile(join(root, 'content', 'skills', 'custom', 'no-fm', 'SKILL.md'), 'no frontmatter here\n')
     await writeSkill(root, join('custom', 'bad-name'), 'Bad_Name', 'Badly named')
 
     const result = await audit(inputFor(root))

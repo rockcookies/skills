@@ -50,9 +50,9 @@ export interface Finding {
 export interface SkillInfo {
   name: string
   description: string
-  /** 相对仓库根，如 skills/samber-golang/golang-how-to */
+  /** 相对仓库根，如 content/skills/samber-golang/golang-how-to */
   dir: string
-  /** skills/<vendor>/ 的 vendor 段；手工技能为 custom */
+  /** content/skills/<vendor>/ 的 vendor 段；手工技能为 custom */
   vendor: string
   internal: boolean
 }
@@ -78,7 +78,7 @@ export interface AuditResult {
   findings: Finding[]
 }
 
-/** 与 skills CLI 的默认发现一致：skills/ 下最多下探 2 层（skills/{vendor}/{name}），浅层 SKILL.md 遮蔽深层 */
+/** 与 skills CLI 的默认发现一致（skills.sh.json 声明 content/skills 为容器）：容器内最多下探 2 层（content/skills/{vendor}/{name}），浅层 SKILL.md 遮蔽深层 */
 const MAX_SCAN_DEPTH = 2
 
 function rel(root: string, p: string): string {
@@ -123,10 +123,10 @@ function readSkillFrontmatter(raw: string): { fm: ParsedFrontmatter } | { error:
   return { fm: { name, description, internal: metadata?.internal === true } }
 }
 
-/** 扫描 skills/ 并产出 A1/A2（frontmatter 有效性、命名规范） */
+/** 扫描 content/skills/ 并产出 A1/A2（frontmatter 有效性、命名规范） */
 export async function loadSkills(root: string, findings: Finding[]): Promise<SkillInfo[]> {
   const out: SkillInfo[] = []
-  for (const dir of await findSkillDirs(join(root, 'skills'), 0, [])) {
+  for (const dir of await findSkillDirs(join(root, 'content', 'skills'), 0, [])) {
     const r = rel(root, dir)
     let raw: string
     try {
@@ -157,7 +157,7 @@ export async function loadSkills(root: string, findings: Finding[]): Promise<Ski
       name: fm.name,
       description: fm.description,
       dir: r,
-      vendor: r.split('/')[1] ?? '',
+      vendor: r.split('/')[2] ?? '',
       internal: fm.internal,
     })
   }
@@ -179,7 +179,7 @@ async function listMarkdown(root: string, top: 'agents' | 'rules'): Promise<File
       else if (e.name.endsWith('.md')) out.push({ name: e.name.slice(0, -3), file: rel(root, p) })
     }
   }
-  await walk(join(root, top))
+  await walk(join(root, 'content', top))
   return out
 }
 
@@ -236,7 +236,7 @@ async function checkSyncManifests(
   ] as const
 
   for (const { kindRoot, mappingsOf, isTree } of kinds) {
-    const kindDir = join(root, kindRoot)
+    const kindDir = join(root, 'content', kindRoot)
     let vendors: string[]
     try {
       vendors = (await readdir(kindDir, { withFileTypes: true })).filter((e) => e.isDirectory()).map((e) => e.name)
@@ -255,7 +255,7 @@ async function checkSyncManifests(
           findings.push({
             rule: 'I1',
             severity: 'error',
-            path: `${kindRoot}/${vendor}`,
+            path: `content/${kindRoot}/${vendor}`,
             message: `SYNC.json item "${item.name}" has no mapping in meta.ts`,
           })
           continue
@@ -274,7 +274,7 @@ async function checkSyncManifests(
           findings.push({
             rule: 'I1',
             severity: 'error',
-            path: `${kindRoot}/${vendor}/${item.name}`,
+            path: `content/${kindRoot}/${vendor}/${item.name}`,
             message: variants === null ? 'dest missing on disk' : 'dest content does not match SYNC.json digest',
           })
         }
@@ -284,7 +284,7 @@ async function checkSyncManifests(
           findings.push({
             rule: 'I1',
             severity: 'error',
-            path: `${kindRoot}/${vendor}`,
+            path: `content/${kindRoot}/${vendor}`,
             message: `mapping "${name}" is missing from SYNC.json`,
           })
         }
@@ -306,7 +306,7 @@ function checkOrphans(
 ): void {
   const expectedSkillDirs = new Set<string>()
   for (const [repoKey, config] of Object.entries(repositories)) {
-    for (const m of config.skills ?? []) expectedSkillDirs.add(`skills/${repoKey}/${m.name}`)
+    for (const m of config.skills ?? []) expectedSkillDirs.add(`content/skills/${repoKey}/${m.name}`)
   }
   for (const s of skills) {
     if (s.vendor === 'custom') continue
@@ -330,8 +330,8 @@ function checkOrphans(
   const expectedAgents = new Set<string>()
   const expectedRules = new Set<string>()
   for (const [repoKey, config] of Object.entries(repositories)) {
-    for (const m of config.agents ?? []) expectedAgents.add(`agents/${repoKey}/${m.name}.md`)
-    for (const m of config.rules ?? []) expectedRules.add(`rules/${repoKey}/${m.name}.md`)
+    for (const m of config.agents ?? []) expectedAgents.add(`content/agents/${repoKey}/${m.name}.md`)
+    for (const m of config.rules ?? []) expectedRules.add(`content/rules/${repoKey}/${m.name}.md`)
   }
   for (const f of agents) {
     if (!expectedAgents.has(f.file)) {

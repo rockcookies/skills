@@ -7,8 +7,8 @@
 ## 路径解析顺序
 
 1. 相对引用文件所在目录（`./` `../` 或无前缀的相对段）。
-2. 相对所属 dest 树根（`skills/`、`agents/`、`rules/` 下该文件所在的 `<repoKey>/`）。
-3. 跨树边：取路径里的 `skills/`、`agents/`、`rules/` 前缀段，相对仓库根解析。
+2. 相对所属 dest 树根（`content/skills/`、`content/agents/`、`content/rules/` 下该文件所在的 `<repoKey>/`）。
+3. 跨树边：取路径里的 `content/skills/`、`content/agents/`、`content/rules/` 前缀段，相对仓库根解析；纯 `skills/`、`agents/`、`rules/` 前缀的旧引用按 `content/` + 原路径兜底再试。
 4. 仍不落盘 → **悬空**。
 
 `http(s):`、`mailto:`、纯 `#anchor` → 不抽。带锚的路径（`foo.md#x`）只解析 `#` 前的文件。
@@ -18,7 +18,7 @@
 抽：
 
 - `[text](path)` 中的 `path`
-- 反引号字符串：以 `references/`、`reference/`、`evals/`、`assets/`、`scripts/`、`agents/` 开头，或带已知扩展名（上表 + `.md`）
+- 反引号字符串：以 `references/`、`reference/`、`evals/`、`assets/`、`scripts/`、`agents/`、`content/` 开头，或带已知扩展名（上表 + `.md`）
 
 ## JSON / YAML
 

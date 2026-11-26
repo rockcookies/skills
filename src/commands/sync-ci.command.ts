@@ -87,7 +87,7 @@ export function buildSyncReport(snapshots: RepoSyncSnapshot[]): string {
 async function readKindManifests(root: string, repo: string): Promise<Partial<Record<SyncKind, SyncManifest>>> {
   const out: Partial<Record<SyncKind, SyncManifest>> = {}
   for (const kind of SYNC_KINDS) {
-    const file = join(root, kind, repo, 'SYNC.json')
+    const file = join(root, 'content', kind, repo, 'SYNC.json')
     if (!(await pathExists(file))) continue
     try {
       out[kind] = JSON.parse(await readFile(file, 'utf-8')) as SyncManifest

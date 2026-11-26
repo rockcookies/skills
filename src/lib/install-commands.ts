@@ -107,9 +107,14 @@ export interface CopyOptions {
   targetDir: string
 }
 
+/** catalog 记录仓库真实路径（content/agents|rules/…）；下载 URL 用发布面路径，剥掉 content/ 前缀 */
+function publishedPath(f: string): string {
+  return f.startsWith('content/') ? f.slice('content/'.length) : f
+}
+
 /**
  * agents/rules 的下载命令：npx skills add 不会安装它们，需要单独复制到用户目录。
- * 文件路径来自 catalog（agents|rules/{vendor}/{name}.md），过白名单防路径逃逸
+ * 文件路径来自 catalog（content/agents|rules/{vendor}/{name}.md），剥前缀后过白名单防路径逃逸
  */
 export function fileCopyCommands(files: string[], o: CopyOptions): string {
   const h = HOME[o.shell]
@@ -118,8 +123,9 @@ export function fileCopyCommands(files: string[], o: CopyOptions): string {
   else if (o.shell === 'powershell') lines.push(`New-Item -ItemType Directory -Force ${h(o.targetDir)} | Out-Null`)
   else lines.push(`if not exist ${h(o.targetDir)} mkdir ${h(o.targetDir)}`)
 
-  for (const f of files) {
-    if (!SAFE_FILE.test(f)) throw new Error(`unsafe file path: ${f}`)
+  for (const raw of files) {
+    const f = publishedPath(raw)
+    if (!SAFE_FILE.test(f)) throw new Error(`unsafe file path: ${raw}`)
     const url = `${o.baseUrl}/${f}`
     const dest = h(`${o.targetDir}/${f.split('/').pop()}`)
     lines.push(o.shell === 'powershell' ? `Invoke-WebRequest ${url} -OutFile ${dest}` : `curl -fsSL ${url} -o ${dest}`)

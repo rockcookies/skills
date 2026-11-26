@@ -154,7 +154,7 @@ export class UpstreamService {
     committedAt: string,
     force: boolean,
   ): Promise<void> {
-    const skillsRoot = join(this.root, 'skills', upstreamName)
+    const skillsRoot = join(this.root, 'content', 'skills', upstreamName)
     await ensureDir(skillsRoot)
     const items: SyncManifestItem[] = []
 
@@ -186,7 +186,7 @@ export class UpstreamService {
     committedAt: string,
     force: boolean,
   ): Promise<void> {
-    const agentsRoot = join(this.root, 'agents', upstreamName)
+    const agentsRoot = join(this.root, 'content', 'agents', upstreamName)
     await ensureDir(agentsRoot)
     const items: SyncManifestItem[] = []
 
@@ -229,7 +229,7 @@ export class UpstreamService {
     committedAt: string,
     force: boolean,
   ): Promise<void> {
-    const rulesRoot = join(this.root, 'rules', upstreamName)
+    const rulesRoot = join(this.root, 'content', 'rules', upstreamName)
     await ensureDir(rulesRoot)
     const items: SyncManifestItem[] = []
 

@@ -24,7 +24,7 @@ export interface SkillMapping {
   source: string
 
   /**
-   * 目标技能名称，输出到 skills/{repoKey}/{name}/SKILL.md
+   * 目标技能名称，输出到 content/skills/{repoKey}/{name}/SKILL.md
    */
   name: string
 
@@ -45,7 +45,7 @@ export interface AgentMapping {
   source: string
 
   /**
-   * 目标 agent 名称，输出到 agents/{repoKey}/{name}.md
+   * 目标 agent 名称，输出到 content/agents/{repoKey}/{name}.md
    */
   name: string
 
@@ -66,7 +66,7 @@ export interface RuleMapping {
   source: string
 
   /**
-   * 目标 rule 名称，输出到 rules/{repoKey}/{name}.md
+   * 目标 rule 名称，输出到 content/rules/{repoKey}/{name}.md
    */
   name: string
 

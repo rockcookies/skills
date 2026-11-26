@@ -74,7 +74,8 @@ describe('resolveRequirements', () => {
 })
 
 describe('fileCopyCommands', () => {
-  const files = ['agents/tw93-waza/kimi.md']
+  // catalog 记录仓库真实路径（content/ 前缀），URL 用发布面路径（剥前缀）
+  const files = ['content/agents/tw93-waza/kimi.md']
   const options = { baseUrl: 'https://x.test/skills', targetDir: '.cursor/agents' }
 
   it('builds bash commands with mkdir -p and curl', () => {
@@ -97,7 +98,7 @@ describe('fileCopyCommands', () => {
 
   it('builds cmd commands with %USERPROFILE% and backslashes', () => {
     expect(
-      fileCopyCommands(['rules/tw93-waza/tone.md'], { ...options, shell: 'cmd', targetDir: '.cursor/rules' }),
+      fileCopyCommands(['content/rules/tw93-waza/tone.md'], { ...options, shell: 'cmd', targetDir: '.cursor/rules' }),
     ).toBe(
       [
         'if not exist "%USERPROFILE%\\.cursor\\rules" mkdir "%USERPROFILE%\\.cursor\\rules"',
@@ -108,6 +109,6 @@ describe('fileCopyCommands', () => {
 
   it('rejects unsafe file paths', () => {
     expect(() => fileCopyCommands(['../escape.md'], { ...options, shell: 'bash' })).toThrow()
-    expect(() => fileCopyCommands(['skills/x/SKILL.md'], { ...options, shell: 'bash' })).toThrow()
+    expect(() => fileCopyCommands(['content/skills/x/SKILL.md'], { ...options, shell: 'bash' })).toThrow()
   })
 })

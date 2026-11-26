@@ -7,7 +7,7 @@ export interface CatalogSkill {
   name: string
   description: string
   vendor: string
-  /** 相对仓库根，如 skills/samber-golang/golang-how-to */
+  /** 相对仓库根，如 content/skills/samber-golang/golang-how-to */
   path: string
   internal: boolean
   requires: { skills: string[]; agents: string[]; rules: string[] }

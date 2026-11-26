@@ -47,7 +47,7 @@ async function main(): Promise<void> {
   await rm(OUT, { recursive: true, force: true })
   await mkdir(OUT, { recursive: true })
   for (const dir of releaseConfig.include) {
-    await cp(join(root, dir), join(OUT, dir), {
+    await cp(join(root, dir), join(OUT, basename(dir)), {
       recursive: true,
       filter: (src) => !releaseConfig.junk.includes(basename(src)),
     })

@@ -11,9 +11,9 @@ export const REPO_SLUG = 'rockcookies/skills'
 
 export type InstallShell = Shell
 
-/** 扫描 skills/custom/ 下含 SKILL.md 的手维护技能名（升序）；目录不存在返回 [] */
+/** 扫描 content/skills/custom/ 下含 SKILL.md 的手维护技能名（升序）；目录不存在返回 [] */
 export async function listCustomSkillNames(root: string): Promise<string[]> {
-  const customDir = join(root, 'skills', 'custom')
+  const customDir = join(root, 'content', 'skills', 'custom')
   try {
     const entries = await readdir(customDir, { withFileTypes: true })
     const checks = await Promise.all(

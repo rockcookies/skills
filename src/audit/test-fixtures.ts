@@ -29,7 +29,7 @@ export const fixturePacks: Packs = {
 }
 
 export async function writeSkill(root: string, relDir: string, name: string, description: string): Promise<void> {
-  const skillDir = join(root, 'skills', relDir)
+  const skillDir = join(root, 'content', 'skills', relDir)
   await mkdir(skillDir, { recursive: true })
   await writeFile(join(skillDir, 'SKILL.md'), `---\nname: ${name}\ndescription: ${description}\n---\n\nbody\n`)
 }
@@ -38,10 +38,10 @@ export async function writeSkill(root: string, relDir: string, name: string, des
 export async function writeCleanFixture(root: string): Promise<void> {
   await writeSkill(root, join('alpha', 'one'), 'one', 'Skill one')
   await writeSkill(root, join('custom', 'two'), 'two', 'Skill two')
-  await mkdir(join(root, 'agents', 'alpha'), { recursive: true })
-  await writeFile(join(root, 'agents', 'alpha', 'agent-one.md'), 'agent body\n')
-  await mkdir(join(root, 'rules', 'alpha'), { recursive: true })
-  await writeFile(join(root, 'rules', 'alpha', 'rule-one.md'), 'rule body\n')
+  await mkdir(join(root, 'content', 'agents', 'alpha'), { recursive: true })
+  await writeFile(join(root, 'content', 'agents', 'alpha', 'agent-one.md'), 'agent body\n')
+  await mkdir(join(root, 'content', 'rules', 'alpha'), { recursive: true })
+  await writeFile(join(root, 'content', 'rules', 'alpha', 'rule-one.md'), 'rule body\n')
 
   const committedAt = '2026-01-01T00:00:00Z'
   const base = {
@@ -50,9 +50,9 @@ export async function writeCleanFixture(root: string): Promise<void> {
     items_digest: 'sha256:not-recomputed-here',
     items_changed_at: committedAt,
   }
-  const skillDir = join(root, 'skills', 'alpha', 'one')
+  const skillDir = join(root, 'content', 'skills', 'alpha', 'one')
   await writeFile(
-    join(root, 'skills', 'alpha', 'SYNC.json'),
+    join(root, 'content', 'skills', 'alpha', 'SYNC.json'),
     JSON.stringify(
       { ...base, items: [{ name: 'one', digest: await digestTree(skillDir, await listFilesRecursive(skillDir)) }] },
       null,
@@ -60,20 +60,25 @@ export async function writeCleanFixture(root: string): Promise<void> {
     ) + '\n',
   )
   await writeFile(
-    join(root, 'agents', 'alpha', 'SYNC.json'),
+    join(root, 'content', 'agents', 'alpha', 'SYNC.json'),
     JSON.stringify(
       {
         ...base,
-        items: [{ name: 'agent-one', digest: await digestFile(join(root, 'agents', 'alpha', 'agent-one.md')) }],
+        items: [
+          { name: 'agent-one', digest: await digestFile(join(root, 'content', 'agents', 'alpha', 'agent-one.md')) },
+        ],
       },
       null,
       2,
     ) + '\n',
   )
   await writeFile(
-    join(root, 'rules', 'alpha', 'SYNC.json'),
+    join(root, 'content', 'rules', 'alpha', 'SYNC.json'),
     JSON.stringify(
-      { ...base, items: [{ name: 'rule-one', digest: await digestFile(join(root, 'rules', 'alpha', 'rule-one.md')) }] },
+      {
+        ...base,
+        items: [{ name: 'rule-one', digest: await digestFile(join(root, 'content', 'rules', 'alpha', 'rule-one.md')) }],
+      },
       null,
       2,
     ) + '\n',
