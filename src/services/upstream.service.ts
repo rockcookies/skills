@@ -38,10 +38,10 @@ export function orphanAgentNames(fileNames: string[], mapped: ReadonlySet<string
     .toSorted(compareNames)
 }
 
-/** 排序后紧凑 JSON 再 sha256；键序固定为 name、digest。 */
+/** 排序后紧凑 JSON 再 sha256；键序固定为 kind、name、digest（四类不重名，name 即唯一键）。 */
 export function itemsDigest(items: SyncManifestItem[]): string {
   const sorted = [...items].toSorted((a, b) => compareNames(a.name, b.name))
-  const normalized = sorted.map((item) => ({ name: item.name, digest: item.digest }))
+  const normalized = sorted.map((item) => ({ kind: item.kind, name: item.name, digest: item.digest }))
   return sha256(JSON.stringify(normalized))
 }
 
@@ -121,17 +121,23 @@ export class UpstreamService {
 
     const { sha, committedAt } = await this.getUpstreamCommit(upstreamName)
 
+    const repoContentRoot = join(this.root, 'content', upstreamName)
+    const items: SyncManifestItem[] = []
+
     if (skills.length) {
-      await this.syncSkillsKind(upstreamName, repoRoot, config, skills, sha, committedAt, force)
+      items.push(...(await this.syncSkillsKind(upstreamName, repoRoot, config, skills, force)))
     }
 
     if (agents.length) {
-      await this.syncAgentsKind(upstreamName, repoRoot, config, agents, sha, committedAt, force)
+      items.push(...(await this.syncAgentsKind(upstreamName, repoRoot, config, agents, force)))
     }
 
     if (rules.length) {
-      await this.syncRulesKind(upstreamName, repoRoot, config, rules, sha, committedAt, force)
+      items.push(...(await this.syncRulesKind(upstreamName, repoRoot, config, rules, force)))
     }
+
+    await this.writeSyncJSON(repoContentRoot, sha, committedAt, items)
+    console.info(`✓ Wrote SYNC.json for ${upstreamName} (${items.length} items, SHA: ${sha.substring(0, 7)})`)
   }
 
   /** 没有 checkout 就 clone，然后一律 reset 到 pin。 */
@@ -149,11 +155,9 @@ export class UpstreamService {
     repoRoot: string,
     config: RepositoryConfig,
     skills: SkillMapping[],
-    sha: string,
-    committedAt: string,
     force: boolean,
-  ): Promise<void> {
-    const skillsRoot = join(this.root, 'content', 'skills', upstreamName)
+  ): Promise<SyncManifestItem[]> {
+    const skillsRoot = join(this.root, 'content', upstreamName, 'skills')
     await ensureDir(skillsRoot)
     const items: SyncManifestItem[] = []
 
@@ -165,15 +169,14 @@ export class UpstreamService {
       await emptyDir(destPath)
       await this.writeSkillFiles(destPath, ctx.files)
       const files = await listFilesRecursive(destPath)
-      items.push({ name: mapping.name, digest: await digestTree(destPath, files) })
+      items.push({ kind: 'skill', name: mapping.name, digest: await digestTree(destPath, files) })
       console.info(`✓ Synced skill '${mapping.name}' from ${upstreamName}`)
     }
 
     if (force) {
       await this.removeOrphanSkills(skillsRoot, new Set(skills.map((mapping) => mapping.name)), upstreamName)
     }
-    await this.writeSyncJSON(skillsRoot, sha, committedAt, items)
-    console.info(`✓ Wrote skills SYNC.json for ${upstreamName} (SHA: ${sha.substring(0, 7)})`)
+    return items
   }
 
   private async syncAgentsKind(
@@ -181,11 +184,9 @@ export class UpstreamService {
     repoRoot: string,
     config: RepositoryConfig,
     agents: AgentMapping[],
-    sha: string,
-    committedAt: string,
     force: boolean,
-  ): Promise<void> {
-    const agentsRoot = join(this.root, 'content', 'agents', upstreamName)
+  ): Promise<SyncManifestItem[]> {
+    const agentsRoot = join(this.root, 'content', upstreamName, 'agents')
     await ensureDir(agentsRoot)
     const items: SyncManifestItem[] = []
 
@@ -195,15 +196,14 @@ export class UpstreamService {
       runAgentPipeline(ctx, names)
       const destPath = join(agentsRoot, `${mapping.name}.md`)
       await writeFile(destPath, ctx.content)
-      items.push({ name: mapping.name, digest: await digestFile(destPath) })
+      items.push({ kind: 'agent', name: mapping.name, digest: await digestFile(destPath) })
       console.info(`✓ Synced agent '${mapping.name}' from ${upstreamName}`)
     }
 
     if (force) {
       await this.removeOrphanAgents(agentsRoot, new Set(agents.map((mapping) => mapping.name)), upstreamName)
     }
-    await this.writeSyncJSON(agentsRoot, sha, committedAt, items)
-    console.info(`✓ Wrote agents SYNC.json for ${upstreamName} (SHA: ${sha.substring(0, 7)})`)
+    return items
   }
 
   private async removeOrphanSkills(
@@ -224,11 +224,9 @@ export class UpstreamService {
     repoRoot: string,
     config: RepositoryConfig,
     rules: RuleMapping[],
-    sha: string,
-    committedAt: string,
     force: boolean,
-  ): Promise<void> {
-    const rulesRoot = join(this.root, 'content', 'rules', upstreamName)
+  ): Promise<SyncManifestItem[]> {
+    const rulesRoot = join(this.root, 'content', upstreamName, 'rules')
     await ensureDir(rulesRoot)
     const items: SyncManifestItem[] = []
 
@@ -238,15 +236,14 @@ export class UpstreamService {
       runRulePipeline(ctx, names)
       const destPath = join(rulesRoot, `${mapping.name}.md`)
       await writeFile(destPath, ctx.content)
-      items.push({ name: mapping.name, digest: await digestFile(destPath) })
+      items.push({ kind: 'rule', name: mapping.name, digest: await digestFile(destPath) })
       console.info(`✓ Synced rule '${mapping.name}' from ${upstreamName}`)
     }
 
     if (force) {
       await this.removeOrphanRules(rulesRoot, new Set(rules.map((mapping) => mapping.name)), upstreamName)
     }
-    await this.writeSyncJSON(rulesRoot, sha, committedAt, items)
-    console.info(`✓ Wrote rules SYNC.json for ${upstreamName} (SHA: ${sha.substring(0, 7)})`)
+    return items
   }
 
   private async removeOrphanRules(rulesRoot: string, mapped: ReadonlySet<string>, upstreamName: string): Promise<void> {

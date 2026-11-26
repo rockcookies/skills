@@ -3,14 +3,14 @@ import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { afterAll, describe, expect, it } from 'vitest'
 
+import { buildCatalog } from './catalog'
 import {
   fixtureDependencies,
   fixturePacks,
   fixtureRepositories,
   writeCleanFixture,
   writeSkill,
-} from './check/test-fixtures'
-import { buildCatalog } from './catalog'
+} from './services/check-fixtures'
 
 const tempRoots: string[] = []
 
@@ -40,8 +40,8 @@ describe('buildCatalog', () => {
     const two = catalog.skills[1]!
     expect(two.vendor).toBe('custom')
     expect(two.source).toBeUndefined()
-    expect(catalog.agents).toEqual([{ name: 'agent-one', path: 'content/agents/alpha/agent-one.md' }])
-    expect(catalog.rules).toEqual([{ name: 'rule-one', path: 'content/rules/alpha/rule-one.md' }])
+    expect(catalog.agents).toEqual([{ name: 'agent-one', path: 'content/alpha/agents/agent-one.md' }])
+    expect(catalog.rules).toEqual([{ name: 'rule-one', path: 'content/alpha/rules/rule-one.md' }])
     expect(catalog.packs).toEqual([
       { id: 'complete', description: 'covers all fixture skills', skills: ['one', 'two'] },
     ])

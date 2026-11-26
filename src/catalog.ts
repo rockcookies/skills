@@ -1,7 +1,7 @@
-import type { CheckInput } from './check/check'
+import type { CheckInput } from './services/check.service'
 import type { RepositoryConfig } from './types'
 
-import { check } from './check/check'
+import { check } from './services/check.service'
 
 export interface CatalogSkill {
   name: string

@@ -51,17 +51,17 @@ describe('listCustomSkillNames', () => {
     tempRoots.push(root)
     await Promise.all(
       ['zeta', 'alpha'].map(async (name) => {
-        await mkdir(join(root, 'content', 'skills', 'custom', name), { recursive: true })
-        await writeFile(join(root, 'content', 'skills', 'custom', name, 'SKILL.md'), 'x')
+        await mkdir(join(root, 'content', 'custom', 'skills', name), { recursive: true })
+        await writeFile(join(root, 'content', 'custom', 'skills', name, 'SKILL.md'), 'x')
       }),
     )
     // 无 SKILL.md 的目录不算
-    await mkdir(join(root, 'content', 'skills', 'custom', 'empty'), { recursive: true })
+    await mkdir(join(root, 'content', 'custom', 'skills', 'empty'), { recursive: true })
 
     expect(await listCustomSkillNames(root)).toEqual(['alpha', 'zeta'])
   })
 
-  it('returns [] when content/skills/custom does not exist', async () => {
+  it('returns [] when content/custom/skills does not exist', async () => {
     const root = await mkdtemp(join(tmpdir(), 'packs-service-'))
     tempRoots.push(root)
 

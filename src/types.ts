@@ -24,7 +24,7 @@ export interface SkillMapping {
   source: string
 
   /**
-   * 目标技能名称，输出到 content/skills/{repoKey}/{name}/SKILL.md
+   * 目标技能名称，输出到 content/{repoKey}/skills/{name}/SKILL.md
    */
   name: string
 
@@ -45,7 +45,7 @@ export interface AgentMapping {
   source: string
 
   /**
-   * 目标 agent 名称，输出到 content/agents/{repoKey}/{name}.md
+   * 目标 agent 名称，输出到 content/{repoKey}/agents/{name}.md
    */
   name: string
 
@@ -66,7 +66,7 @@ export interface RuleMapping {
   source: string
 
   /**
-   * 目标 rule 名称，输出到 content/rules/{repoKey}/{name}.md
+   * 目标 rule 名称，输出到 content/{repoKey}/rules/{name}.md
    */
   name: string
 
@@ -105,11 +105,19 @@ export interface SkillPack {
 
 export type Packs = Record<string, SkillPack>
 
+/** manifest item 的类；commands 管线未建，暂只有三类 */
+export type SyncManifestItemKind = 'skill' | 'agent' | 'rule'
+
 export interface SyncManifestItem {
+  kind: SyncManifestItemKind
   name: string
   digest: string
 }
 
+/**
+ * 每 repoKey 一份同步清单（content/{repoKey}/SYNC.json），items 跨类合并
+ * （skill/agent/rule），按 name 升序
+ */
 export interface SyncManifest {
   upstream_committed_sha: string
   upstream_committed_at: string

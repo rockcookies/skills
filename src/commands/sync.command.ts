@@ -2,22 +2,22 @@ import { appendFile, readFile, writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import process from 'node:process'
 
-import type { RepositoryConfig, SyncManifest } from '../types'
+import type { RepositoryConfig, SyncManifest, SyncManifestItem } from '../types'
 
 import { compareNames, isEmptyMapping, UpstreamService } from '../services/upstream.service'
 import { formatError } from '../utils/error'
 import { pathExists } from '../utils/fs'
 
-type SyncKind = 'skills' | 'agents' | 'rules'
+type SyncKind = SyncManifestItem['kind']
 
-const SYNC_KINDS: SyncKind[] = ['skills', 'agents', 'rules']
+const SYNC_KINDS: SyncKind[] = ['skill', 'agent', 'rule']
 
-/** 一个 repo 同步前后的 SYNC.json 快照；skipped 为空映射 repo（无 SYNC.json）。 */
+/** 一个 repo 同步前后的 SYNC.json 快照；null = 无清单（空映射 repo 或首次同步）。 */
 export interface RepoSyncSnapshot {
   repo: string
   skipped: boolean
-  before: Partial<Record<SyncKind, SyncManifest>>
-  after: Partial<Record<SyncKind, SyncManifest>>
+  before: SyncManifest | null
+  after: SyncManifest | null
 }
 
 export interface KindChanges {
@@ -47,6 +47,27 @@ export function compareManifests(before: SyncManifest | null, after: SyncManifes
   }
 }
 
+/** 单个 kind 的变化（items 按 kind 过滤后再比）；前后都没有该 kind 的 item 时返回 null。 */
+export function changesForKind(before: SyncManifest | null, after: SyncManifest, kind: SyncKind): KindChanges | null {
+  const pick = (m: SyncManifest | null) => (m?.items ?? []).filter((item) => item.kind === kind)
+  const beforeItems = new Map(pick(before).map((item) => [item.name, item.digest]))
+  const afterItems = new Map(pick(after).map((item) => [item.name, item.digest]))
+  if (beforeItems.size === 0 && afterItems.size === 0) return null
+  const added: string[] = []
+  const changed: string[] = []
+  for (const [name, digest] of afterItems) {
+    const previous = beforeItems.get(name)
+    if (previous === undefined) added.push(name)
+    else if (previous !== digest) changed.push(name)
+  }
+  const removed = [...beforeItems.keys()].filter((name) => !afterItems.has(name))
+  return {
+    added: added.toSorted(compareNames),
+    removed: removed.toSorted(compareNames),
+    changed: changed.toSorted(compareNames),
+  }
+}
+
 /** 人类可读的 Markdown 同步报告：每 repo 一行 pin sha 变化，变化项逐 kind 列出。 */
 export function buildSyncReport(snapshots: RepoSyncSnapshot[]): string {
   const lines: string[] = ['## Upstream sync', '']
@@ -55,16 +76,15 @@ export function buildSyncReport(snapshots: RepoSyncSnapshot[]): string {
       lines.push(`- **${snapshot.repo}**: skipped (no mappings)`)
       continue
     }
-    const kinds = SYNC_KINDS.filter((kind) => snapshot.before[kind] ?? snapshot.after[kind])
-    const shaAfter = kinds.map((kind) => snapshot.after[kind]?.upstream_committed_sha).find(Boolean)
-    if (!shaAfter) {
+    if (!snapshot.after) {
       lines.push(`- **${snapshot.repo}**: no SYNC.json after sync`)
       continue
     }
-    const shaBefore = kinds.map((kind) => snapshot.before[kind]?.upstream_committed_sha).find(Boolean)
+    const shaAfter = snapshot.after.upstream_committed_sha
+    const shaBefore = snapshot.before?.upstream_committed_sha
     const arrow = shaBefore ? `${short(shaBefore)} -> ${short(shaAfter)}` : short(shaAfter)
-    const changes = kinds
-      .map((kind) => ({ kind, diff: compareManifests(snapshot.before[kind] ?? null, snapshot.after[kind]!) }))
+    const changes = SYNC_KINDS.map((kind) => ({ kind, diff: changesForKind(snapshot.before, snapshot.after, kind) }))
+      .filter((entry): entry is { kind: SyncKind; diff: KindChanges } => entry.diff !== null)
       .filter(({ diff }) => diff.added.length || diff.removed.length || diff.changed.length)
     if (!changes.length) {
       lines.push(`- **${snapshot.repo}**: no content changes (${arrow})`)
@@ -77,25 +97,21 @@ export function buildSyncReport(snapshots: RepoSyncSnapshot[]): string {
         ...diff.removed.map((name) => `-${name}`),
         ...diff.changed.map((name) => `~${name}`),
       ]
-      lines.push(`  - ${kind}: ${parts.join(', ')}`)
+      lines.push(`  - ${kind}s: ${parts.join(', ')}`)
     }
   }
   return `${lines.join('\n')}\n`
 }
 
 /** 损坏的 SYNC.json 视同缺失，报告里按全量新增呈现。 */
-async function readKindManifests(root: string, repo: string): Promise<Partial<Record<SyncKind, SyncManifest>>> {
-  const out: Partial<Record<SyncKind, SyncManifest>> = {}
-  for (const kind of SYNC_KINDS) {
-    const file = join(root, 'content', kind, repo, 'SYNC.json')
-    if (!(await pathExists(file))) continue
-    try {
-      out[kind] = JSON.parse(await readFile(file, 'utf-8')) as SyncManifest
-    } catch {
-      // ignore
-    }
+async function readRepoManifest(root: string, repo: string): Promise<SyncManifest | null> {
+  const file = join(root, 'content', repo, 'SYNC.json')
+  if (!(await pathExists(file))) return null
+  try {
+    return JSON.parse(await readFile(file, 'utf-8')) as SyncManifest
+  } catch {
+    return null
   }
-  return out
 }
 
 /**
@@ -125,8 +141,8 @@ export async function runSync(options: {
     Object.entries(targets).map(async ([name, config]) => ({
       repo: name,
       skipped: isEmptyMapping(config),
-      before: await readKindManifests(root, name),
-      after: {},
+      before: await readRepoManifest(root, name),
+      after: null,
     })),
   )
 
@@ -140,7 +156,7 @@ export async function runSync(options: {
   }
 
   for (const snapshot of snapshots) {
-    snapshot.after = await readKindManifests(root, snapshot.repo)
+    snapshot.after = await readRepoManifest(root, snapshot.repo)
   }
 
   const md = buildSyncReport(snapshots)

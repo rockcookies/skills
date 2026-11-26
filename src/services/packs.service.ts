@@ -1,19 +1,19 @@
 import { readdir, stat } from 'node:fs/promises'
 import { join } from 'node:path'
 
-import type { Shell } from '../lib/install-commands'
 import type { Dependencies, Packs } from '../types'
 import type { DuplicateNames, ItemIndex } from './dependencies.service'
+import type { Shell } from './install-commands.service'
 
-import { skillsAddCommand } from '../lib/install-commands'
+import { skillsAddCommand } from './install-commands.service'
 
 export const REPO_SLUG = 'rockcookies/skills'
 
 export type InstallShell = Shell
 
-/** 扫描 content/skills/custom/ 下含 SKILL.md 的手维护技能名（升序）；目录不存在返回 [] */
+/** 扫描 content/custom/skills/ 下含 SKILL.md 的手维护技能名（升序）；目录不存在返回 [] */
 export async function listCustomSkillNames(root: string): Promise<string[]> {
-  const customDir = join(root, 'content', 'skills', 'custom')
+  const customDir = join(root, 'content', 'custom', 'skills')
   try {
     const entries = await readdir(customDir, { withFileTypes: true })
     const checks = await Promise.all(
@@ -38,7 +38,7 @@ export async function listCustomSkillNames(root: string): Promise<string[]> {
 
 /**
  * 生成多行安装命令：`npx skills add <slug>` 起头，每个 --skill 一行（2 空格缩进），
- * `-g` 收尾。委托 src/lib/install-commands.ts 统一拼装（短写法，实测发布布局
+ * `-g` 收尾。委托 install-commands.service.ts 统一拼装（短写法，实测发布布局
  * 无需 --full-depth，带上反而会把本地 upstream/ checkout 扫进发现集合）
  */
 export function formatInstallCommand(skillNames: string[], shell: InstallShell): string {
