@@ -1,4 +1,7 @@
+import { dirname, join, resolve } from 'node:path'
 import process from 'node:process'
+import { fileURLToPath, pathToFileURL } from 'node:url'
+import { parseArgs } from 'node:util'
 
 import type { InstallShell } from '../services/packs.service'
 import type { RepositoryConfig } from '../types'
@@ -54,4 +57,29 @@ export async function generateInstallCommand(
   if (gaps.length > 0) {
     console.info(`\nReferenced but not in packs: ${gaps.join(', ')}`)
   }
+}
+
+const root = join(dirname(fileURLToPath(import.meta.url)), '..', '..')
+
+const SHELLS: InstallShell[] = ['bash', 'powershell', 'cmd']
+
+async function main(): Promise<void> {
+  // 位置参数是 pack id（可多个，缺省 = 全部）；--shell 取一个或 all（缺省 bash）
+  const { values, positionals } = parseArgs({ allowPositionals: true, options: { shell: { type: 'string' } } })
+  const shellArg = values.shell ?? 'bash'
+  const shells: InstallShell[] = shellArg === 'all' ? [...SHELLS] : [shellArg as InstallShell]
+  if (!shells.every((s) => SHELLS.includes(s))) {
+    console.error(`unknown shell: ${shellArg} (valid: ${SHELLS.join(' | ')} | all)`)
+    process.exitCode = 1
+    return
+  }
+  await generateInstallCommand(root, repositories, positionals, shells)
+}
+
+// 仅直接执行时跑 main（tsx src/commands/pack.command.ts）；被 import 不触发
+if (process.argv[1] !== undefined && import.meta.url === pathToFileURL(resolve(process.argv[1])).href) {
+  main().catch((error) => {
+    console.error(error)
+    process.exit(1)
+  })
 }

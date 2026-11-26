@@ -1,9 +1,12 @@
 import { appendFile, readFile, writeFile } from 'node:fs/promises'
-import { join } from 'node:path'
+import { dirname, join, resolve } from 'node:path'
 import process from 'node:process'
+import { fileURLToPath, pathToFileURL } from 'node:url'
+import { parseArgs } from 'node:util'
 
 import type { RepositoryConfig, SyncManifest, SyncManifestItem } from '../types'
 
+import { repositories } from '../../meta'
 import { compareNames, isEmptyMapping, UpstreamService } from '../services/upstream.service'
 import { formatError } from '../utils/error'
 import { pathExists } from '../utils/fs'
@@ -164,4 +167,36 @@ export async function runSync(options: {
   if (report) await writeFile(report, md, 'utf-8')
   if (process.env.GITHUB_STEP_SUMMARY) await appendFile(process.env.GITHUB_STEP_SUMMARY, md)
   return 0
+}
+
+const root = join(dirname(fileURLToPath(import.meta.url)), '..', '..')
+
+async function main(): Promise<void> {
+  // strict:false：未知参数静默忽略
+  const { values } = parseArgs({
+    allowPositionals: true,
+    strict: false,
+    options: {
+      force: { type: 'boolean' },
+      repo: { type: 'string' },
+      report: { type: 'string' },
+    },
+  })
+  process.exit(
+    await runSync({
+      root,
+      repositories,
+      repo: values.repo,
+      report: values.report,
+      force: values.force === true,
+    }),
+  )
+}
+
+// 仅直接执行时跑 main（tsx src/commands/sync.command.ts）；被 vitest/其他模块 import 不触发
+if (process.argv[1] !== undefined && import.meta.url === pathToFileURL(resolve(process.argv[1])).href) {
+  main().catch((error) => {
+    console.error(error)
+    process.exit(1)
+  })
 }
