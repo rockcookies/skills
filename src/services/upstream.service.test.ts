@@ -1,4 +1,4 @@
-import { join } from 'node:path'
+import { join, resolve } from 'node:path'
 import { expect, test } from 'vitest'
 
 import {
@@ -57,11 +57,12 @@ test('orphanAgentNames only considers .md basenames', () => {
 test('resolveUpstreamDir honors SKILLS_UPSTREAM_DIR over repo default', () => {
   const previous = process.env.SKILLS_UPSTREAM_DIR
   try {
-    process.env.SKILLS_UPSTREAM_DIR = 'D:/tmp/shared-upstream'
-    expect(resolveUpstreamDir('D:/repo')).toBe('D:\\tmp\\shared-upstream')
+    // env 值经 resolve() 归一到平台原生路径；两侧对称构造，Windows 与 CI(linux) 都成立
+    process.env.SKILLS_UPSTREAM_DIR = 'shared-upstream'
+    expect(resolveUpstreamDir('somewhere/repo')).toBe(resolve('shared-upstream'))
 
     delete process.env.SKILLS_UPSTREAM_DIR
-    expect(resolveUpstreamDir('D:/repo')).toBe(join('D:/repo', 'upstream'))
+    expect(resolveUpstreamDir('somewhere/repo')).toBe(join('somewhere/repo', 'upstream'))
   } finally {
     if (previous === undefined) delete process.env.SKILLS_UPSTREAM_DIR
     else process.env.SKILLS_UPSTREAM_DIR = previous
