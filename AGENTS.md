@@ -36,17 +36,21 @@ Dest trees under `content/{repoKey}/` are generated: load source into memory, ru
 
 ## Commands
 
-| Command                                                    | Behaviour                                                                                                                                                            |
-| ---------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `pnpm sync [--repo <repoKey>] [--report <file>] [--force]` | Update upstream, rewrite mapped dests, write the per-repo SYNC.json, print Markdown report. 退出码 2 = 同步失败或未知 repoKey；`--force` 再清该 repo 下未映射的 dest |
-| `pnpm upstream [--force]`                                  | Clone or update repos under `upstream/` (clone then pin)；force 删掉 checkout 再 clone                                                                               |
-| `pnpm cleanup [--force]`                                   | List orphaned upstream checkouts；默认只列清单，`--force` 才删除                                                                                                     |
-| `pnpm packs [id…] [--shell bash\|powershell\|cmd\|all]`    | Print the combined multi-line `npx skills add` command；无 id = 全部 pack 合并                                                                                       |
-| `pnpm check [--report <file>]`                             | 合集完整性检查（frontmatter/重名/跨类重名/依赖/packs/SYNC 摘要/orphan）；error 级发现退出码 1                                                                        |
-| `pnpm build:catalog`                                       | 产出 `.build/catalog.json`（建立在零 error 的 check 之上）                                                                                                           |
-| `pnpm smoke`                                               | `skills add ./ --list` 必须包含 catalog 全部非内部技能（仓库根发现面 = 用户安装面）                                                                                  |
-| `pnpm site:build`                                          | build:catalog → prepare-site（content/ 扁平化 → site/public，含守卫）→ vite build                                                                                    |
-| `pnpm site:preview`                                        | site:build + vite preview（http://localhost:4173/skills/，读工作区，未提交的同步结果直接生效）                                                                       |
+| Command                                                    | Behaviour                                                                                                                                                             |
+| ---------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `pnpm sync [--repo <repoKey>] [--report <file>] [--force]` | Update upstream, rewrite mapped dests, write the per-repo SYNC.json, print Markdown report. 退出码 2 = 同步失败或未知 repoKey；`--force` 再清该 repo 下未映射的 dest  |
+| `pnpm upstream [--force]`                                  | Clone or update repos under `upstream/` (clone then pin)；force 删掉 checkout 再 clone                                                                                |
+| `pnpm cleanup [--force]`                                   | List orphaned upstream checkouts；默认只列清单，`--force` 才删除                                                                                                      |
+| `pnpm packs [id…] [--shell bash\|powershell\|cmd\|all]`    | Print the combined multi-line `npx skills add` command；无 id = 全部 pack 合并                                                                                        |
+| `pnpm check [--report <file>]`                             | 合集完整性检查（frontmatter/重名/跨类重名/依赖/packs/SYNC 摘要/orphan）；error 级发现退出码 1                                                                         |
+| `pnpm build:catalog`                                       | 产出 `.build/catalog.json`（建立在零 error 的 check 之上）                                                                                                            |
+| `pnpm smoke`                                               | `skills add ./ --list` 必须包含 catalog 全部非内部技能（仓库根发现面 = 用户安装面）                                                                                   |
+| `pnpm site:build`                                          | build:catalog → prepare-site（content/ 扁平化 → site/public，含守卫）→ vite build                                                                                     |
+| `pnpm site:preview`                                        | site:build + vite preview（http://localhost:4173/skills/，读工作区，未提交的同步结果直接生效）                                                                        |
+| `pnpm readme`                                              | 由 packs.ts + packCategories + catalog 渲染 README 生成区块（pack 安装命令、技能/agent 扁平表）                                                                       |
+| `pnpm readme:check`                                        | 校验 README 生成区块是否最新；过期退出码 1                                                                                                                            |
+| `pnpm release [--dry-run] [--source=<dev sha>]`            | dev→main 快照发布：门禁（lint/test/check/build:catalog/smoke/readme:check）→ 白名单快照提交（带 Source-Commit trailer）→ 打 `vYYYY.MM.DD` tag → push；`--source` 回滚 |
+| `pnpm release:dry`                                         | release 的 dry-run：只打印将发布的 diff，不推送                                                                                                                       |
 
 Every sync run deletes and rewrites each mapped dest. Mapping 里拿掉的 dest **默认不删**；`pnpm sync --force` 会额外删除该 repo 下未再映射的 skill 目录 / agent `.md` / rule `.md`。`content/{repoKey}/SYNC.json` 每 repo 一份、跨类合并，存 `{ upstream_committed_sha, upstream_committed_at, items_digest, items_changed_at, items: [{ kind, name, digest }] }`（items 按 name 升序；`kind` ∈ skill/agent/rule）。
 
@@ -73,6 +77,8 @@ Transforms are kebab-case names. Repo-level `transforms.skills` / `transforms.ag
 5. **Upstream with empty `skills`, `agents`, and `rules`** → repo may be listed for future use; Sync skips that repo until a mapping exists. A repo with only one kind still syncs.
 6. **Verify** → `pnpm test`（vitest）/ `pnpm lint` / `pnpm fmt` after TypeScript changes.
 7. **Broken reference in upstream text** → do not edit the generated dest; fix it upstream or with a named transform in `meta.ts`.
+8. **Change packs, deps or any skill content** → run `pnpm readme` to refresh the README generated blocks, then `pnpm readme:check`.
+9. **Publish** → on `dev`: `git push` → `pnpm release:dry`（审查 diff）→ `pnpm release`. `main` 只由 release 写入；禁止在 main 上提交，禁止把开发文件加进 `PUBLISH_PATHS`。
 
 ## Upstream checkouts
 
@@ -80,11 +86,11 @@ Upstream clones live under `upstream/` by default. Set `SKILLS_UPSTREAM_DIR` to 
 
 ## Branch model & deploy
 
-单分支 `main`：源码与对外安装面是同一棵树。发现契约由根目录 `skills.sh.json` 声明（`./content` 容器，深度 3 扫描直达 `{repoKey}/{kind}/{name}`）；仓库根不得出现 `SKILL.md`（会短路 skills CLI 的全部发现）。绝不 force-push main（skills CLI lockfile 按安装时的 commit SHA 拉取）。
+双分支：`dev` 是完整开发树（src/、site/、工具链都在这里），`main` 是只含安装面的正式分支，由 `pnpm release` 从 dev 快照生成——白名单 = `content/` + `skills.sh.json` + `README.md` + `LICENSE` + `.github/workflows/deploy.yml`（`release.command.ts` 的 `PUBLISH_PATHS`）。快照提交 parent 恒为 `origin/main`，push 永远 fast-forward；提交信息带 `Source-Commit: <dev sha>` trailer。绝不 force-push main（skills CLI lockfile 按安装时的 commit SHA 拉取）；内容回滚用 `pnpm release --source=<旧 dev sha>`（新快照提交，历史线性）。
 
-`deploy.yml` 在 main push 时跑门禁（lint / test / check / site:build / smoke）并直部 GitHub Pages artifact，不写任何分支；`ci.yml` 在 PR 上跑同样门禁。Pages 产物除站点应用外还带扁平发布面：`site/public/{skills,agents,rules}/{name}` + `catalog.json` + 合并的 `sync.json` + 生成的 `README.md`（`prepare-site.command.ts` 产出，`flatten-content.service.ts` 提供扁平计划）。上游同步全手动：`pnpm sync` 本地跑，审完自查后提交。
+发布闭环：dev 上 `git push` → `pnpm release:dry` 审查 diff → `pnpm release`。`deploy.yml` 在 main push 时读 trailer 检出对应 dev 源码，校验发布树与源码一致后跑门禁并部署 GitHub Pages；`ci.yml` 在 dev push / PR 上跑同套门禁。发现契约由根目录 `skills.sh.json` 声明（`./content` 容器，深度 3 扫描直达 `{repoKey}/{kind}/{name}`）；仓库根不得出现 `SKILL.md`（会短路 skills CLI 的全部发现）。Pages 产物除站点应用外还带扁平发布面：`site/public/{skills,agents,rules}/{name}` + `catalog.json` + 合并的 `sync.json` + 生成的 `README.md`（`prepare-site.command.ts` 产出，`flatten-content.service.ts` 提供扁平计划）。上游同步全手动：`pnpm sync` 本地跑，审完自查后提交。
 
-本地闭环：`pnpm sync` → `pnpm check` → `pnpm site:preview`（预览未提交的同步结果）。
+本地闭环：`pnpm sync` → `pnpm check` → `pnpm readme` → `pnpm site:preview`（预览未提交的同步结果）。
 
 ## Pins (see `meta.ts`)
 
