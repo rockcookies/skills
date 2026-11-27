@@ -137,6 +137,9 @@ export async function listFilesRecursive(dir: string): Promise<string[]> {
   const seen = new Set<string>()
   const walk = async (current: string): Promise<void> => {
     for (const entry of await fsPromises.readdir(current, { withFileTypes: true })) {
+      // .git 是 git 元数据（git 自身永不跟踪）；root-source mapping（source 指向仓库根）
+      // 的全量拷贝会把 upstream 的 .git 带进 dest，摘要与发布面都不得含它
+      if (entry.name === '.git' && entry.isDirectory()) continue
       const abs = path.join(current, entry.name)
       // stat 跟随符号链接，与旧 glob 行为一致：目录下探，文件收集
       if ((await fsPromises.stat(abs)).isDirectory()) {

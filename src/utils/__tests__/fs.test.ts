@@ -14,6 +14,16 @@ test('lists nested dotfiles alongside regular files, sorted', async () => {
   expect(files).toEqual(['SKILL.md', 'assets/.golangci.yml'])
 })
 
+test('skips nested .git directories (git metadata is not content)', async () => {
+  const dir = await mkdtemp(join(tmpdir(), 'fs-'))
+  await mkdir(join(dir, '.git', 'objects', 'pack'), { recursive: true })
+  await writeFile(join(dir, '.git', 'FETCH_HEAD'), 'x')
+  await writeFile(join(dir, '.git', 'objects', 'pack', 'p.pack'), 'x')
+  await writeFile(join(dir, '.gitignore'), 'x')
+  await writeFile(join(dir, 'SKILL.md'), 's')
+  expect(await listFilesRecursive(dir)).toEqual(['.gitignore', 'SKILL.md'])
+})
+
 test('returns empty list for an empty directory', async () => {
   const dir = await mkdtemp(join(tmpdir(), 'fs-'))
   expect(await listFilesRecursive(dir)).toEqual([])
