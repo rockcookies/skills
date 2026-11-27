@@ -17,6 +17,7 @@ import type {
 import { resolveTransformNames, runAgentPipeline, runRulePipeline, runSkillPipeline } from '../transforms/pipeline'
 import { digestFile, digestTree, sha256 } from '../utils/digest'
 import { emptyDir, ensureDir, pathExists } from '../utils/fs'
+import { normalizeTextEol } from '../utils/eol'
 import { listFilesRecursive } from '../utils/list-files'
 
 /** name 的 UTF-16 码元升序（与当前 ASCII kebab-case 的 unix 字节序一致）。 */
@@ -195,7 +196,7 @@ export class UpstreamService {
       const names = resolveTransformNames(config, 'agent', mapping)
       runAgentPipeline(ctx, names)
       const destPath = join(agentsRoot, `${mapping.name}.md`)
-      await writeFile(destPath, ctx.content)
+      await writeFile(destPath, normalizeTextEol(Buffer.from(ctx.content, 'utf8')))
       items.push({ kind: 'agent', name: mapping.name, digest: await digestFile(destPath) })
       console.info(`✓ Synced agent '${mapping.name}' from ${upstreamName}`)
     }
@@ -235,7 +236,7 @@ export class UpstreamService {
       const names = resolveTransformNames(config, 'rule', mapping)
       runRulePipeline(ctx, names)
       const destPath = join(rulesRoot, `${mapping.name}.md`)
-      await writeFile(destPath, ctx.content)
+      await writeFile(destPath, normalizeTextEol(Buffer.from(ctx.content, 'utf8')))
       items.push({ kind: 'rule', name: mapping.name, digest: await digestFile(destPath) })
       console.info(`✓ Synced rule '${mapping.name}' from ${upstreamName}`)
     }
@@ -296,7 +297,7 @@ export class UpstreamService {
     for (const [rel, content] of files) {
       const destPath = join(destDir, rel)
       await mkdir(dirname(destPath), { recursive: true })
-      await writeFile(destPath, content)
+      await writeFile(destPath, normalizeTextEol(content))
     }
   }
 
