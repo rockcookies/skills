@@ -7,6 +7,7 @@ import type { InstallShell } from '../services/packs.service'
 import type { RepositoryConfig } from '../types'
 
 import { dependencies } from '../../dependencies'
+import { repositories } from '../../meta'
 import { packs } from '../../packs'
 import { buildItemIndex } from '../services/dependencies.service'
 import {
