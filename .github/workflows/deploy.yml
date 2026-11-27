@@ -31,12 +31,6 @@ jobs:
         with:
           ref: ${{ steps.source.outputs.sha }}
           path: source
-      - name: published tree must match source
-        run: |
-          set -e
-          for p in content skills.sh.json README.md LICENSE .github/workflows/deploy.yml; do
-            diff -rq "published/$p" "source/$p"
-          done
       # main 上没有 .github/actions/setup 组合动作，pnpm/node 设置就地内联
       - uses: pnpm/action-setup@v6
         with:
@@ -48,6 +42,17 @@ jobs:
           cache-dependency-path: source/pnpm-lock.yaml
       - run: pnpm install --frozen-lockfile
         working-directory: source
+      # 发布树必须等于从源码重新物化的发布面（同一 flatten/manifest 管线，字节一致）；
+      # 双侧都缺席的路径（如空 commands/）跳过，单侧缺席由 diff 报错
+      - name: published tree must match source-generated face
+        working-directory: source
+        run: |
+          set -e
+          pnpm release:tree --out ../verify-face
+          for p in skills agents rules commands manifest.json README.md LICENSE .github/workflows/deploy.yml; do
+            if [ ! -e "published/$p" ] && [ ! -e "../verify-face/$p" ]; then continue; fi
+            diff -rq "published/$p" "../verify-face/$p"
+          done
       - run: pnpm lint
         working-directory: source
       - run: pnpm test

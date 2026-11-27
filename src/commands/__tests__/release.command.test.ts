@@ -29,6 +29,8 @@ describe('isForbiddenPath', () => {
   it('blocks dev-tree paths from entering main', () => {
     expect(isForbiddenPath('src/commands/release.command.ts')).toBe(true)
     expect(isForbiddenPath('site/src/App.tsx')).toBe(true)
+    expect(isForbiddenPath('content/custom/skills/demo/SKILL.md')).toBe(true)
+    expect(isForbiddenPath('skills.sh.json')).toBe(true)
     expect(isForbiddenPath('meta.ts')).toBe(true)
     expect(isForbiddenPath('AGENTS.md')).toBe(true)
     expect(isForbiddenPath('.github/workflows/ci.yml')).toBe(true)
@@ -36,8 +38,11 @@ describe('isForbiddenPath', () => {
   })
 
   it('allows publish paths through', () => {
-    expect(isForbiddenPath('content/custom/skills/demo/SKILL.md')).toBe(false)
-    expect(isForbiddenPath('skills.sh.json')).toBe(false)
+    expect(isForbiddenPath('skills/demo/SKILL.md')).toBe(false)
+    expect(isForbiddenPath('agents/demo.md')).toBe(false)
+    expect(isForbiddenPath('rules/demo.md')).toBe(false)
+    expect(isForbiddenPath('commands/demo.md')).toBe(false)
+    expect(isForbiddenPath('manifest.json')).toBe(false)
     expect(isForbiddenPath('README.md')).toBe(false)
     expect(isForbiddenPath('LICENSE')).toBe(false)
     expect(isForbiddenPath('.github/workflows/deploy.yml')).toBe(false)

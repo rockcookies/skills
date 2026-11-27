@@ -1,37 +1,61 @@
 import { execFileSync } from 'node:child_process'
-import { mkdtempSync, rmSync } from 'node:fs'
+import { mkdirSync, mkdtempSync, rmSync } from 'node:fs'
+import { copyFile, mkdir } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
-import { join, resolve } from 'node:path'
+import { dirname, join, resolve } from 'node:path'
 import process from 'node:process'
 import { pathToFileURL } from 'node:url'
 
+import type { RepositoryConfig } from '../types'
+
+import { materializePublishTree } from '../services/publish-tree.service'
+import { listFilesRecursive } from '../utils/fs'
+
 /**
- * dev/main 快照发布：
- * - main 只收白名单路径（安装面 + CLI 发现契约 + 发布文档 + Pages workflow），
- *   由临时 index 从 dev 提交构造快照树，不切分支、不碰工作区
+ * dev/main 发布：
+ * - main 是扁平安装面：release 从源提交抽取 content/ + meta.ts，物化成
+ *   {skills,agents,rules,commands}/{name} + 根级 manifest.json，再拼上 README/LICENSE/
+ *   deploy.yml 构造快照树；不切分支、不碰工作区
  * - 快照提交 parent = origin/main，push 永远 fast-forward（非 ff 被远端拒绝，正是保护）
- * - 提交信息带 `Source-Commit: <dev sha>` trailer：deploy.yml 靠它检出对应 dev 源码构建站点，
- *   并校验发布树与源码一致；重复发布按 trailer 判等跳过
+ * - 提交信息带 `Source-Commit: <dev sha>` trailer：deploy.yml 靠它检出对应 dev 源码，
+ *   用 pnpm release:tree 重新物化发布面并 diff 校验一致；重复发布按 trailer 判等跳过
  */
 
 export const REMOTE = 'origin'
 export const SOURCE_BRANCH = 'dev'
 export const RELEASE_BRANCH = 'main'
 
-/** 只有这些路径会进入 main。新增前先想清楚：它是不是安装方需要的产物 */
+/** main 的发布面形态。agents/rules/commands 为空时整目录缺席；skills 至少一个技能 */
 export const PUBLISH_PATHS = [
-  'content',
-  'skills.sh.json',
+  'skills',
+  'agents',
+  'rules',
+  'commands',
+  'manifest.json',
   'README.md',
   'LICENSE',
   '.github/workflows/deploy.yml',
 ] as const
+
+/** 物化后必须存在的路径（agents/rules/commands 允许缺席） */
+const REQUIRED_PUBLISH_PATHS: readonly string[] = [
+  'skills',
+  'manifest.json',
+  'README.md',
+  'LICENSE',
+  '.github/workflows/deploy.yml',
+]
+
+/** 随发布面一起进 main 的 dev 文档/工作流（从源提交原样拷贝） */
+const DOC_PATHS = ['README.md', 'LICENSE', '.github/workflows/deploy.yml'] as const
 
 /** 安全网：即使 PUBLISH_PATHS 被误改，这些前缀也绝不进入 main */
 export const FORBIDDEN_PREFIXES = [
   'src/',
   'site/',
   'upstream/',
+  'content',
+  'skills.sh.json',
   '.build/',
   '.agents/',
   '.vscode/',
@@ -136,23 +160,47 @@ async function main(): Promise<void> {
 
   const tmp = mkdtempSync(join(tmpdir(), 'skills-release-'))
   try {
-    // 临时 index 从 src 构造白名单快照树；ls-tree 与 update-index --index-info 同构，直接回灌
-    const indexEnv = { GIT_INDEX_FILE: join(tmp, 'index') }
-    const listing = git(['ls-tree', '-r', '-z', src, '--', ...PUBLISH_PATHS])
-    const files = listing
-      .split('\0')
-      .filter(Boolean)
-      .map((line) => line.slice(line.indexOf('\t') + 1))
+    // 抽取源码：content 树 + meta.ts（repo/pin 要用源提交的映射，--source 回滚时可能
+    // 与当前工作区不同）+ 文档白名单。git archive + tar 解到 tmp，不碰工作区
+    const srcRoot = join(tmp, 'src')
+    mkdirSync(srcRoot, { recursive: true })
+    const archive = join(tmp, 'src.tar')
+    git(['archive', '--format=tar', '-o', archive, src, '--', 'content', 'meta.ts', ...DOC_PATHS])
+    // tar 以 tmp 为 cwd 用相对文件名：GNU tar 会把 `C:\...` 的盘符冒号当远程主机（bsdtar 则不会）
+    execFileSync('tar', ['-xf', 'src.tar', '-C', 'src'], { cwd: tmp, stdio: ['pipe', 'pipe', 'inherit'] })
 
-    for (const p of PUBLISH_PATHS) {
+    // 物化发布面：content/ 扁平为 {kind}/{name} + 根级 manifest.json
+    const { repositories } = (await import(pathToFileURL(join(srcRoot, 'meta.ts')).href)) as {
+      repositories: Record<string, RepositoryConfig>
+    }
+    const face = join(tmp, 'face')
+    await materializePublishTree(srcRoot, face, repositories)
+    for (const doc of DOC_PATHS) {
+      const dest = join(face, doc)
+      await mkdir(dirname(dest), { recursive: true })
+      await copyFile(join(srcRoot, doc), dest)
+    }
+
+    const files = await listFilesRecursive(face)
+    for (const p of REQUIRED_PUBLISH_PATHS) {
       if (!files.some((f) => f === p || f.startsWith(`${p}/`))) {
-        throw new Error(`release: publish path missing in ${src.slice(0, 7)}: ${p}`)
+        throw new Error(`release: publish path missing in face built from ${src.slice(0, 7)}: ${p}`)
       }
     }
     const bad = files.find((f) => isForbiddenPath(f))
     if (bad) throw new Error(`release: forbidden path in snapshot: ${bad}`)
 
-    git(['update-index', '--add', '-z', '--index-info'], { env: indexEnv, input: listing })
+    // 临时 index 从磁盘文件构造快照树：hash-object 写 blob，--index-info 回灌 <mode> <sha> <path>
+    const indexEnv = { GIT_INDEX_FILE: join(tmp, 'index') }
+    const shaList = execFileSync('git', ['hash-object', '-w', '--stdin-paths'], {
+      encoding: 'utf8',
+      input: `${files.map((f) => join(face, f)).join('\n')}\n`,
+      maxBuffer: 1 << 30,
+    })
+      .trim()
+      .split('\n')
+    const info = files.map((f, i) => `100644 ${shaList[i]}\t${f}`).join('\0') + '\0'
+    git(['update-index', '--add', '-z', '--index-info'], { env: indexEnv, input: info })
     const tree = git(['write-tree'], { env: indexEnv }).trim()
 
     const parent = git(['rev-parse', `${REMOTE}/${RELEASE_BRANCH}`]).trim()
