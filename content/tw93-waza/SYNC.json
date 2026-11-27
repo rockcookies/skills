@@ -1,78 +1,78 @@
 {
   "upstream_committed_sha": "355b9dc7e16a6cec2df519d26702a9400de988da",
   "upstream_committed_at": "2026-11-11T15:02:01+08:00",
-  "items_digest": "sha256:afe9b0cd54832e8bd4dae616e802704311e9e4791de2b69118e3f4888daf0583",
-  "items_changed_at": "2026-11-27T01:36:44.306Z",
+  "items_digest": "sha256:a01d4cff7c28b99c119162f4925d8378294f90a6d5ef2feb13f0c8f6a6595722",
+  "items_changed_at": "2026-11-27T02:52:15.351Z",
   "items": [
     {
       "kind": "rule",
       "name": "anti-patterns",
-      "digest": "sha256:b6ce15f8df68552f8063e9cdd4e0febca6a342757aef458bacc02e79d0f87759"
+      "digest": "sha256:b7d0725f0cce7a6d1718a5e5ed0b1556042c613646f3a154ca54ee73f8fe26a5"
     },
     {
       "kind": "skill",
       "name": "check",
-      "digest": "sha256:fee90c780369733de59cf81001adab6bff1f49d5d8adeb82a9db5b052462e556"
+      "digest": "sha256:84eb86c73b921eced17f62f655cff5c9bb37d9c57546ae829f3623db1123746e"
     },
     {
       "kind": "rule",
       "name": "chinese",
-      "digest": "sha256:a77feb0716cf0b77ace18272c7beb0854d4c3def60c972cba14b5e6dec8150a9"
+      "digest": "sha256:f4f3182b1aea8ecc65fc9845aeafca70149ad5dfaa835afdccec7d5421d4cc1a"
     },
     {
       "kind": "rule",
       "name": "clarity",
-      "digest": "sha256:a9c38d0ba130a567cd58a82592acfa5a824da128cc83d27d69310d364d058cce"
+      "digest": "sha256:c285b3c4769092232a579f4a12f359811bfed16c5586d117417ac294b8dc98fd"
     },
     {
       "kind": "rule",
       "name": "durable-context",
-      "digest": "sha256:c2308bdca7cd0d3f587d70c91cbc24b0574f235ea714b5098ccd31d450115bfc"
+      "digest": "sha256:9c7cdba74cee8a78fcb4868577322bf87166c2a0c438123d586505dd7a94ef7d"
     },
     {
       "kind": "rule",
       "name": "english",
-      "digest": "sha256:020e9a352082948db15361f4ee71ec754015e024f5aa09936a56ee46241b69a0"
+      "digest": "sha256:bd007a71d5f78ee00ca37031907cb577792915f1208f49e3861214ff17060429"
     },
     {
       "kind": "skill",
       "name": "health",
-      "digest": "sha256:3e1004809f8d00806d1fad828405a24a90d62d1b9c5fde264667552fb9d1bf2e"
+      "digest": "sha256:5249e647ce17ff6e60b3b86e9dbcee9adb3fcd190346bfe1d909b5faeb682fa3"
     },
     {
       "kind": "skill",
       "name": "hunt",
-      "digest": "sha256:d634c2f8e5eb94083e1924148dcf799ef2235e071638d43d4c5d3554c9940c89"
+      "digest": "sha256:36a62fdb5f72dca91563a2a998ad0958b88341bf3a8888b71ccf36782ec9f9b6"
     },
     {
       "kind": "skill",
       "name": "learn",
-      "digest": "sha256:f03bf98ddb3805306c78125e2c2e69065ad2da5ff49f7be95da8db5aabacfdbd"
+      "digest": "sha256:c51fbb8bd650df215b92f231f5fcd291649729a8771cf37dea6c0d37fe750c35"
     },
     {
       "kind": "skill",
       "name": "read",
-      "digest": "sha256:297816135c53aea2eda936a054d2ca9cc168eec865be2fd76959b5e7f04a75ea"
+      "digest": "sha256:d4b3fd8a00b3eb0104d1138550b634b35b6d47a57041db4decb10971d240d719"
     },
     {
       "kind": "skill",
       "name": "think",
-      "digest": "sha256:8a79f499f8483be5c24ae808e35ec6703788947a5e4545507071dbd0bb2b416b"
+      "digest": "sha256:fc57fec6269e49bc6c660783c2c589336354380a3fba028476e96f68b9a1357d"
     },
     {
       "kind": "skill",
       "name": "ui",
-      "digest": "sha256:b719e0482ff291bc9a326de4ac2b658db65ab2f164bc8ae2e79dc4944a3d6816"
+      "digest": "sha256:15b34d63aee0f1cf661b58401e5d3d9849cf762e660489739eb5a66c6965d44c"
     },
     {
       "kind": "rule",
       "name": "waza-routing",
-      "digest": "sha256:b758f5940bbf64e5f181dc4441d1977ac93524aefaed219a2563969c5c565776"
+      "digest": "sha256:a9efd90ec106428620b5946bd6bf52c95b1132a057158d6e79455c8f7539276b"
     },
     {
       "kind": "skill",
       "name": "write",
-      "digest": "sha256:75c8794e4eea207bb2edb7e7d7102a17f8ffc0148378406d1f89d6704131d65d"
+      "digest": "sha256:40debf1dd663cde60579113c0be413e6b275569835db54ff14e99a797e4dabf5"
     }
   ]
 }

@@ -1,13 +1,13 @@
 {
   "upstream_committed_sha": "1d68392e1c11b29cfbe95bb116e49889f260eb00",
   "upstream_committed_at": "2026-11-25T23:21:05+08:00",
-  "items_digest": "sha256:6702e65bc73be824646b4f883bca10d19d7bb6107813f6ad6a26a1f5d26ef710",
-  "items_changed_at": "2026-11-27T01:36:44.576Z",
+  "items_digest": "sha256:a4727cdbb3dd04fc8cd6727fc3abdd95c4d8e5161f357af99e6bbafefa4f1061",
+  "items_changed_at": "2026-11-27T02:52:15.351Z",
   "items": [
     {
       "kind": "skill",
       "name": "vueuse-functions",
-      "digest": "sha256:9718ab91327752cb7291fadfef2b7cd5412869ab1eace0a05aabd5dc1dfc1c6f"
+      "digest": "sha256:bf01f1c7bcf2418b15e4296274f395dfabb79e9dcaf66d33c8b59fe47a91e343"
     }
   ]
 }

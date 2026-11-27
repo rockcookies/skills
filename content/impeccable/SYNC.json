@@ -1,38 +1,38 @@
 {
   "upstream_committed_sha": "2fc5e1459efbbf06d92c7306517c286bf12490cf",
   "upstream_committed_at": "2026-11-26T02:23:55+01:00",
-  "items_digest": "sha256:eb5e1c7801580e9adf7526af68924489738bf1c384b07c3e82234f154a1a462a",
-  "items_changed_at": "2026-11-27T01:36:43.795Z",
+  "items_digest": "sha256:649b76c9ae932baf191dc29d9df2ec265d2ffa65e12d503bef7b864dfdeaf3cb",
+  "items_changed_at": "2026-11-27T02:52:15.351Z",
   "items": [
     {
       "kind": "skill",
       "name": "impeccable",
-      "digest": "sha256:a17c9a638a11d33c6bfc54d5dcf842bdc889ee5728d27fb98a43acd4f3296f2d"
+      "digest": "sha256:5c19aa30f85b8b0b593c81629a564cd8f1897172e45ba626e001599d29284961"
     },
     {
       "kind": "agent",
       "name": "impeccable-asset-producer",
-      "digest": "sha256:26dbf0557abb4556a79c7108b82bab38c55baacf43d970719464a810fd29c23d"
+      "digest": "sha256:7450d98da1af30a2ff2e9740e9d057c947e02a23e980e03ed52370c422c35725"
     },
     {
       "kind": "agent",
       "name": "impeccable-documenter",
-      "digest": "sha256:4e5196f0a22747f87e2448c992e894ebeba82f9bb139d4d7e4ad1c6b27aa2630"
+      "digest": "sha256:bee041cd696cb7f8c61d62ff0fde0835756dfc2bb97091362125b0564074d7a6"
     },
     {
       "kind": "agent",
       "name": "impeccable-finish-reviewer",
-      "digest": "sha256:8e6f4706dc020d0eea5c95ad51bee7a324514149531c95ab4f4eaabb0fc2a1d1"
+      "digest": "sha256:c4432cda31a3265c3398ea988fe7fafcb5f25aa9c4f0c85c50173b80aaaeff05"
     },
     {
       "kind": "agent",
       "name": "impeccable-manual-edit-applier",
-      "digest": "sha256:fca8272cf769d9733d3b31dc77650c6fd5f6984245fc98c58421446a1870e752"
+      "digest": "sha256:f0e5afc1c223a017c5afd16b894b766a145fdaade79dcb71dd3360f0595253da"
     },
     {
       "kind": "agent",
       "name": "impeccable-motion-reviewer",
-      "digest": "sha256:6205fff667419739bc4055ed919085a50e60851a932932b082684094aa68d5b3"
+      "digest": "sha256:4a4cca30086637c5623cd9cefee4a6e339d9fe9683efc554d0f45c7c9d737d1c"
     }
   ]
 }

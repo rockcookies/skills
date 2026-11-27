@@ -1,18 +1,18 @@
 {
   "upstream_committed_sha": "bf1ff076e25f8da4a339eb1c8cf03361fea5ea4c",
   "upstream_committed_at": "2026-11-19T23:47:05-06:00",
-  "items_digest": "sha256:b3c3a411cae71658446d64f358ec84de7fe8ab99fc713660478f52cc01c0db93",
-  "items_changed_at": "2026-11-27T01:36:43.695Z",
+  "items_digest": "sha256:cf99f5e87c0b20d37c152e6eb5cd2f501811a3e71317e2e9fc1cc6155b436d47",
+  "items_changed_at": "2026-11-27T02:52:15.351Z",
   "items": [
     {
       "kind": "skill",
       "name": "baoyu-image-gen",
-      "digest": "sha256:33f2f5f2df8c05cc55546508b534746d452aaf21dd90fe76f5733a775fd924f4"
+      "digest": "sha256:8e6507b4b2db518985f113eee339e63f20ecbc0b4a3f79082cabc45815dbefc3"
     },
     {
       "kind": "skill",
       "name": "baoyu-infographic",
-      "digest": "sha256:5fb159a659653a8b8f7e7f2a56ce7ac34588a2b11e9290cccee4eb100db436cc"
+      "digest": "sha256:8665677414a2f229c88795ab3597f2b46d379e9d280d4534aa5926934b29d4be"
     }
   ]
 }

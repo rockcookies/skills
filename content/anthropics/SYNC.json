@@ -1,18 +1,18 @@
 {
   "upstream_committed_sha": "e4bb5d960d87126ff3b3a8af1a104b7db67560ba",
   "upstream_committed_at": "2026-11-16T09:22:47-05:00",
-  "items_digest": "sha256:48f0bc8536828a179ba35ca1d3ca65d53e81e18e545417ba511e0bf36a37d60b",
-  "items_changed_at": "2026-11-27T01:36:43.647Z",
+  "items_digest": "sha256:2b26594e869cbdc1b30618cf0b1b50c0a2471620300a751de8adcb75ccfe03bb",
+  "items_changed_at": "2026-11-27T02:52:15.351Z",
   "items": [
     {
       "kind": "skill",
       "name": "frontend-design",
-      "digest": "sha256:af3dcb552c0adc73759e4f9d75e72e4a6d6b96b60e567ac0f7618f1ce8fbfee9"
+      "digest": "sha256:7988c5fbc6ef3016ad894188e63d63452b744b44319a76ed4f529923ca0dd9d2"
     },
     {
       "kind": "skill",
       "name": "skill-creator",
-      "digest": "sha256:eb59c0b2ae015c6696c3041243eda649047495e53b50eba238ea019784452936"
+      "digest": "sha256:f1740537c049342153a3e8e1e60e5dde878e0d755b386614be1059a074f564fb"
     }
   ]
 }

@@ -1,13 +1,13 @@
 {
   "upstream_committed_sha": "4d69d20f6e9b57b4fcf0d501ccfb1be961f0f329",
   "upstream_committed_at": "2026-11-01T13:13:09-08:00",
-  "items_digest": "sha256:4b017efc3b98edf67f2ba7ee12e66d855c6ef1144d54022351c93a81069f87b5",
-  "items_changed_at": "2026-11-27T01:36:43.746Z",
+  "items_digest": "sha256:942b8a67aff369fc012fa1efe9dc1ee11265d520c9a568346b046ecb5c3f57aa",
+  "items_changed_at": "2026-11-27T02:52:15.351Z",
   "items": [
     {
       "kind": "skill",
       "name": "show-me",
-      "digest": "sha256:67190be8447dc2abd7c7db868f2cdec5637970f21cb57df7c427c77d396c0d2d"
+      "digest": "sha256:aa35fcb416b7b0e52d0c1263a74cedc166d8879693b7d7b884dbf7557a4f1f08"
     }
   ]
 }

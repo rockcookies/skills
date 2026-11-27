@@ -1,13 +1,13 @@
 {
   "upstream_committed_sha": "a67ba089fec5fbfec07346aebad11666463d9799",
   "upstream_committed_at": "2026-11-25T23:28:06-03:00",
-  "items_digest": "sha256:a735c95a25bc6900549c9b564b0683447f9720ad33b646594035ada5330af85a",
-  "items_changed_at": "2026-11-26T09:19:39.705Z",
+  "items_digest": "sha256:b2af49a7216d56ed2726ced343b0ca59a133237210fc77685f26d614487f8f97",
+  "items_changed_at": "2026-11-27T02:52:15.351Z",
   "items": [
     {
       "kind": "skill",
       "name": "agent-browser",
-      "digest": "sha256:dd7c5d11b25c49cddc67fceffb3fb82d9d9453d12fd6358687f2800957291ee8"
+      "digest": "sha256:ed54d64e9dbc89a2e37636b325abeb704464fefffefc07ed7938208b046508ef"
     }
   ]
 }
