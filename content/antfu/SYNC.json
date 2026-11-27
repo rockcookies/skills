@@ -1,28 +1,28 @@
 {
   "upstream_committed_sha": "4a6bb39e7b45e26402eb215393c51ccf5df1ca4c",
   "upstream_committed_at": "2026-11-16T16:11:08+09:00",
-  "items_digest": "sha256:d6cda72d3422759cb5df159e113695a60836c23600f4c187e7f25f8e6be46e7e",
-  "items_changed_at": "2026-11-27T01:36:43.631Z",
+  "items_digest": "sha256:fc52cccd7ede773817c9874a1c31b8d5a50390b0eb8c1f2387acff32780a96c9",
+  "items_changed_at": "2026-11-27T02:52:15.351Z",
   "items": [
     {
       "kind": "skill",
       "name": "antfu",
-      "digest": "sha256:707537773d434d4d4461d5e2e9109ff675d85776d1687a88f03cc88f4088699b"
+      "digest": "sha256:9070e9f748a81c716b82cd49f54304e172036d591d18186449b56956200a3b04"
     },
     {
       "kind": "skill",
       "name": "unocss",
-      "digest": "sha256:3c435e0ee32ffaa76617aa39998dd541d8f2b56fa2e684caa83a41a4e26273c3"
+      "digest": "sha256:f5298f6cb5776264917367a84e2539e676f21da5bc8e011bee2363438cf467ce"
     },
     {
       "kind": "skill",
       "name": "vite",
-      "digest": "sha256:d8fa85b2e165932115714dc20a741d8ae9a35b9081b74b678f47ad83b54eb881"
+      "digest": "sha256:ea7e85ffe78a7c55b34c6175c0ad7358be4a2f799e746f019eff8255a9dd0eca"
     },
     {
       "kind": "skill",
       "name": "vitest",
-      "digest": "sha256:ca5d95a02bd461db558fca6759a1dac84cc271f7b9391cc60892ea788f3e4994"
+      "digest": "sha256:6bbd08b6caa7c922ab111b898f311c75209c8be3dbf1944b99fb4bde2add23c9"
     }
   ]
 }

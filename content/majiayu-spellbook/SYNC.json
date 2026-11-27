@@ -1,33 +1,33 @@
 {
   "upstream_committed_sha": "5b3c90b13410571bfd44c1d712af6f6259cea464",
   "upstream_committed_at": "2026-11-23T15:56:20+08:00",
-  "items_digest": "sha256:3d0a7fc9b3497458778281205a203ea5efadb481ad2f60ddad8b589bf09064ba",
-  "items_changed_at": "2026-11-27T01:36:43.844Z",
+  "items_digest": "sha256:958caceffe1cf7ac2d6acdb51815e9d020cc8986d0362e80a19cb20661d5f102",
+  "items_changed_at": "2026-11-27T02:52:15.351Z",
   "items": [
     {
       "kind": "skill",
       "name": "clash-doctor",
-      "digest": "sha256:cff4d96c3fade63b962d743908d72c0218fcf61ec8905c3fcc540875ddeaa7c8"
+      "digest": "sha256:394f88412f6d7427b86f238d36e40ea82aa43449dc80c7df52017c20e82a7183"
     },
     {
       "kind": "skill",
       "name": "clash-routes",
-      "digest": "sha256:2c2724d3a1abe4503a2e5da667567e2f9d21f7f10b831ffbc59c6d4fb5f9edd5"
+      "digest": "sha256:d78a027b5522ee35b2eb449886711758f1f388d2d1415706d140ab08e6326e3a"
     },
     {
       "kind": "skill",
       "name": "codebase-audit",
-      "digest": "sha256:6dcc0d91de6efc6b6b840399b8fac2e57c828417a2f54ebe2b51a952b1d93181"
+      "digest": "sha256:02bd5bc62ebedc83a0f40934d347e6817309e49a1e36d4e84c4aaae89088aecf"
     },
     {
       "kind": "skill",
       "name": "figma-to-react",
-      "digest": "sha256:9ee1be06f014e61ae46dfda09689523635cbee71698328d09cbe47cc75bc1d4e"
+      "digest": "sha256:c37cdc47a9b459e97480695aa8dc5a28780d56405819244a1d036d8813a1bf5d"
     },
     {
       "kind": "skill",
       "name": "ip-check",
-      "digest": "sha256:00dce4b34f141d0da1ee046496d320defc3e5e57e0e04fdb6f26f010444e73fc"
+      "digest": "sha256:a80dfacd0ea9ff0bd68f0d274edbbc684990ccfba6e208feed06689eb6ad664a"
     }
   ]
 }

@@ -1,43 +1,43 @@
 {
   "upstream_committed_sha": "198f0cd8f7f9c0a3d9b566ccc16de6677519ee78",
   "upstream_committed_at": "2026-10-23T22:53:14+08:00",
-  "items_digest": "sha256:f41473adcbad0761cd177e49a4a25569d54b9c220c257500ac9697c5834b2ee1",
-  "items_changed_at": "2026-11-27T01:36:44.447Z",
+  "items_digest": "sha256:74ec39b22c6f7b07717672b715b04468eb5804dfc57367e5d34aa17f10a9ca9b",
+  "items_changed_at": "2026-11-27T02:52:15.351Z",
   "items": [
     {
       "kind": "skill",
       "name": "vue-best-practices",
-      "digest": "sha256:39b7aaf4f3b46b891a837839e989d900ac4eaf8c59125e7dce60d51a81564305"
+      "digest": "sha256:68860fc0f3b2e2d611080582887b74529a3182b4d5588a51c44706be2b23dd4e"
     },
     {
       "kind": "skill",
       "name": "vue-debug-guides",
-      "digest": "sha256:4ace29a74c2231402c3e13eda0df04f80301a21d2a247e2777382fbe4852ff09"
+      "digest": "sha256:82a7253c65cad56ef2427b2ae58a5a0160419404f653a1e2e91bc722b585c487"
     },
     {
       "kind": "skill",
       "name": "vue-jsx-best-practices",
-      "digest": "sha256:a6c028f40b55634b266138975c6e70edcdf2e8643d9da53c659dd0c766d24941"
+      "digest": "sha256:f9c8f8ed5669ff209702c14febd53ad77b2c832c083db0ad3aa4dcff7fbad1b1"
     },
     {
       "kind": "skill",
       "name": "vue-options-api-best-practices",
-      "digest": "sha256:c4721cde82c790cdd5aff5f7c91df27758d9fdece492eed2fc0c9f2e421a1520"
+      "digest": "sha256:45129c53b6d32d92ccec2aec3c8da868ad410b329b20a9566b12664395909dab"
     },
     {
       "kind": "skill",
       "name": "vue-pinia-best-practices",
-      "digest": "sha256:2fa8718a7910398fdfdc330b2a302fddce6ace6a5580fe7447c499d0e008b002"
+      "digest": "sha256:a19733b49fdafdc2d46172d6f6122073ea18af8a1a9e8bf8d8b50fc75146d409"
     },
     {
       "kind": "skill",
       "name": "vue-router-best-practices",
-      "digest": "sha256:a299b906fd1d23e0a02f9fd0d179cd1be85a2cf17c33eb209925d21f4e8f261d"
+      "digest": "sha256:a916481d2f0a9eb9c5611bb31aeda122206dd7528844f377bdb48a099f2f9033"
     },
     {
       "kind": "skill",
       "name": "vue-testing-best-practices",
-      "digest": "sha256:2e0266a626294d237df01f5b018dd6a6dcdb3a072b252f0fa50c90819b98e8e8"
+      "digest": "sha256:87b511de290cb859d412d5b34550463527282e3a49b0c98892ad109b50890c0a"
     }
   ]
 }

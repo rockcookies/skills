@@ -1,13 +1,13 @@
 {
   "upstream_committed_sha": "8016681d0e4c6274a06f5ee6bb67b9b516b2934f",
   "upstream_committed_at": "2026-10-30T07:35:39+08:00",
-  "items_digest": "sha256:fb8e1f69af48ffbadbc4e4d0a68b371ea0a3331b3fc592aad8f630d32f716d63",
-  "items_changed_at": "2026-11-27T01:36:44.256Z",
+  "items_digest": "sha256:0761f3b16e8b09711911f57531ae46797d2fc49a5933b61a3e31acaa1e43fcc6",
+  "items_changed_at": "2026-11-27T02:52:15.351Z",
   "items": [
     {
       "kind": "skill",
       "name": "kami",
-      "digest": "sha256:07982d6069b8e69c01c758add27fd21155d7d98b29408c17749210b0cc5774c8"
+      "digest": "sha256:eec74feed6875b40ff88c0645c924850f169fe861fda4ff2bd9a63eb787ba34c"
     }
   ]
 }

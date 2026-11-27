@@ -1,193 +1,193 @@
 {
   "upstream_committed_sha": "b7b93c36be9bcc36a74db438e0fd385d660bc559",
   "upstream_committed_at": "2026-11-26T01:04:53-08:00",
-  "items_digest": "sha256:a8b4e9f76185153d6f2a779f0d067edf3f83970c5cee1746b8b3f90916eee534",
-  "items_changed_at": "2026-11-27T01:36:43.737Z",
+  "items_digest": "sha256:ff86bd278627134417fa068a3a39467c11c78d9e4f4f4b10d332788e50bcac70",
+  "items_changed_at": "2026-11-27T02:52:15.351Z",
   "items": [
     {
       "kind": "skill",
       "name": "benchmark-checklist",
-      "digest": "sha256:910461b4a2ac4b8cb1bbc07b1fb55c65914997b0103653dcccc59aa2eed8b476"
+      "digest": "sha256:347617961381b2369a45dc906ef963071e7e7d6de9ea9f2adcb44424eb66e5b7"
     },
     {
       "kind": "skill",
       "name": "how",
-      "digest": "sha256:d966711e6b95d394806eed2bdcfc862214685804b70a8d611a478f1e01806578"
+      "digest": "sha256:6148219e997207300c02920e66b810a53673aab47cfa99bd34e1dd15bb0ad8d4"
     },
     {
       "kind": "skill",
       "name": "principle-attack-the-premise",
-      "digest": "sha256:1ae42920095bed9200a0a2e876b65e374f6c0c6e413a618ec6858db58ef4509b"
+      "digest": "sha256:8163d761f9465ea72458f8c0aa0b811380163d7f45f490f7bae09bf508062246"
     },
     {
       "kind": "skill",
       "name": "principle-boundary-discipline",
-      "digest": "sha256:741da3d4953d66ac49d0ab8eff243ccd5cbfd8982c2f9acf81a98b99dcaac0ff"
+      "digest": "sha256:2370df2f02761afd39c57a36678014c4b78de6149cd5847fddd088035c17b8e7"
     },
     {
       "kind": "skill",
       "name": "principle-build-the-lever",
-      "digest": "sha256:d0a98ba9ef6d4232c68670c263ab9d784c3efaf42ea0a820f04c0a9057e589b7"
+      "digest": "sha256:c821a8764053393d4c6f891fd1bc2a1571304407487b1d4d5ef7962e116da5f5"
     },
     {
       "kind": "skill",
       "name": "principle-encode-lessons-in-structure",
-      "digest": "sha256:a101a28ca4b8dcb103c96c0e12abcf67ba17532544890dc30e0025cc3cefd8b1"
+      "digest": "sha256:b1db2eda2bf321b376cb3d64c3341f27ef28b6ae671aa590dcb7f412368baf40"
     },
     {
       "kind": "skill",
       "name": "principle-exhaust-the-design-space",
-      "digest": "sha256:eba7b9e008f6f4b4556fd8d15e6909b191b0ad25e98551843c36bdaaa2c68fbc"
+      "digest": "sha256:cc77efe319c10d7f3ee5753c381024abde292785879a8d9826cf77e6afe150da"
     },
     {
       "kind": "skill",
       "name": "principle-experience-first",
-      "digest": "sha256:6d516dfe59276a4ecde24a3e6c1c6bbf112f43b5136a67b4229fc55fdd544897"
+      "digest": "sha256:657c14673679c2b13527f479084d4a992105854a0e6ae5e054b98ec977923d78"
     },
     {
       "kind": "skill",
       "name": "principle-explain-the-number",
-      "digest": "sha256:cbd74af036df4ca71bc0cc0d228f72e979d3762681d54210c13769c65f222490"
+      "digest": "sha256:fb345163e3f729ea12dd85064aaea80c981946c4fc922eec7afcf45def7a6f18"
     },
     {
       "kind": "skill",
       "name": "principle-fix-root-causes",
-      "digest": "sha256:ce44d72d8260d799952379b87a8df69e900253623e0ce3ae403eac3467f83a37"
+      "digest": "sha256:d118ad0ebd1c2ecce4a31bb4957ca16286c4966c5a938f409445f33804624c17"
     },
     {
       "kind": "skill",
       "name": "principle-foundational-thinking",
-      "digest": "sha256:fee7ab6884ba53bc961e6d8cbebfa4bae011f426f465e47dc0a3c6dc6e2227be"
+      "digest": "sha256:154bab1637a0fbdf686eca1c2c0cecde27c73141b72ea858ad5f0e7cd8d3a7cd"
     },
     {
       "kind": "skill",
       "name": "principle-guard-the-context-window",
-      "digest": "sha256:4b6f2cdfe7e294159f793891ebb158d8bfb93ae458e97ae9458e0d7722bfe3dd"
+      "digest": "sha256:b642f3b49db61946b606ef8760063dce81731ec4dfd487270f89c317a0d1fe09"
     },
     {
       "kind": "skill",
       "name": "principle-laziness-protocol",
-      "digest": "sha256:acec2e7720dcdcddcf947b191c695b2e501f9436a61de6e2102654a4838e95d8"
+      "digest": "sha256:483f9ecd4b76cc8290c0d02172f9ade527afd8121f70c875f5e8e3b45c899a2c"
     },
     {
       "kind": "skill",
       "name": "principle-make-operations-idempotent",
-      "digest": "sha256:8c29a487ab050b0531fee0abebf87b4c7d73fcd8e1a3abcdc0fd99cd47d3b5cb"
+      "digest": "sha256:ec655fb2c5a68cf834654f366b5ea705d69f5db9e0928f6b211f09e86f6602b2"
     },
     {
       "kind": "skill",
       "name": "principle-migrate-callers-then-delete-legacy-apis",
-      "digest": "sha256:232e698e4f37be35d8509866f80c2ac21323ef484008f599dd6b1d4916b81ce2"
+      "digest": "sha256:08020316f4ad2f61d49dc07e05117ca95d47ce50865f72dd3f7da64be8c72e45"
     },
     {
       "kind": "skill",
       "name": "principle-minimize-reader-load",
-      "digest": "sha256:08da30e927690b7c9b5b512b4c28add33119d7dc969189edb6dbfa53aff32b76"
+      "digest": "sha256:e01ceb579969662ac8ea0b7e2b2e47534f813e14de68145a70336412ed19f862"
     },
     {
       "kind": "skill",
       "name": "principle-model-the-domain",
-      "digest": "sha256:97894500d228a332ac5e108b233f38be56978e25616eaa148914bf2986815b30"
+      "digest": "sha256:d1e4229431912a5de44d5bc7d63d1709c22e85ebe266fb909295531fb5e17387"
     },
     {
       "kind": "skill",
       "name": "principle-never-block-on-the-human",
-      "digest": "sha256:e388c09448467fe7aa5d392bb89fb22e955e98e9581e97b91adc24b77af0f133"
+      "digest": "sha256:78d0b0b94d837b664a68dad9f0990f264a239a4d8d8db94c0f972ad4a164c9a1"
     },
     {
       "kind": "skill",
       "name": "principle-outcome-oriented-execution",
-      "digest": "sha256:f4d2acfb2eddb338aa0859d5a18636209a78cba57ddf73cbe7b6a6ef38641eaf"
+      "digest": "sha256:5182c7dc8778795f37753803eac8364c53a7f9a87aca3dc427aaf21e8af411aa"
     },
     {
       "kind": "skill",
       "name": "principle-prove-it-works",
-      "digest": "sha256:4efc0ea7bc7c631c9df3f2dcd3804d4cad07b978745e5bf65200446e9b93a534"
+      "digest": "sha256:c6905f6db39bf5892d326f9f9c7ba4c942e4f4bee64ce5b32271cd476bfb480b"
     },
     {
       "kind": "skill",
       "name": "principle-redesign-from-first-principles",
-      "digest": "sha256:e4f13d6bf5a21528b7c3aa056325e9c58a785146abdd92499294458924cd1bba"
+      "digest": "sha256:a528a69c910d38d386769a97cd877d93d8522f3ca1ec8cd8c9c814d4256082f4"
     },
     {
       "kind": "skill",
       "name": "principle-separate-before-serializing-shared-state",
-      "digest": "sha256:ab6332ba218329b3f35abe87dd5c3b2f41990631a247b62e1e0d40c3f5a9250a"
+      "digest": "sha256:65f705e803c5ad9c6c0f494ee8bddb2a7c2592e7ce3044fd1087814f91d26eba"
     },
     {
       "kind": "skill",
       "name": "principle-sequence-verifiable-units",
-      "digest": "sha256:144908e929ee46863f74c50594f0c0633b48ffeb5a320fe643e614aa0d788229"
+      "digest": "sha256:1ee5809d167066b07462c8a8b41c23360cdf55dc5c551ae3b50f4ee2148da918"
     },
     {
       "kind": "skill",
       "name": "principle-subtract-before-you-add",
-      "digest": "sha256:15f4c6f8da52c7069d5fe8d700824bc5f0a235c3763996057b31999f557c9635"
+      "digest": "sha256:641ecc913c0d5591c07cbd1e8f2caafc49afc0badb8660ed7d017d9b286ada2d"
     },
     {
       "kind": "skill",
       "name": "principle-test-behavior-not-implementation",
-      "digest": "sha256:e59193ac115fae9726273597c25a9e9d9dda31b471ab900234f22a792cf6536f"
+      "digest": "sha256:5886183f861a6f1513c0f25ed679edfcc7af60d58aa2290e42a8e327deb0ce46"
     },
     {
       "kind": "skill",
       "name": "principle-type-system-discipline",
-      "digest": "sha256:1382e8b683587f1a8bff1b84a06fdbcc922e23ac34a19e030ca4f1b1cbc2cd38"
+      "digest": "sha256:dc149e4c59cde9507509ea13fadd9d0fba6759d16b1c7f760cc5a13607dad4e4"
     },
     {
       "kind": "skill",
       "name": "pstack-tdd",
-      "digest": "sha256:4097bc9875fb4474bd755bd30a58020cb8537877ffbe06efb0a1b18cfacb17cd"
+      "digest": "sha256:281d3a089da31bbf9272c0fe72ffee0c264ef5d494bdefd0abb5949f4c4440db"
     },
     {
       "kind": "skill",
       "name": "show-me-your-work",
-      "digest": "sha256:aca67e61e8a7c4ae44e37e5c082e2c3aa2da664fd1bc8f0c5c8c93b435358c8f"
+      "digest": "sha256:e114a11b291c16aab58371752a00e107831ccb42b4f2606b1409cb308890b34e"
     },
     {
       "kind": "skill",
       "name": "technical-writing",
-      "digest": "sha256:e5d05cc96b67e9b989df665308e6910133935675d50a9031d831276e879ffe8b"
+      "digest": "sha256:4e3faff5d4db1186b7caa91e7a48d4f0bef579a5352394ce34c34150bd2a9644"
     },
     {
       "kind": "skill",
       "name": "thermo-nuclear-code-quality-review",
-      "digest": "sha256:7ee9561406b93232609f4f7c8e54544601aee55ff74c4b6d633ca9d827710365"
+      "digest": "sha256:f81fa45ac662b4606125f4f01cd6aa8464bd992e6c6fbfac0e7ab82b122f24c6"
     },
     {
       "kind": "agent",
       "name": "thermo-nuclear-code-quality-review-subagent",
-      "digest": "sha256:718ec401c6e31146a78bca06f9c0872e1902316e23ac41325eadc0bc1d8ef8c6"
+      "digest": "sha256:76e5afb6f23b0f11b3e5c0530c47b8722037688bc8fea8bdfb8db1f9cb1cd896"
     },
     {
       "kind": "skill",
       "name": "thermo-nuclear-review",
-      "digest": "sha256:f35e4e82337e5ca80c2c67244101e3e18b61338019b34002bec9bd225785ffdc"
+      "digest": "sha256:9aa5b2cc65e9286ce9f2b59735c4c26a7e2d04eacbc65088b518c1ea41807fb8"
     },
     {
       "kind": "agent",
       "name": "thermo-nuclear-review-subagent",
-      "digest": "sha256:1aa413ec2547e2398b9cb277591bff372007d0939de5aa677df8147dbec582ff"
+      "digest": "sha256:48a7b129ab0bf2023fa99a60385fefcea2603ced47081af09b58138196589440"
     },
     {
       "kind": "skill",
       "name": "thermos",
-      "digest": "sha256:825696eaa95b5c66b8f5b45d03547bbbe89add91957ca430b57d5df4ec6c41a1"
+      "digest": "sha256:337d37a6f103e7a1ef43b8bb29b95c33dc52e0ab39682ac51e917193089e08cf"
     },
     {
       "kind": "skill",
       "name": "typescript-best-practices",
-      "digest": "sha256:d912f605c7e0122caad4de6431e1315e4345160a5e3310746d8150a38084dbd1"
+      "digest": "sha256:1e276db1a2e58a704d91931c50f8b7dfca9a4f993718a2915c758189d11eb90a"
     },
     {
       "kind": "skill",
       "name": "unslop",
-      "digest": "sha256:196f4cd36109c35ca1ab51b38bd177d7980865e945aa0f5f00dfd3ac46e0a080"
+      "digest": "sha256:15b9caf96be3c8aabfc9e3737a8263a746f44e2c0d69b40b77a1e0e050239ecb"
     },
     {
       "kind": "skill",
       "name": "why",
-      "digest": "sha256:4a2844a1c9ac280343c779febf5dca2ed435e808ef01a8d8427ee944212914c3"
+      "digest": "sha256:bd4ebddf96e013bcc8d025e9e38727bff8da9263552f43d2ed8e5d378464a98a"
     }
   ]
 }
