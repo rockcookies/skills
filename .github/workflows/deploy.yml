@@ -43,6 +43,7 @@ jobs:
       - run: pnpm install --frozen-lockfile
         working-directory: source
       # 发布树必须等于从源码重新物化的发布面（同一 flatten/manifest 管线，字节一致）；
+      # 步骤 cwd 是 source/，published 与 verify-face 都在工作区根，故用 ../ 前缀；
       # 双侧都缺席的路径（如空 commands/）跳过，单侧缺席由 diff 报错
       - name: published tree must match source-generated face
         working-directory: source
@@ -50,8 +51,8 @@ jobs:
           set -e
           pnpm release:tree --out ../verify-face
           for p in skills agents rules commands manifest.json README.md LICENSE .github/workflows/deploy.yml; do
-            if [ ! -e "published/$p" ] && [ ! -e "../verify-face/$p" ]; then continue; fi
-            diff -rq "published/$p" "../verify-face/$p"
+            if [ ! -e "../published/$p" ] && [ ! -e "../verify-face/$p" ]; then continue; fi
+            diff -rq "../published/$p" "../verify-face/$p"
           done
       - run: pnpm lint
         working-directory: source
