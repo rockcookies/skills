@@ -1,143 +1,143 @@
 {
   "upstream_committed_sha": "d1478fcb140db0b93c0c8df17bcfd311844749d0",
   "upstream_committed_at": "2026-10-29T10:27:29Z",
-  "items_digest": "sha256:0ddc1f5ef7bcdb77d8c3f8bcc83559853dd087dee5ad494dad33b677670e2a08",
-  "items_changed_at": "2026-11-27T01:31:19.250Z",
+  "items_digest": "sha256:d1ba407a336be343c337be833409f829bee04a9a86d5d2418980f4c9a46e7c68",
+  "items_changed_at": "2026-11-27T01:36:43.926Z",
   "items": [
     {
       "kind": "skill",
       "name": "ask-matt",
-      "digest": "sha256:9fa9d8acfff4deeca330d98f099dbbf29c53079474b48f965e950c66739caf1f"
+      "digest": "sha256:15dd07a2a92b38b912cf6a38b0e732c4be721b0f1b2ffc90027a32d701abf75f"
     },
     {
       "kind": "skill",
       "name": "code-review",
-      "digest": "sha256:2db8686275ce04fa14aee34acbedf3da81228cbc5939cbbadd21634a6ed6f7a0"
+      "digest": "sha256:a1f1976b0df10ffc2b9a0c731eae3cc1fb0b22ae1c18e95c120c6d87ab7090ae"
     },
     {
       "kind": "skill",
       "name": "codebase-design",
-      "digest": "sha256:13945619bc0c64aaefba0a650fd9698cf1093ba0ce9dd4397f3bf0fd3a2f72b2"
+      "digest": "sha256:53ffff82e87840488482ae876b5d626d473af2aa263576883291ecdceb30cb14"
     },
     {
       "kind": "skill",
       "name": "diagnosing-bugs",
-      "digest": "sha256:8446c68bd613106145c3f96c97a33c8efcd992f05c53847d984269b159be8751"
+      "digest": "sha256:947ba5b1f8a6f189714af58cb8332260a75f56c51c6243c4840a0e03b02c81f7"
     },
     {
       "kind": "skill",
       "name": "domain-modeling",
-      "digest": "sha256:e1e76150d9b0e401451756e7311584e7a676e4adbff764a10e85edd30d76ae65"
+      "digest": "sha256:eba2d7323205886bfbc7b7c5139f45842467601954a6e040af1e5cdd2ced9493"
     },
     {
       "kind": "skill",
       "name": "grill-me",
-      "digest": "sha256:94903904e3fd87d27fc9aeff5c79c3d09343944411a5edb3e6e7276760c6fa15"
+      "digest": "sha256:eb2880386e9259f4ca51167f518c81cea969850d8f45bd8f79f579dcbbad902e"
     },
     {
       "kind": "skill",
       "name": "grill-with-docs",
-      "digest": "sha256:2ef04f20305a4da68e69e99d77b47c304e5049b776f431b0793974e02ca2791b"
+      "digest": "sha256:8619ba8e746ee8f7daad09ec8fd46e4f93594b8de191873bcc03e0faddc4cc18"
     },
     {
       "kind": "skill",
       "name": "grilling",
-      "digest": "sha256:5d4c99d4602f9b5b09617ff4bfa53cbea41409ef329b49aef79ecdfc79e0dd4a"
+      "digest": "sha256:0486c3d12b33881ce2258f93ea39d3baa51e0a6eced548588e43ff7eb2ab87cf"
     },
     {
       "kind": "skill",
       "name": "handoff",
-      "digest": "sha256:c0f60bcd8da336301258749f40ddac20fd18ed35181a21437a8a1c5cbeea0960"
+      "digest": "sha256:246156af1ac95cc78f0c7ceb1e646eafc6441484f125dae9086b8d1fa2c8c0bd"
     },
     {
       "kind": "skill",
       "name": "implement",
-      "digest": "sha256:a25d44b358357297c95df341a948bf5eba5ce35cb18de2fb70cb78cf2f74b9d7"
+      "digest": "sha256:81b993e810db35e5187ab1a7dea24cfb35002c284aa7527e46bb996e3e4eb6f2"
     },
     {
       "kind": "skill",
       "name": "implement-spec",
-      "digest": "sha256:0dbdbd5d12e60eb730716c1e6fb473dfff4e623fcad0df9e322a1f3ba559d904"
+      "digest": "sha256:00c31bed8c2253354501ec8096714d8eb6e14ee6d7fa27f1fc8c876954a1459d"
     },
     {
       "kind": "skill",
       "name": "improve-codebase-architecture",
-      "digest": "sha256:199dbb6d9ae29b51bb86e0090e1c7f2538c165754af027600c90e1614fe310df"
+      "digest": "sha256:24e6f5dd1804c73f02cab55d64780737c04bd738a507c644bc92d49e01a0c649"
     },
     {
       "kind": "skill",
       "name": "pr",
-      "digest": "sha256:25edbeca91407f93bdd989ba3767e3554cb5e4ac73e1b2d28c6cbeb1ce613aa8"
+      "digest": "sha256:721bbf564049a4e95518ae95bec588a0f54c2a954593ba0d0e034226ce1f1b30"
     },
     {
       "kind": "skill",
       "name": "prototype",
-      "digest": "sha256:477f3c04ba75c9aeaf0a2a224304a5c138c90cef6e24e1a1979826635dc9e749"
+      "digest": "sha256:1e92c5bb03d683129230b70b5b5ed1f8c485bdb589c0bcaff72635277bde5036"
     },
     {
       "kind": "skill",
       "name": "research",
-      "digest": "sha256:6edd6a6165ba88efd53144122c50f85607403f346567bf1f14e685ceb81e6165"
+      "digest": "sha256:0a90815b61f640ef5dbcda8694ac91680ece610e751efd02a29aaf4646b73ce1"
     },
     {
       "kind": "skill",
       "name": "retro",
-      "digest": "sha256:77d9194a79a82006e266248f249fee1bb44dd3dd9d1d632a079d41056219f49e"
+      "digest": "sha256:24ec02e881994f69c76061cb317660a33acfa666a57e772b56d289202d811b83"
     },
     {
       "kind": "skill",
       "name": "setup-matt-pocock-skills",
-      "digest": "sha256:73dbe7c6e8fb06879496df870751bf100ec40adc07ea209c5fe30e5bef27799d"
+      "digest": "sha256:75d9b4701962e6597c0c118851abddf317d26e965c0f81f072abc862c50912db"
     },
     {
       "kind": "skill",
       "name": "tdd",
-      "digest": "sha256:55aed3f8351199652e90f9b81abe9f9f690f89bed219557d21ada6819983ae62"
+      "digest": "sha256:f7d2ee54781e8461e1e079a1e25a90de05aebf19e34e781a51d5f50782c75a5e"
     },
     {
       "kind": "skill",
       "name": "teach",
-      "digest": "sha256:afd512b3ccf0b0bb26c20dad078c398365ab12a5a0d5e85b1f3fe37509b05c0f"
+      "digest": "sha256:36c9b564d65ac641ef00539b1aabc4db4d29abba0fc8f95c4501e9874b9ab1f1"
     },
     {
       "kind": "skill",
       "name": "to-questionnaire",
-      "digest": "sha256:1376f9ccd6fb6fa0484e2d3eb920c06761eed432267767a0b9cbd9a84c7295dc"
+      "digest": "sha256:e66334a2e459e7143a5028ac6cde2c9d2b23df23321a5756c78d1402f6429ca7"
     },
     {
       "kind": "skill",
       "name": "to-spec",
-      "digest": "sha256:d1819892ab17b6e4b00a89e1878ba68052cfec8b221116ce2b9986e5bf13eb8d"
+      "digest": "sha256:4404fc7ecfc95a9feb4bfe2bf15a6fc0d557271b739c8f3866e28a75e5c5eb77"
     },
     {
       "kind": "skill",
       "name": "to-tickets",
-      "digest": "sha256:753c40c368360ce5b9987fae81b01fa645757dcc2d12d57c29bd55cebe3dcf12"
+      "digest": "sha256:f52b3b0cde1f2642cadba582f69a8eec74dcbb69e0197f01e2cabc6a541b9cd3"
     },
     {
       "kind": "skill",
       "name": "triage",
-      "digest": "sha256:d4d8f72b1ef41a8ba4d8404d9a2bfb6a2728b29b9e6c88ab0ed03237429669b3"
+      "digest": "sha256:0df6030a802b48cc07e05f43e994c835b7b0b81fc41c00697828e5d4a4636d0e"
     },
     {
       "kind": "skill",
       "name": "wait-what",
-      "digest": "sha256:32b3237bf904a355f36000c93340b0bf656cd1c4b6d84e018264d5895293e611"
+      "digest": "sha256:7769999384ee9111a3f6593f7575bc279d1201633e37f05fa6799fba480a542f"
     },
     {
       "kind": "skill",
       "name": "wayfinder",
-      "digest": "sha256:397475e9be72b50c49d013911ca20b8f068785af405c1e7a8e3820d2468362f9"
+      "digest": "sha256:b5ef33143149b747bb66d61e80101cc37943f2bdce5fd65ca7021ebc5055e08a"
     },
     {
       "kind": "skill",
       "name": "wizard",
-      "digest": "sha256:761fd228ad5f5946386269f1b35138f2271ba6f88c3cd72d3390e80c8797af09"
+      "digest": "sha256:cd800b050d501890fa518a508111377bc8418f4aaf5deb96c0bdd9a8ad041077"
     },
     {
       "kind": "skill",
       "name": "writing-for-agents",
-      "digest": "sha256:6c420718b4de4d200d65cb9ee9d55a56a92871d78701711d4d43ffd8a167e9b7"
+      "digest": "sha256:77ced89cbfcea71a7ffe7ed63896c093a5debc437b8633b85c6e20a2a9e805cf"
     }
   ]
 }

@@ -1,8 +1,8 @@
 {
   "upstream_committed_sha": "355b9dc7e16a6cec2df519d26702a9400de988da",
   "upstream_committed_at": "2026-11-11T15:02:01+08:00",
-  "items_digest": "sha256:c3a99c3d443232468becc4a678a22dd0fb78c8df120de56a746ff4c51c6ccc49",
-  "items_changed_at": "2026-11-27T01:31:19.589Z",
+  "items_digest": "sha256:afe9b0cd54832e8bd4dae616e802704311e9e4791de2b69118e3f4888daf0583",
+  "items_changed_at": "2026-11-27T01:36:44.306Z",
   "items": [
     {
       "kind": "rule",
@@ -12,7 +12,7 @@
     {
       "kind": "skill",
       "name": "check",
-      "digest": "sha256:1d9fdb333eac90410cef022f105f0cb6736e84779e1e02292b707b40fb61d5db"
+      "digest": "sha256:fee90c780369733de59cf81001adab6bff1f49d5d8adeb82a9db5b052462e556"
     },
     {
       "kind": "rule",
@@ -37,12 +37,12 @@
     {
       "kind": "skill",
       "name": "health",
-      "digest": "sha256:7af4978fc816f4383f866163552af3c5f15d302d0ee4bd9af7a51c606240ee57"
+      "digest": "sha256:3e1004809f8d00806d1fad828405a24a90d62d1b9c5fde264667552fb9d1bf2e"
     },
     {
       "kind": "skill",
       "name": "hunt",
-      "digest": "sha256:179f8b478de724388a555475cb46023e0cdfcfe50400f65041c42c66c656587e"
+      "digest": "sha256:d634c2f8e5eb94083e1924148dcf799ef2235e071638d43d4c5d3554c9940c89"
     },
     {
       "kind": "skill",
@@ -52,17 +52,17 @@
     {
       "kind": "skill",
       "name": "read",
-      "digest": "sha256:f4f535ba687f24d1630cdb96798b89700e13ae1296d34a77ff7e7d9f5f2bcd26"
+      "digest": "sha256:297816135c53aea2eda936a054d2ca9cc168eec865be2fd76959b5e7f04a75ea"
     },
     {
       "kind": "skill",
       "name": "think",
-      "digest": "sha256:e3514fdc7c45eda5641b8679ea85422bba02c0e21db18bb1b6b1a5a1b454ec23"
+      "digest": "sha256:8a79f499f8483be5c24ae808e35ec6703788947a5e4545507071dbd0bb2b416b"
     },
     {
       "kind": "skill",
       "name": "ui",
-      "digest": "sha256:8aef0e00942bfad0aa1b0b444b24ba8219405ce791839e163b6d5e3d67b9774f"
+      "digest": "sha256:b719e0482ff291bc9a326de4ac2b658db65ab2f164bc8ae2e79dc4944a3d6816"
     },
     {
       "kind": "rule",
@@ -72,7 +72,7 @@
     {
       "kind": "skill",
       "name": "write",
-      "digest": "sha256:83c4d591c46dfb99d202b1b6a1020d10791f6fc953155a6621d022faccde12b5"
+      "digest": "sha256:75c8794e4eea207bb2edb7e7d7102a17f8ffc0148378406d1f89d6704131d65d"
     }
   ]
 }

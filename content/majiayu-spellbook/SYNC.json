@@ -1,13 +1,13 @@
 {
   "upstream_committed_sha": "5b3c90b13410571bfd44c1d712af6f6259cea464",
   "upstream_committed_at": "2026-11-23T15:56:20+08:00",
-  "items_digest": "sha256:b669410765fac18cab59eb0f741f41b4c90b50c647f19753c7afcf2761aff3b4",
-  "items_changed_at": "2026-11-26T09:19:47.879Z",
+  "items_digest": "sha256:3d0a7fc9b3497458778281205a203ea5efadb481ad2f60ddad8b589bf09064ba",
+  "items_changed_at": "2026-11-27T01:36:43.844Z",
   "items": [
     {
       "kind": "skill",
       "name": "clash-doctor",
-      "digest": "sha256:1644c55bd090c0b1163aa1458133dca9e219250427b9cad936ef2ad75deb7d99"
+      "digest": "sha256:cff4d96c3fade63b962d743908d72c0218fcf61ec8905c3fcc540875ddeaa7c8"
     },
     {
       "kind": "skill",
@@ -17,17 +17,17 @@
     {
       "kind": "skill",
       "name": "codebase-audit",
-      "digest": "sha256:d3f42b15fd3340f6ae47df4aaf5b7e8bc7df417c7fd53229d21f8fb91ccbe12c"
+      "digest": "sha256:6dcc0d91de6efc6b6b840399b8fac2e57c828417a2f54ebe2b51a952b1d93181"
     },
     {
       "kind": "skill",
       "name": "figma-to-react",
-      "digest": "sha256:c8fd737188edf00e5216c498b04cc73f84bd582dbd5be721ab464cad0f6ec121"
+      "digest": "sha256:9ee1be06f014e61ae46dfda09689523635cbee71698328d09cbe47cc75bc1d4e"
     },
     {
       "kind": "skill",
       "name": "ip-check",
-      "digest": "sha256:8439101440bf25aad6ecddc7fb82dace3def859d3214c6e5662ef4d9dd1bab34"
+      "digest": "sha256:00dce4b34f141d0da1ee046496d320defc3e5e57e0e04fdb6f26f010444e73fc"
     }
   ]
 }

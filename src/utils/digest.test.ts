@@ -1,3 +1,4 @@
+import { createHash } from 'node:crypto'
 import { mkdtemp, utimes, writeFile } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
@@ -5,9 +6,28 @@ import { expect, test } from 'vitest'
 
 import { digestTree, sha256, treeDigest } from './digest'
 
+const sha256Buf = (data: Buffer | string): Buffer => createHash('sha256').update(data).digest()
+
 test('sha256 is stable for the same bytes', () => {
   expect(sha256('hello')).toBe(sha256(Buffer.from('hello')))
   expect(sha256('hello')).toMatch(/^sha256:[0-9a-f]{64}$/)
+})
+
+test('tree digest sorts paths by codepoint order, not locale collation', () => {
+  const files = [
+    { path: 'references/a.md', content: Buffer.from('r') },
+    { path: 'SKILL.md', content: Buffer.from('s') },
+  ]
+  const canonical = Buffer.concat([
+    Buffer.from('SKILL.md'),
+    Buffer.from('\0'),
+    sha256Buf(Buffer.from('s')),
+    Buffer.from('references/a.md'),
+    Buffer.from('\0'),
+    sha256Buf(Buffer.from('r')),
+  ])
+  // locale collation 会把 references 排在 SKILL 之前（大小写混排），码元序 S(83) < r(114)
+  expect(treeDigest(files)).toBe(sha256(canonical))
 })
 
 test('tree digest ignores file order', () => {

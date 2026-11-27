@@ -1,238 +1,238 @@
 {
   "upstream_committed_sha": "053894c088317d7ba2038cffcbf5fd57b5494fa6",
   "upstream_committed_at": "2026-08-20T15:04:24+02:00",
-  "items_digest": "sha256:2dd83fa5602023ee14eb299edd798600c24a1af0f6e40618154e5d36ad232533",
-  "items_changed_at": "2026-11-26T09:19:39.279Z",
+  "items_digest": "sha256:488415b9890109c1b144f3c6cdb456c20ebdcb3f24fa79f1e19ccaa66429b230",
+  "items_changed_at": "2026-11-27T01:36:44.143Z",
   "items": [
     {
       "kind": "skill",
       "name": "golang-benchmark",
-      "digest": "sha256:02f42230915d6424a02e72d00e8842cc89a87037252d6f24e5ce302818d6a1e1"
+      "digest": "sha256:360f4437481cd292d47e08ce91a6fc5ac85257a684b68234aa1692c83d53493d"
     },
     {
       "kind": "skill",
       "name": "golang-cli",
-      "digest": "sha256:1732e984a359226eeaf722fabb0bc710ac7d0e7722baeab1bcffa16275312368"
+      "digest": "sha256:977bcbfbb2942203d7be72dbd8923f132a2a3d7e922d04fa3f774b8c48069ed6"
     },
     {
       "kind": "skill",
       "name": "golang-code-style",
-      "digest": "sha256:82c1516aa042902e1bc9c386a18cae5182d7f119882b56603c1c769abf384814"
+      "digest": "sha256:a985b68c43f27830a6ec34498455781170e42424a0dc32922609ce57ef18c816"
     },
     {
       "kind": "skill",
       "name": "golang-concurrency",
-      "digest": "sha256:712cacb14fae6dcae7c456edda33fea7246ebdd93d671b164e8fc8ddefc9780e"
+      "digest": "sha256:a896fdb5037dc6962a17dbb959208392c7348182126f536422b75f3f23f3c8f4"
     },
     {
       "kind": "skill",
       "name": "golang-context",
-      "digest": "sha256:a7273757afdaea2ac651bdea5b015621d618edb0aee5fd53add15c402c5d71ea"
+      "digest": "sha256:5184b28cacaa3e83328125d4a4ed087cf9a1f4235138e301c08b55404e784b18"
     },
     {
       "kind": "skill",
       "name": "golang-continuous-integration",
-      "digest": "sha256:9f7bd3f40cb5140a98cf5215c7cb60c73b298252a389ff83173c44d94e9fdcb0"
+      "digest": "sha256:0af33ef24abc5c9182bcb47d335df370f2711b881d928a3bb7e6559c5dd2fc12"
     },
     {
       "kind": "skill",
       "name": "golang-data-structures",
-      "digest": "sha256:5a468101a23bb838e436a93b388506d9f2e66ee164f09bdcb8b6ff31a0dbc81a"
+      "digest": "sha256:1c99290724e53260cd622e699a4a2a431c06fbd4aa3e2d59b5b5576a9344d7a6"
     },
     {
       "kind": "skill",
       "name": "golang-database",
-      "digest": "sha256:2f8744528e8eaabef59db1d4139a8f79781d53e79071032422c49cfc9db53b22"
+      "digest": "sha256:26df49757237932d416682a91a141d16706dc86b1d1ea85d43128332330945d6"
     },
     {
       "kind": "skill",
       "name": "golang-dependency-injection",
-      "digest": "sha256:4eda5a4136e1be6b5fb831bde367385ad31e2d9ebc48b25a9d181eedc5f0b8b7"
+      "digest": "sha256:5f4da5a1685318e850322804f17af41df8a91d0d5966af91a2c7d68972b2a501"
     },
     {
       "kind": "skill",
       "name": "golang-dependency-management",
-      "digest": "sha256:4248c24b09978c3956cba26334d389f1582857e1747b658d6619e2e2910c0ad4"
+      "digest": "sha256:ee8aa057417c279b78b3e21a6349cb29774087a3b70edf54f5f697ae757e7e2d"
     },
     {
       "kind": "skill",
       "name": "golang-design-patterns",
-      "digest": "sha256:723f97c019eadf742e3affbfc1c80d9d50f7f6ca2ba1d06da18020994f85dc6c"
+      "digest": "sha256:6ec7478de50166f5e3dc4aa8076c0671567a148db9893dcf371521115c43621a"
     },
     {
       "kind": "skill",
       "name": "golang-documentation",
-      "digest": "sha256:7146d33e5188b86929ad7e4f12f22909dfe8371f3b3c5a25bda33b7a328b21bb"
+      "digest": "sha256:10cbc7464d111c0f3dbb2fb4bd05dfa5f393135cbf311ed61f8f9ccb4493f1b4"
     },
     {
       "kind": "skill",
       "name": "golang-error-handling",
-      "digest": "sha256:c2b7edc148dbabc64936fe7e8a95c839eefe54f6ea34b2619b7336c3615edffe"
+      "digest": "sha256:fd0fb1b41802394fd70e1b7e94dcd514d3116e0f7f3e1d5217a5c2c43e1d3670"
     },
     {
       "kind": "skill",
       "name": "golang-google-wire",
-      "digest": "sha256:72eec266062d33bd241402325b8aa5d4cad40bec20294120d45e6d688e47c885"
+      "digest": "sha256:ff9c315c14bb0817209dc9720433cf5cd4c625bfa0e8320956c8857677794493"
     },
     {
       "kind": "skill",
       "name": "golang-gopls",
-      "digest": "sha256:fef194787250d7cfb43d007a6677ceb556eb7ccc8841ba94ef1ed5cb3484b47e"
+      "digest": "sha256:864c68bb4ad0703ae05807a0af185a5e69d6e7e4de9ba265a54646515565f4b3"
     },
     {
       "kind": "skill",
       "name": "golang-graphql",
-      "digest": "sha256:ba1f68500907724d586ace7e0ed0e9090e30875b87c0d202a730a08414bc99fd"
+      "digest": "sha256:5226acf7b26095b6c8a3bc1a6e0b1741cca497b9bedfe9cc89aa68e2c243e8cb"
     },
     {
       "kind": "skill",
       "name": "golang-grpc",
-      "digest": "sha256:d763cb6daf1931079d3d5f622c5a742fb84edf9f74d674321ec42965d09a2136"
+      "digest": "sha256:9f7ad1a4fd3ac21f722eff6e786e1f1aefcec2b0ceeee9b138e98d258f57ac91"
     },
     {
       "kind": "skill",
       "name": "golang-how-to",
-      "digest": "sha256:5014151400cccbc1e7bd559d4675cb44729b6755a591a8bdfee7f46095c6300b"
+      "digest": "sha256:1938b7cfc304432969e60891cd03857ba86b31e58dd6e60ab6229cd1005dcee2"
     },
     {
       "kind": "skill",
       "name": "golang-lint",
-      "digest": "sha256:2a1a1b1e3494089329c08a3e78adb6a7a078eec75f574877ab6a8571b0c22ab9"
+      "digest": "sha256:ca7345ed7e4618c5065eeb3696a89cad159aae7bc50a460b6e06cdea55e724b7"
     },
     {
       "kind": "skill",
       "name": "golang-modernize",
-      "digest": "sha256:bbfa7c92ade7cded7560e61d39fb27995d8b9b50642360ec167f8c586c33891c"
+      "digest": "sha256:6c6a50d51a5ea63e0641e55e4fe6a28a4d17d3968e8fe73298fc4cca2db3288a"
     },
     {
       "kind": "skill",
       "name": "golang-naming",
-      "digest": "sha256:41f622d972b807e8ea00f3e7d2daa4597765844ae0918e502de95162c9bdb907"
+      "digest": "sha256:77eee7bea123d4ad285f5465a2cb1b06adfbcc077e2bcd3ded4065df94fdf7d9"
     },
     {
       "kind": "skill",
       "name": "golang-observability",
-      "digest": "sha256:3c7335449a77afc56b59d2778c2a780d1cddb7dce1033fc3a81f8e3dde0a7e04"
+      "digest": "sha256:b294d2002ef8a1b4b2c5734a9629cbeed396567ea7e98b21a1d16b41815edd79"
     },
     {
       "kind": "skill",
       "name": "golang-performance",
-      "digest": "sha256:a1407b6d82b9df7c9a6df756588d0d2e3f7c051d2b07eb1e56d9b4c9934ac94a"
+      "digest": "sha256:c61ad4c61f3b3db1539baceba3e452bef34e3c2931ee54729c5da4df5e345b77"
     },
     {
       "kind": "skill",
       "name": "golang-pkg-go-dev",
-      "digest": "sha256:57046d4690f1fb06f1bd8602b8272577cf532f8e79638f164d12167295851e84"
+      "digest": "sha256:e88cd45e6c8a5269c5e4607637b22322d6307f23a3a5e121259e2fdc532c5804"
     },
     {
       "kind": "skill",
       "name": "golang-popular-libraries",
-      "digest": "sha256:fa339c99f8fb1b7319060a6cb72150a17aff23fde380c09de9bcf0f7356be3f7"
+      "digest": "sha256:79c5593896666548f688f3c6b14b05a360141d0d89bb335425d236e84f1f2385"
     },
     {
       "kind": "skill",
       "name": "golang-project-layout",
-      "digest": "sha256:a967864fb38227650196ddc94d35f9ff058cce4eebb547e9a0723c02c44ce1f3"
+      "digest": "sha256:73ebdea8317477a5ff9cdd91a63ee10ffa996a8996acdf7665a9e46d556147ed"
     },
     {
       "kind": "skill",
       "name": "golang-refactoring",
-      "digest": "sha256:dabb2f662f9434b9fa1f822331935a3ec298f74b8efb54ab5ef891896ff7ea7d"
+      "digest": "sha256:75d32be082f1f176423b44a2162dcea82926aa8bb04068058ff26211e10f2183"
     },
     {
       "kind": "skill",
       "name": "golang-safety",
-      "digest": "sha256:cb31e9d134a454b9ad1971fd28d4f5fe61f7e10048b65468ea4747276d979045"
+      "digest": "sha256:3ab75322dfa4d65027dcb6cd465f51d62eb4b1c09d0e3964c270bdff593b936f"
     },
     {
       "kind": "skill",
       "name": "golang-samber-do",
-      "digest": "sha256:44d4dc4651c5d7fc9cafb2b4e12a0b2c7bb49ff2bcd3dab8f456a71e14b322fb"
+      "digest": "sha256:2cdd6f375cb9d8914672bb247f985bb69a7d14f4bfe80e652b7f48b7a5d4d005"
     },
     {
       "kind": "skill",
       "name": "golang-samber-hot",
-      "digest": "sha256:6943ec51ec175aaaad79fd5fe21b4c78ee8c78d14b8354e28e7280c7e8ddab7a"
+      "digest": "sha256:161f10c3eb7c5d1d0d7f63a5caa83bce3eb0adee8724d58744d8c6e6b7f15d3d"
     },
     {
       "kind": "skill",
       "name": "golang-samber-lo",
-      "digest": "sha256:df19f9768dee452928274e828aa22b93c5a7bebec21bfc5c60f5ec6f9806fd97"
+      "digest": "sha256:57af6c0ccf9a843a12476abd9f9a8a66dd82958cfaa1434257f64445e14ff233"
     },
     {
       "kind": "skill",
       "name": "golang-samber-mo",
-      "digest": "sha256:7a2548000dc1cfb1cdc1932ff02229cf3bee85a615eeaf3aa9bf12a8034c600a"
+      "digest": "sha256:4fe74992d516310d283127393bf178f7463bd0215984e70cf439cff83603c083"
     },
     {
       "kind": "skill",
       "name": "golang-samber-oops",
-      "digest": "sha256:16004b9bbe48dd86d692434cd0931f93c9144f56575b5192e6216df6c8e1d38f"
+      "digest": "sha256:edd313720f05d04f003a01bc12676bc37fe5f8c614249b2e0f29eddc7375853a"
     },
     {
       "kind": "skill",
       "name": "golang-samber-ro",
-      "digest": "sha256:630b0d982ddc8ff1bb2d50147208766e0960dfc2f2f566eb3ae5733a4549daa5"
+      "digest": "sha256:875f473c151746db881a28c2c08efb4d9b7cd016a8fda9aba863eb5423c89767"
     },
     {
       "kind": "skill",
       "name": "golang-samber-slog",
-      "digest": "sha256:885d10af1e785fb719544739d558c5bb4ba732d5e51d04a886e63bc35fa9dacd"
+      "digest": "sha256:e98c556e04dadaaf3b4bdcf25795390565c532f25abc7785b7590cf488eccf86"
     },
     {
       "kind": "skill",
       "name": "golang-security",
-      "digest": "sha256:7190e584ab2e6fae9d88c16ec51e73d27f92243852f922d571b33ff881c5c7ec"
+      "digest": "sha256:0520da532d21c95f8dcd69b82931f7433893da24976a6077eb2a07de0fc768d0"
     },
     {
       "kind": "skill",
       "name": "golang-spf13-cobra",
-      "digest": "sha256:3d5af582062d151ff1e3ec2dd1f7f7bc0162c1a1d2b7e89b705240253bf31256"
+      "digest": "sha256:61ae2a3b3c07e5c868c2e8ed5be4b00e670affd62e734f961f48c91ed3408073"
     },
     {
       "kind": "skill",
       "name": "golang-spf13-viper",
-      "digest": "sha256:e9d6babc4a8fe1a985741141a6af6ff04ea14fc7fa44d5f2df37dc9ca27aa852"
+      "digest": "sha256:ba3729c29f507746e3ee1e4f8ed831ebea6b902055de17af406872885d1b7317"
     },
     {
       "kind": "skill",
       "name": "golang-stay-updated",
-      "digest": "sha256:c9311a6b28614222f2c1bfab418ec013f23ddc2442bc087eaec4cec05497245a"
+      "digest": "sha256:1eb3b371d7a6265e0ee81c1c87ae947a6eeda6955d7b5cb40d071edcc4340014"
     },
     {
       "kind": "skill",
       "name": "golang-stretchr-testify",
-      "digest": "sha256:b1f5ce6c4d2e0b1f4a70a99677cf11bced5179264addd2b5fbf636d03be17b67"
+      "digest": "sha256:96a155e7f9f82980bac478d8024565b72297ee04084bc0d723328216a34734a6"
     },
     {
       "kind": "skill",
       "name": "golang-structs-interfaces",
-      "digest": "sha256:3599b3a6216bd8729d161016ead58f1a69b880547d9e56a940d0333b8f4c0b04"
+      "digest": "sha256:212a61cf9c98f6788785d2cacba081e863c99acb14348035d262f85a201bd539"
     },
     {
       "kind": "skill",
       "name": "golang-swagger",
-      "digest": "sha256:74d338633f46cdae2ab8255b0a0dcfec25bf7c3442cc4455e2e76e43b1f706e1"
+      "digest": "sha256:fb012b3ab3bc57628eeaa3aef3b2699fd01dd2947edeb121ad3f924ad7664917"
     },
     {
       "kind": "skill",
       "name": "golang-testing",
-      "digest": "sha256:b7ba8149d905c95e710dc8a13e068dba8253bac61ae94d71b1a4072e9ddc8d9e"
+      "digest": "sha256:c9890566d2249314328ecc45231cf74d2f7606b98d24fcf2caec3e2ffbfc7495"
     },
     {
       "kind": "skill",
       "name": "golang-troubleshooting",
-      "digest": "sha256:96271d4a138b53d8098c0e08d089eece910419fe54d43265ef0f83d8132d51f4"
+      "digest": "sha256:ffdad0617ff7c1e29d1edaa0c6f14a83561d871a9b03bdfdf8cd115cee074172"
     },
     {
       "kind": "skill",
       "name": "golang-uber-dig",
-      "digest": "sha256:994d8cf590509d511d0acbff2de050dca6c0ab2a01b64e6d1bb22cdfaa0493d9"
+      "digest": "sha256:fec1d965773c6cc683be90327ff24ac5bf09dbdf7ef9277fd7f8a37e759b0ed1"
     },
     {
       "kind": "skill",
       "name": "golang-uber-fx",
-      "digest": "sha256:56740a9dd14a1bf631999c4568c51ae07845059ddb72d62b5aa6ae192032f36d"
+      "digest": "sha256:1212f3806b968e017dc9b70a86ee226e76fefe5fadc9e81736f188963d0baf22"
     }
   ]
 }

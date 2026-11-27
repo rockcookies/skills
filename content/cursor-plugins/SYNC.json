@@ -1,8 +1,8 @@
 {
   "upstream_committed_sha": "b7b93c36be9bcc36a74db438e0fd385d660bc559",
   "upstream_committed_at": "2026-11-26T01:04:53-08:00",
-  "items_digest": "sha256:245e3248487e193cc362c7c0853e9b26134eb7ccb9849fbef6858d0fe66ae91d",
-  "items_changed_at": "2026-11-26T09:19:46.114Z",
+  "items_digest": "sha256:a8b4e9f76185153d6f2a779f0d067edf3f83970c5cee1746b8b3f90916eee534",
+  "items_changed_at": "2026-11-27T01:36:43.737Z",
   "items": [
     {
       "kind": "skill",
@@ -142,7 +142,7 @@
     {
       "kind": "skill",
       "name": "show-me-your-work",
-      "digest": "sha256:f53582b4ba74296f59ec95ab1d8a8c470cff8cedc62fcf654a56c8c68b6ec494"
+      "digest": "sha256:aca67e61e8a7c4ae44e37e5c082e2c3aa2da664fd1bc8f0c5c8c93b435358c8f"
     },
     {
       "kind": "skill",
@@ -177,7 +177,7 @@
     {
       "kind": "skill",
       "name": "typescript-best-practices",
-      "digest": "sha256:c5cc65fa6de199dbcb333a000d98e7af940847355f6f9886ed822ec3b7ee38c9"
+      "digest": "sha256:d912f605c7e0122caad4de6431e1315e4345160a5e3310746d8150a38084dbd1"
     },
     {
       "kind": "skill",

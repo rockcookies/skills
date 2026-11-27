@@ -9,7 +9,9 @@ export function sha256(data: Buffer | string): string {
 
 /** 目录树 digest：path + NUL + 文件 sha256，再总哈希。不打 tar。 */
 export function treeDigest(files: { path: string; content: Buffer }[]): string {
-  const sorted = [...files].toSorted((a, b) => a.path.localeCompare(b.path))
+  // 码元序排序：localeCompare 受 ICU 版本/运行环境摆布（Node 22 与 26 对部分路径对次序
+  // 不同，SYNC 摘要跨环境核对会幻影失配），与 catalog.ts 的 compareBy 同理
+  const sorted = [...files].toSorted((a, b) => (a.path < b.path ? -1 : a.path > b.path ? 1 : 0))
   const hash = createHash('sha256')
   for (const file of sorted) {
     hash.update(file.path)

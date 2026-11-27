@@ -1,13 +1,13 @@
 {
   "upstream_committed_sha": "fe77df00a27cf94428632ad449a4aecdcb83db41",
   "upstream_committed_at": "2026-11-11T18:55:23+08:00",
-  "items_digest": "sha256:df5719a14384774e8a96f1e6a73702b079997c9f2ef3837b651fab7590aa2248",
-  "items_changed_at": "2026-11-26T09:19:48.572Z",
+  "items_digest": "sha256:e39365797a647eb07ddd999add970b2163444f1e0c60d8a546f475c8ae6d0311",
+  "items_changed_at": "2026-11-27T01:36:43.813Z",
   "items": [
     {
       "kind": "skill",
       "name": "lieflat-less-ai-tone",
-      "digest": "sha256:8e9582f89cc377145f392e216c6247e56f05c03293f95e8360da91f281a47167"
+      "digest": "sha256:9be98671e820789ce81111d035b79710a68051905d7bf943ed0b746c51f41f86"
     }
   ]
 }
