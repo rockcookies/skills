@@ -1,7 +1,4 @@
-import type { Catalog, CatalogPack, CatalogSkill } from '../catalog'
-import type { Dependency, PackCategory } from '../types'
-
-import { resolveRequirements, skillsAddCommand } from './install-commands.service'
+import type { Catalog, CatalogSkill } from '../catalog'
 
 export interface ReadmeBlock {
   /** 标记名：对应 README 中 `<!-- {name}:start -->` / `<!-- {name}:end -->` */
@@ -12,53 +9,42 @@ export interface ReadmeBlock {
 /** 表格单元格转义：竖线会破列，换行会破行 */
 const escapeCell = (text: string): string => text.replaceAll('|', '\\|').replaceAll('\r\n', ' ').replaceAll('\n', ' ')
 
-/** pack 闭包里的 agents/rules 不随 `npx skills add` 安装，渲染提醒行 */
-function copyNote(kind: 'agent' | 'rule', names: string[]): string {
-  const listed = names.map((n) => `\`${n}\``).join(', ')
-  return `Also copy the ${kind} files — not installed by \`npx skills add\` (see [Installation](#installation)): ${listed}.`
+export type ReadmeKind = 'skills' | 'agents' | 'rules' | 'commands'
+
+const KIND_SINGULAR: Record<ReadmeKind, string> = {
+  skills: 'Skill',
+  agents: 'Agent',
+  rules: 'Rule',
+  commands: 'Command',
 }
 
-function packBody(pack: CatalogPack, deps: Record<string, Dependency>): string {
-  const req = resolveRequirements(pack.skills, deps)
-  const sections: string[] = [`#### ${pack.title ?? pack.id}`]
-  if (pack.description) sections.push(pack.description)
-  if (req.agents.length > 0) sections.push(copyNote('agent', req.agents))
-  if (req.rules.length > 0) sections.push(copyNote('rule', req.rules))
-  // 与 pnpm packs 输出同源：bash、全局安装（-g）
-  sections.push(
-    ['```bash', skillsAddCommand({ skills: pack.skills, scope: 'global', shell: 'bash' }), '```'].join('\n'),
+/** 扁平发布面里的文件形态：skill 是目录，其余是 .md */
+const KIND_EXT: Record<ReadmeKind, string> = { skills: '', agents: '.md', rules: '.md', commands: '.md' }
+
+export interface ReadmeEntry {
+  name: string
+  /** repoKey；手工条目为 custom */
+  vendor: string
+  description?: string
+}
+
+/**
+ * 一个 kind 的表：custom 只有名称与描述两列；synced 加 Upstream 列（= repoKey，
+ * 与 manifest.json 的 sources 键一致）。链接指向扁平发布面路径（main 上的真实位置）。
+ * 空集合渲染占位行，标记区块保持就位
+ */
+export function renderKindTable(kind: ReadmeKind, entries: ReadmeEntry[], synced: boolean): string {
+  if (entries.length === 0) return '*(none)*'
+  const label = KIND_SINGULAR[kind]
+  const link = (e: ReadmeEntry): string => `[${e.name}](${kind}/${e.name}${KIND_EXT[kind]})`
+  const rows = entries.map((e) =>
+    synced
+      ? `| ${link(e)} | ${e.vendor} | ${escapeCell(e.description ?? '')} |`
+      : `| ${link(e)} | ${escapeCell(e.description ?? '')} |`,
   )
-  return sections.join('\n\n')
-}
-
-/** 一个分类渲染为 `### 标题` + 简介 + 成员 pack 的 `####` 安装小节 */
-export function renderPackCategory(category: PackCategory, catalog: Catalog): string {
-  const deps: Record<string, Dependency> = Object.fromEntries(catalog.skills.map((s) => [s.name, s.requires]))
-  const sections: string[] = [`### ${category.title}`]
-  if (category.intro) sections.push(category.intro)
-  for (const id of category.packs) {
-    const pack = catalog.packs.find((p) => p.id === id)
-    if (!pack) throw new Error(`pack category "${category.id}" references unknown pack "${id}"`)
-    sections.push(packBody(pack, deps))
-  }
-  return sections.join('\n\n')
-}
-
-/** 全量技能扁平大表（排除 internal），vendor 列为 repoKey（custom = 手维护） */
-export function renderSkillsTable(skills: CatalogSkill[]): string {
-  const rows = skills
-    .filter((s) => !s.internal)
-    .map((s) => `| [${s.name}](${s.path}) | ${s.vendor} | ${escapeCell(s.description)} |`)
-  return ['| Skill | Vendor | Description |', '| --- | --- | --- |', ...rows].join('\n')
-}
-
-/** 全量 agent 扁平大表；vendor 取路径的 repoKey 段 */
-export function renderAgentsTable(agents: Catalog['agents']): string {
-  const vendorOf = (path: string): string => path.split('/')[1] ?? ''
-  const rows = agents.map(
-    (a) => `| [${a.name}](${a.path}) | ${vendorOf(a.path)} | ${escapeCell(a.description ?? '')} |`,
-  )
-  return ['| Agent | Vendor | Description |', '| --- | --- | --- |', ...rows].join('\n')
+  const header = synced ? `| ${label} | Upstream | Description |` : `| ${label} | Description |`
+  const separator = synced ? '| --- | --- | --- |' : '| --- | --- |'
+  return [header, separator, ...rows].join('\n')
 }
 
 /**
@@ -73,4 +59,19 @@ export function replaceBlocks(md: string, blocks: ReadmeBlock[]): string {
     out = out.replace(re, `<!-- ${block.name}:start -->\n${block.body}\n<!-- ${block.name}:end -->`)
   }
   return out
+}
+
+/** README 生成区块消费的 catalog 子集（skills 剔除 internal，文件类带描述） */
+export function catalogEntries(kind: ReadmeKind, catalog: Catalog): { synced: ReadmeEntry[]; custom: ReadmeEntry[] } {
+  const entries = catalog[kind]
+    .filter((e) => kind !== 'skills' || !(e as CatalogSkill).internal)
+    .map((e) => ({
+      name: e.name,
+      vendor: e.vendor,
+      description: 'description' in e ? e.description : undefined,
+    }))
+  return {
+    custom: entries.filter((e) => e.vendor === 'custom'),
+    synced: entries.filter((e) => e.vendor !== 'custom'),
+  }
 }

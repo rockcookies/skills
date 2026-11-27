@@ -240,7 +240,7 @@ describe('check', () => {
     const manifest = JSON.parse(await readFile(path, 'utf8')) as {
       items: { kind: string; name: string; digest: string }[]
     }
-    manifest.items[0]!.kind = 'command'
+    manifest.items[0]!.kind = 'snippet'
     await writeFile(path, JSON.stringify(manifest, null, 2) + '\n')
 
     const result = await check(inputFor(root))
@@ -248,7 +248,7 @@ describe('check', () => {
     // kind 打错的那条报 unknown kind，且没进 seen → agent-one 同时报 missing from SYNC.json
     const i1 = result.findings.filter((f) => f.rule === 'I1')
     expect(i1).toHaveLength(2)
-    expect(i1[0]!.message).toContain('unknown kind "command"')
+    expect(i1[0]!.message).toContain('unknown kind "snippet"')
     expect(i1[1]!.message).toContain('agent mapping "agent-one" is missing from SYNC.json')
   })
 

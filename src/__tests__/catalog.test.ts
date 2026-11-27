@@ -40,8 +40,9 @@ describe('buildCatalog', () => {
     const two = catalog.skills[1]!
     expect(two.vendor).toBe('custom')
     expect(two.source).toBeUndefined()
-    expect(catalog.agents).toEqual([{ name: 'agent-one', path: 'content/alpha/agents/agent-one.md' }])
-    expect(catalog.rules).toEqual([{ name: 'rule-one', path: 'content/alpha/rules/rule-one.md' }])
+    expect(catalog.agents).toEqual([{ name: 'agent-one', vendor: 'alpha', path: 'content/alpha/agents/agent-one.md' }])
+    expect(catalog.rules).toEqual([{ name: 'rule-one', vendor: 'alpha', path: 'content/alpha/rules/rule-one.md' }])
+    expect(catalog.commands).toEqual([])
     expect(catalog.packs).toEqual([
       { id: 'complete', description: 'covers all fixture skills', skills: ['one', 'two'] },
     ])

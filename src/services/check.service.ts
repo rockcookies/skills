@@ -1,7 +1,7 @@
 import { readdir, readFile } from 'node:fs/promises'
 import { join, relative } from 'node:path'
 
-import type { Dependencies, PackCategory, Packs, RepositoryConfig, SyncManifest } from '../types'
+import type { Dependencies, Packs, RepositoryConfig, SyncManifest } from '../types'
 import type { DuplicateNames, ItemIndex } from './dependencies.service'
 
 import { splitFrontmatter } from '../transforms/frontmatter'
@@ -54,14 +54,13 @@ export interface CheckInput {
   repositories: Record<string, RepositoryConfig>
   dependencies: Dependencies
   packs: Packs
-  /** pack 的 README 分类（check 不消费；catalog 与 README 渲染使用） */
-  packCategories?: PackCategory[]
 }
 
 export interface CheckResult {
   skills: SkillInfo[]
   agents: FileInfo[]
   rules: FileInfo[]
+  commands: FileInfo[]
   findings: Finding[]
 }
 
@@ -151,7 +150,7 @@ export async function loadSkills(root: string, findings: Finding[]): Promise<Ski
   return out
 }
 
-async function listMarkdown(root: string, kind: 'agents' | 'rules'): Promise<FileInfo[]> {
+async function listMarkdown(root: string, kind: 'agents' | 'rules' | 'commands'): Promise<FileInfo[]> {
   const out: FileInfo[] = []
   // agents 的 description 供 README / catalog 展示；读不到或缺字段就不填，由展示端兜底
   const readDescription = async (file: string): Promise<string | undefined> => {
@@ -233,6 +232,7 @@ const SYNC_KIND_SPECS = [
   { kind: 'skill', kindDir: 'skills', mappingsOf: (c: RepositoryConfig) => c.skills ?? [], isTree: true },
   { kind: 'agent', kindDir: 'agents', mappingsOf: (c: RepositoryConfig) => c.agents ?? [], isTree: false },
   { kind: 'rule', kindDir: 'rules', mappingsOf: (c: RepositoryConfig) => c.rules ?? [], isTree: false },
+  { kind: 'command', kindDir: 'commands', mappingsOf: (c: RepositoryConfig) => c.commands ?? [], isTree: false },
 ] as const
 
 type SyncKindSpec = (typeof SYNC_KIND_SPECS)[number]
@@ -332,6 +332,7 @@ function checkOrphans(
   skills: SkillInfo[],
   agents: FileInfo[],
   rules: FileInfo[],
+  commands: FileInfo[],
   findings: Finding[],
 ): void {
   const expectedSkillDirs = new Set<string>()
@@ -359,9 +360,11 @@ function checkOrphans(
 
   const expectedAgents = new Set<string>()
   const expectedRules = new Set<string>()
+  const expectedCommands = new Set<string>()
   for (const [repoKey, config] of Object.entries(repositories)) {
     for (const m of config.agents ?? []) expectedAgents.add(`content/${repoKey}/agents/${m.name}.md`)
     for (const m of config.rules ?? []) expectedRules.add(`content/${repoKey}/rules/${m.name}.md`)
+    for (const m of config.commands ?? []) expectedCommands.add(`content/${repoKey}/commands/${m.name}.md`)
   }
   for (const f of agents) {
     if (!expectedAgents.has(f.file)) {
@@ -393,6 +396,21 @@ function checkOrphans(
       findings.push({ rule: 'O1', severity: 'error', path: file, message: 'mapped rule missing on disk' })
     }
   }
+  for (const f of commands) {
+    if (!expectedCommands.has(f.file)) {
+      findings.push({
+        rule: 'O1',
+        severity: 'error',
+        path: f.file,
+        message: 'orphan command file (no mapping in meta.ts)',
+      })
+    }
+  }
+  for (const file of expectedCommands) {
+    if (!commands.some((f) => f.file === file)) {
+      findings.push({ rule: 'O1', severity: 'error', path: file, message: 'mapped command missing on disk' })
+    }
+  }
 }
 
 /** A3 同类内 name 全局唯一：CLI 按 name 平铺安装（skills），扁平发布面按 {kind}/{name} 摆放（agents/rules） */
@@ -415,6 +433,7 @@ export async function check(input: CheckInput): Promise<CheckResult> {
   const skills = await loadSkills(input.root, findings)
   const agents = await listMarkdown(input.root, 'agents')
   const rules = await listMarkdown(input.root, 'rules')
+  const commands = await listMarkdown(input.root, 'commands')
 
   reportDuplicates(
     skills.map((s) => ({ name: s.name, path: s.dir })),
@@ -431,9 +450,14 @@ export async function check(input: CheckInput): Promise<CheckResult> {
     'rule',
     findings,
   )
+  reportDuplicates(
+    commands.map((c) => ({ name: c.name, path: c.file })),
+    'command',
+    findings,
+  )
 
   // A4 跨类 name 互不重叠：扁平发布面按 {kind}/{name} 摆放，跨类同名互相覆盖。
-  // commands 的名字来自 dependencies.ts 的 commands 分区（同步管线未建，先占位）
+  // commands 的名字来自磁盘产物 + dependencies.ts 的 commands 分区（占位）
   const kindOwners = new Map<string, { kind: string; path: string }[]>()
   const addOwner = (name: string, kind: string, path: string): void => {
     kindOwners.set(name, [...(kindOwners.get(name) ?? []), { kind, path }])
@@ -441,6 +465,7 @@ export async function check(input: CheckInput): Promise<CheckResult> {
   for (const s of skills) addOwner(s.name, 'skill', s.dir)
   for (const a of agents) addOwner(a.name, 'agent', a.file)
   for (const r of rules) addOwner(r.name, 'rule', r.file)
+  for (const c of commands) addOwner(c.name, 'command', c.file)
   for (const key of Object.keys(input.dependencies.commands))
     addOwner(key, 'command', `dependencies.ts commands.${key}`)
   for (const [name, owners] of kindOwners) {
@@ -494,9 +519,9 @@ export async function check(input: CheckInput): Promise<CheckResult> {
   }
 
   await checkSyncManifests(input.root, input.repositories, findings)
-  checkOrphans(input.repositories, skills, agents, rules, findings)
+  checkOrphans(input.repositories, skills, agents, rules, commands, findings)
 
-  return { skills, agents, rules, findings }
+  return { skills, agents, rules, commands, findings }
 }
 
 const formatFinding = (f: Finding) => `- \`${f.rule}\` ${f.path ? `\`${f.path}\` ` : ''}${f.message}`
@@ -507,7 +532,7 @@ export function formatReport(r: CheckResult): string {
   return [
     '## Check',
     '',
-    `${r.skills.length} skills · ${r.agents.length} agents · ${r.rules.length} rules · ${errors.length} errors · ${warns.length} warnings`,
+    `${r.skills.length} skills · ${r.agents.length} agents · ${r.rules.length} rules · ${r.commands.length} commands · ${errors.length} errors · ${warns.length} warnings`,
     ...(errors.length > 0 ? ['', '### Errors', ...errors.map(formatFinding)] : []),
     ...(warns.length > 0 ? ['', '### Warnings', ...warns.map(formatFinding)] : []),
     '',

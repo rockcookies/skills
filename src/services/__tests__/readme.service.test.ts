@@ -1,9 +1,8 @@
 import { describe, expect, it } from 'vitest'
 
-import type { Catalog, CatalogPack, CatalogSkill } from '../../catalog'
-import type { PackCategory } from '../../types'
+import type { Catalog, CatalogFileItem, CatalogSkill } from '../../catalog'
 
-import { renderAgentsTable, renderPackCategory, renderSkillsTable, replaceBlocks } from '../readme.service'
+import { catalogEntries, renderKindTable, replaceBlocks, type ReadmeEntry } from '../readme.service'
 
 const skill = (over: Partial<CatalogSkill>): CatalogSkill => ({
   name: 'demo',
@@ -15,103 +14,79 @@ const skill = (over: Partial<CatalogSkill>): CatalogSkill => ({
   ...over,
 })
 
-const pack = (over: Partial<CatalogPack>): CatalogPack => ({
-  id: 'demo-pack',
-  description: '',
-  skills: ['demo'],
+const fileItem = (over: Partial<CatalogFileItem>): CatalogFileItem => ({
+  name: 'agent-one',
+  vendor: 'alpha',
+  path: 'content/alpha/agents/agent-one.md',
   ...over,
 })
 
 const catalog = (over: Partial<Catalog>): Catalog => ({
   schema: 1,
   skills: [skill({})],
-  agents: [],
-  rules: [],
-  packs: [pack({})],
+  agents: [fileItem({})],
+  rules: [fileItem({ name: 'rule-one', path: 'content/alpha/rules/rule-one.md' })],
+  commands: [],
+  packs: [],
   ...over,
 })
 
-const category: PackCategory = {
-  id: 'demo',
-  title: 'Demo skills',
-  intro: 'Intro paragraph.',
-  packs: ['demo-pack'],
-}
-
-describe('renderPackCategory', () => {
-  it('renders heading, intro and bash command with global scope', () => {
-    const md = renderPackCategory(category, catalog({}))
-    expect(md).toContain('### Demo skills')
-    expect(md).toContain('Intro paragraph.')
-    expect(md).toContain('#### demo-pack')
-    expect(md).toContain('```bash\nnpx skills add rockcookies/skills \\\n  --skill demo \\\n  -g\n```')
+describe('renderKindTable', () => {
+  it('renders custom tables with two columns and face links', () => {
+    const entries: ReadmeEntry[] = [{ name: 'demo', vendor: 'custom', description: 'A | demo' }]
+    const md = renderKindTable('skills', entries, false)
+    expect(md.startsWith('| Skill | Description |')).toBe(true)
+    expect(md).toContain('| [demo](skills/demo) | A \\| demo |')
   })
 
-  it('falls back to pack id when title is missing and skips empty description', () => {
-    const md = renderPackCategory(category, catalog({ packs: [pack({ title: undefined })] }))
-    expect(md).toContain('#### demo-pack')
-    expect(md).not.toContain('#### undefined')
+  it('renders synced tables with an Upstream column and file extension links', () => {
+    const entries: ReadmeEntry[] = [{ name: 'agent-one', vendor: 'alpha', description: 'Does things' }]
+    const md = renderKindTable('agents', entries, true)
+    expect(md.startsWith('| Agent | Upstream | Description |')).toBe(true)
+    expect(md).toContain('| [agent-one](agents/agent-one.md) | alpha | Does things |')
   })
 
-  it('notes agents and rules pulled from the dependency closure', () => {
+  it('renders an empty description cell and a *(none)* placeholder for empty sets', () => {
+    expect(renderKindTable('agents', [{ name: 'x', vendor: 'alpha' }], true)).toContain('| alpha |  |')
+    expect(renderKindTable('rules', [], true)).toBe('*(none)*')
+    expect(renderKindTable('commands', [], false)).toBe('*(none)*')
+  })
+})
+
+describe('catalogEntries', () => {
+  it('splits custom and synced entries and drops internal skills', () => {
     const cat = catalog({
-      skills: [skill({ name: 'demo', requires: { skills: [], agents: ['a-one', 'a-two'], rules: ['r-one'] } })],
+      skills: [
+        skill({ name: 'mine', vendor: 'custom' }),
+        skill({ name: 'theirs', vendor: 'alpha', internal: true }),
+        skill({ name: 'published', vendor: 'alpha' }),
+      ],
+      agents: [
+        fileItem({ name: 'mine-agent', vendor: 'custom', path: 'content/custom/agents/mine-agent.md' }),
+        fileItem({}),
+      ],
     })
-    const md = renderPackCategory(category, cat)
-    expect(md).toContain('Also copy the agent files — not installed by `npx skills add`')
-    expect(md).toContain('`a-one`, `a-two`')
-    expect(md).toContain('Also copy the rule files')
-    expect(md).toContain('`r-one`')
-  })
-
-  it('throws when the category references an unknown pack', () => {
-    const broken: PackCategory = { ...category, packs: ['nope'] }
-    expect(() => renderPackCategory(broken, catalog({}))).toThrow('unknown pack "nope"')
-  })
-})
-
-describe('renderSkillsTable', () => {
-  it('renders one flat table row per non-internal skill', () => {
-    const md = renderSkillsTable([
-      skill({ name: 'alpha', vendor: 'antfu', path: 'content/antfu/skills/alpha' }),
-      skill({ name: 'hidden', internal: true }),
-    ])
-    expect(md).toContain('| [alpha](content/antfu/skills/alpha) | antfu |')
-    expect(md).not.toContain('hidden')
-    expect(md.startsWith('| Skill | Vendor | Description |')).toBe(true)
-  })
-
-  it('escapes pipes and newlines inside descriptions', () => {
-    const md = renderSkillsTable([skill({ description: 'a | b\nc' })])
-    expect(md).toContain('a \\| b c')
-  })
-})
-
-describe('renderAgentsTable', () => {
-  it('derives vendor from the repoKey path segment', () => {
-    const md = renderAgentsTable([
-      { name: 'agent-one', path: 'content/cursor-plugins/agents/agent-one.md', description: 'Does things' },
-    ])
-    expect(md).toContain('| [agent-one](content/cursor-plugins/agents/agent-one.md) | cursor-plugins | Does things |')
-  })
-
-  it('renders an empty cell when the agent has no description', () => {
-    const md = renderAgentsTable([{ name: 'agent-two', path: 'content/x/agents/agent-two.md' }])
-    expect(md).toContain('| x |  |')
+    const skills = catalogEntries('skills', cat)
+    expect(skills.custom.map((e) => e.name)).toEqual(['mine'])
+    expect(skills.synced.map((e) => e.name)).toEqual(['published'])
+    const agents = catalogEntries('agents', cat)
+    expect(agents.custom.map((e) => e.name)).toEqual(['mine-agent'])
+    expect(agents.synced.map((e) => e.name)).toEqual(['agent-one'])
+    expect(catalogEntries('commands', cat).synced).toEqual([])
   })
 })
 
 describe('replaceBlocks', () => {
-  const template = 'before\n<!-- packs:demo:start -->\nstale\n<!-- packs:demo:end -->\nafter'
+  const template = 'before\n<!-- skills:custom:start -->\nstale\n<!-- skills:custom:end -->\nafter'
 
   it('replaces the block body between markers', () => {
-    const out = replaceBlocks(template, [{ name: 'packs:demo', body: 'fresh' }])
-    expect(out).toBe('before\n<!-- packs:demo:start -->\nfresh\n<!-- packs:demo:end -->\nafter')
+    const out = replaceBlocks(template, [{ name: 'skills:custom', body: 'fresh' }])
+    expect(out).toBe('before\n<!-- skills:custom:start -->\nfresh\n<!-- skills:custom:end -->\nafter')
   })
 
   it('throws when markers are missing', () => {
-    expect(() => replaceBlocks('no markers', [{ name: 'packs:demo', body: 'x' }])).toThrow(
-      'missing block markers: packs:demo',
+    expect(() => replaceBlocks('no markers', [{ name: 'skills:custom', body: 'x' }])).toThrow(
+      'missing block markers: skills:custom',
     )
   })
 

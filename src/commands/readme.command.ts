@@ -5,43 +5,28 @@ import { fileURLToPath, pathToFileURL } from 'node:url'
 
 import { dependencies } from '../../dependencies'
 import { repositories } from '../../meta'
-import { packCategories, packs } from '../../packs'
+import { packs } from '../../packs'
 import { buildCatalog } from '../catalog'
-import { renderAgentsTable, renderPackCategory, renderSkillsTable, replaceBlocks } from '../services/readme.service'
+import { catalogEntries, renderKindTable, replaceBlocks, type ReadmeKind } from '../services/readme.service'
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..', '..')
 
-/** 每个 pack 恰好归属一个分类；否则 README 渲染结果不唯一，先拦在生成前 */
-function validateCategoryCoverage(): void {
-  const owner = new Map<string, string>()
-  for (const category of packCategories) {
-    for (const id of category.packs) {
-      const prev = owner.get(id)
-      if (prev !== undefined) throw new Error(`pack "${id}" belongs to multiple categories: ${prev}, ${category.id}`)
-      owner.set(id, category.id)
-    }
-  }
-  for (const id of Object.keys(packs)) {
-    if (!owner.has(id)) throw new Error(`pack "${id}" is not listed in any packCategories entry`)
-  }
-}
+const KINDS: ReadmeKind[] = ['skills', 'agents', 'rules', 'commands']
 
 async function main(): Promise<void> {
   const checkOnly = process.argv.includes('--check')
-  validateCategoryCoverage()
-  const catalog = await buildCatalog({ root, repositories, dependencies, packs, packCategories })
-  const blocks = [
-    ...packCategories.map((category) => ({
-      name: `packs:${category.id}`,
-      body: renderPackCategory(category, catalog),
-    })),
-    { name: 'skills', body: renderSkillsTable(catalog.skills) },
-    { name: 'agents', body: renderAgentsTable(catalog.agents) },
-  ]
+  const catalog = await buildCatalog({ root, repositories, dependencies, packs })
+  const blocks = KINDS.flatMap((kind) => {
+    const { custom, synced } = catalogEntries(kind, catalog)
+    return [
+      { name: `${kind}:custom`, body: renderKindTable(kind, custom, false) },
+      { name: `${kind}:synced`, body: renderKindTable(kind, synced, true) },
+    ]
+  })
   const readmePath = join(root, 'README.md')
   const current = await readFile(readmePath, 'utf8')
   const next = replaceBlocks(current, blocks)
-  const summary = `${catalog.skills.length} skills · ${catalog.agents.length} agents · ${catalog.packs.length} packs`
+  const summary = `${catalog.skills.length} skills · ${catalog.agents.length} agents · ${catalog.rules.length} rules · ${catalog.commands.length} commands`
   if (checkOnly) {
     if (next !== current) {
       console.error('readme: generated blocks are stale; run `pnpm readme`')

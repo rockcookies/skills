@@ -76,6 +76,22 @@ export interface RuleMapping {
   transforms?: string[]
 }
 
+/**
+ * 单个 command 映射配置（command 单文件 .md，正文原样拷贝，不做变换）
+ */
+export interface CommandMapping {
+  /**
+   * 源 command .md 路径，相对于仓库根目录
+   * - './commands/deploy.md'
+   */
+  source: string
+
+  /**
+   * 目标 command 名称，输出到 content/{repoKey}/commands/{name}.md
+   */
+  name: string
+}
+
 export interface RepositoryTransforms {
   skills?: string[]
   agents?: string[]
@@ -91,6 +107,7 @@ export interface RepositoryConfig {
   skills?: SkillMapping[]
   agents?: AgentMapping[]
   rules?: RuleMapping[]
+  commands?: CommandMapping[]
 }
 
 /**
@@ -108,23 +125,8 @@ export interface SkillPack {
 
 export type Packs = Record<string, SkillPack>
 
-/**
- * pack 的 README 分类（packs.ts 是数据源）：一个分类渲染为一级 `###` 标题 +
- * 简介 + 成员 pack 的 `####` 安装小节，产物落在 README 的 `<!-- packs:{id} -->` 标记区块
- */
-export interface PackCategory {
-  /** 标记后缀：`<!-- packs:{id}:start/end -->` */
-  id: string
-  /** `###` 级分类标题（展示字符串，可含上游链接与 pin） */
-  title: string
-  /** 分类简介段（标题与首个 pack 小节之间） */
-  intro?: string
-  /** 成员 pack id，按 README 渲染顺序；每个 pack 必须恰好归属一个分类 */
-  packs: string[]
-}
-
-/** manifest item 的类；commands 管线未建，暂只有三类 */
-export type SyncManifestItemKind = 'skill' | 'agent' | 'rule'
+/** manifest item 的类 */
+export type SyncManifestItemKind = 'skill' | 'agent' | 'rule' | 'command'
 
 export interface SyncManifestItem {
   kind: SyncManifestItemKind
@@ -134,7 +136,7 @@ export interface SyncManifestItem {
 
 /**
  * 每 repoKey 一份同步清单（content/{repoKey}/SYNC.json），items 跨类合并
- * （skill/agent/rule），按 name 升序
+ * （skill/agent/rule/command），按 name 升序
  */
 export interface SyncManifest {
   upstream_committed_sha: string
@@ -142,4 +144,35 @@ export interface SyncManifest {
   items_digest: string
   items_changed_at: string
   items: SyncManifestItem[]
+}
+
+/** manifest.json 单条内容清单（source 由所在 source 键隐含，不重复存） */
+export interface ManifestItem {
+  name: string
+  digest: string
+}
+
+export type ManifestKind = 'skills' | 'agents' | 'rules' | 'commands'
+
+export type ManifestItems = { [K in ManifestKind]: ManifestItem[] }
+
+/**
+ * manifest.json 的一个 source：上游同步 source 带 repo/pin 与四个同步字段；
+ * custom（手工维护）只有四类内容清单，以有无 repo 字段区分
+ */
+export interface ManifestSource extends ManifestItems {
+  /** 上游仓库 URL（meta.ts）；custom 无 */
+  repo?: string
+  /** pin（commit > tag > branch）；无 pin 的上游与 custom 均省略 */
+  pin?: string
+  upstream_committed_sha?: string
+  upstream_committed_at?: string
+  items_digest?: string
+  items_changed_at?: string
+}
+
+/** 发布面根级 manifest.json：sources 键 = repoKey（码元序）+ custom；整个同步结构与内容清单 */
+export interface PublishManifest {
+  schema: 1
+  sources: Record<string, ManifestSource>
 }

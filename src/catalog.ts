@@ -7,7 +7,7 @@ export interface CatalogSkill {
   name: string
   description: string
   vendor: string
-  /** 相对仓库根，如 content/skills/samber-golang/golang-how-to */
+  /** 相对仓库根，如 content/samber-golang/skills/golang-how-to */
   path: string
   internal: boolean
   requires: { skills: string[]; agents: string[]; rules: string[] }
@@ -15,12 +15,22 @@ export interface CatalogSkill {
   source?: { repo: string; pin?: string }
 }
 
+export interface CatalogFileItem {
+  name: string
+  /** repoKey；手工条目为 custom */
+  vendor: string
+  /** 相对仓库根，如 content/impeccable/agents/impeccable-documenter.md */
+  path: string
+}
+
+export interface CatalogAgent extends CatalogFileItem {
+  description?: string
+}
+
 export interface CatalogPack {
   id: string
   /** 展示标题（SkillPack.title，缺省渲染端回落到 id） */
   title?: string
-  /** 所属分类 id（packs.ts 的 packCategories；未归类为 undefined） */
-  category?: string
   description: string
   skills: string[]
 }
@@ -28,8 +38,9 @@ export interface CatalogPack {
 export interface Catalog {
   schema: 1
   skills: CatalogSkill[]
-  agents: { name: string; path: string; description?: string }[]
-  rules: { name: string; path: string }[]
+  agents: CatalogAgent[]
+  rules: CatalogFileItem[]
+  commands: CatalogFileItem[]
   packs: CatalogPack[]
 }
 
@@ -57,8 +68,7 @@ export async function buildCatalog(input: CheckInput): Promise<Catalog> {
   if (errors.length > 0) {
     throw new Error(`catalog: check has ${errors.length} error(s); run pnpm check`)
   }
-  const categories = input.packCategories ?? []
-  const categoryOf = new Map(categories.flatMap((c) => c.packs.map((id) => [id, c.id] as const)))
+  const vendorOf = (path: string): string => path.split('/')[1] ?? ''
   return {
     schema: 1,
     skills: r.skills
@@ -77,13 +87,15 @@ export async function buildCatalog(input: CheckInput): Promise<Catalog> {
       })
       .toSorted(compareBy('name')),
     agents: r.agents
-      .map((a) => ({ name: a.name, path: a.file, description: a.description }))
+      .map((a) => ({ name: a.name, vendor: vendorOf(a.file), path: a.file, description: a.description }))
       .toSorted(compareBy('path')),
-    rules: r.rules.map((a) => ({ name: a.name, path: a.file })).toSorted(compareBy('path')),
+    rules: r.rules.map((a) => ({ name: a.name, vendor: vendorOf(a.file), path: a.file })).toSorted(compareBy('path')),
+    commands: r.commands
+      .map((a) => ({ name: a.name, vendor: vendorOf(a.file), path: a.file }))
+      .toSorted(compareBy('path')),
     packs: Object.entries(input.packs).map(([id, pack]) => ({
       id,
       title: pack.title,
-      category: categoryOf.get(id),
       description: pack.description ?? '',
       skills: pack.skills,
     })),
