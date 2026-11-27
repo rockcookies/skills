@@ -1,8 +1,8 @@
 {
   "upstream_committed_sha": "355b9dc7e16a6cec2df519d26702a9400de988da",
   "upstream_committed_at": "2026-11-11T15:02:01+08:00",
-  "items_digest": "sha256:468afdc58f75743bbef7ecb12a1413c48633dee8034a3212e8574ae7961d7b32",
-  "items_changed_at": "2026-11-27T01:23:57.941Z",
+  "items_digest": "sha256:c3a99c3d443232468becc4a678a22dd0fb78c8df120de56a746ff4c51c6ccc49",
+  "items_changed_at": "2026-11-27T01:31:19.589Z",
   "items": [
     {
       "kind": "rule",
@@ -12,7 +12,7 @@
     {
       "kind": "skill",
       "name": "check",
-      "digest": "sha256:3435400ed4da05b821d0aab514342940b5dd8cff3b1d2dac83873e5e6a0aeb85"
+      "digest": "sha256:1d9fdb333eac90410cef022f105f0cb6736e84779e1e02292b707b40fb61d5db"
     },
     {
       "kind": "rule",
@@ -37,12 +37,12 @@
     {
       "kind": "skill",
       "name": "health",
-      "digest": "sha256:d100a2779d2aba48e2ea8b3f24f8035fcaa2d5b09f1c44abbcbbf1258339ceb3"
+      "digest": "sha256:7af4978fc816f4383f866163552af3c5f15d302d0ee4bd9af7a51c606240ee57"
     },
     {
       "kind": "skill",
       "name": "hunt",
-      "digest": "sha256:4aa38b978c95e4dd6eaef65d141cc4cd89409e7c02828d61f168e86aaca88b00"
+      "digest": "sha256:179f8b478de724388a555475cb46023e0cdfcfe50400f65041c42c66c656587e"
     },
     {
       "kind": "skill",
@@ -52,7 +52,7 @@
     {
       "kind": "skill",
       "name": "read",
-      "digest": "sha256:a3c68fd78911f2fe27e16639a6ce4330499a042b1b85d8075ef2ead65cb9db15"
+      "digest": "sha256:f4f535ba687f24d1630cdb96798b89700e13ae1296d34a77ff7e7d9f5f2bcd26"
     },
     {
       "kind": "skill",
@@ -72,7 +72,7 @@
     {
       "kind": "skill",
       "name": "write",
-      "digest": "sha256:6f15ec7d689f0e2792bc964c6d8d64cd1c214339d410f01e8c1214a9eb5dd151"
+      "digest": "sha256:83c4d591c46dfb99d202b1b6a1020d10791f6fc953155a6621d022faccde12b5"
     }
   ]
 }
