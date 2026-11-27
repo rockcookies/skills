@@ -1,13 +1,13 @@
 {
   "upstream_committed_sha": "2fc5e1459efbbf06d92c7306517c286bf12490cf",
   "upstream_committed_at": "2026-11-26T02:23:55+01:00",
-  "items_digest": "sha256:c2ec0cadb84190873f29924ac5768ad4026fec18b55a166f1d8a3b2b72b52257",
-  "items_changed_at": "2026-11-27T01:31:19.138Z",
+  "items_digest": "sha256:eb5e1c7801580e9adf7526af68924489738bf1c384b07c3e82234f154a1a462a",
+  "items_changed_at": "2026-11-27T01:36:43.795Z",
   "items": [
     {
       "kind": "skill",
       "name": "impeccable",
-      "digest": "sha256:8a1c24cda2c26678d272f19471296c860984636a1acd8ccb30c4c495dd77ffb0"
+      "digest": "sha256:a17c9a638a11d33c6bfc54d5dcf842bdc889ee5728d27fb98a43acd4f3296f2d"
     },
     {
       "kind": "agent",
