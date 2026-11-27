@@ -11,9 +11,9 @@ export interface CatalogSkill {
 export interface Catalog {
   schema: 1
   skills: CatalogSkill[]
-  agents: { name: string; path: string }[]
+  agents: { name: string; path: string; description?: string }[]
   rules: { name: string; path: string }[]
-  packs: { id: string; description: string; skills: string[] }[]
+  packs: { id: string; title?: string; category?: string; description: string; skills: string[] }[]
 }
 
 /** resolveRequirements 的输入形状（与仓库 dependencies.ts 的 Dependency 同形） */

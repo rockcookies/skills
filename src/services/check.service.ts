@@ -1,7 +1,7 @@
 import { readdir, readFile } from 'node:fs/promises'
 import { join, relative } from 'node:path'
 
-import type { Dependencies, RepositoryConfig, SyncManifest } from '../types'
+import type { Dependencies, PackCategory, Packs, RepositoryConfig, SyncManifest } from '../types'
 import type { DuplicateNames, ItemIndex } from './dependencies.service'
 
 import { splitFrontmatter } from '../transforms/frontmatter'
@@ -62,13 +62,17 @@ export interface FileInfo {
   name: string
   /** 相对仓库根 */
   file: string
+  /** frontmatter description（仅 agents 解析；rules 原样交付无 frontmatter 契约） */
+  description?: string
 }
 
 export interface CheckInput {
   root: string
   repositories: Record<string, RepositoryConfig>
   dependencies: Dependencies
-  packs: Record<string, { description: string; skills: string[] }>
+  packs: Packs
+  /** pack 的 README 分类（check 不消费；catalog 与 README 渲染使用） */
+  packCategories?: PackCategory[]
 }
 
 export interface CheckResult {
@@ -166,6 +170,17 @@ export async function loadSkills(root: string, findings: Finding[]): Promise<Ski
 
 async function listMarkdown(root: string, kind: 'agents' | 'rules'): Promise<FileInfo[]> {
   const out: FileInfo[] = []
+  // agents 的 description 供 README / catalog 展示；读不到或缺字段就不填，由展示端兜底
+  const readDescription = async (file: string): Promise<string | undefined> => {
+    if (kind !== 'agents') return undefined
+    try {
+      const split = splitFrontmatter(await readFile(file, 'utf8'))
+      const description = split.data.description
+      return typeof description === 'string' && description.trim() ? description.trim() : undefined
+    } catch {
+      return undefined
+    }
+  }
   const walk = async (dir: string): Promise<void> => {
     let entries
     try {
@@ -176,7 +191,9 @@ async function listMarkdown(root: string, kind: 'agents' | 'rules'): Promise<Fil
     for (const e of entries) {
       const p = join(dir, e.name)
       if (e.isDirectory()) await walk(p)
-      else if (e.name.endsWith('.md')) out.push({ name: e.name.slice(0, -3), file: rel(root, p) })
+      else if (e.name.endsWith('.md')) {
+        out.push({ name: e.name.slice(0, -3), file: rel(root, p), description: await readDescription(p) })
+      }
     }
   }
   let repoKeys: string[]

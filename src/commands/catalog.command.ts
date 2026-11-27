@@ -5,13 +5,13 @@ import { fileURLToPath, pathToFileURL } from 'node:url'
 
 import { dependencies } from '../../dependencies'
 import { repositories } from '../../meta'
-import { packs } from '../../packs'
+import { packCategories, packs } from '../../packs'
 import { buildCatalog, serializeCatalog } from '../catalog'
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..', '..')
 
 async function main(): Promise<void> {
-  const catalog = await buildCatalog({ root, repositories, dependencies, packs })
+  const catalog = await buildCatalog({ root, repositories, dependencies, packs, packCategories })
   const outDir = join(root, '.build')
   await mkdir(outDir, { recursive: true })
   const target = join(outDir, 'catalog.json')

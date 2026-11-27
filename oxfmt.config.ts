@@ -25,6 +25,7 @@ export default defineConfig({
 
   // content/ 是同步生成物 + 上游原文（安装面逐字节交付），不参与格式化——
   // 旧布局靠 **/skills/** 巧合覆盖，repoKey 优先后 agents/rules 会漏
+  // README.md 主体是 pnpm readme 的生成区块（表格/代码围栏），生成器与 fmt 互踩，保持生成器原样
   ignorePatterns: [
     'content/**',
     '**/vendor/**',
@@ -33,5 +34,6 @@ export default defineConfig({
     '**/upstream/**',
     '**/node_modules/**',
     'meta.ts',
+    'README.md',
   ],
 })

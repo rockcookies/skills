@@ -99,11 +99,29 @@ export interface RepositoryConfig {
  * 成员名必须能解析到映射产物或 skills/custom/ 技能（packs.ts 是数据源）
  */
 export interface SkillPack {
-  description: string
+  /** 展示标题；缺省用 pack id */
+  title?: string
+  /** 展示描述；缺省不渲染描述段 */
+  description?: string
   skills: string[]
 }
 
 export type Packs = Record<string, SkillPack>
+
+/**
+ * pack 的 README 分类（packs.ts 是数据源）：一个分类渲染为一级 `###` 标题 +
+ * 简介 + 成员 pack 的 `####` 安装小节，产物落在 README 的 `<!-- packs:{id} -->` 标记区块
+ */
+export interface PackCategory {
+  /** 标记后缀：`<!-- packs:{id}:start/end -->` */
+  id: string
+  /** `###` 级分类标题（展示字符串，可含上游链接与 pin） */
+  title: string
+  /** 分类简介段（标题与首个 pack 小节之间） */
+  intro?: string
+  /** 成员 pack id，按 README 渲染顺序；每个 pack 必须恰好归属一个分类 */
+  packs: string[]
+}
 
 /** manifest item 的类；commands 管线未建，暂只有三类 */
 export type SyncManifestItemKind = 'skill' | 'agent' | 'rule'
