@@ -36,7 +36,12 @@ describe('flattenContent', () => {
 
     const plan = await flattenContent(root)
 
-    expect(plan.map((e) => e.dest).toSorted()).toEqual(['agents/agent-one', 'rules/write', 'skills/one', 'skills/two'])
+    expect(plan.map((e) => e.dest).toSorted()).toEqual([
+      'agents/agent-one.md',
+      'rules/write.md',
+      'skills/one',
+      'skills/two',
+    ])
     expect(plan.find((e) => e.dest === 'skills/one')).toEqual({
       src: 'content/alpha/skills/one',
       dest: 'skills/one',

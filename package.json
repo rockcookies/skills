@@ -19,7 +19,8 @@
     "site:build": "pnpm build:catalog && tsx src/commands/prepare-site.command.ts && pnpm --filter ./site build",
     "site:preview": "pnpm site:build && pnpm --filter ./site preview",
     "release": "tsx src/commands/release.command.ts",
-    "release:dry": "tsx src/commands/release.command.ts --dry-run"
+    "release:dry": "tsx src/commands/release.command.ts --dry-run",
+    "release:tree": "tsx src/commands/publish-tree.command.ts"
   },
   "dependencies": {
     "js-yaml": "^5.2.1"
