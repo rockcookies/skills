@@ -1,8 +1,8 @@
 import { expect, test } from 'vitest'
 
-import type { SyncManifest, SyncManifestItem } from '../types'
+import type { SyncManifest, SyncManifestItem } from '../../types'
 
-import { buildSyncReport, changesForKind, compareManifests, type RepoSyncSnapshot } from './sync.command'
+import { buildSyncReport, changesForKind, compareManifests, type RepoSyncSnapshot } from '../sync.command'
 
 function item(kind: SyncManifestItem['kind'], name: string, digest: string): SyncManifestItem {
   return { kind, name, digest }

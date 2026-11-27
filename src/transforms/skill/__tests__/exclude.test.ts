@@ -1,10 +1,10 @@
 import { expect, test } from 'vitest'
 
-import type { SkillContext } from '../context'
+import type { SkillContext } from '../../context'
 
-import { excludeGenerationMd } from './exclude-generation-md'
-import { excludeLicenseTxt } from './exclude-license-txt'
-import { excludeLieflatChrome } from './exclude-lieflat-chrome'
+import { excludeGenerationMd } from '../exclude-generation-md'
+import { excludeLicenseTxt } from '../exclude-license-txt'
+import { excludeLieflatChrome } from '../exclude-lieflat-chrome'
 
 test('exclude-license-txt removes LICENSE.txt and keeps other files', () => {
   const ctx: SkillContext = {

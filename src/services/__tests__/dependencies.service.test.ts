@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest'
 
-import type { Dependencies, RepositoryConfig } from '../types'
+import type { Dependencies, RepositoryConfig } from '../../types'
 
-import { buildItemIndex, closureOf, resolveDependencyGraph } from './dependencies.service'
+import { buildItemIndex, closureOf, resolveDependencyGraph } from '../dependencies.service'
 
 const repositories: Record<string, RepositoryConfig> = {
   alpha: {

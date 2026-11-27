@@ -1,8 +1,8 @@
 import { expect, test } from 'vitest'
 
-import type { SkillContext } from '../context'
+import type { SkillContext } from '../../context'
 
-import { stripSamber, stripSamberText } from './strip-samber'
+import { stripSamber, stripSamberText } from '../strip-samber'
 
 test('strips plugin prefix so golang ids point at dest names', () => {
   const out = stripSamberText(

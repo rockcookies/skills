@@ -7,8 +7,8 @@ import { parseArgs } from 'node:util'
 import type { RepositoryConfig, SyncManifest, SyncManifestItem } from '../types'
 
 import { repositories } from '../../meta'
+import { formatError } from '../errors/format-error'
 import { compareNames, isEmptyMapping, UpstreamService } from '../services/upstream.service'
-import { formatError } from '../utils/error'
 import { pathExists } from '../utils/fs'
 
 type SyncKind = SyncManifestItem['kind']

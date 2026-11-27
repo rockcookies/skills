@@ -36,20 +36,12 @@ export async function digestTree(dir: string, relativeFiles: string[]): Promise<
   return treeDigest(files)
 }
 
-/** 键排序后 JSON，保证同一对象 transformId 稳定。 */
-export function stableStringify(value: unknown): string {
-  return JSON.stringify(sortValue(value))
-}
-
-function sortValue(value: unknown): unknown {
-  if (Array.isArray(value)) return value.map(sortValue)
-  if (value !== null && typeof value === 'object') {
-    const record = value as Record<string, unknown>
-    return Object.fromEntries(
-      Object.keys(record)
-        .toSorted()
-        .map((key) => [key, sortValue(record[key])]),
-    )
-  }
-  return value
+/**
+ * sync 写盘统一 LF：dest 的摘要记录在 SYNC.json 里，跨平台检出（Windows autocrlf 的
+ * CRLF 与 CI 的 LF）会让 I1 摘要核对出现无法用变体调和的幻影漂移；写盘时归一，
+ * 配合 .gitattributes 的 eol=lf，三处字节恒等。含 NUL 视作二进制原样保留
+ */
+export function normalizeTextEol(content: Buffer): Buffer {
+  if (content.includes(0)) return content
+  return Buffer.from(content.toString('utf8').replaceAll('\r\n', '\n'), 'utf8')
 }

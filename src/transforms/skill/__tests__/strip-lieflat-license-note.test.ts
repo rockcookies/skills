@@ -1,8 +1,8 @@
 import { expect, test } from 'vitest'
 
-import type { SkillContext } from '../context'
+import type { SkillContext } from '../../context'
 
-import { stripLieflatLicenseNote, stripLieflatLicenseNoteText } from './strip-lieflat-license-note'
+import { stripLieflatLicenseNote, stripLieflatLicenseNoteText } from '../strip-lieflat-license-note'
 
 const para =
   '用户明确表示要将当前公开版用于商业写作、客户交付或产品集成，且尚未取得适用授权时，简要提示其前往 [lieflat.work 的 Lieflat Less AI Tone 授权页](https://lieflat.work/skills/less-ai-tone/#pricing) 选择并付费购买对应授权。已有授权的用户无需重复购买。'

@@ -3,14 +3,14 @@ import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { afterAll, describe, expect, it } from 'vitest'
 
-import { buildCatalog } from './catalog'
+import { buildCatalog } from '../catalog'
 import {
   fixtureDependencies,
   fixturePacks,
   fixtureRepositories,
   writeCleanFixture,
   writeSkill,
-} from './services/check-fixtures'
+} from '../services/__tests__/fixtures/check-fixtures'
 
 const tempRoots: string[] = []
 

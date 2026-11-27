@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { isForbiddenPath, nextTag, parseSourceCommit, PUBLISH_PATHS } from './release.command'
+import { isForbiddenPath, nextTag, parseSourceCommit, PUBLISH_PATHS } from '../release.command'
 
 describe('nextTag', () => {
   it('uses the plain day tag when free', () => {

@@ -8,7 +8,7 @@ import {
   orphanAgentNames,
   orphanSkillNames,
   resolveUpstreamDir,
-} from './upstream.service'
+} from '../upstream.service'
 
 test('compareNames is UTF-16 code-unit ascending', () => {
   expect(compareNames('A', 'a')).toBeLessThan(0)

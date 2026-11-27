@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest'
 
-import type { Dependency } from '../types'
+import type { Dependency } from '../../types'
 
-import { fileCopyCommands, resolveRequirements, skillsAddCommand } from './install-commands.service'
+import { fileCopyCommands, resolveRequirements, skillsAddCommand } from '../install-commands.service'
 
 describe('skillsAddCommand', () => {
   it('joins with shell-specific continuations and no trailing spaces', () => {

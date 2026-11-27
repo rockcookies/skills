@@ -6,7 +6,7 @@ import type { DuplicateNames, ItemIndex } from './dependencies.service'
 
 import { splitFrontmatter } from '../transforms/frontmatter'
 import { sha256, treeDigest } from '../utils/digest'
-import { listFilesRecursive } from '../utils/list-files'
+import { listFilesRecursive } from '../utils/fs'
 import { buildItemIndex, resolveDependencyGraph } from './dependencies.service'
 import { SKILL_NAME_RE, resolveRequirements } from './install-commands.service'
 import { validatePackMembers } from './packs.service'

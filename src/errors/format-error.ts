@@ -1,4 +1,4 @@
-import { GitError } from '../errors/git.error'
+import { GitError } from './git.error'
 
 export function formatError(error: unknown): string {
   if (error instanceof GitError) {

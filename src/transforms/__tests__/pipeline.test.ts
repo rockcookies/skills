@@ -1,10 +1,10 @@
 import { expect, test } from 'vitest'
 
-import type { RepositoryConfig, RuleMapping, SkillMapping } from '../types'
-import type { RuleContext, SkillContext } from './context'
+import type { RepositoryConfig, RuleMapping, SkillMapping } from '../../types'
+import type { RuleContext, SkillContext } from '../context'
 
-import { splitFrontmatter } from './frontmatter'
-import { resolveTransformNames, runRulePipeline, runSkillPipeline } from './pipeline'
+import { splitFrontmatter } from '../frontmatter'
+import { resolveTransformNames, runRulePipeline, runSkillPipeline } from '../pipeline'
 
 test('resolveTransformNames puts repo names before mapping names', () => {
   const repo: RepositoryConfig = {

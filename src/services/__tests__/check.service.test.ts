@@ -3,12 +3,18 @@ import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { afterAll, describe, expect, it } from 'vitest'
 
-import type { Dependencies, RepositoryConfig } from '../types'
+import type { Dependencies, RepositoryConfig } from '../../types'
 
-import { treeDigest } from '../utils/digest'
-import { listFilesRecursive } from '../utils/list-files'
-import { fixtureDependencies, fixturePacks, fixtureRepositories, writeCleanFixture, writeSkill } from './check-fixtures'
-import { check, formatReport } from './check.service'
+import { treeDigest } from '../../utils/digest'
+import { listFilesRecursive } from '../../utils/fs'
+import { check, formatReport } from '../check.service'
+import {
+  fixtureDependencies,
+  fixturePacks,
+  fixtureRepositories,
+  writeCleanFixture,
+  writeSkill,
+} from './fixtures/check-fixtures'
 
 const tempRoots: string[] = []
 

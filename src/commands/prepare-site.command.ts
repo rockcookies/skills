@@ -8,7 +8,7 @@ import type { SyncManifest } from '../types'
 import { packs } from '../../packs'
 import { flattenContent } from '../services/flatten-content.service'
 import { skillsAddCommand } from '../services/install-commands.service'
-import { listFilesRecursive } from '../utils/list-files'
+import { listFilesRecursive } from '../utils/fs'
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..', '..')
 const publicDir = join(root, 'site', 'public')

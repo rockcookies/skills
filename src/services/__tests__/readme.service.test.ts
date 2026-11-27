@@ -1,9 +1,9 @@
 import { describe, expect, it } from 'vitest'
 
-import type { Catalog, CatalogPack, CatalogSkill } from '../catalog'
-import type { PackCategory } from '../types'
+import type { Catalog, CatalogPack, CatalogSkill } from '../../catalog'
+import type { PackCategory } from '../../types'
 
-import { renderAgentsTable, renderPackCategory, renderSkillsTable, replaceBlocks } from './readme.service'
+import { renderAgentsTable, renderPackCategory, renderSkillsTable, replaceBlocks } from '../readme.service'
 
 const skill = (over: Partial<CatalogSkill>): CatalogSkill => ({
   name: 'demo',

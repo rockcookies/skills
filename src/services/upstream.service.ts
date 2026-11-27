@@ -15,10 +15,8 @@ import type {
 } from '../types'
 
 import { resolveTransformNames, runAgentPipeline, runRulePipeline, runSkillPipeline } from '../transforms/pipeline'
-import { digestFile, digestTree, sha256 } from '../utils/digest'
-import { emptyDir, ensureDir, pathExists } from '../utils/fs'
-import { normalizeTextEol } from '../utils/eol'
-import { listFilesRecursive } from '../utils/list-files'
+import { digestFile, digestTree, normalizeTextEol, sha256 } from '../utils/digest'
+import { emptyDir, ensureDir, listFilesRecursive, pathExists } from '../utils/fs'
 
 /** name 的 UTF-16 码元升序（与当前 ASCII kebab-case 的 unix 字节序一致）。 */
 export function compareNames(a: string, b: string): number {

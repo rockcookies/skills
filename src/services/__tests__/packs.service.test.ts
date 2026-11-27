@@ -3,9 +3,9 @@ import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { afterAll, describe, expect, it } from 'vitest'
 
-import type { Dependencies, RepositoryConfig } from '../types'
+import type { Dependencies, RepositoryConfig } from '../../types'
 
-import { buildItemIndex } from './dependencies.service'
+import { buildItemIndex } from '../dependencies.service'
 import {
   combinePackSkills,
   formatInstallCommand,
@@ -13,7 +13,7 @@ import {
   resolvePackGaps,
   validatePackMembers,
   REPO_SLUG,
-} from './packs.service'
+} from '../packs.service'
 
 const repositories: Record<string, RepositoryConfig> = {
   alpha: {

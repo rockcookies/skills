@@ -1,10 +1,10 @@
 import { mkdir, writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
 
-import type { Dependencies, Packs, RepositoryConfig } from '../types'
+import type { Dependencies, Packs, RepositoryConfig } from '../../../types'
 
-import { digestFile, digestTree } from '../utils/digest'
-import { listFilesRecursive } from '../utils/list-files'
+import { digestFile, digestTree } from '../../../utils/digest'
+import { listFilesRecursive } from '../../../utils/fs'
 
 /** audit/catalog 测试共用的最小仓库形状：1 个映射上游（alpha）+ 1 个手工技能（two） */
 export const fixtureRepositories: Record<string, RepositoryConfig> = {

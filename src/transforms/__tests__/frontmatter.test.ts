@@ -1,6 +1,6 @@
 import { expect, test } from 'vitest'
 
-import { setFrontmatterName, splitFrontmatter } from './frontmatter'
+import { setFrontmatterName, splitFrontmatter } from '../frontmatter'
 
 test('setFrontmatterName sets name last and preserves other keys', () => {
   const input = `---

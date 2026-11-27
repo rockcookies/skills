@@ -13,8 +13,8 @@ User-facing install catalog and bundles live in [README.md](README.md). Reposito
 │   ├── services/           # upstream (clone, pin, sync, SYNC.json) + check + flatten-content + deps/packs/install-commands
 │   ├── transforms/         # skill/agent/rule ctx pipeline + kebab-case named strategies
 │   ├── catalog.ts          # catalog 构建（建立在零 error 的 check 之上）
-│   ├── utils/              # filesystem + digest helpers
-│   ├── errors/             # custom error classes
+│   ├── utils/              # filesystem + digest/eol helpers
+│   ├── errors/             # custom error classes + error formatting
 │   └── types.ts            # RepositoryConfig, SkillMapping, AgentMapping, RuleMapping, SyncManifest
 ├── content/                # 收敛后的内容树（对外安装面经 skills.sh.json 声明，repoKey 优先）
 │   ├── {repoKey}/skills/{name}/   # 上游映射产物
@@ -76,9 +76,10 @@ Transforms are kebab-case names. Repo-level `transforms.skills` / `transforms.ag
 4. **Add or adjust a skill pack** → edit `packs.ts` (named groups, skills only); `pnpm packs` validates members on next run.
 5. **Upstream with empty `skills`, `agents`, and `rules`** → repo may be listed for future use; Sync skips that repo until a mapping exists. A repo with only one kind still syncs.
 6. **Verify** → `pnpm test`（vitest）/ `pnpm lint` / `pnpm fmt` after TypeScript changes.
-7. **Broken reference in upstream text** → do not edit the generated dest; fix it upstream or with a named transform in `meta.ts`.
-8. **Change packs, deps or any skill content** → run `pnpm readme` to refresh the README generated blocks, then `pnpm readme:check`.
-9. **Publish** → on `dev`: `git push` → `pnpm release:dry`（审查 diff）→ `pnpm release`. `main` 只由 release 写入；禁止在 main 上提交，禁止把开发文件加进 `PUBLISH_PATHS`。
+7. **Add or move tests** → first-party tests live beside their source as `src/**/__tests__/<source-name>.test.ts`（`src/utils/digest.ts` → `src/utils/__tests__/digest.test.ts`）；multi-file fixtures under `__tests__/fixtures/<case>/`, small samples inline. Scope is first-party `src/` only — `content/`、`upstream/`、`site/` 是安装面、vendored 源或构建产物，不适用本规范。
+8. **Broken reference in upstream text** → do not edit the generated dest; fix it upstream or with a named transform in `meta.ts`.
+9. **Change packs, deps or any skill content** → run `pnpm readme` to refresh the README generated blocks, then `pnpm readme:check`.
+10. **Publish** → on `dev`: `git push` → `pnpm release:dry`（审查 diff）→ `pnpm release`. `main` 只由 release 写入；禁止在 main 上提交，禁止把开发文件加进 `PUBLISH_PATHS`。
 
 ## Upstream checkouts
 
