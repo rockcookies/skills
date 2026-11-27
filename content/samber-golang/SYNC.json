@@ -1,8 +1,8 @@
 {
   "upstream_committed_sha": "053894c088317d7ba2038cffcbf5fd57b5494fa6",
   "upstream_committed_at": "2026-08-20T15:04:24+02:00",
-  "items_digest": "sha256:488415b9890109c1b144f3c6cdb456c20ebdcb3f24fa79f1e19ccaa66429b230",
-  "items_changed_at": "2026-11-27T01:36:44.143Z",
+  "items_digest": "sha256:68ccebb4ca9b656871d439218c5a53ac572e3287197d49be8cd4dd8d7933a9e9",
+  "items_changed_at": "2026-11-27T01:41:32.835Z",
   "items": [
     {
       "kind": "skill",
@@ -97,7 +97,7 @@
     {
       "kind": "skill",
       "name": "golang-lint",
-      "digest": "sha256:ca7345ed7e4618c5065eeb3696a89cad159aae7bc50a460b6e06cdea55e724b7"
+      "digest": "sha256:dd4b9b23f5868b6290c39f39cf3e65b1ab9f459dc956f7ac048744fe6cf083ac"
     },
     {
       "kind": "skill",
@@ -132,7 +132,7 @@
     {
       "kind": "skill",
       "name": "golang-project-layout",
-      "digest": "sha256:73ebdea8317477a5ff9cdd91a63ee10ffa996a8996acdf7665a9e46d556147ed"
+      "digest": "sha256:c1db9efb7aadc740a063044a1c6071695100e4ca7f520d9960756419218b4806"
     },
     {
       "kind": "skill",
