@@ -1,8 +1,8 @@
 {
   "upstream_committed_sha": "355b9dc7e16a6cec2df519d26702a9400de988da",
   "upstream_committed_at": "2026-11-11T15:02:01+08:00",
-  "items_digest": "sha256:f520a83438c5fa457bb52c6ff812bcd22dde237e80f0a74c2f0a56940de9b907",
-  "items_changed_at": "2026-11-26T09:19:46.801Z",
+  "items_digest": "sha256:468afdc58f75743bbef7ecb12a1413c48633dee8034a3212e8574ae7961d7b32",
+  "items_changed_at": "2026-11-27T01:23:57.941Z",
   "items": [
     {
       "kind": "rule",
@@ -32,7 +32,7 @@
     {
       "kind": "rule",
       "name": "english",
-      "digest": "sha256:1284e6fa15ecb7bf61ef5768fa3f2d642880f52e61fbc7c4d89c332761cd1cdb"
+      "digest": "sha256:020e9a352082948db15361f4ee71ec754015e024f5aa09936a56ee46241b69a0"
     },
     {
       "kind": "skill",
