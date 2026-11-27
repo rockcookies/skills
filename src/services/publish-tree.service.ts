@@ -1,4 +1,4 @@
-import { cp, mkdir, readFile, rm, writeFile } from 'node:fs/promises'
+import { copyFile, cp, mkdir, readFile, rm, writeFile } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 
 import type {
@@ -15,6 +15,9 @@ import { listFilesRecursive } from '../utils/fs'
 import { flattenContent } from './flatten-content.service'
 
 export const MANIFEST_FILE = 'manifest.json'
+
+/** 随发布面进 main 的 dev 文档/工作流（从源根原样拷贝） */
+export const FACE_DOC_PATHS = ['README.md', 'LICENSE', '.github/workflows/deploy.yml'] as const
 
 /**
  * 发布面物化管线：dev 的 content/{repoKey}/{kind}/{name} → 扁平 {kind}/{name} +
@@ -92,11 +95,21 @@ export interface MaterializeResult {
   manifest: PublishManifest
 }
 
+export interface MaterializeOptions {
+  /**
+   * 是否随物化拷入发布面文档（FACE_DOC_PATHS）。main 发布面与 deploy.yml 的复核面
+   * 都含这三份（release 与 release:tree 传 true）；Pages 面（prepare-site）不含——
+   * 它有自己的 README 生成器，也不需要 deploy.yml
+   */
+  docs?: boolean
+}
+
 /** 物化发布树到 out（整体重建）：扁平 {kind}/{name} + manifest.json；空的 kind 不建目录 */
 export async function materializePublishTree(
   root: string,
   out: string,
   repositories: Record<string, RepositoryConfig>,
+  options: MaterializeOptions = {},
 ): Promise<MaterializeResult> {
   await rm(out, { recursive: true, force: true })
   await mkdir(out, { recursive: true })
@@ -105,6 +118,13 @@ export async function materializePublishTree(
     const destAbs = join(out, entry.dest)
     await mkdir(dirname(destAbs), { recursive: true })
     await cp(join(root, entry.src), destAbs, { recursive: true })
+  }
+  if (options.docs) {
+    for (const doc of FACE_DOC_PATHS) {
+      const dest = join(out, doc)
+      await mkdir(dirname(dest), { recursive: true })
+      await copyFile(join(root, doc), dest)
+    }
   }
   const manifest = await buildPublishManifest(root, repositories)
   await writeFile(join(out, MANIFEST_FILE), `${JSON.stringify(manifest, null, 2)}\n`)

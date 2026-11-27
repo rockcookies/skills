@@ -331,7 +331,7 @@ pnpm lint
 pnpm fmt
 pnpm test
 
-# Materialize the published face locally (skills/agents/rules/commands + manifest.json)
+# Materialize the published face locally (skills/agents/rules/commands + manifest.json + face docs)
 pnpm release:tree --out .build/face
 
 # Publish (dev -> main face + tag, then Actions deploys Pages)

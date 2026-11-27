@@ -52,7 +52,7 @@ Dest trees under `content/{repoKey}/` are generated: load source into memory, ru
 | `pnpm site:preview`                                        | site:build + vite preview（http://localhost:4173/skills/，读工作区，未提交的同步结果直接生效）                                                                           |
 | `pnpm readme`                                              | 由 catalog 渲染 README 生成区块（skills/agents/rules/commands 各分 Custom 与 Synced-from-upstream 两张表）                                                               |
 | `pnpm readme:check`                                        | 校验 README 生成区块是否最新；过期退出码 1                                                                                                                               |
-| `pnpm release:tree --out <dir>`                            | 物化发布面到指定目录（扁平 {kind}/{name} + manifest.json）；deploy.yml 一致性校验与本地复核共用                                                                          |
+| `pnpm release:tree --out <dir>`                            | 物化发布面到指定目录（扁平 {kind}/{name} + manifest.json + 发布面文档）；deploy.yml 一致性校验与本地复核共用                                                             |
 | `pnpm release [--dry-run] [--source=<dev sha>]`            | dev→main 发布：门禁（lint/test/check/build:catalog/smoke/readme:check）→ 物化发布面 → 快照提交（带 Source-Commit trailer）→ 打 `vYYYY.MM.DD` tag → push；`--source` 回滚 |
 | `pnpm release:dry`                                         | release 的 dry-run：只打印将发布的 diff，不推送                                                                                                                          |
 

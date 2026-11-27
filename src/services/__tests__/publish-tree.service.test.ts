@@ -41,6 +41,14 @@ async function writeFixture(root: string): Promise<void> {
   )
 }
 
+/** 发布面文档（docs:true 用）：README/LICENSE + deploy.yml */
+async function writeDocs(root: string): Promise<void> {
+  await writeFile(join(root, 'README.md'), '# readme\n')
+  await writeFile(join(root, 'LICENSE'), 'MIT\n')
+  await mkdir(join(root, '.github', 'workflows'), { recursive: true })
+  await writeFile(join(root, '.github', 'workflows', 'deploy.yml'), 'name: deploy\n')
+}
+
 describe('buildPublishManifest', () => {
   it('groups items per source with sync fields; custom carries none', async () => {
     const root = await mkdtemp(join(tmpdir(), 'publish-tree-'))
@@ -126,8 +134,24 @@ describe('materializePublishTree', () => {
     expect(await readFile(join(out, 'agents', 'agent-one.md'), 'utf8')).toBe('agent body\n')
     await expect(stat(join(out, 'rules'))).rejects.toThrow() // 空 kind 不建目录
     await expect(stat(join(out, 'commands'))).rejects.toThrow()
+    await expect(stat(join(out, 'README.md'))).rejects.toThrow() // 默认不含文档
     const written = JSON.parse(await readFile(join(out, 'manifest.json'), 'utf8'))
     expect(written).toEqual(manifest)
     expect(written.schema).toBe(1)
+  })
+
+  it('copies face docs when docs:true', async () => {
+    const root = await mkdtemp(join(tmpdir(), 'publish-tree-'))
+    roots.push(root)
+    await writeFixture(root)
+    await writeDocs(root)
+    const out = join(root, 'face')
+
+    await materializePublishTree(root, out, repositories, { docs: true })
+
+    expect(await readFile(join(out, 'README.md'), 'utf8')).toBe('# readme\n')
+    expect(await readFile(join(out, 'LICENSE'), 'utf8')).toBe('MIT\n')
+    expect(await readFile(join(out, '.github', 'workflows', 'deploy.yml'), 'utf8')).toBe('name: deploy\n')
+    expect(await readFile(join(out, 'manifest.json'), 'utf8')).toContain('"sources"')
   })
 })

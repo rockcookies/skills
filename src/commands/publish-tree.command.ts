@@ -9,7 +9,8 @@ import { materializePublishTree } from '../services/publish-tree.service'
 const root = join(dirname(fileURLToPath(import.meta.url)), '..', '..')
 
 /**
- * 物化发布面：content/ 扁平为 {skills,agents,rules,commands}/{name} + 根级 manifest.json。
+ * 物化发布面：content/ 扁平为 {skills,agents,rules,commands}/{name} + 根级 manifest.json
+ * + 发布面文档（README/LICENSE/deploy.yml），与 release 构造的 main 树同构。
  * deploy.yml 的一致性校验与本地复核共用；`--out <dir>` 必填
  */
 async function main(): Promise<void> {
@@ -20,7 +21,7 @@ async function main(): Promise<void> {
     return
   }
   const out = resolve(values.out)
-  const { entries, manifest } = await materializePublishTree(root, out, repositories)
+  const { entries, manifest } = await materializePublishTree(root, out, repositories, { docs: true })
   console.info(`publish tree: ${entries} flat entries · ${Object.keys(manifest.sources).length} sources -> ${out}`)
 }
 

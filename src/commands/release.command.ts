@@ -1,20 +1,19 @@
 import { execFileSync } from 'node:child_process'
 import { mkdirSync, mkdtempSync, rmSync } from 'node:fs'
-import { copyFile, mkdir } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
-import { dirname, join, resolve } from 'node:path'
+import { join, resolve } from 'node:path'
 import process from 'node:process'
 import { pathToFileURL } from 'node:url'
 
 import type { RepositoryConfig } from '../types'
 
-import { materializePublishTree } from '../services/publish-tree.service'
+import { FACE_DOC_PATHS, materializePublishTree } from '../services/publish-tree.service'
 import { listFilesRecursive } from '../utils/fs'
 
 /**
  * dev/main 发布：
- * - main 是扁平安装面：release 从源提交抽取 content/ + meta.ts，物化成
- *   {skills,agents,rules,commands}/{name} + 根级 manifest.json，再拼上 README/LICENSE/
+ * - main 是扁平安装面：release 从源提交抽取 content/ + meta.ts + 发布面文档，物化成
+ *   {skills,agents,rules,commands}/{name} + 根级 manifest.json + README/LICENSE/
  *   deploy.yml 构造快照树；不切分支、不碰工作区
  * - 快照提交 parent = origin/main，push 永远 fast-forward（非 ff 被远端拒绝，正是保护）
  * - 提交信息带 `Source-Commit: <dev sha>` trailer：deploy.yml 靠它检出对应 dev 源码，
@@ -45,9 +44,6 @@ const REQUIRED_PUBLISH_PATHS: readonly string[] = [
   'LICENSE',
   '.github/workflows/deploy.yml',
 ]
-
-/** 随发布面一起进 main 的 dev 文档/工作流（从源提交原样拷贝） */
-const DOC_PATHS = ['README.md', 'LICENSE', '.github/workflows/deploy.yml'] as const
 
 /** 安全网：即使 PUBLISH_PATHS 被误改，这些前缀也绝不进入 main */
 export const FORBIDDEN_PREFIXES = [
@@ -165,21 +161,16 @@ async function main(): Promise<void> {
     const srcRoot = join(tmp, 'src')
     mkdirSync(srcRoot, { recursive: true })
     const archive = join(tmp, 'src.tar')
-    git(['archive', '--format=tar', '-o', archive, src, '--', 'content', 'meta.ts', ...DOC_PATHS])
+    git(['archive', '--format=tar', '-o', archive, src, '--', 'content', 'meta.ts', ...FACE_DOC_PATHS])
     // tar 以 tmp 为 cwd 用相对文件名：GNU tar 会把 `C:\...` 的盘符冒号当远程主机（bsdtar 则不会）
     execFileSync('tar', ['-xf', 'src.tar', '-C', 'src'], { cwd: tmp, stdio: ['pipe', 'pipe', 'inherit'] })
 
-    // 物化发布面：content/ 扁平为 {kind}/{name} + 根级 manifest.json
+    // 物化发布面：content/ 扁平为 {kind}/{name} + 根级 manifest.json + 发布面文档
     const { repositories } = (await import(pathToFileURL(join(srcRoot, 'meta.ts')).href)) as {
       repositories: Record<string, RepositoryConfig>
     }
     const face = join(tmp, 'face')
-    await materializePublishTree(srcRoot, face, repositories)
-    for (const doc of DOC_PATHS) {
-      const dest = join(face, doc)
-      await mkdir(dirname(dest), { recursive: true })
-      await copyFile(join(srcRoot, doc), dest)
-    }
+    await materializePublishTree(srcRoot, face, repositories, { docs: true })
 
     const files = await listFilesRecursive(face)
     for (const p of REQUIRED_PUBLISH_PATHS) {
