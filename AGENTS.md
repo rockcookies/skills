@@ -52,7 +52,7 @@ Dest trees under `content/{repoKey}/` are generated: load source into memory, ru
 | `pnpm release [--dry-run] [--source=<dev sha>]`            | dev→main 快照发布：门禁（lint/test/check/build:catalog/smoke/readme:check）→ 白名单快照提交（带 Source-Commit trailer）→ 打 `vYYYY.MM.DD` tag → push；`--source` 回滚 |
 | `pnpm release:dry`                                         | release 的 dry-run：只打印将发布的 diff，不推送                                                                                                                       |
 
-Every sync run deletes and rewrites each mapped dest. Mapping 里拿掉的 dest **默认不删**；`pnpm sync --force` 会额外删除该 repo 下未再映射的 skill 目录 / agent `.md` / rule `.md`。`content/{repoKey}/SYNC.json` 每 repo 一份、跨类合并，存 `{ upstream_committed_sha, upstream_committed_at, items_digest, items_changed_at, items: [{ kind, name, digest }] }`（items 按 name 升序；`kind` ∈ skill/agent/rule）。
+Every sync run deletes and rewrites each mapped dest. Mapping 里拿掉的 dest **默认不删**；`pnpm sync --force` 会额外删除该 repo 下未再映射的 skill 目录 / agent `.md` / rule `.md`。`content/{repoKey}/SYNC.json` 每 repo 一份、跨类合并，存 `{ upstream_committed_sha, upstream_committed_at, items_digest, items_changed_at, items: [{ kind, name, digest }] }`（items 按 name 升序；`kind` ∈ skill/agent/rule）。digest 对文本先做 CRLF→LF 与首尾换行 trim 归一再计算（含 NUL 的二进制原样保留），sync 写盘与 check 校验共用同一原语（`src/utils/digest.ts`）。
 
 Transforms are kebab-case names. Repo-level `transforms.skills` / `transforms.agents` / `transforms.rules` run first, then mapping `transforms`, then a builtin step that sets entry YAML `name` to the dest name (skills and agents only; rules skip it so their body stays verbatim). Strategies receive a skill file-tree context or an agent/rule string context and are unit-tested in isolation.
 

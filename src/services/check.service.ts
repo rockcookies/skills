@@ -5,7 +5,7 @@ import type { Dependencies, PackCategory, Packs, RepositoryConfig, SyncManifest 
 import type { DuplicateNames, ItemIndex } from './dependencies.service'
 
 import { splitFrontmatter } from '../transforms/frontmatter'
-import { sha256, treeDigest } from '../utils/digest'
+import { normalizeEolForDigest, sha256, treeDigest } from '../utils/digest'
 import { listFilesRecursive } from '../utils/fs'
 import { buildItemIndex, resolveDependencyGraph } from './dependencies.service'
 import { SKILL_NAME_RE, resolveRequirements } from './install-commands.service'
@@ -14,23 +14,6 @@ import { validatePackMembers } from './packs.service'
 interface TreeFile {
   path: string
   content: Buffer
-}
-
-/**
- * I1 摘要比对容忍 git 行尾转换幻影（Windows sync 写 CRLF、提交归一成 LF、检出还原形态
- * 漂移——已知每次 sync 复现）：字节一致、CRLF→LF 归一或 LF→CRLF 归一任一匹配即通过；
- * 内容真实漂移三种变体都命不中。根治需统一仓库 eol 策略（.gitattributes），另行处理。
- * 摘要形态与 sync 管道一致：skill 整树走 treeDigest，agent/rule 单文件走 sha256
- */
-function eolDigestVariants(files: TreeFile[], singleFile: boolean): string[] {
-  const digest = (fs: TreeFile[]) => (singleFile ? sha256(fs[0]!.content) : treeDigest(fs))
-  const normalize = (transform: (text: string) => string) =>
-    files.map((f) => ({ path: f.path, content: Buffer.from(transform(f.content.toString('utf8')), 'utf8') }))
-  return [
-    digest(files),
-    digest(normalize((t) => t.replaceAll('\r\n', '\n'))),
-    digest(normalize((t) => t.replaceAll('\n', '\r\n'))),
-  ]
 }
 
 async function loadTreeFiles(dir: string): Promise<TreeFile[]> {
@@ -307,21 +290,21 @@ async function checkSyncManifests(
       const destPath = spec.isTree
         ? join(root, 'content', repoKey, spec.kindDir, item.name)
         : join(root, 'content', repoKey, spec.kindDir, `${item.name}.md`)
-      let variants: string[] | null = null
+      let actual: string | null = null
       try {
         const files = spec.isTree
           ? await loadTreeFiles(destPath)
           : [{ path: `${item.name}.md`, content: await readFile(destPath) }]
-        variants = eolDigestVariants(files, !spec.isTree)
+        actual = spec.isTree ? treeDigest(files) : sha256(normalizeEolForDigest(files[0]!.content))
       } catch {
-        variants = null // dest 整个缺失（清单位在但产物没同步）
+        actual = null // dest 整个缺失（清单位在但产物没同步）
       }
-      if (variants === null || !variants.includes(item.digest)) {
+      if (actual === null || actual !== item.digest) {
         findings.push({
           rule: 'I1',
           severity: 'error',
           path: `content/${repoKey}/${spec.kindDir}/${item.name}`,
-          message: variants === null ? 'dest missing on disk' : 'dest content does not match SYNC.json digest',
+          message: actual === null ? 'dest missing on disk' : 'dest content does not match SYNC.json digest',
         })
       }
     }

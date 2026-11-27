@@ -5,7 +5,6 @@ import { afterAll, describe, expect, it } from 'vitest'
 
 import type { Dependencies, RepositoryConfig } from '../../types'
 
-import { treeDigest } from '../../utils/digest'
 import { listFilesRecursive } from '../../utils/fs'
 import { check, formatReport } from '../check.service'
 import {
@@ -185,21 +184,20 @@ describe('check', () => {
   it('tolerates the git line-ending phantom in SYNC.json digests (I1)', async () => {
     const root = await createRoot()
     await writeCleanFixture(root)
-    // 模拟 Windows sync 写 CRLF 摘要、git 提交归一成 LF 的已知幻影：存 CRLF 形态摘要
-    const skillDir = join(root, 'content', 'alpha', 'skills', 'one')
-    const files = await Promise.all(
-      (await listFilesRecursive(skillDir)).map(async (rel) => ({
-        path: rel,
-        content: (await readFile(join(skillDir, rel))).toString('utf8').replaceAll('\n', '\r\n'),
-      })),
+    // 模拟检出/写盘形态漂移：dest 全部转 CRLF，SYNC.json 仍记 LF 形态摘要；
+    // 读取侧归一（CRLF→LF + 首尾换行 trim）让两种形态同摘要
+    const destDirs = [join('alpha', 'skills', 'one'), join('alpha', 'agents'), join('alpha', 'rules')].map((relDir) =>
+      join(root, 'content', relDir),
     )
-    const manifestPath = join(root, 'content', 'alpha', 'SYNC.json')
-    const manifest = JSON.parse(await readFile(manifestPath, 'utf8')) as {
-      items: { kind: string; name: string; digest: string }[]
-    }
-    const item = manifest.items.find((i) => i.kind === 'skill' && i.name === 'one')!
-    item.digest = treeDigest(files.map((f) => ({ path: f.path, content: Buffer.from(f.content, 'utf8') })))
-    await writeFile(manifestPath, JSON.stringify(manifest, null, 2) + '\n')
+    const trees = await Promise.all(destDirs.map(async (dir) => ({ dir, rels: await listFilesRecursive(dir) })))
+    await Promise.all(
+      trees.flatMap(({ dir, rels }) =>
+        rels.map(async (rel) => {
+          const p = join(dir, rel)
+          await writeFile(p, (await readFile(p)).toString('utf8').replaceAll('\n', '\r\n'))
+        }),
+      ),
+    )
 
     const result = await check(inputFor(root))
 

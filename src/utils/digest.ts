@@ -16,14 +16,14 @@ export function treeDigest(files: { path: string; content: Buffer }[]): string {
   for (const file of sorted) {
     hash.update(file.path)
     hash.update('\0')
-    hash.update(createHash('sha256').update(file.content).digest())
+    hash.update(createHash('sha256').update(normalizeEolForDigest(file.content)).digest())
   }
   return `sha256:${hash.digest('hex')}`
 }
 
 /** 单文件内容 digest，agent dest 用这个。 */
 export async function digestFile(filePath: string): Promise<string> {
-  return sha256(await readFile(filePath))
+  return sha256(normalizeEolForDigest(await readFile(filePath)))
 }
 
 /** 按相对路径列表读盘再 treeDigest。 */
@@ -44,4 +44,14 @@ export async function digestTree(dir: string, relativeFiles: string[]): Promise<
 export function normalizeTextEol(content: Buffer): Buffer {
   if (content.includes(0)) return content
   return Buffer.from(content.toString('utf8').replaceAll('\r\n', '\n'), 'utf8')
+}
+
+/**
+ * digest 读取侧归一：摘要认定忽略行尾形态与首尾空行噪音。机制同 git clean filter
+ * （入哈希前 CRLF→LF、仅文本）；首尾削换行是自定策略，比 git 多容忍末尾空行漂移。
+ * 首尾空格/tab 属内容差异，不动。含 NUL 视作二进制原样保留
+ */
+export function normalizeEolForDigest(content: Buffer): Buffer {
+  if (content.includes(0)) return content
+  return Buffer.from(content.toString('utf8').replaceAll('\r\n', '\n').replace(/^\n+/, '').replace(/\n+$/, ''), 'utf8')
 }

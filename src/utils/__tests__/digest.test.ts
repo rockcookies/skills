@@ -4,7 +4,7 @@ import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { describe, expect, it, test } from 'vitest'
 
-import { digestTree, normalizeTextEol, sha256, treeDigest } from '../digest'
+import { digestFile, digestTree, normalizeEolForDigest, normalizeTextEol, sha256, treeDigest } from '../digest'
 
 const sha256Buf = (data: Buffer | string): Buffer => createHash('sha256').update(data).digest()
 
@@ -72,4 +72,36 @@ describe('normalizeTextEol', () => {
     const text = Buffer.from('a\nb\n')
     expect(normalizeTextEol(text)).toEqual(text)
   })
+})
+
+describe('normalizeEolForDigest', () => {
+  it('strips leading and trailing newlines after CRLF collapse', () => {
+    expect(normalizeEolForDigest(Buffer.from('\r\n\r\na\r\n\r\n'))).toEqual(Buffer.from('a'))
+  })
+
+  it('reduces an all-newline file to empty', () => {
+    expect(normalizeEolForDigest(Buffer.from('\r\n\n'))).toEqual(Buffer.from(''))
+  })
+
+  it('keeps interior spaces and tabs', () => {
+    expect(normalizeEolForDigest(Buffer.from(' a\t\n'))).toEqual(Buffer.from(' a\t'))
+  })
+
+  it('keeps binary content byte-identical', () => {
+    const png = Buffer.from([0x89, 0x50, 0x0d, 0x0a, 0x00, 0x1a, 0x0a])
+    expect(normalizeEolForDigest(png)).toBe(png)
+  })
+})
+
+test('digest ignores CRLF vs LF line endings', async () => {
+  const dir = await mkdtemp(join(tmpdir(), 'digest-'))
+  await writeFile(join(dir, 'crlf.md'), 'a\r\nb\r\n')
+  await writeFile(join(dir, 'lf.md'), 'a\nb\n')
+  expect(await digestFile(join(dir, 'crlf.md'))).toBe(await digestFile(join(dir, 'lf.md')))
+})
+
+test('digest ignores leading/trailing blank lines but not spaces', () => {
+  const base = treeDigest([{ path: 'a.md', content: Buffer.from('x') }])
+  expect(treeDigest([{ path: 'a.md', content: Buffer.from('\n\nx\n\n') }])).toBe(base)
+  expect(treeDigest([{ path: 'a.md', content: Buffer.from(' x ') }])).not.toBe(base)
 })
