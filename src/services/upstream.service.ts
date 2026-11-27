@@ -7,6 +7,7 @@ import { simpleGit } from 'simple-git'
 import type { AgentContext, RuleContext, SkillContext } from '../transforms/context'
 import type {
   AgentMapping,
+  CommandMapping,
   RepositoryConfig,
   RuleMapping,
   SkillMapping,
@@ -66,9 +67,9 @@ export function resolveUpstreamDir(root: string): string {
   return fromEnv ? resolve(fromEnv) : join(root, 'upstream')
 }
 
-/** 三类映射全空：sync 跳过该 repo（meta.ts 里的预留位）。 */
+/** 四类映射全空：sync 跳过该 repo（meta.ts 里的预留位）。 */
 export function isEmptyMapping(config: RepositoryConfig): boolean {
-  return !(config.skills?.length || config.agents?.length || config.rules?.length)
+  return !(config.skills?.length || config.agents?.length || config.rules?.length || config.commands?.length)
 }
 
 export class UpstreamService {
@@ -105,9 +106,10 @@ export class UpstreamService {
     const skills = config.skills ?? []
     const agents = config.agents ?? []
     const rules = config.rules ?? []
+    const commands = config.commands ?? []
 
     if (isEmptyMapping(config)) {
-      console.warn(`No skills, agents or rules configured for ${upstreamName}, skipping sync`)
+      console.warn(`No skills, agents, rules or commands configured for ${upstreamName}, skipping sync`)
       return
     }
 
@@ -116,7 +118,7 @@ export class UpstreamService {
       throw new Error(`Upstream repository not found: ${upstreamName}`)
     }
 
-    await this.preflight(upstreamName, repoRoot, skills, agents, rules)
+    await this.preflight(upstreamName, repoRoot, skills, agents, rules, commands)
 
     const { sha, committedAt } = await this.getUpstreamCommit(upstreamName)
 
@@ -133,6 +135,10 @@ export class UpstreamService {
 
     if (rules.length) {
       items.push(...(await this.syncRulesKind(upstreamName, repoRoot, config, rules, force)))
+    }
+
+    if (commands.length) {
+      items.push(...(await this.syncCommandsKind(upstreamName, repoRoot, commands, force)))
     }
 
     await this.writeSyncJSON(repoContentRoot, sha, committedAt, items)
@@ -254,6 +260,44 @@ export class UpstreamService {
     }
   }
 
+  /** command 单文件 .md，正文原样拷贝（不做变换），与 rules 同构 */
+  private async syncCommandsKind(
+    upstreamName: string,
+    repoRoot: string,
+    commands: CommandMapping[],
+    force: boolean,
+  ): Promise<SyncManifestItem[]> {
+    const commandsRoot = join(this.root, 'content', upstreamName, 'commands')
+    await ensureDir(commandsRoot)
+    const items: SyncManifestItem[] = []
+
+    for (const mapping of commands) {
+      const content = await readFile(join(repoRoot, mapping.source))
+      const destPath = join(commandsRoot, `${mapping.name}.md`)
+      await writeFile(destPath, normalizeTextEol(content))
+      items.push({ kind: 'command', name: mapping.name, digest: await digestFile(destPath) })
+      console.info(`✓ Synced command '${mapping.name}' from ${upstreamName}`)
+    }
+
+    if (force) {
+      await this.removeOrphanCommands(commandsRoot, new Set(commands.map((mapping) => mapping.name)), upstreamName)
+    }
+    return items
+  }
+
+  private async removeOrphanCommands(
+    commandsRoot: string,
+    mapped: ReadonlySet<string>,
+    upstreamName: string,
+  ): Promise<void> {
+    const entries = await readdir(commandsRoot, { withFileTypes: true })
+    const fileNames = entries.filter((entry) => entry.isFile()).map((entry) => entry.name)
+    for (const name of orphanAgentNames(fileNames, mapped)) {
+      await rm(join(commandsRoot, `${name}.md`), { force: true })
+      console.warn(`✗ Removed orphan command '${name}' from ${upstreamName}`)
+    }
+  }
+
   private async removeOrphanAgents(
     agentsRoot: string,
     mapped: ReadonlySet<string>,
@@ -305,6 +349,7 @@ export class UpstreamService {
     skills: SkillMapping[],
     agents: AgentMapping[],
     rules: RuleMapping[],
+    commands: CommandMapping[],
   ): Promise<void> {
     const missing: string[] = []
     for (const mapping of skills) {
@@ -323,6 +368,12 @@ export class UpstreamService {
       const sourcePath = join(repoRoot, mapping.source)
       if (!(await pathExists(sourcePath))) {
         missing.push(`rule ${mapping.name}: ${sourcePath}`)
+      }
+    }
+    for (const mapping of commands) {
+      const sourcePath = join(repoRoot, mapping.source)
+      if (!(await pathExists(sourcePath))) {
+        missing.push(`command ${mapping.name}: ${sourcePath}`)
       }
     }
     if (missing.length > 0) {

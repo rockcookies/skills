@@ -13,7 +13,7 @@ import { pathExists } from '../utils/fs'
 
 type SyncKind = SyncManifestItem['kind']
 
-const SYNC_KINDS: SyncKind[] = ['skill', 'agent', 'rule']
+const SYNC_KINDS: SyncKind[] = ['skill', 'agent', 'rule', 'command']
 
 /** 一个 repo 同步前后的 SYNC.json 快照；null = 无清单（空映射 repo 或首次同步）。 */
 export interface RepoSyncSnapshot {

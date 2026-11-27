@@ -84,6 +84,7 @@ export function buildItemIndex(
     for (const mapping of config.skills ?? []) add('skill', mapping.name, repoKey)
     for (const mapping of config.agents ?? []) add('agent', mapping.name, repoKey)
     for (const mapping of config.rules ?? []) add('rule', mapping.name, repoKey)
+    for (const mapping of config.commands ?? []) add('command', mapping.name, repoKey)
   }
   for (const name of customSkillNames) add('skill', name, null)
 
